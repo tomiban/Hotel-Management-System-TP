@@ -43,12 +43,12 @@
             txtUsuario.Depth = 0;
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsuario.LeadingIcon = null;
-            txtUsuario.Location = new Point(115, 114);
+            txtUsuario.Location = new Point(150, 133);
             txtUsuario.MaxLength = 32;
             txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(158, 50);
+            txtUsuario.Size = new Size(270, 50);
             txtUsuario.TabIndex = 0;
             txtUsuario.Text = "";
             txtUsuario.TrailingIcon = null;
@@ -60,13 +60,13 @@
             txtContraseña.Depth = 0;
             txtContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContraseña.LeadingIcon = null;
-            txtContraseña.Location = new Point(115, 211);
+            txtContraseña.Location = new Point(150, 230);
             txtContraseña.MaxLength = 16;
             txtContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseña.Multiline = false;
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Password = true;
-            txtContraseña.Size = new Size(158, 50);
+            txtContraseña.Size = new Size(270, 50);
             txtContraseña.TabIndex = 1;
             txtContraseña.Text = "";
             txtContraseña.TrailingIcon = null;
@@ -79,7 +79,7 @@
             btnIniciar_Sesion.Depth = 0;
             btnIniciar_Sesion.HighEmphasis = true;
             btnIniciar_Sesion.Icon = null;
-            btnIniciar_Sesion.Location = new Point(127, 321);
+            btnIniciar_Sesion.Location = new Point(213, 340);
             btnIniciar_Sesion.Margin = new Padding(4, 6, 4, 6);
             btnIniciar_Sesion.MouseState = MaterialSkin.MouseState.HOVER;
             btnIniciar_Sesion.Name = "btnIniciar_Sesion";
@@ -96,7 +96,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.Depth = 0;
             lblUsuario.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsuario.Location = new Point(165, 92);
+            lblUsuario.Location = new Point(150, 111);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(55, 19);
@@ -108,7 +108,7 @@
             lblContraseña.AutoSize = true;
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseña.Location = new Point(152, 189);
+            lblContraseña.Location = new Point(150, 208);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(82, 19);
@@ -128,7 +128,7 @@
             btnSinCuenta.ForeColor = SystemColors.ControlDarkDark;
             btnSinCuenta.HighEmphasis = true;
             btnSinCuenta.Icon = null;
-            btnSinCuenta.Location = new Point(100, 392);
+            btnSinCuenta.Location = new Point(186, 411);
             btnSinCuenta.Margin = new Padding(4, 6, 4, 6);
             btnSinCuenta.MouseState = MaterialSkin.MouseState.HOVER;
             btnSinCuenta.Name = "btnSinCuenta";
@@ -145,7 +145,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(396, 463);
+            ClientSize = new Size(590, 499);
             Controls.Add(btnSinCuenta);
             Controls.Add(lblContraseña);
             Controls.Add(lblUsuario);
