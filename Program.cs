@@ -1,3 +1,5 @@
+using GestionHotelWinForms.Views;
+
 namespace GestionHotelWinForms
 {
     internal static class Program
