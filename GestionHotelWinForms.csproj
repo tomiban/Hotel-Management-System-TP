@@ -12,7 +12,6 @@
     <Folder Include="Presenters\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\" />
   </ItemGroup>
 
   <ItemGroup>
