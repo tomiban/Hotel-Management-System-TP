@@ -12,25 +12,31 @@ using System.Windows.Forms;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class clienteDashboard : MaterialForm
+    public partial class Cliente : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        public clienteDashboard()
+        public Cliente()
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
-            // CS ALTERNATIVO -> materialSkinManager.ColorScheme=new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,MaterialSkin.Primary.Indigo700,MaterialSkin.Primary.Indigo100,MaterialSkin.Accent.Pink500,MaterialSkin.TextShade.WHITE);
-            materialSkinManager.ColorScheme = materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Green800, Primary.Green900,
-                Primary.Green500, Accent.Green400,
-                TextShade.WHITE
-            );
+            materialSkinManager.ColorScheme = new ColorScheme(
+         Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
+         Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
+         Primary.Cyan300,   // Deep Purple base para fondos principales
+         Accent.Cyan700,         // Acento verde 400 para destacar
+         TextShade.WHITE          // Color de texto blanco para el contraste
+     );
         }
 
         private void materialCard6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Cliente_Load(object sender, EventArgs e)
         {
 
         }

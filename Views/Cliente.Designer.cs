@@ -1,6 +1,6 @@
 ﻿namespace GestionHotelWinForms.Views
 {
-    partial class clienteDashboard
+    partial class Cliente
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem1 = new ListViewItem("");
-            ListViewItem listViewItem2 = new ListViewItem("");
-            ListViewItem listViewItem3 = new ListViewItem("");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(clienteDashboard));
-            tabControlCliente = new MaterialSkin.Controls.MaterialTabControl();
-            tpDashboard = new TabPage();
+            ListViewItem listViewItem4 = new ListViewItem("");
+            ListViewItem listViewItem5 = new ListViewItem("");
+            ListViewItem listViewItem6 = new ListViewItem("");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cliente));
+            tcCliente = new MaterialSkin.Controls.MaterialTabControl();
+            tpHabitaciones = new TabPage();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             materialButton5 = new MaterialSkin.Controls.MaterialButton();
             materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
@@ -83,9 +83,9 @@
             lblCuenta = new MaterialSkin.Controls.MaterialLabel();
             lblRolCuenta = new MaterialSkin.Controls.MaterialLabel();
             tpLogout = new TabPage();
-            imageList = new ImageList(components);
-            tabControlCliente.SuspendLayout();
-            tpDashboard.SuspendLayout();
+            imageListCliente = new ImageList(components);
+            tcCliente.SuspendLayout();
+            tpHabitaciones.SuspendLayout();
             materialCard1.SuspendLayout();
             materialCard5.SuspendLayout();
             materialCard3.SuspendLayout();
@@ -96,40 +96,40 @@
             materialCard6.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControlCliente
+            // tcCliente
             // 
-            tabControlCliente.Controls.Add(tpDashboard);
-            tabControlCliente.Controls.Add(tpReservas);
-            tabControlCliente.Controls.Add(tpCuenta);
-            tabControlCliente.Controls.Add(tpLogout);
-            tabControlCliente.Depth = 0;
-            tabControlCliente.Dock = DockStyle.Fill;
-            tabControlCliente.ImageList = imageList;
-            tabControlCliente.Location = new Point(10, 64);
-            tabControlCliente.MouseState = MaterialSkin.MouseState.HOVER;
-            tabControlCliente.Multiline = true;
-            tabControlCliente.Name = "tabControlCliente";
-            tabControlCliente.SelectedIndex = 0;
-            tabControlCliente.Size = new Size(1028, 486);
-            tabControlCliente.TabIndex = 0;
+            tcCliente.Controls.Add(tpHabitaciones);
+            tcCliente.Controls.Add(tpReservas);
+            tcCliente.Controls.Add(tpCuenta);
+            tcCliente.Controls.Add(tpLogout);
+            tcCliente.Depth = 0;
+            tcCliente.Dock = DockStyle.Fill;
+            tcCliente.ImageList = imageListCliente;
+            tcCliente.Location = new Point(10, 64);
+            tcCliente.MouseState = MaterialSkin.MouseState.HOVER;
+            tcCliente.Multiline = true;
+            tcCliente.Name = "tcCliente";
+            tcCliente.SelectedIndex = 0;
+            tcCliente.Size = new Size(1028, 486);
+            tcCliente.TabIndex = 0;
             // 
-            // tpDashboard
+            // tpHabitaciones
             // 
-            tpDashboard.Controls.Add(materialCard1);
-            tpDashboard.Controls.Add(lblHabitaciones);
-            tpDashboard.Controls.Add(cmbFiltroHabitaciones);
-            tpDashboard.Controls.Add(materialCard5);
-            tpDashboard.Controls.Add(materialCard3);
-            tpDashboard.Controls.Add(materialCard2);
-            tpDashboard.Controls.Add(cardHabitacion);
-            tpDashboard.ImageKey = "apartment.png";
-            tpDashboard.Location = new Point(4, 39);
-            tpDashboard.Name = "tpDashboard";
-            tpDashboard.Padding = new Padding(3);
-            tpDashboard.Size = new Size(1020, 443);
-            tpDashboard.TabIndex = 5;
-            tpDashboard.Text = "Habitaciones";
-            tpDashboard.UseVisualStyleBackColor = true;
+            tpHabitaciones.Controls.Add(materialCard1);
+            tpHabitaciones.Controls.Add(lblHabitaciones);
+            tpHabitaciones.Controls.Add(cmbFiltroHabitaciones);
+            tpHabitaciones.Controls.Add(materialCard5);
+            tpHabitaciones.Controls.Add(materialCard3);
+            tpHabitaciones.Controls.Add(materialCard2);
+            tpHabitaciones.Controls.Add(cardHabitacion);
+            tpHabitaciones.ImageKey = "apartment.png";
+            tpHabitaciones.Location = new Point(4, 39);
+            tpHabitaciones.Name = "tpHabitaciones";
+            tpHabitaciones.Padding = new Padding(3);
+            tpHabitaciones.Size = new Size(1020, 443);
+            tpHabitaciones.TabIndex = 5;
+            tpHabitaciones.Text = "Habitaciones";
+            tpHabitaciones.UseVisualStyleBackColor = true;
             // 
             // materialCard1
             // 
@@ -529,7 +529,7 @@
             listReservas.Font = new Font("Garamond", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem4, listViewItem5, listViewItem6 });
             listReservas.Location = new Point(68, 62);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
@@ -630,7 +630,7 @@
             txtPassword.AnimateReadOnly = false;
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Depth = 0;
-            txtPassword.Font = new Font("Microsoft Sans Serif", 12F);
+            txtPassword.Font = new Font("Roboto", 12F);
             txtPassword.LeadingIcon = null;
             txtPassword.Location = new Point(397, 276);
             txtPassword.MaxLength = 50;
@@ -649,7 +649,7 @@
             txtUsername.AnimateReadOnly = false;
             txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.Depth = 0;
-            txtUsername.Font = new Font("Microsoft Sans Serif", 12F);
+            txtUsername.Font = new Font("Roboto", 12F);
             txtUsername.LeadingIcon = null;
             txtUsername.Location = new Point(52, 276);
             txtUsername.MaxLength = 50;
@@ -667,7 +667,7 @@
             txtDomicilio.AnimateReadOnly = false;
             txtDomicilio.BorderStyle = BorderStyle.None;
             txtDomicilio.Depth = 0;
-            txtDomicilio.Font = new Font("Microsoft Sans Serif", 12F);
+            txtDomicilio.Font = new Font("Roboto", 12F);
             txtDomicilio.LeadingIcon = null;
             txtDomicilio.Location = new Point(395, 167);
             txtDomicilio.MaxLength = 50;
@@ -685,7 +685,7 @@
             txtTelefono.AnimateReadOnly = false;
             txtTelefono.BorderStyle = BorderStyle.None;
             txtTelefono.Depth = 0;
-            txtTelefono.Font = new Font("Microsoft Sans Serif", 12F);
+            txtTelefono.Font = new Font("Roboto", 12F);
             txtTelefono.LeadingIcon = null;
             txtTelefono.Location = new Point(52, 167);
             txtTelefono.MaxLength = 50;
@@ -703,7 +703,7 @@
             txtApellido.AnimateReadOnly = false;
             txtApellido.BorderStyle = BorderStyle.None;
             txtApellido.Depth = 0;
-            txtApellido.Font = new Font("Microsoft Sans Serif", 12F);
+            txtApellido.Font = new Font("Roboto", 12F);
             txtApellido.LeadingIcon = null;
             txtApellido.Location = new Point(395, 65);
             txtApellido.MaxLength = 50;
@@ -721,7 +721,7 @@
             txtNombre.AnimateReadOnly = false;
             txtNombre.BorderStyle = BorderStyle.None;
             txtNombre.Depth = 0;
-            txtNombre.Font = new Font("Microsoft Sans Serif", 12F);
+            txtNombre.Font = new Font("Roboto", 12F);
             txtNombre.LeadingIcon = null;
             txtNombre.Location = new Point(52, 66);
             txtNombre.MaxLength = 50;
@@ -852,35 +852,36 @@
             tpLogout.Text = "Salir";
             tpLogout.UseVisualStyleBackColor = true;
             // 
-            // imageList
+            // imageListCliente
             // 
-            imageList.ColorDepth = ColorDepth.Depth32Bit;
-            imageList.ImageStream = (ImageListStreamer)resources.GetObject("imageList.ImageStream");
-            imageList.TransparentColor = Color.Transparent;
-            imageList.Images.SetKeyName(0, "bed.png");
-            imageList.Images.SetKeyName(1, "logout.png");
-            imageList.Images.SetKeyName(2, "person_search.png");
-            imageList.Images.SetKeyName(3, "bookmark_check.png");
-            imageList.Images.SetKeyName(4, "account_circle.png");
-            imageList.Images.SetKeyName(5, "apartment.png");
-            imageList.Images.SetKeyName(6, "book.png");
-            imageList.Images.SetKeyName(7, "add.png");
-            imageList.Images.SetKeyName(8, "bookmark_check.png");
+            imageListCliente.ColorDepth = ColorDepth.Depth32Bit;
+            imageListCliente.ImageStream = (ImageListStreamer)resources.GetObject("imageListCliente.ImageStream");
+            imageListCliente.TransparentColor = Color.Transparent;
+            imageListCliente.Images.SetKeyName(0, "bed.png");
+            imageListCliente.Images.SetKeyName(1, "logout.png");
+            imageListCliente.Images.SetKeyName(2, "person_search.png");
+            imageListCliente.Images.SetKeyName(3, "bookmark_check.png");
+            imageListCliente.Images.SetKeyName(4, "account_circle.png");
+            imageListCliente.Images.SetKeyName(5, "apartment.png");
+            imageListCliente.Images.SetKeyName(6, "book.png");
+            imageListCliente.Images.SetKeyName(7, "add.png");
+            imageListCliente.Images.SetKeyName(8, "bookmark_check.png");
             // 
-            // clienteDashboard
+            // Cliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1048, 553);
-            Controls.Add(tabControlCliente);
+            Controls.Add(tcCliente);
             DrawerShowIconsWhenHidden = true;
-            DrawerTabControl = tabControlCliente;
-            Name = "clienteDashboard";
+            DrawerTabControl = tcCliente;
+            Name = "Cliente";
             Padding = new Padding(10, 64, 10, 3);
             Text = "El Molino Hotel";
-            tabControlCliente.ResumeLayout(false);
-            tpDashboard.ResumeLayout(false);
-            tpDashboard.PerformLayout();
+            Load += Cliente_Load;
+            tcCliente.ResumeLayout(false);
+            tpHabitaciones.ResumeLayout(false);
+            tpHabitaciones.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
             materialCard5.ResumeLayout(false);
@@ -902,12 +903,12 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTabControl tabControlCliente;
+        private MaterialSkin.Controls.MaterialTabControl tcCliente;
         private TabPage tpCuenta;
-        private ImageList imageList;
+        private ImageList imageListCliente;
         private TabPage tpReservas;
         private TabPage tpLogout;
-        private TabPage tpDashboard;
+        private TabPage tpHabitaciones;
         private MaterialSkin.Controls.MaterialCard cardHabitacion;
         private MaterialSkin.Controls.MaterialCard materialCard3;
         private MaterialSkin.Controls.MaterialCard materialCard2;
