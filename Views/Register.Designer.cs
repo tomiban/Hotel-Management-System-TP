@@ -221,12 +221,12 @@
             btnRegistrarse.Depth = 0;
             btnRegistrarse.HighEmphasis = true;
             btnRegistrarse.Icon = null;
-            btnRegistrarse.Location = new Point(340, 408);
+            btnRegistrarse.Location = new Point(333, 406);
             btnRegistrarse.Margin = new Padding(4, 6, 4, 6);
             btnRegistrarse.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.NoAccentTextColor = Color.Empty;
-            btnRegistrarse.Size = new Size(213, 63);
+            btnRegistrarse.Size = new Size(203, 40);
             btnRegistrarse.TabIndex = 12;
             btnRegistrarse.Text = "Registrarse";
             btnRegistrarse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -266,7 +266,7 @@
             Controls.Add(txtNombre);
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Register";
+            Text = "Registro";
             ResumeLayout(false);
             PerformLayout();
         }
