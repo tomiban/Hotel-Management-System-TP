@@ -23,11 +23,18 @@ namespace GestionHotelWinForms.Views
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
             // CS ALTERNATIVO -> materialSkinManager.ColorScheme=new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,MaterialSkin.Primary.Indigo700,MaterialSkin.Primary.Indigo100,MaterialSkin.Accent.Pink500,MaterialSkin.TextShade.WHITE);
-            materialSkinManager.ColorScheme = materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Green800, Primary.Green900,
-                Primary.Green500, Accent.Green400,
-                TextShade.WHITE
-            );
+            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
+
+            materialSkinManager.ColorScheme = new ColorScheme(
+         Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
+         Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
+         Primary.Cyan700,   // Deep Purple base para fondos principales
+         Accent.Cyan700,         // Acento verde 400 para destacar
+         TextShade.WHITE          // Color de texto blanco para el contraste
+     );
         }
 
         private void materialTextBox1_TextChanged(object sender, EventArgs e)
@@ -64,5 +71,7 @@ namespace GestionHotelWinForms.Views
         {
 
         }
+
+
     }
 }

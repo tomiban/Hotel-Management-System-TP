@@ -247,7 +247,6 @@
             captionLblUsuarios.Size = new Size(103, 14);
             captionLblUsuarios.TabIndex = 2;
             captionLblUsuarios.Text = "3 Nuevos Usuarios";
-   
             // 
             // materialLabel4
             // 
@@ -393,7 +392,6 @@
             progressBarOcupacion.Step = 1;
             progressBarOcupacion.TabIndex = 19;
             progressBarOcupacion.Value = 5;
-           
             // 
             // lblHabitacionesActivas
             // 
@@ -669,7 +667,6 @@
             listFacturas.TabIndex = 16;
             listFacturas.UseCompatibleStateImageBehavior = false;
             listFacturas.View = View.Details;
-     
             // 
             // lblFacturacion
             // 
@@ -729,6 +726,7 @@
             Padding = new Padding(10, 64, 10, 3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "El Molino Hotel";
+            Load += Admin_Load;
             tcAdmin.ResumeLayout(false);
             tpDashboard.ResumeLayout(false);
             tpDashboard.PerformLayout();
