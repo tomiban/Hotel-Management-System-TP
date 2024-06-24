@@ -1,13 +1,21 @@
-﻿using System.Windows.Forms;
-using MaterialSkin;
+﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Form1 : MaterialForm
+    public partial class Login : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        public Form1()
+        public Login()
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
