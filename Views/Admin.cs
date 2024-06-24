@@ -7,6 +7,7 @@ namespace GestionHotelWinForms.Views
     public partial class Admin : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+
         public Admin()
         {
             InitializeComponent();
@@ -23,24 +24,11 @@ namespace GestionHotelWinForms.Views
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
 
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
         }
 
-        private void materialLabel3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialProgressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listFacturas_SelectedIndexChanged(object sender, EventArgs e)
+        private void Admin_Load(object sender, EventArgs e)
         {
 
         }

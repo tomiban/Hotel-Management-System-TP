@@ -30,7 +30,7 @@
         {
             txtUsuario = new MaterialSkin.Controls.MaterialTextBox();
             txtContraseña = new MaterialSkin.Controls.MaterialTextBox();
-            btnIniciar_Sesion = new MaterialSkin.Controls.MaterialButton();
+            btnLogin = new MaterialSkin.Controls.MaterialButton();
             lblUsuario = new MaterialSkin.Controls.MaterialLabel();
             lblContraseña = new MaterialSkin.Controls.MaterialLabel();
             btnSinCuenta = new MaterialSkin.Controls.MaterialButton();
@@ -43,7 +43,7 @@
             txtUsuario.Depth = 0;
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsuario.LeadingIcon = null;
-            txtUsuario.Location = new Point(150, 133);
+            txtUsuario.Location = new Point(161, 136);
             txtUsuario.MaxLength = 32;
             txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             txtUsuario.Multiline = false;
@@ -60,7 +60,7 @@
             txtContraseña.Depth = 0;
             txtContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContraseña.LeadingIcon = null;
-            txtContraseña.Location = new Point(150, 230);
+            txtContraseña.Location = new Point(161, 233);
             txtContraseña.MaxLength = 16;
             txtContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseña.Multiline = false;
@@ -71,32 +71,32 @@
             txtContraseña.Text = "";
             txtContraseña.TrailingIcon = null;
             // 
-            // btnIniciar_Sesion
+            // btnLogin
             // 
-            btnIniciar_Sesion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnIniciar_Sesion.Cursor = Cursors.Hand;
-            btnIniciar_Sesion.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnIniciar_Sesion.Depth = 0;
-            btnIniciar_Sesion.HighEmphasis = true;
-            btnIniciar_Sesion.Icon = null;
-            btnIniciar_Sesion.Location = new Point(213, 340);
-            btnIniciar_Sesion.Margin = new Padding(4, 6, 4, 6);
-            btnIniciar_Sesion.MouseState = MaterialSkin.MouseState.HOVER;
-            btnIniciar_Sesion.Name = "btnIniciar_Sesion";
-            btnIniciar_Sesion.NoAccentTextColor = Color.Empty;
-            btnIniciar_Sesion.Size = new Size(128, 36);
-            btnIniciar_Sesion.TabIndex = 2;
-            btnIniciar_Sesion.Text = "Iniciar sesión";
-            btnIniciar_Sesion.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnIniciar_Sesion.UseAccentColor = false;
-            btnIniciar_Sesion.UseVisualStyleBackColor = true;
+            btnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnLogin.Depth = 0;
+            btnLogin.HighEmphasis = true;
+            btnLogin.Icon = null;
+            btnLogin.Location = new Point(228, 335);
+            btnLogin.Margin = new Padding(4, 6, 4, 6);
+            btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
+            btnLogin.Name = "btnLogin";
+            btnLogin.NoAccentTextColor = Color.Empty;
+            btnLogin.Size = new Size(128, 36);
+            btnLogin.TabIndex = 2;
+            btnLogin.Text = "Iniciar sesión";
+            btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnLogin.UseAccentColor = false;
+            btnLogin.UseVisualStyleBackColor = true;
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Depth = 0;
             lblUsuario.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsuario.Location = new Point(150, 111);
+            lblUsuario.Location = new Point(161, 114);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(55, 19);
@@ -108,7 +108,7 @@
             lblContraseña.AutoSize = true;
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseña.Location = new Point(150, 208);
+            lblContraseña.Location = new Point(161, 211);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(82, 19);
@@ -128,7 +128,7 @@
             btnSinCuenta.ForeColor = SystemColors.ControlDarkDark;
             btnSinCuenta.HighEmphasis = true;
             btnSinCuenta.Icon = null;
-            btnSinCuenta.Location = new Point(186, 411);
+            btnSinCuenta.Location = new Point(195, 403);
             btnSinCuenta.Margin = new Padding(4, 6, 4, 6);
             btnSinCuenta.MouseState = MaterialSkin.MouseState.HOVER;
             btnSinCuenta.Name = "btnSinCuenta";
@@ -145,11 +145,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(590, 499);
+            ClientSize = new Size(600, 500);
             Controls.Add(btnSinCuenta);
             Controls.Add(lblContraseña);
             Controls.Add(lblUsuario);
-            Controls.Add(btnIniciar_Sesion);
+            Controls.Add(btnLogin);
             Controls.Add(txtContraseña);
             Controls.Add(txtUsuario);
             Name = "Login";
@@ -163,7 +163,7 @@
 
         private MaterialSkin.Controls.MaterialTextBox txtUsuario;
         private MaterialSkin.Controls.MaterialTextBox txtContraseña;
-        private MaterialSkin.Controls.MaterialButton btnIniciar_Sesion;
+        private MaterialSkin.Controls.MaterialButton btnLogin;
         private MaterialSkin.Controls.MaterialLabel lblUsuario;
         private MaterialSkin.Controls.MaterialLabel lblContraseña;
         private MaterialSkin.Controls.MaterialButton btnSinCuenta;

@@ -59,13 +59,15 @@
             lblHabitacionesActivas = new MaterialSkin.Controls.MaterialLabel();
             lblDashboard = new MaterialSkin.Controls.MaterialLabel();
             tpHabitaciones = new TabPage();
-            materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            btnEditarHab = new MaterialSkin.Controls.MaterialButton();
+            btnBorrarHab = new MaterialSkin.Controls.MaterialButton();
+            btnAgregarHab = new MaterialSkin.Controls.MaterialButton();
             listHabitaciones = new MaterialSkin.Controls.MaterialListView();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             tpUsuarios = new TabPage();
-            materialButton4 = new MaterialSkin.Controls.MaterialButton();
-            materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            btnEditarUsu = new MaterialSkin.Controls.MaterialButton();
+            btnBorrarUsu = new MaterialSkin.Controls.MaterialButton();
+            btnAgregarUsu = new MaterialSkin.Controls.MaterialButton();
             listUsuarios = new MaterialSkin.Controls.MaterialListView();
             lblUsuarios = new MaterialSkin.Controls.MaterialLabel();
             tpFacturacion = new TabPage();
@@ -245,7 +247,6 @@
             captionLblUsuarios.Size = new Size(103, 14);
             captionLblUsuarios.TabIndex = 2;
             captionLblUsuarios.Text = "3 Nuevos Usuarios";
-            captionLblUsuarios.Click += materialLabel3_Click;
             // 
             // materialLabel4
             // 
@@ -391,7 +392,6 @@
             progressBarOcupacion.Step = 1;
             progressBarOcupacion.TabIndex = 19;
             progressBarOcupacion.Value = 5;
-            progressBarOcupacion.Click += materialProgressBar1_Click;
             // 
             // lblHabitacionesActivas
             // 
@@ -423,8 +423,9 @@
             // 
             // tpHabitaciones
             // 
-            tpHabitaciones.Controls.Add(materialButton2);
-            tpHabitaciones.Controls.Add(materialButton1);
+            tpHabitaciones.Controls.Add(btnEditarHab);
+            tpHabitaciones.Controls.Add(btnBorrarHab);
+            tpHabitaciones.Controls.Add(btnAgregarHab);
             tpHabitaciones.Controls.Add(listHabitaciones);
             tpHabitaciones.Controls.Add(lblHabitaciones);
             tpHabitaciones.ImageKey = "bed.png";
@@ -436,44 +437,64 @@
             tpHabitaciones.Text = "Habitaciones";
             tpHabitaciones.UseVisualStyleBackColor = true;
             // 
-            // materialButton2
+            // btnEditarHab
             // 
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(150, 82);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(88, 36);
-            materialButton2.TabIndex = 22;
-            materialButton2.Text = "Eliminar";
-            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = true;
+            btnEditarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEditarHab.Depth = 0;
+            btnEditarHab.HighEmphasis = true;
+            btnEditarHab.Icon = null;
+            btnEditarHab.Location = new Point(154, 82);
+            btnEditarHab.Margin = new Padding(4, 6, 4, 6);
+            btnEditarHab.MouseState = MaterialSkin.MouseState.HOVER;
+            btnEditarHab.Name = "btnEditarHab";
+            btnEditarHab.NoAccentTextColor = Color.Empty;
+            btnEditarHab.Size = new Size(71, 36);
+            btnEditarHab.TabIndex = 23;
+            btnEditarHab.Text = "EDITAR";
+            btnEditarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnEditarHab.UseAccentColor = true;
+            btnEditarHab.UseVisualStyleBackColor = true;
             // 
-            // materialButton1
+            // btnBorrarHab
             // 
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(56, 82);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(74, 36);
-            materialButton1.TabIndex = 21;
-            materialButton1.Text = "AÑADIR";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            materialButton1.UseAccentColor = true;
-            materialButton1.UseMnemonic = false;
-            materialButton1.UseVisualStyleBackColor = false;
+            btnBorrarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBorrarHab.Depth = 0;
+            btnBorrarHab.HighEmphasis = true;
+            btnBorrarHab.Icon = null;
+            btnBorrarHab.Location = new Point(873, 82);
+            btnBorrarHab.Margin = new Padding(4, 6, 4, 6);
+            btnBorrarHab.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBorrarHab.Name = "btnBorrarHab";
+            btnBorrarHab.NoAccentTextColor = Color.Empty;
+            btnBorrarHab.Size = new Size(88, 36);
+            btnBorrarHab.TabIndex = 22;
+            btnBorrarHab.Text = "Eliminar";
+            btnBorrarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnBorrarHab.UseAccentColor = false;
+            btnBorrarHab.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregarHab
+            // 
+            btnAgregarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAgregarHab.BackColor = Color.Black;
+            btnAgregarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnAgregarHab.Depth = 0;
+            btnAgregarHab.HighEmphasis = true;
+            btnAgregarHab.Icon = null;
+            btnAgregarHab.Location = new Point(56, 82);
+            btnAgregarHab.Margin = new Padding(4, 6, 4, 6);
+            btnAgregarHab.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAgregarHab.Name = "btnAgregarHab";
+            btnAgregarHab.NoAccentTextColor = Color.Empty;
+            btnAgregarHab.Size = new Size(74, 36);
+            btnAgregarHab.TabIndex = 21;
+            btnAgregarHab.Text = "AÑADIR";
+            btnAgregarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnAgregarHab.UseAccentColor = true;
+            btnAgregarHab.UseMnemonic = false;
+            btnAgregarHab.UseVisualStyleBackColor = false;
             // 
             // listHabitaciones
             // 
@@ -510,8 +531,9 @@
             // 
             // tpUsuarios
             // 
-            tpUsuarios.Controls.Add(materialButton4);
-            tpUsuarios.Controls.Add(materialButton3);
+            tpUsuarios.Controls.Add(btnEditarUsu);
+            tpUsuarios.Controls.Add(btnBorrarUsu);
+            tpUsuarios.Controls.Add(btnAgregarUsu);
             tpUsuarios.Controls.Add(listUsuarios);
             tpUsuarios.Controls.Add(lblUsuarios);
             tpUsuarios.ImageKey = "person_search.png";
@@ -523,44 +545,64 @@
             tpUsuarios.Text = "Usuarios";
             tpUsuarios.UseVisualStyleBackColor = true;
             // 
-            // materialButton4
+            // btnEditarUsu
             // 
-            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton4.Depth = 0;
-            materialButton4.HighEmphasis = true;
-            materialButton4.Icon = null;
-            materialButton4.Location = new Point(56, 82);
-            materialButton4.Margin = new Padding(4, 6, 4, 6);
-            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton4.Name = "materialButton4";
-            materialButton4.NoAccentTextColor = Color.Empty;
-            materialButton4.Size = new Size(74, 36);
-            materialButton4.TabIndex = 23;
-            materialButton4.Text = "AÑADIR";
-            materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            materialButton4.UseAccentColor = true;
-            materialButton4.UseMnemonic = false;
-            materialButton4.UseVisualStyleBackColor = false;
+            btnEditarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEditarUsu.Depth = 0;
+            btnEditarUsu.HighEmphasis = true;
+            btnEditarUsu.Icon = null;
+            btnEditarUsu.Location = new Point(154, 82);
+            btnEditarUsu.Margin = new Padding(4, 6, 4, 6);
+            btnEditarUsu.MouseState = MaterialSkin.MouseState.HOVER;
+            btnEditarUsu.Name = "btnEditarUsu";
+            btnEditarUsu.NoAccentTextColor = Color.Empty;
+            btnEditarUsu.Size = new Size(71, 36);
+            btnEditarUsu.TabIndex = 26;
+            btnEditarUsu.Text = "EDITAR";
+            btnEditarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnEditarUsu.UseAccentColor = true;
+            btnEditarUsu.UseVisualStyleBackColor = true;
             // 
-            // materialButton3
+            // btnBorrarUsu
             // 
-            materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton3.Depth = 0;
-            materialButton3.HighEmphasis = true;
-            materialButton3.Icon = null;
-            materialButton3.Location = new Point(150, 82);
-            materialButton3.Margin = new Padding(4, 6, 4, 6);
-            materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton3.Name = "materialButton3";
-            materialButton3.NoAccentTextColor = Color.Empty;
-            materialButton3.Size = new Size(88, 36);
-            materialButton3.TabIndex = 24;
-            materialButton3.Text = "Eliminar";
-            materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            materialButton3.UseAccentColor = false;
-            materialButton3.UseVisualStyleBackColor = true;
+            btnBorrarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBorrarUsu.Depth = 0;
+            btnBorrarUsu.HighEmphasis = true;
+            btnBorrarUsu.Icon = null;
+            btnBorrarUsu.Location = new Point(873, 82);
+            btnBorrarUsu.Margin = new Padding(4, 6, 4, 6);
+            btnBorrarUsu.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBorrarUsu.Name = "btnBorrarUsu";
+            btnBorrarUsu.NoAccentTextColor = Color.Empty;
+            btnBorrarUsu.Size = new Size(88, 36);
+            btnBorrarUsu.TabIndex = 25;
+            btnBorrarUsu.Text = "Eliminar";
+            btnBorrarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnBorrarUsu.UseAccentColor = false;
+            btnBorrarUsu.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregarUsu
+            // 
+            btnAgregarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAgregarUsu.BackColor = Color.Black;
+            btnAgregarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnAgregarUsu.Depth = 0;
+            btnAgregarUsu.HighEmphasis = true;
+            btnAgregarUsu.Icon = null;
+            btnAgregarUsu.Location = new Point(56, 82);
+            btnAgregarUsu.Margin = new Padding(4, 6, 4, 6);
+            btnAgregarUsu.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAgregarUsu.Name = "btnAgregarUsu";
+            btnAgregarUsu.NoAccentTextColor = Color.Empty;
+            btnAgregarUsu.Size = new Size(74, 36);
+            btnAgregarUsu.TabIndex = 24;
+            btnAgregarUsu.Text = "AÑADIR";
+            btnAgregarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnAgregarUsu.UseAccentColor = true;
+            btnAgregarUsu.UseMnemonic = false;
+            btnAgregarUsu.UseVisualStyleBackColor = false;
             // 
             // listUsuarios
             // 
@@ -625,7 +667,6 @@
             listFacturas.TabIndex = 16;
             listFacturas.UseCompatibleStateImageBehavior = false;
             listFacturas.View = View.Details;
-            listFacturas.SelectedIndexChanged += listFacturas_SelectedIndexChanged;
             // 
             // lblFacturacion
             // 
@@ -685,7 +726,7 @@
             Padding = new Padding(10, 64, 10, 3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "El Molino Hotel";
-            Load += Form1_Load;
+            Load += Admin_Load;
             tcAdmin.ResumeLayout(false);
             tpDashboard.ResumeLayout(false);
             tpDashboard.PerformLayout();
@@ -749,9 +790,11 @@
         private MaterialSkin.Controls.MaterialListView listHabitaciones;
         private MaterialSkin.Controls.MaterialListView listFacturas;
         private MaterialSkin.Controls.MaterialListView listUsuarios;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialButton btnAgregarHab;
+        private MaterialSkin.Controls.MaterialButton btnBorrarHab;
+        private MaterialSkin.Controls.MaterialButton btnEditarHab;
+        private MaterialSkin.Controls.MaterialButton btnEditarUsu;
+        private MaterialSkin.Controls.MaterialButton btnBorrarUsu;
+        private MaterialSkin.Controls.MaterialButton btnAgregarUsu;
     }
 }
