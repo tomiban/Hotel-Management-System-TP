@@ -11,8 +11,6 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Presenters\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

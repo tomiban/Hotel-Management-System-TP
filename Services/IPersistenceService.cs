@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace GestionHotelWinForms.Services
 {
-    public interface ISerializeService
+    public interface IPersistenceService
     {
-        
+        Task<bool> SaveAsync<T>(string filePath, T data);
+        Task<T> LoadAsync<T>(string filePath);
     }
 }

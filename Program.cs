@@ -1,3 +1,7 @@
+using GestionHotelWinForms.Models;
+using GestionHotelWinForms.Presenters;
+using GestionHotelWinForms.Repositories;
+using GestionHotelWinForms.Services;
 using GestionHotelWinForms.Views;
 
 namespace GestionHotelWinForms
@@ -13,7 +17,11 @@ namespace GestionHotelWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login());
+            var registerForm = new Register();
+            IPersistenceService persistenceService = new MemoryPackService();
+            IRepository<Usuario> repository = new UsuarioRepository(persistenceService);
+            var registerPresenter = new RegisterPresenter(registerForm, repository);
+            Application.Run(new Admin());
         }
     }
 }
