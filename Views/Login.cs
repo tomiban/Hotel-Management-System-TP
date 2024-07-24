@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Login : MaterialForm
+    public partial class Login : MaterialForm, ILoginView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public Login()
@@ -39,6 +39,21 @@ namespace GestionHotelWinForms.Views
          Accent.Cyan700,         // Acento verde 400 para destacar
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
+        }
+
+        public string Username => txtUsuario.Text;
+
+        public string Password => txtContraseña.Text;
+
+        public event EventHandler LoginEvent;
+        private void AssocciateAndRaiseViewEvents()
+        {
+            btnLogin.Click += delegate { LoginEvent?.Invoke(this, EventArgs.Empty); };
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            MaterialMessageBox.Show(this, title, message);
         }
     }
 }

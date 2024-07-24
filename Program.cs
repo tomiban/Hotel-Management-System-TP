@@ -21,7 +21,7 @@ namespace GestionHotelWinForms
             IPersistenceService persistenceService = new MemoryPackService();
             IRepository<Usuario> repository = new UsuarioRepository(persistenceService);
             var registerPresenter = new RegisterPresenter(registerForm, repository);
-            Application.Run(new Admin());
+            Application.Run(registerForm);
         }
     }
 }
