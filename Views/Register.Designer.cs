@@ -74,7 +74,7 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Password = true;
             txtContraseña.Size = new Size(270, 50);
-            txtContraseña.TabIndex = 1;
+            txtContraseña.TabIndex = 5;
             txtContraseña.Text = "";
             txtContraseña.TrailingIcon = null;
             // 
@@ -91,7 +91,7 @@
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(267, 50);
-            txtUsuario.TabIndex = 2;
+            txtUsuario.TabIndex = 4;
             txtUsuario.Text = "";
             txtUsuario.TrailingIcon = null;
             // 
@@ -125,7 +125,7 @@
             txtEdad.Multiline = false;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(267, 50);
-            txtEdad.TabIndex = 4;
+            txtEdad.TabIndex = 2;
             txtEdad.Text = "";
             txtEdad.TrailingIcon = null;
             // 
@@ -142,7 +142,7 @@
             txtApellido.Multiline = false;
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(270, 50);
-            txtApellido.TabIndex = 5;
+            txtApellido.TabIndex = 1;
             txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
             // 

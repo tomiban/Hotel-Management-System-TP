@@ -9,6 +9,6 @@ namespace GestionHotelWinForms.Repositories
 {
     public interface IUsuarioRepository: IRepository<Usuario>
     {
-          Task<Usuario?> GetByUsernameAsync(string username);
+          Task<bool> GetByUsernameAsync(string username);
     }
 }

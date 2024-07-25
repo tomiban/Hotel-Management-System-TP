@@ -114,12 +114,11 @@ namespace GestionHotelWinForms.Repositories
         }
 
         // Método específico para buscar un usuario por username
-        public async Task<Usuario?> GetByUsernameAsync(string username)
+        public async Task<bool> GetByUsernameAsync(string username)
         {
             try
             {
-                var usuario = _usuarios.FirstOrDefault(u => u.Username == username);
-                return await Task.FromResult(usuario);
+                return _usuarios.Any(u => u.Username == username);
             }
             catch (Exception ex)
             {

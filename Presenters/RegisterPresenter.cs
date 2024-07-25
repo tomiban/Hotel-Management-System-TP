@@ -12,20 +12,20 @@ namespace GestionHotelWinForms.Presenters
     public class RegisterPresenter
     {
         private readonly IRegisterView _view;
-        private readonly IRepository<Usuario> _userRepository;
+        private readonly IUsuarioRepository _userRepository;
 
-        public RegisterPresenter( IRegisterView view, IRepository<Usuario> userRepository)
+        public RegisterPresenter( IRegisterView view, IUsuarioRepository userRepository)
         {
             this._view = view;
             this._userRepository = userRepository;
             this._view.RegisterEvent += OnRegister;
         }
 
-        private void OnRegister(object? sender, EventArgs e)
+        private async void OnRegister(object? sender, EventArgs e)
         {
-            var existingUser = _userRepository.GetAll().FirstOrDefault(u => u.Username == _view.Username);
+            var existingUser = await _userRepository.GetByUsernameAsync(_view.Username);
 
-            if (existingUser != null)
+            if (existingUser == true)
             {
                 _view.ShowMessage("El nombre de usuario ya existe.", "Error");
                 return;
@@ -40,7 +40,7 @@ namespace GestionHotelWinForms.Presenters
                 Role = _view.Role
             };
 
-            _userRepository.Add(newUser);
+            _userRepository.AddAsync(newUser);
 
             _view.ShowMessage("Usuario registrado correctamente.", "Exito");
         }
