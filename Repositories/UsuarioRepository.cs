@@ -11,50 +11,120 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace GestionHotelWinForms.Repositories
 {
-    public class UsuarioRepository : IRepository<Usuario>
+    public class UsuarioRepository : IUsuarioRepository
     {
         private readonly IPersistenceService _persistenceService;
-        private readonly string filePath = "usuarios.bin";
-        private List<Usuario> usuarios;
+        private readonly string _filePath;
+        private List<Usuario> _usuarios;
 
-        public UsuarioRepository(IPersistenceService persistenceService)
+        public UsuarioRepository(IPersistenceService persistenceService, string filePath)
         {
-            this._persistenceService = persistenceService;
-            usuarios = _persistenceService.LoadAsync<List<Usuario>>(filePath).Result ?? [];
+            _persistenceService = persistenceService;
+            _filePath = filePath;
+            _usuarios = GetAllAsync().Result; // Cargar usuarios al iniciar el repositorio
         }
 
-        public IEnumerable<Usuario> GetAll()
+        public async Task AddAsync(Usuario usuario)
         {
-            return usuarios;
-        }
-
-        public Usuario GetById(int id)
-        {
-            return usuarios.FirstOrDefault(u => u.Id == id);
-        }
-
-        public void Add(Usuario entity)
-        {
-            usuarios.Add(entity);
-            _persistenceService.SaveAsync(filePath, usuarios);
-        }
-
-
-        public void Update(Usuario entity)
-        {
-           var item = usuarios.FirstOrDefault(u => u.Id == entity.Id);
-            if (entity == null)
+            try
             {
-                throw new NullReferenceException();
+                _usuarios.Add(usuario);
+                await _persistenceService.SaveAsync(_filePath, _usuarios);
             }
-            _persistenceService.SaveAsync(filePath, item);
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al añadir el usuario: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
         }
 
-        public void Delete(Usuario entity)
+        public async Task<List<Usuario>> GetAllAsync()
         {
-            usuarios.Remove(entity);
-            _persistenceService.SaveAsync(filePath, usuarios);
+            try
+            {
+                return await _persistenceService.LoadAsync<List<Usuario>>(_filePath) ?? new List<Usuario>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener los usuarios: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
+        }
+
+        public async Task<Usuario> GetByIdAsync(int id)
+        {
+            try
+            {
+                var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
+                if (usuario == null)
+                {
+                    throw new NullReferenceException();
+                }
+                return await Task.FromResult(usuario);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el usuario: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
+        }
+
+        public async Task UpdateAsync(Usuario usuario)
+        {
+            try
+            {
+                var item = _usuarios.FirstOrDefault(u => u.Id == usuario.Id);
+                if (item == null)
+                {
+                    throw new NullReferenceException();
+                }
+                usuario.Nombre = item.Nombre;
+                usuario.Username = item.Username;
+                usuario.Contraseña = item.Contraseña;
+                usuario.Role = item.Role;
+                usuario.Telefono = item.Telefono;
+                
+                await _persistenceService.SaveAsync(_filePath, _usuarios);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el usuario: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            try
+            {
+                var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
+                if (usuario == null)
+                {
+                    throw new NullReferenceException();
+                }
+
+                _usuarios.Remove(usuario);
+                await _persistenceService.SaveAsync(_filePath, _usuarios);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al eliminar el usuario: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
+        }
+
+        // Método específico para buscar un usuario por username
+        public async Task<bool> GetByUsernameAsync(string username)
+        {
+            try
+            {
+                return _usuarios.Any(u => u.Username == username);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el usuario por username: {ex.Message}");
+                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+            }
         }
     }
 }

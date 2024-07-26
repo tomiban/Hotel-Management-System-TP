@@ -7,10 +7,10 @@ namespace GestionHotelWinForms.Repositories
 {
     public interface IRepository<T> where T : class
     {
-        void Add(T entity);
-        void Delete(T entity);
-        IEnumerable<T> GetAll();
-        T GetById(int id);
-        void Update(T entity);
+        Task AddAsync(T entity);
+        Task DeleteAsync(int id);
+        Task<List<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task UpdateAsync(T entity);
     }
 }

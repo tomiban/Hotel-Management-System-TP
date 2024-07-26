@@ -1,10 +1,11 @@
 ﻿using System.Windows.Forms;
+using GestionHotelWinForms.Models;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Admin : MaterialForm
+    public partial class Admin : MaterialForm, IAdminView<Usuario>, IAdminView<Habitacion>
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
@@ -28,9 +29,48 @@ namespace GestionHotelWinForms.Views
 
         }
 
+        public event EventHandler AñadirEvent;
+        public event EventHandler EditarEvent;
+        public event EventHandler EliminarEvent;
+
+        public void ActualizarLista(List<Usuario> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ActualizarLista(List<Habitacion> items)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LimpiarFormulario()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario ObtenerDatos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ObtenerIdSeleccionado()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            throw new NotImplementedException();
+        }
+
         private void Admin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        Habitacion IAdminView<Habitacion>.ObtenerDatos()
+        {
+            throw new NotImplementedException();
         }
     }
 }
