@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GestionHotelWinForms.Presenters
+namespace GestionHotelWinForms.Services
 {
-    public class RegisterPresenter
+    public interface ISerializeService
     {
         
     }
