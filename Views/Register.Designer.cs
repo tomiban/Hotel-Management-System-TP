@@ -59,6 +59,7 @@
             txtNombre.TabIndex = 0;
             txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
+            txtNombre.TextChanged += materialTextBox1_TextChanged;
             // 
             // txtContraseña
             // 
@@ -74,9 +75,10 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.Password = true;
             txtContraseña.Size = new Size(270, 50);
-            txtContraseña.TabIndex = 5;
+            txtContraseña.TabIndex = 1;
             txtContraseña.Text = "";
             txtContraseña.TrailingIcon = null;
+            txtContraseña.TextChanged += materialTextBox2_TextChanged;
             // 
             // txtUsuario
             // 
@@ -91,9 +93,10 @@
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(267, 50);
-            txtUsuario.TabIndex = 4;
+            txtUsuario.TabIndex = 2;
             txtUsuario.Text = "";
             txtUsuario.TrailingIcon = null;
+            txtUsuario.TextChanged += materialTextBox3_TextChanged;
             // 
             // txtTelefono
             // 
@@ -111,6 +114,7 @@
             txtTelefono.TabIndex = 3;
             txtTelefono.Text = "";
             txtTelefono.TrailingIcon = null;
+            txtTelefono.TextChanged += materialTextBox4_TextChanged;
             // 
             // txtEdad
             // 
@@ -125,9 +129,10 @@
             txtEdad.Multiline = false;
             txtEdad.Name = "txtEdad";
             txtEdad.Size = new Size(267, 50);
-            txtEdad.TabIndex = 2;
+            txtEdad.TabIndex = 4;
             txtEdad.Text = "";
             txtEdad.TrailingIcon = null;
+            txtEdad.TextChanged += materialTextBox5_TextChanged;
             // 
             // txtApellido
             // 
@@ -142,9 +147,10 @@
             txtApellido.Multiline = false;
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(270, 50);
-            txtApellido.TabIndex = 1;
+            txtApellido.TabIndex = 5;
             txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
+            txtApellido.TextChanged += materialTextBox6_TextChanged;
             // 
             // lblNombre
             // 
@@ -202,9 +208,9 @@
             lblUsuario.Location = new Point(110, 284);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(136, 19);
+            lblUsuario.Size = new Size(55, 19);
             lblUsuario.TabIndex = 10;
-            lblUsuario.Text = "Nombre de Usuario";
+            lblUsuario.Text = "Usuario";
             // 
             // btnRegistrarse
             // 
@@ -226,6 +232,7 @@
             btnRegistrarse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnRegistrarse.UseAccentColor = false;
             btnRegistrarse.UseVisualStyleBackColor = true;
+            btnRegistrarse.Click += btnRegistrarse_Click;
             // 
             // lblContraseña
             // 
