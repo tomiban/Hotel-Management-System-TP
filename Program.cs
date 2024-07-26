@@ -17,11 +17,23 @@ namespace GestionHotelWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var registerForm = new Register();
+            var loginForm = new Login();
             IPersistenceService persistenceService = new MemoryPackService();
             IUsuarioRepository repository = new UsuarioRepository(persistenceService, "usuarios.bin");
-            var registerPresenter = new RegisterPresenter(registerForm, repository);
-            Application.Run(registerForm);
+            var loginPresenter = new LoginPresenter(loginForm, repository);
+            Application.Run(loginForm);
         }
+
+        //static void Main()
+        //{
+        //    // To customize application configuration such as set high DPI settings or default font,
+        //    // see https://aka.ms/applicationconfiguration.
+        //    ApplicationConfiguration.Initialize();
+        //    var registerForm = new Register();
+        //    IPersistenceService persistenceService = new MemoryPackService();
+        //    IUsuarioRepository repository = new UsuarioRepository(persistenceService, "usuarios.bin");
+        //    var registerPresenter = new RegisterPresenter(registerForm, repository);
+        //    Application.Run(registerForm);
+        //}
     }
 }

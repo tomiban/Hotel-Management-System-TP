@@ -21,11 +21,11 @@ namespace GestionHotelWinForms.Presenters
             this._view.RegisterEvent += OnRegister;
         }
 
-        private async void OnRegister(object? sender, EventArgs e)
+        private void OnRegister(object? sender, EventArgs e)
         {
-            var existingUser = await _userRepository.GetByUsernameAsync(_view.Username);
+            var existingUser = _userRepository.GetByUsername(_view.Username);
 
-            if (existingUser == true)
+            if (existingUser != null)
             {
                 _view.ShowMessage("El nombre de usuario ya existe.", "Error");
                 return;

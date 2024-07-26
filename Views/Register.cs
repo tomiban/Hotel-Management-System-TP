@@ -18,7 +18,6 @@ namespace GestionHotelWinForms.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
         public event EventHandler RegisterEvent;
-       
 
         public string Nombre => txtNombre.Text;
 
@@ -32,7 +31,7 @@ namespace GestionHotelWinForms.Views
 
         public string Contraseña => txtContraseña.Text;
 
-        public Role Role => Role.Client;
+        public Role Role => Role.Admin;
 
         public Register()
         {
