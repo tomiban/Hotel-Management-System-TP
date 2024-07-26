@@ -9,20 +9,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionHotelWinForms.Models;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Register : MaterialForm
+    public partial class Register : MaterialForm, IRegisterView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+
+        public event EventHandler RegisterEvent;
+
+        public string Nombre => txtNombre.Text;
+
+        public string Apellido => txtApellido.Text;
+
+        public string Edad => txtEdad.Text;
+
+        public string Telefono => txtTelefono.Text;
+
+        public string Username => txtUsuario.Text;
+
+        public string Contraseña => txtContraseña.Text;
+
+        public Role Role => Role.Admin;
+
         public Register()
         {
-            InitializeComponent();
+           
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
-            // CS ALTERNATIVO -> materialSkinManager.ColorScheme=new MaterialSkin.ColorScheme(MaterialSkin.Primary.Indigo500,MaterialSkin.Primary.Indigo700,MaterialSkin.Primary.Indigo100,MaterialSkin.Accent.Pink500,MaterialSkin.TextShade.WHITE);
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
@@ -35,43 +52,19 @@ namespace GestionHotelWinForms.Views
          Accent.Cyan700,         // Acento verde 400 para destacar
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
+            InitializeComponent();
+            AssocciateAndRaiseViewEvents();
         }
 
-        private void materialTextBox1_TextChanged(object sender, EventArgs e)
+        private void AssocciateAndRaiseViewEvents()
         {
-
+            btnRegistrarse.Click += delegate { RegisterEvent?.Invoke(this, EventArgs.Empty); };
         }
 
-        private void materialTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
+        public void ShowMessage(string title, string message)
+        { 
+           
+            MaterialMessageBox.Show(this, title, message);
         }
-
-        private void materialTextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialTextBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialTextBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialTextBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRegistrarse_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

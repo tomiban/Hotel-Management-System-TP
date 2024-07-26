@@ -12,12 +12,13 @@ using System.Windows.Forms;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Login : MaterialForm
+    public partial class Login : MaterialForm, ILoginView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         public Login()
         {
             InitializeComponent();
+            AssocciateAndRaiseViewEvents();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
@@ -39,6 +40,48 @@ namespace GestionHotelWinForms.Views
          Accent.Cyan700,         // Acento verde 400 para destacar
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
+
+        }
+
+        public string Username => txtUsuario.Text;
+
+        public string Password => txtContraseña.Text;
+
+        public event EventHandler LoginEvent;
+        public event EventHandler RedirectToRegister;
+
+        private void AssocciateAndRaiseViewEvents()
+        {
+            btnLogin.Click += delegate { LoginEvent?.Invoke(this, EventArgs.Empty); };
+            btnSinCuenta.Click += delegate { RedirectToRegister?.Invoke(this, EventArgs.Empty); };
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            MaterialMessageBox.Show(this, title, message);
+        }
+
+        public void RegisterPanel()
+        {
+            new Register().Show();
+            this.Hide();
+        }
+
+        public void ShowAdminPanel()
+        {
+            new Admin().Show();
+            this.Hide();
+        }
+
+        public void ShowClientPanel()
+        {
+            new Cliente().Show();
+            this.Hide();
+        }
+
+        public void HideView()
+        {
+            Hide();
         }
     }
 }
