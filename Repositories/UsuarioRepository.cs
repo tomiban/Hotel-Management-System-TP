@@ -114,11 +114,11 @@ namespace GestionHotelWinForms.Repositories
         }
 
         // Método específico para buscar un usuario por username
-        public async Task<bool> GetByUsernameAsync(string username)
+        public Usuario GetByUsername(string username)
         {
             try
             {
-                return _usuarios.Any(u => u.Username == username);
+                return _usuarios.FirstOrDefault(u => u.Username == username);
             }
             catch (Exception ex)
             {
@@ -126,5 +126,19 @@ namespace GestionHotelWinForms.Repositories
                 throw; // Relanza la excepción para que pueda ser manejada a nivel superior
             }
         }
+
+        public bool Authenticate(string username, string password)
+        {
+            try
+            {
+                return _usuarios.Any(u => u.Username == username && u.Contraseña == password);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el usuario por username y password: {ex.Message}");
+                throw; // Da la excepción para que pueda ser manejada a nivel superior
+            }
+        }
+
     }
 }

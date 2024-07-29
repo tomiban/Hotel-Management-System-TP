@@ -11,7 +11,12 @@ namespace GestionHotelWinForms.Views
         public string Username { get; }
         public string Password { get; }
         event EventHandler LoginEvent;
+        event EventHandler RedirectToRegister;
         public void ShowMessage(string title, string message);
+        public void RegisterPanel();
+        public void ShowAdminPanel();
+        public void ShowClientPanel();
+        public void HideView();
         
 
     }
