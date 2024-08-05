@@ -1,5 +1,6 @@
 ﻿using GestionHotelWinForms.Models;
 using GestionHotelWinForms.Repositories;
+using GestionHotelWinForms.Services;
 using GestionHotelWinForms.Views;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,9 @@ namespace GestionHotelWinForms.Presenters
         private void OnRegisterRedirect(object? sender, EventArgs e)
         {
             var registerForm = new Register();
+            IPersistenceService persistenceService = new MemoryPackService();
+            IUsuarioRepository repository = new UsuarioRepository(persistenceService, "usuarios.bin");
+            var registerPresenter = new RegisterPresenter(registerForm, repository);
             registerForm.Show();
             _view.HideView();
         }
