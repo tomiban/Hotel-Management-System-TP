@@ -23,5 +23,7 @@ namespace GestionHotelWinForms.Views
         event EventHandler RegisterEvent;
 
         void ShowMessage( string message, string title);
+
+        void HideView();
     }
 }

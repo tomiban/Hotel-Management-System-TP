@@ -15,12 +15,18 @@ namespace GestionHotelWinForms
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var loginForm = new Login();
+
+            // Crear servicios y repositorios necesarios
             IPersistenceService persistenceService = new MemoryPackService();
-            IUsuarioRepository repository = new UsuarioRepository(persistenceService, "usuarios.bin");
-            var loginPresenter = new LoginPresenter(loginForm, repository);
+            IUsuarioRepository userRepository = new UsuarioRepository(persistenceService, "usuarios.bin");
+            INavigationService navigationService = new NavigationService(userRepository);
+
+            // Crear la vista de login y el presentador
+            var loginForm = new Login();
+            var loginPresenter = new LoginPresenter(loginForm, userRepository, navigationService);
+
+            // Mostrar el formulario de login
             Application.Run(loginForm);
         }
 
