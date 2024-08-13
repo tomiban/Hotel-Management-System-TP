@@ -20,6 +20,7 @@ namespace GestionHotelWinForms
             // Crear servicios y repositorios necesarios
             IPersistenceService persistenceService = new MemoryPackService();
             IUsuarioRepository userRepository = new UsuarioRepository(persistenceService, "usuarios.bin");
+           
             INavigationService navigationService = new NavigationService(userRepository);
 
             // Crear la vista de login y el presentador
