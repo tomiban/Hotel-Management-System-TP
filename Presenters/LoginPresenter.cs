@@ -21,7 +21,6 @@ namespace GestionHotelWinForms.Presenters
             _view = view;
             _userRepository = userRepository;
             _navigationService = navigationService;
-
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
         }
@@ -39,17 +38,17 @@ namespace GestionHotelWinForms.Presenters
             var usuario = _userRepository.GetByUsername(_view.Username);
             if (usuario.Role == Role.Admin)
             {
-                _navigationService.ShowAdminPanel();
+                _navigationService.ShowAdminPanel().Show();
             }
             else if (usuario.Role == Role.Client)
             {
-                _navigationService.ShowClientPanel();
+                _navigationService.ShowClientPanel().Show();
             }
         }
 
         private void OnRegisterRedirect(object? sender, EventArgs e)
         {
-            _navigationService.ShowRegisterPanel();
+            _navigationService.ShowRegisterPanel().Show();
             _view.HideView();
         }
     }

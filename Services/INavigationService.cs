@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionHotelWinForms.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace GestionHotelWinForms.Services
 {
     public interface INavigationService
     {
-        void ShowLoginPanel();
-        void ShowRegisterPanel();
-        void ShowAdminPanel();
-        void ShowClientPanel();
+        Form ShowLoginPanel();
+        Form ShowRegisterPanel();
+        Form ShowAdminPanel();
+        Form ShowClientPanel();
     }
 }

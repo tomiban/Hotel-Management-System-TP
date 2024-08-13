@@ -49,7 +49,7 @@ namespace GestionHotelWinForms.Presenters
             _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
 
             // Navegar al panel de login después del registro
-            _navigationService.ShowLoginPanel();
+            _navigationService.ShowLoginPanel().Show();
             _view.HideView();
         }
     }

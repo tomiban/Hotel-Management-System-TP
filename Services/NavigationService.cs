@@ -18,44 +18,33 @@ namespace GestionHotelWinForms.Services
             _userRepository = userRepository;
         }
 
-        public void ShowRegisterPanel()
+
+        public Form ShowRegisterPanel()
         {
-            // Crear la vista y el presentador para el registro
             var registerForm = new Register();
             var registerPresenter = new RegisterPresenter(registerForm, _userRepository, this);
-
-            // Mostrar el formulario de registro
-            registerForm.Show();
+            return registerForm;
         }
 
-        public void ShowAdminPanel()
+        public Form ShowAdminPanel()
         {
-            // Crear la vista y el presentador para el panel de administrador
             var adminPanel = new Admin();
-         //   var adminPresenter = new AdminPresenter(adminPanel, _userRepository);
-
-            // Mostrar el panel de administrador
-            adminPanel.Show();
+          //  var adminPresenter = new AdminPresenter(adminPanel, _userRepository);
+            return adminPanel;
         }
 
-        public void ShowClientPanel()
+        public Form ShowClientPanel()
         {
-            // Crear la vista y el presentador para el panel de cliente
             var clientPanel = new Cliente();
-         //   var clientPresenter = new ClientPresenter(clientPanel, _userRepository);
-
-            // Mostrar el panel de cliente
-            clientPanel.Show();
+          //  var clientPresenter = new ClientPresenter(clientPanel, _userRepository);
+            return clientPanel;
         }
 
-        public void ShowLoginPanel()
+        public Form ShowLoginPanel()
         {
-            // Crear la vista y el presentador para el login
             var loginPanel = new Login();
             var loginPresenter = new LoginPresenter(loginPanel, _userRepository, this);
-
-            // Mostrar el panel de login
-            loginPanel.Show();
+            return loginPanel;
         }
     }
 }
