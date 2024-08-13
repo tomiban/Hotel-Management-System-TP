@@ -1,5 +1,6 @@
 using GestionHotelWinForms.Models;
 using GestionHotelWinForms.Repositories;
+using GestionHotelWinForms.Services;
 using GestionHotelWinForms.Views;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace GestionHotelWinForms.Presenters
     {
         private readonly IRegisterView _view;
         private readonly IUsuarioRepository _userRepository;
+        private readonly INavigationService _navigationService;
 
-        public RegisterPresenter( IRegisterView view, IUsuarioRepository userRepository)
+        public RegisterPresenter(IRegisterView view, IUsuarioRepository userRepository, INavigationService navigationService)
         {
-            this._view = view;
-            this._userRepository = userRepository;
-            this._view.RegisterEvent += OnRegister;
+            _view = view;
+            _userRepository = userRepository;
+            _navigationService = navigationService;
+
+            _view.RegisterEvent += OnRegister;
         }
 
         private void OnRegister(object? sender, EventArgs e)
@@ -42,7 +46,11 @@ namespace GestionHotelWinForms.Presenters
 
             _userRepository.AddAsync(newUser);
 
-            _view.ShowMessage("Usuario registrado correctamente.", "Exito");
+            _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
+
+            // Navegar al panel de login después del registro
+            _navigationService.ShowLoginPanel().Show();
+            _view.HideView();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace GestionHotelWinForms.Views
 
         public Register()
         {
-           
+
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
@@ -62,9 +62,14 @@ namespace GestionHotelWinForms.Views
         }
 
         public void ShowMessage(string title, string message)
-        { 
-           
+        {
+
             MaterialMessageBox.Show(this, title, message);
+        }
+
+        public void HideView()
+        {
+            Hide();
         }
     }
 }

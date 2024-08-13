@@ -14,46 +14,42 @@ namespace GestionHotelWinForms.Presenters
     {
         private readonly ILoginView _view;
         private readonly IUsuarioRepository _userRepository;
+        private readonly INavigationService _navigationService;
 
-        public LoginPresenter(ILoginView view, IUsuarioRepository userRepository)
+        public LoginPresenter(ILoginView view, IUsuarioRepository userRepository, INavigationService navigationService)
         {
             _view = view;
             _userRepository = userRepository;
+            _navigationService = navigationService;
             _view.LoginEvent += OnLogin;
-            _view.RedirectToRegister+= OnRegisterRedirect;  
+            _view.RedirectToRegister += OnRegisterRedirect;
         }
 
         private void OnLogin(object? sender, EventArgs e)
         {
             var userExist = _userRepository.Authenticate(_view.Username, _view.Password);
-            
-            if (userExist == false)
+
+            if (!userExist)
             {
                 _view.ShowMessage("Usuario o contraseña incorrectos.", "Error");
                 return;
             }
+
             var usuario = _userRepository.GetByUsername(_view.Username);
             if (usuario.Role == Role.Admin)
             {
-                _view.ShowAdminPanel();
+                _navigationService.ShowAdminPanel().Show();
             }
             else if (usuario.Role == Role.Client)
             {
-                _view.ShowClientPanel();
-            }            
-            //_view.LoginSuccess();
+                _navigationService.ShowClientPanel().Show();
+            }
         }
 
         private void OnRegisterRedirect(object? sender, EventArgs e)
         {
-            var registerForm = new Register();
-            IPersistenceService persistenceService = new MemoryPackService();
-            IUsuarioRepository repository = new UsuarioRepository(persistenceService, "usuarios.bin");
-            var registerPresenter = new RegisterPresenter(registerForm, repository);
-            registerForm.Show();
+            _navigationService.ShowRegisterPanel().Show();
             _view.HideView();
         }
-
-    
     }
 }
