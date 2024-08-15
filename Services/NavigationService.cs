@@ -1,50 +1,49 @@
-﻿using GestionHotelWinForms.Presenters;
+﻿using GestionHotelWinForms.Models;
+using GestionHotelWinForms.Presenters;
 using GestionHotelWinForms.Repositories;
 using GestionHotelWinForms.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestionHotelWinForms.Services
 {
     public class NavigationService : INavigationService
     {
         private readonly IUsuarioRepository _userRepository;
+        private readonly IHabitacionRepository _habitacionRepository;
+       // private readonly IClienteRepository _clienteRepository;
 
-        public NavigationService(IUsuarioRepository userRepository)
+        public NavigationService(IUsuarioRepository userRepository, IHabitacionRepository habitacionRepository)
         {
             _userRepository = userRepository;
+            _habitacionRepository = habitacionRepository;
+    
         }
 
+        public Login ShowLoginPanel()
+        {
+            var loginPanel = new Login();
+            var loginPresenter = new LoginPresenter(loginPanel, _userRepository, this);
+            return loginPanel;
+        }
 
-        public Form ShowRegisterPanel()
+        public Register ShowRegisterPanel()
         {
             var registerForm = new Register();
             var registerPresenter = new RegisterPresenter(registerForm, _userRepository, this);
             return registerForm;
         }
 
-        public Form ShowAdminPanel()
+        public Admin ShowAdminPanel()
         {
             var adminPanel = new Admin();
-          //  var adminPresenter = new AdminPresenter(adminPanel, _userRepository);
+            var adminPresenter = new AdminPresenter(adminPanel, _habitacionRepository, _userRepository, this);
             return adminPanel;
         }
 
-        public Form ShowClientPanel()
+        public Cliente ShowClientPanel()
         {
             var clientPanel = new Cliente();
-          //  var clientPresenter = new ClientPresenter(clientPanel, _userRepository);
+          //  var clientPresenter = new ClientPresenter(clientPanel, _clienteRepository);
             return clientPanel;
-        }
-
-        public Form ShowLoginPanel()
-        {
-            var loginPanel = new Login();
-            var loginPresenter = new LoginPresenter(loginPanel, _userRepository, this);
-            return loginPanel;
         }
     }
 }
