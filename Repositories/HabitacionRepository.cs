@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GestionHotelWinForms.Repositories
 {
-    public class HabitacionRepository : IRepository<Habitacion>
+    public class HabitacionRepository : IHabitacionRepository
     {
         private readonly IPersistenceService _persistenceService;
         private readonly string _filePath;
@@ -90,7 +90,7 @@ namespace GestionHotelWinForms.Repositories
 
         public Task UpdateAsync(Habitacion entity)
         {
-try
+            try
             {
                 var habitacion = _habitaciones.FirstOrDefault(h => h.Id == entity.Id);
                 if (habitacion == null)
