@@ -17,12 +17,18 @@ namespace GestionHotelWinForms
             // To customize application configuration such as set high DPI settings or default font,
             ApplicationConfiguration.Initialize();
 
-            // Crear servicios y repositorios necesarios
+            // Servicio de persistencia binaria
             IPersistenceService persistenceService = new MemoryPackService();
-            IUsuarioRepository userRepository = new UsuarioRepository(persistenceService, "usuarios.bin");           
-            INavigationService navigationService = new NavigationService(userRepository);
 
-            // Mostrar el formulario de login
+            // Creacion de repositorios
+            IUsuarioRepository userRepository = new UsuarioRepository(persistenceService, "usuarios.bin");
+            IHabitacionRepository habitacionRepository = new HabitacionRepository(persistenceService, "habitaciones.bin");
+          //IReservaRepository reservaRepository = new ReservaRepository(persistenceService, "reservas.bin");
+            
+            // Navegador de formularios
+            INavigationService navigationService = new NavigationService(userRepository, habitacionRepository);
+
+            // Inicio de la aplicacion
             Application.Run(navigationService.ShowLoginPanel());
         }
     }
