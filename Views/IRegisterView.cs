@@ -24,6 +24,9 @@ namespace GestionHotelWinForms.Views
 
         void ShowMessage( string message, string title);
 
+        void CloseView();
         void HideView();
+
+        void Show();
     }
 }

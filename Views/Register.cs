@@ -66,10 +66,13 @@ namespace GestionHotelWinForms.Views
 
             MaterialMessageBox.Show(this, title, message);
         }
-
         public void HideView()
         {
             Hide();
+        }
+        public void CloseView()
+        {
+            Close();
         }
     }
 }
