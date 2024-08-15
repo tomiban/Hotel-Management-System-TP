@@ -30,11 +30,17 @@ namespace GestionHotelWinForms.Repositories
             {
                 _usuarios.Add(usuario);
                 await _persistenceService.SaveAsync(_filePath, _usuarios);
+              
+            }
+            catch (IOException ex)
+            {
+               
+                throw new ApplicationException("Error al guardar los datos. Intente nuevamente.", ex);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al añadir el usuario: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error adding user: {ex.Message}");
+                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
             }
         }
 
@@ -44,10 +50,11 @@ namespace GestionHotelWinForms.Repositories
             {
                 return await _persistenceService.LoadAsync<List<Usuario>>(_filePath) ?? new List<Usuario>();
             }
+
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener los usuarios: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error adding user: {ex.Message}");
+                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
             }
         }
 
@@ -64,8 +71,8 @@ namespace GestionHotelWinForms.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener el usuario: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error adding user: {ex.Message}");
+                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
             }
         }
 
@@ -88,8 +95,8 @@ namespace GestionHotelWinForms.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al actualizar el usuario: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error updating user: {ex.Message}");
+                throw new ApplicationException($"Error updating user: {ex.Message}", ex);
             }
         }
 
@@ -108,8 +115,8 @@ namespace GestionHotelWinForms.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al eliminar el usuario: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error deleting user: {ex.Message}");
+                throw new ApplicationException($"Error deleting user: {ex.Message}", ex);
             }
         }
 
@@ -122,8 +129,8 @@ namespace GestionHotelWinForms.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener el usuario por username: {ex.Message}");
-                throw; // Relanza la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error user: {ex.Message}");
+                throw new ApplicationException($"Error user: {ex.Message}", ex);
             }
         }
 
@@ -135,8 +142,8 @@ namespace GestionHotelWinForms.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener el usuario por username y password: {ex.Message}");
-                throw; // Da la excepción para que pueda ser manejada a nivel superior
+                Console.WriteLine($"Error authenticate user: {ex.Message}");
+                throw new ApplicationException($"Error authenticate user: {ex.Message}", ex);
             }
         }
 
