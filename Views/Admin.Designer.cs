@@ -63,6 +63,11 @@
             btnBorrarHab = new MaterialSkin.Controls.MaterialButton();
             btnAgregarHab = new MaterialSkin.Controls.MaterialButton();
             listHabitaciones = new MaterialSkin.Controls.MaterialListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             tpUsuarios = new TabPage();
             btnEditarUsu = new MaterialSkin.Controls.MaterialButton();
@@ -76,6 +81,12 @@
             tpLogout = new TabPage();
             imageListAdmin = new ImageList(components);
             imageListDash = new ImageList(components);
+            columnHeader6 = new ColumnHeader();
+            columnHeader7 = new ColumnHeader();
+            columnHeader8 = new ColumnHeader();
+            columnHeader9 = new ColumnHeader();
+            columnHeader10 = new ColumnHeader();
+            columnHeader11 = new ColumnHeader();
             tcAdmin.SuspendLayout();
             tpDashboard.SuspendLayout();
             cardFactura.SuspendLayout();
@@ -501,6 +512,7 @@
             listHabitaciones.AutoSizeTable = false;
             listHabitaciones.BackColor = Color.FromArgb(255, 255, 255);
             listHabitaciones.BorderStyle = BorderStyle.None;
+            listHabitaciones.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             listHabitaciones.Cursor = Cursors.Hand;
             listHabitaciones.Depth = 0;
             listHabitaciones.FullRowSelect = true;
@@ -514,6 +526,35 @@
             listHabitaciones.TabIndex = 17;
             listHabitaciones.UseCompatibleStateImageBehavior = false;
             listHabitaciones.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Id";
+            columnHeader1.Width = 92;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Nro Habitacion";
+            columnHeader2.TextAlign = HorizontalAlignment.Center;
+            columnHeader2.Width = 181;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Tipo";
+            columnHeader3.TextAlign = HorizontalAlignment.Center;
+            columnHeader3.Width = 216;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Disponibilidad";
+            columnHeader4.TextAlign = HorizontalAlignment.Center;
+            columnHeader4.Width = 216;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Precio";
+            columnHeader5.TextAlign = HorizontalAlignment.Center;
+            columnHeader5.Width = 200;
             // 
             // lblHabitaciones
             // 
@@ -609,6 +650,7 @@
             listUsuarios.AutoSizeTable = false;
             listUsuarios.BackColor = Color.FromArgb(255, 255, 255);
             listUsuarios.BorderStyle = BorderStyle.None;
+            listUsuarios.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
             listUsuarios.Cursor = Cursors.Hand;
             listUsuarios.Depth = 0;
             listUsuarios.FullRowSelect = true;
@@ -714,6 +756,36 @@
             imageListDash.Images.SetKeyName(1, "group.png");
             imageListDash.Images.SetKeyName(2, "money.png");
             // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Id";
+            columnHeader6.Width = 92;
+            // 
+            // columnHeader7
+            // 
+            columnHeader7.Text = "Nombre";
+            columnHeader7.Width = 150;
+            // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "Apellido";
+            columnHeader8.Width = 150;
+            // 
+            // columnHeader9
+            // 
+            columnHeader9.Text = "Edad";
+            columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            columnHeader10.Text = "Telefono";
+            columnHeader10.Width = 210;
+            // 
+            // columnHeader11
+            // 
+            columnHeader11.Text = "Role";
+            columnHeader11.Width = 100;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -726,7 +798,6 @@
             Padding = new Padding(10, 64, 10, 3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "El Molino Hotel";
-            Load += Admin_Load;
             tcAdmin.ResumeLayout(false);
             tpDashboard.ResumeLayout(false);
             tpDashboard.PerformLayout();
@@ -796,5 +867,16 @@
         private MaterialSkin.Controls.MaterialButton btnEditarUsu;
         private MaterialSkin.Controls.MaterialButton btnBorrarUsu;
         private MaterialSkin.Controls.MaterialButton btnAgregarUsu;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
+        private ColumnHeader columnHeader9;
+        private ColumnHeader columnHeader10;
+        private ColumnHeader columnHeader11;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionHotelWinForms.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace GestionHotelWinForms.Views
 {
-    public interface IAdminView<T>
+    public interface IAdminView
     {
-        void ActualizarLista(List<T> items);
-        T ObtenerDatos();
+        void ActualizarListaUsuarios(List<Usuario> items);
+        void ActualizarListaHabitaciones(List<Habitacion> items);
+        void ObtenerDatos();
         int ObtenerIdSeleccionado();
         void LimpiarFormulario();
 
@@ -18,6 +20,8 @@ namespace GestionHotelWinForms.Views
         event EventHandler EliminarEvent;
 
         void ShowMessage(string title, string message);
+
+        void Show();
     }
 
 }

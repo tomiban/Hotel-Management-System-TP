@@ -1,11 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using GestionHotelWinForms.Models;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
 namespace GestionHotelWinForms.Views
 {
-    public partial class Admin : MaterialForm, IAdminView<Usuario>, IAdminView<Habitacion>
+    public partial class Admin : MaterialForm, IAdminView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
@@ -25,30 +26,99 @@ namespace GestionHotelWinForms.Views
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
 
-
-
         }
 
         public event EventHandler AñadirEvent;
         public event EventHandler EditarEvent;
         public event EventHandler EliminarEvent;
 
-        public void ActualizarLista(List<Usuario> items)
+        private void AssocciateAndRaiseViewEvents()
         {
-            throw new NotImplementedException();
+            btnAgregarHab.Click += delegate { AñadirEvent?.Invoke(this, EventArgs.Empty); };
+            btnEditarHab.Click += delegate { EditarEvent?.Invoke(this, EventArgs.Empty); };
+            btnBorrarHab.Click += delegate { EliminarEvent?.Invoke(this, EventArgs.Empty); };
         }
 
-        public void ActualizarLista(List<Habitacion> items)
+        public void ActualizarListaUsuarios(List<Usuario> items)
         {
-            throw new NotImplementedException();
+            listUsuarios.Items.Clear();
+            var usuarios = new List<Usuario>()
+               {
+                   new Usuario
+                   {
+                       Id = 1,
+                       Nombre = "John",
+                       Apellido = "Doe",
+                       Edad = 30,
+                       Telefono = 123456789,
+                       Role = Role.Admin
+                   },
+                   new Usuario
+                   {
+                       Id = 2,
+                       Nombre = "Jane",
+                       Apellido = "Doe",
+                       Edad = 25,
+                       Telefono = 987654321,
+                       Role = Role.Client
+                   }
+            };
+            foreach (var item in usuarios)
+            {
+                ListViewItem listItem = new ListViewItem(item.Id.ToString());
+                listItem.SubItems.Add(item.Nombre);
+                listItem.SubItems.Add(item.Apellido);
+                listItem.SubItems.Add(item.Edad.ToString());
+                listItem.SubItems.Add(item.Telefono.ToString());
+                listItem.SubItems.Add(item.Role.ToString());
+                listUsuarios.Items.Add(listItem);
+            }
         }
 
-        public void LimpiarFormulario()
+        public void ActualizarListaHabitaciones(List<Habitacion> itemss)
         {
-            throw new NotImplementedException();
+            listHabitaciones.Items.Clear();
+            List<Habitacion> items = new List<Habitacion>
+                {
+                    new Habitacion
+                    {
+                        Id = 1,
+                        NroHabitacion = 1,
+                        TipoHabitacion = TipoHabitacion.Standard,
+                        Disponible = true,
+                        PrecioPorNoche = 100
+                    },
+                    new Habitacion
+                    {
+                        Id = 2,
+                        NroHabitacion = 2,
+                        TipoHabitacion = TipoHabitacion.Premium,
+                        Disponible = false,
+                        PrecioPorNoche = 200
+                    }
+            };
+            foreach (var hab in items)
+            {
+                ListViewItem item = new ListViewItem(hab.Id.ToString());
+                item.SubItems.Add(hab.NroHabitacion.ToString());
+                item.SubItems.Add(hab.TipoHabitacion.ToString());
+                item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
+                item.SubItems.Add(hab.PrecioPorNoche.ToString("C"));
+                listHabitaciones.Items.Add(item);
+            }
         }
 
-        public Usuario ObtenerDatos()
+ 
+
+        public void ShowMessage(string title, string message)
+        {
+
+            MaterialMessageBox.Show(this, title, message);
+        }
+
+
+
+        public void ObtenerDatos()
         {
             throw new NotImplementedException();
         }
@@ -58,17 +128,7 @@ namespace GestionHotelWinForms.Views
             throw new NotImplementedException();
         }
 
-        public void ShowMessage(string title, string message)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Admin_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        Habitacion IAdminView<Habitacion>.ObtenerDatos()
+        public void LimpiarFormulario()
         {
             throw new NotImplementedException();
         }
