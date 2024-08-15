@@ -21,36 +21,47 @@ namespace GestionHotelWinForms.Presenters
             _view = view;
             _userRepository = userRepository;
             _navigationService = navigationService;
-
             _view.RegisterEvent += OnRegister;
         }
 
         private void OnRegister(object? sender, EventArgs e)
         {
-            var existingUser = _userRepository.GetByUsername(_view.Username);
-
-            if (existingUser != null)
+            try
             {
-                _view.ShowMessage("El nombre de usuario ya existe.", "Error");
-                return;
+                var existingUser = _userRepository.GetByUsername(_view.Username);
+
+                if (existingUser != null)
+                {
+                    _view.ShowMessage("El nombre de usuario ya existe.", "Error");
+                    return;
+                }
+
+                var newUser = new Usuario
+                {
+                    Nombre = _view.Nombre,
+                    Apellido = _view.Apellido,
+                    Username = _view.Username,
+                    Contraseña = _view.Contraseña,
+                    Role = _view.Role
+                };
+
+                _userRepository.AddAsync(newUser);
+            
+                _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
+                _navigationService.ShowLoginPanel().Show();
+                _view.HideView();
             }
-
-            var newUser = new Usuario
+            catch (IOException ex)
             {
-                Nombre = _view.Nombre,
-                Apellido = _view.Apellido,
-                Username = _view.Username,
-                Contraseña = _view.Contraseña,
-                Role = _view.Role
-            };
-
-            _userRepository.AddAsync(newUser);
-
-            _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
-
-            // Navegar al panel de login después del registro
-            _navigationService.ShowLoginPanel().Show();
-            _view.HideView();
+                _view.ShowMessage("Error al guardar los datos. Intente nuevamente.", "Error");
+               
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Ocurrió un error al registrarse.", "Error");
+              
+            }
         }
+
     }
 }

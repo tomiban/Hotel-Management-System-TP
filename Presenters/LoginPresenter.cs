@@ -2,11 +2,7 @@
 using GestionHotelWinForms.Repositories;
 using GestionHotelWinForms.Services;
 using GestionHotelWinForms.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GestionHotelWinForms.Presenters
 {
@@ -27,29 +23,46 @@ namespace GestionHotelWinForms.Presenters
 
         private void OnLogin(object? sender, EventArgs e)
         {
-            var userExist = _userRepository.Authenticate(_view.Username, _view.Password);
+            try
+            {
+                var userExist = _userRepository.Authenticate(_view.Username, _view.Password);
 
-            if (!userExist)
-            {
-                _view.ShowMessage("Usuario o contraseña incorrectos.", "Error");
-                return;
-            }
+                if (!userExist)
+                {
+                    _view.ShowMessage("Usuario o contraseña incorrectos.", "Error");
+                    return;
+                }
 
-            var usuario = _userRepository.GetByUsername(_view.Username);
-            if (usuario.Role == Role.Admin)
-            {
-                _navigationService.ShowAdminPanel().Show();
+                var usuario = _userRepository.GetByUsername(_view.Username);
+                _view.HideView();
+
+                if (usuario.Role == Role.Admin)
+                {
+                    _navigationService.ShowAdminPanel().Show();
+                }
+                else if (usuario.Role == Role.Client)
+                {
+                    //_navigationService.ShowClientPanel().Show()
+                }
             }
-            else if (usuario.Role == Role.Client)
+            catch (Exception ex)
             {
-                _navigationService.ShowClientPanel().Show();
+                _view.ShowMessage("Ocurrió un error al iniciar sesión.", "Error");
             }
         }
 
         private void OnRegisterRedirect(object? sender, EventArgs e)
         {
-            _navigationService.ShowRegisterPanel().Show();
-            _view.HideView();
+            try
+            {
+                _navigationService.ShowRegisterPanel().Show();
+                _view.HideView();
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");        
+            }
         }
+
     }
 }
