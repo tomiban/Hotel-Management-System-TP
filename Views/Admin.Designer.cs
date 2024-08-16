@@ -74,6 +74,12 @@
             btnBorrarUsu = new MaterialSkin.Controls.MaterialButton();
             btnAgregarUsu = new MaterialSkin.Controls.MaterialButton();
             listUsuarios = new MaterialSkin.Controls.MaterialListView();
+            columnHeader6 = new ColumnHeader();
+            columnHeader7 = new ColumnHeader();
+            columnHeader8 = new ColumnHeader();
+            columnHeader9 = new ColumnHeader();
+            columnHeader10 = new ColumnHeader();
+            columnHeader11 = new ColumnHeader();
             lblUsuarios = new MaterialSkin.Controls.MaterialLabel();
             tpFacturacion = new TabPage();
             listFacturas = new MaterialSkin.Controls.MaterialListView();
@@ -81,12 +87,6 @@
             tpLogout = new TabPage();
             imageListAdmin = new ImageList(components);
             imageListDash = new ImageList(components);
-            columnHeader6 = new ColumnHeader();
-            columnHeader7 = new ColumnHeader();
-            columnHeader8 = new ColumnHeader();
-            columnHeader9 = new ColumnHeader();
-            columnHeader10 = new ColumnHeader();
-            columnHeader11 = new ColumnHeader();
             tcAdmin.SuspendLayout();
             tpDashboard.SuspendLayout();
             cardFactura.SuspendLayout();
@@ -665,6 +665,36 @@
             listUsuarios.UseCompatibleStateImageBehavior = false;
             listUsuarios.View = View.Details;
             // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Id";
+            columnHeader6.Width = 92;
+            // 
+            // columnHeader7
+            // 
+            columnHeader7.Text = "Nombre";
+            columnHeader7.Width = 150;
+            // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "Apellido";
+            columnHeader8.Width = 150;
+            // 
+            // columnHeader9
+            // 
+            columnHeader9.Text = "Edad";
+            columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            columnHeader10.Text = "Telefono";
+            columnHeader10.Width = 210;
+            // 
+            // columnHeader11
+            // 
+            columnHeader11.Text = "Role";
+            columnHeader11.Width = 100;
+            // 
             // lblUsuarios
             // 
             lblUsuarios.AutoSize = true;
@@ -755,36 +785,6 @@
             imageListDash.Images.SetKeyName(0, "door.png");
             imageListDash.Images.SetKeyName(1, "group.png");
             imageListDash.Images.SetKeyName(2, "money.png");
-            // 
-            // columnHeader6
-            // 
-            columnHeader6.Text = "Id";
-            columnHeader6.Width = 92;
-            // 
-            // columnHeader7
-            // 
-            columnHeader7.Text = "Nombre";
-            columnHeader7.Width = 150;
-            // 
-            // columnHeader8
-            // 
-            columnHeader8.Text = "Apellido";
-            columnHeader8.Width = 150;
-            // 
-            // columnHeader9
-            // 
-            columnHeader9.Text = "Edad";
-            columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            columnHeader10.Text = "Telefono";
-            columnHeader10.Width = 210;
-            // 
-            // columnHeader11
-            // 
-            columnHeader11.Text = "Role";
-            columnHeader11.Width = 100;
             // 
             // Admin
             // 

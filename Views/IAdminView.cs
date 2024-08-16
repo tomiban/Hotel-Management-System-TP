@@ -18,6 +18,9 @@ namespace GestionHotelWinForms.Views
         event EventHandler AñadirEvent;
         event EventHandler EditarEvent;
         event EventHandler EliminarEvent;
+        event EventHandler SearchEvent;
+     
+
 
         void ShowMessage(string title, string message);
 

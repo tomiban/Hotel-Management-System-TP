@@ -31,6 +31,8 @@ namespace GestionHotelWinForms.Views
         public event EventHandler AñadirEvent;
         public event EventHandler EditarEvent;
         public event EventHandler EliminarEvent;
+        public event EventHandler SearchEvent;
+
 
         private void AssocciateAndRaiseViewEvents()
         {

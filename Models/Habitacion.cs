@@ -12,12 +12,19 @@ namespace GestionHotelWinForms.Models
     [MemoryPackable]
     public partial class Habitacion
     {
+        private static int contadorId = 0;
 
         public int Id { get; set; }
         public int NroHabitacion { get; set; }
         public TipoHabitacion TipoHabitacion { get; set; }
         public bool Disponible { get; set; }
         public int PrecioPorNoche { get; set; }
+
+        public Habitacion()
+        {
+            contadorId++;
+            Id = contadorId;
+        }
     }
 
     public enum TipoHabitacion

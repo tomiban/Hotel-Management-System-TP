@@ -45,5 +45,12 @@ namespace GestionHotelWinForms.Services
           //  var clientPresenter = new ClientPresenter(clientPanel, _clienteRepository);
             return clientPanel;
         }
+
+        public CrearEditarHabitacion ShowCrearEditarHabitacion()
+        {
+            var crearEditarHabitacion = new CrearEditarHabitacion();
+            var crearEditarHabitacionPresenter = new CrearEditarHabitacionPresenter(crearEditarHabitacion, _habitacionRepository, this);
+            return crearEditarHabitacion;
+        }
     }
 }

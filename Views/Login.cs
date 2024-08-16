@@ -34,11 +34,11 @@ namespace GestionHotelWinForms.Views
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
 
             materialSkinManager.ColorScheme = new ColorScheme(
-                 Primary.DeepPurple600,   
-                 Primary.DeepPurple700,   
-                 Primary.Cyan700,  
-                 Accent.Cyan700,        
-                 TextShade.WHITE         
+                 Primary.DeepPurple600,
+                 Primary.DeepPurple700,
+                 Primary.Cyan700,
+                 Accent.Cyan700,
+                 TextShade.WHITE
              );
 
         }
@@ -53,6 +53,11 @@ namespace GestionHotelWinForms.Views
         private void AssocciateAndRaiseViewEvents()
         {
             btnLogin.Click += delegate { LoginEvent?.Invoke(this, EventArgs.Empty); };
+            txtContraseña.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                    LoginEvent?.Invoke(this, EventArgs.Empty);
+            };
             btnSinCuenta.Click += delegate { RedirectToRegister?.Invoke(this, EventArgs.Empty); };
         }
 
@@ -69,9 +74,7 @@ namespace GestionHotelWinForms.Views
         public void CloseView()
         {
 
-        Close(); 
-    }
-
-
+            Close();
+        }
     }
 }

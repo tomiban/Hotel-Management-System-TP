@@ -25,10 +25,27 @@ namespace GestionHotelWinForms.Presenters
             _habitacionRepository = habitacionRepository;
             _usuarioRepository = usuarioRepository;
             _navigationService = navigationService;
-            //_view.AñadirEvent += OnAñadirHab();
+            _view.AñadirEvent += OnAñadirHab();
             //_view.EditarEvent += OnEditarHab();
             //_view.EliminarEvent += OnEliminarHab();
             CargarHabitaciones();
+            CargarUsuarios();
+        }
+
+        private EventHandler OnAñadirHab()
+        {
+
+
+            return null;
+            //try
+            //{
+            //    _view.ActualizarListaHabitaciones();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    _view.ShowMessage("Ocurrio un error al añadir habitacion.", "Error");
+            //}
         }
 
         private void CargarHabitaciones()
@@ -45,15 +62,7 @@ namespace GestionHotelWinForms.Presenters
 
         //private void OnAñadirHab()
         //{
-        //    try
-        //    {
-        //        _view.ActualizarLista();
-               
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
-        //    }
+
         //}
     }
 }
