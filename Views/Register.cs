@@ -18,6 +18,7 @@ namespace GestionHotelWinForms.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
         public event EventHandler RegisterEvent;
+        public event EventHandler OnLoginRedirect;
 
         public string Nombre => txtNombre.Text;
 
@@ -59,6 +60,7 @@ namespace GestionHotelWinForms.Views
         private void AssocciateAndRaiseViewEvents()
         {
             btnRegistrarse.Click += delegate { RegisterEvent?.Invoke(this, EventArgs.Empty); };
+            btnRegresar.Click += delegate { OnLoginRedirect?.Invoke(this, EventArgs.Empty); };
         }
 
         public void ShowMessage(string title, string message)

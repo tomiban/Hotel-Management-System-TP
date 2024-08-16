@@ -22,6 +22,20 @@ namespace GestionHotelWinForms.Presenters
             _userRepository = userRepository;
             _navigationService = navigationService;
             _view.RegisterEvent += OnRegister;
+            _view.OnLoginRedirect += OnLoginRedirect;
+        }
+
+        private void OnLoginRedirect(object? sender, EventArgs e)
+        {
+            try
+            {
+                _navigationService.ShowLoginPanel().Show();
+                _view.CloseView();
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
+            }
         }
 
         private void OnRegister(object? sender, EventArgs e)
@@ -46,7 +60,7 @@ namespace GestionHotelWinForms.Presenters
                 };
 
                 _userRepository.AddAsync(newUser);
-            
+
                 _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
                 _navigationService.ShowLoginPanel().Show();
                 _view.HideView();
@@ -54,12 +68,12 @@ namespace GestionHotelWinForms.Presenters
             catch (IOException ex)
             {
                 _view.ShowMessage("Error al guardar los datos. Intente nuevamente.", "Error");
-               
+
             }
             catch (Exception ex)
             {
                 _view.ShowMessage("Ocurrió un error al registrarse.", "Error");
-              
+
             }
         }
 

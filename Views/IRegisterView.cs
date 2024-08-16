@@ -21,6 +21,7 @@ namespace GestionHotelWinForms.Views
 
 
         event EventHandler RegisterEvent;
+        event EventHandler OnLoginRedirect;
 
         void ShowMessage( string message, string title);
 
