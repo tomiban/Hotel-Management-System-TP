@@ -9,6 +9,8 @@ namespace Presentation.Views
 {
     public interface IAdminView
     {
+
+
         void ActualizarListaUsuarios(List<Usuario> items);
         void ActualizarListaHabitaciones(List<Habitacion> items);
         void ObtenerDatos();
@@ -24,7 +26,9 @@ namespace Presentation.Views
 
         void ShowMessage(string title, string message);
 
-        void Show();
+        void ShowView();
+        void CloseView();
+        void HideView();
     }
 
 }

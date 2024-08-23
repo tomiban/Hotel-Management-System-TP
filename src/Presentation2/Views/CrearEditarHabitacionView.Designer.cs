@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class CrearEditarHabitacion
+    partial class CrearEditarHabitacionView
     {
         /// <summary>
         /// Required designer variable.

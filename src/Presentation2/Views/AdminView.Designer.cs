@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class Admin
+    partial class AdminView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminView));
             tcAdmin = new MaterialSkin.Controls.MaterialTabControl();
             tpDashboard = new TabPage();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();

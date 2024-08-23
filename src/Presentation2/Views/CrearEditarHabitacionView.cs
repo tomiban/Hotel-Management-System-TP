@@ -1,4 +1,5 @@
-﻿using MaterialSkin;
+﻿using Domain.Entities;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -12,33 +13,38 @@ using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class Cliente : MaterialForm
+    public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacion
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        public Cliente()
+
+        public CrearEditarHabitacionView( )
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
             materialSkinManager.EnforceBackcolorOnAllComponents = true;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
+
             materialSkinManager.ColorScheme = new ColorScheme(
          Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
          Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-         Primary.Cyan300,   // Deep Purple base para fondos principales
+         Primary.Cyan700,   // Deep Purple base para fondos principales
          Accent.Cyan700,         // Acento verde 400 para destacar
          TextShade.WHITE          // Color de texto blanco para el contraste
      );
         }
 
-        private void materialCard6_Paint(object sender, PaintEventArgs e)
-        {
+        public int Id => throw new NotImplementedException();
 
-        }
+        public int NroHabitacion => throw new NotImplementedException();
 
-        private void Cliente_Load(object sender, EventArgs e)
-        {
+        public TipoHabitacion TipoHabitacion => throw new NotImplementedException();
 
-        }
+        public bool Disponible => throw new NotImplementedException();
+
+        public int PrecioPorNoche => throw new NotImplementedException();
+
+        public event EventHandler SaveEvent;
+        public event EventHandler BackEvent;
     }
 }

@@ -1,20 +1,28 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
+using System.Runtime.CompilerServices;
 
 
 namespace Infraestructure.DataAccess.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        const string FOLDER = ".\\Data";
+        const string FILE_NAME = "usuarios.bin";
+
+        string FILE_PATH = Path.Combine("Data", "usuarios.bin");
         private readonly IBinarySerialization _persistenceService;
-        private readonly string _filePath;
+        
         private List<Usuario> _usuarios;
 
-        public UsuarioRepository(IBinarySerialization persistenceService, string filePath)
+        public UsuarioRepository(IBinarySerialization persistenceService)
         {
+            if (!Directory.Exists(FOLDER))
+            {
+                Directory.CreateDirectory(FOLDER);
+            }
             _persistenceService = persistenceService;
-            _filePath = filePath;
             _usuarios = GetAllAsync().Result; // Cargar usuarios al iniciar el repositorio
         }
 
@@ -23,7 +31,7 @@ namespace Infraestructure.DataAccess.Repositories
             try
             {
                 _usuarios.Add(usuario);
-                await _persistenceService.SaveAsync(_filePath, _usuarios);
+                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
 
             }
             catch (IOException ex)
@@ -42,7 +50,7 @@ namespace Infraestructure.DataAccess.Repositories
         {
             try
             {
-                return await _persistenceService.LoadAsync<List<Usuario>>(_filePath) ?? new List<Usuario>();
+                return await _persistenceService.LoadAsync<List<Usuario>>(FILE_PATH) ?? new List<Usuario>();
             }
 
             catch (Exception ex)
@@ -85,7 +93,7 @@ namespace Infraestructure.DataAccess.Repositories
                 usuario.Role = item.Role;
                 usuario.Telefono = item.Telefono;
 
-                await _persistenceService.SaveAsync(_filePath, _usuarios);
+                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
             }
             catch (Exception ex)
             {
@@ -105,7 +113,7 @@ namespace Infraestructure.DataAccess.Repositories
                 }
 
                 _usuarios.Remove(usuario);
-                await _persistenceService.SaveAsync(_filePath, _usuarios);
+                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
             }
             catch (Exception ex)
             {

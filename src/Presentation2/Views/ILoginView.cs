@@ -2,12 +2,15 @@
 {
     public interface ILoginView
     {
-        string Username { get; }
         string Password { get; }
+        string Username { get; }
+
         event EventHandler LoginEvent;
         event EventHandler RedirectToRegister;
-        void ShowMessage(string title, string message);
+
         void CloseView();
         void HideView();
+        void ShowView();
+        void ShowMessage(string title, string message);
     }
 }

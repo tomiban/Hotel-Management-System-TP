@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class Login
+    partial class LoginView
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,7 @@
             txtUsuario.Depth = 0;
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsuario.LeadingIcon = null;
-            txtUsuario.Location = new Point(161, 136);
+            txtUsuario.Location = new Point(156, 148);
             txtUsuario.MaxLength = 32;
             txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             txtUsuario.Multiline = false;
@@ -60,7 +60,7 @@
             txtContraseña.Depth = 0;
             txtContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContraseña.LeadingIcon = null;
-            txtContraseña.Location = new Point(161, 233);
+            txtContraseña.Location = new Point(156, 245);
             txtContraseña.MaxLength = 16;
             txtContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseña.Multiline = false;
@@ -79,7 +79,7 @@
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
-            btnLogin.Location = new Point(228, 335);
+            btnLogin.Location = new Point(223, 347);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -96,7 +96,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.Depth = 0;
             lblUsuario.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsuario.Location = new Point(161, 114);
+            lblUsuario.Location = new Point(156, 126);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(55, 19);
@@ -108,7 +108,7 @@
             lblContraseña.AutoSize = true;
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseña.Location = new Point(161, 211);
+            lblContraseña.Location = new Point(156, 223);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(82, 19);
@@ -118,23 +118,24 @@
             // btnNoTengoCuenta
             // 
             btnNoTengoCuenta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnNoTengoCuenta.Cursor = Cursors.Hand;
             btnNoTengoCuenta.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnNoTengoCuenta.Depth = 0;
             btnNoTengoCuenta.HighEmphasis = true;
             btnNoTengoCuenta.Icon = null;
-            btnNoTengoCuenta.Location = new Point(217, 403);
+            btnNoTengoCuenta.Location = new Point(193, 395);
             btnNoTengoCuenta.Margin = new Padding(4, 6, 4, 6);
             btnNoTengoCuenta.MouseState = MaterialSkin.MouseState.HOVER;
             btnNoTengoCuenta.Name = "btnNoTengoCuenta";
             btnNoTengoCuenta.NoAccentTextColor = Color.Empty;
-            btnNoTengoCuenta.Size = new Size(154, 36);
+            btnNoTengoCuenta.Size = new Size(183, 36);
             btnNoTengoCuenta.TabIndex = 5;
-            btnNoTengoCuenta.Text = "No tengo cuenta";
-            btnNoTengoCuenta.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            btnNoTengoCuenta.UseAccentColor = true;
+            btnNoTengoCuenta.Text = "No estoy registrado";
+            btnNoTengoCuenta.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            btnNoTengoCuenta.UseAccentColor = false;
             btnNoTengoCuenta.UseVisualStyleBackColor = true;
             // 
-            // Login
+            // LoginView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -146,7 +147,7 @@
             Controls.Add(btnLogin);
             Controls.Add(txtContraseña);
             Controls.Add(txtUsuario);
-            Name = "Login";
+            Name = "LoginView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ResumeLayout(false);

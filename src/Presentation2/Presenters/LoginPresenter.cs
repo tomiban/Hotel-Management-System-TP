@@ -7,21 +7,27 @@ namespace Presentation.Presenters
 {
     public class LoginPresenter : ILoginPresenter
     {
-        private readonly ILoginView _view;
-        private readonly IUsuarioRepository _userRepository;
-        private readonly IUnityContainer _container;
+        ILoginView _view;
+        Lazy<IRegisterPresenter> _registerPresenter;
+        IUsuarioRepository _userRepository;
 
-        public LoginPresenter(ILoginView view, IUsuarioRepository userRepository, IUnityContainer container)
+        public ILoginView GetLoginView()
+        {
+            return _view;
+        }
+
+
+        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, IUsuarioRepository userRepository)
         {
             _view = view;
-            _userRepository = userRepository;
-            _container = container;
+            _registerPresenter = registerPresenter;
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
+            _userRepository = userRepository;
         }
 
         // Propiedad pública para acceder a la vista desde fuera del presentador
-        public ILoginView View => _view;
+
 
         public void OnLogin(object? sender, EventArgs e)
         {
@@ -40,13 +46,11 @@ namespace Presentation.Presenters
 
                 if (usuario.Role == Role.Admin)
                 {
-                    var adminPresenter = _container.Resolve<IAdminPresenter>();
-                    adminPresenter.View.Show();
+                    _view.ShowMessage(" ENTRE", "ENTRE");
                 }
                 else if (usuario.Role == Role.Client)
                 {
-                    //var loginPresenter = _container.Resolve<IClientPresenter>();
-                    //loginPresenter.View.Show();
+                    _view.ShowMessage(" ENTRE", "ENTRE");
                 }
                 else
                 {
@@ -63,16 +67,9 @@ namespace Presentation.Presenters
         {
             try
             {
-                // Ocular la vista de login en lugar de cerrarla inmediatamente
-          
-                // Resolver y mostrar la vista de registro
-                var registerPresenter = _container.Resolve<IRegisterPresenter>();
-                var registerForm = (Form)registerPresenter.View;
 
-                // Mostrar la vista de registro
-                // Mostrar la vista de registro como un diálogo modal
-                registerForm.Show();
-                _view.CloseView();
+                _registerPresenter.Value.GetRegisterView().ShowView();
+                _view.HideView();
 
 
             }
@@ -81,5 +78,11 @@ namespace Presentation.Presenters
                 _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
+
+        public void ShowLoginView()
+        {
+            _view.ShowView();
+        }
+
     }
 }

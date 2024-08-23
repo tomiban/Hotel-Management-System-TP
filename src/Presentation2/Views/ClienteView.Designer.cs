@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class Cliente
+    partial class ClienteView
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             ListViewItem listViewItem1 = new ListViewItem("");
             ListViewItem listViewItem2 = new ListViewItem("");
             ListViewItem listViewItem3 = new ListViewItem("");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();

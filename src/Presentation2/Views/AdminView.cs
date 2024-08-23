@@ -6,11 +6,11 @@ using Presentation.Views;
 
 namespace Presentation.Views
 {
-    public partial class Admin : MaterialForm, IAdminView
+    public partial class AdminView : MaterialForm, IAdminView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
-        public Admin()
+        public AdminView()
         {
             InitializeComponent();
             materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
@@ -110,7 +110,6 @@ namespace Presentation.Views
             }
         }
 
- 
 
         public void ShowMessage(string title, string message)
         {
@@ -133,6 +132,20 @@ namespace Presentation.Views
         public void LimpiarFormulario()
         {
             throw new NotImplementedException();
+        }
+
+        public void HideView()
+        {
+            this.Hide();
+        }
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowView()
+        {
+            this.Show();
         }
     }
 }

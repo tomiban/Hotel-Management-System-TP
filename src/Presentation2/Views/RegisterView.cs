@@ -2,10 +2,11 @@
 using MaterialSkin;
 using Presentation.Views;
 using Domain.Entities;
+using PresentationLayer.Helpers;
 
 namespace Presentation.Views
 {
-    public partial class Register : MaterialForm, IRegisterView
+    public partial class RegisterView : MaterialForm, IRegisterView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
@@ -26,26 +27,20 @@ namespace Presentation.Views
 
         public Role Role => Role.Admin;
 
-        public Register()
+        public RegisterView()
         {
-
-            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
-            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
-
-            materialSkinManager.ColorScheme = new ColorScheme(
-         Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-         Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-         Primary.Cyan700,   // Deep Purple base para fondos principales
-         Accent.Cyan700,         // Acento verde 400 para destacar
-         TextShade.WHITE          // Color de texto blanco para el contraste
-     );
             InitializeComponent();
+
+            var colorScheme = new ColorScheme(
+             Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
+             Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
+             Primary.Cyan700,   // Deep Purple base para fondos principales
+             Accent.Cyan700,         // Acento verde 400 para destacar
+             TextShade.WHITE          // Color de texto blanco para el contraste
+            );
+
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
+
             AssocciateAndRaiseViewEvents();
         }
 
@@ -62,11 +57,16 @@ namespace Presentation.Views
         }
         public void HideView()
         {
-            Hide();
+            this.Hide();
         }
         public void CloseView()
         {
-            Close();
+            this.Close();
+        }
+
+        public void ShowView()
+        {
+            this.Show();
         }
     }
 }

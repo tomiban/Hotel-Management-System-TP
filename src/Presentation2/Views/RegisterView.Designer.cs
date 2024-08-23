@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class Register
+    partial class RegisterView
     {
         /// <summary>
         /// Required designer variable.
