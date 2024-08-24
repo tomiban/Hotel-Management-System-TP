@@ -7,7 +7,6 @@ namespace Presentation.Presenters
 {
     public class RegisterPresenter : IRegisterPresenter
     {
-
         IRegisterView _view;
         IUsuarioRepository _userRepository;
         Lazy<ILoginPresenter> _loginPresenter;
@@ -30,7 +29,6 @@ namespace Presentation.Presenters
             {
                 _view.CloseView();
                 _loginPresenter.Value.GetLoginView().ShowView();
-
             }
             catch (Exception ex)
             {
@@ -64,7 +62,9 @@ namespace Presentation.Presenters
 
                 _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
 
-                _view.HideView();
+                _loginPresenter.Value.GetLoginView().ShowView();
+
+                _view.CloseView();
             }
             catch (IOException ex)
             {

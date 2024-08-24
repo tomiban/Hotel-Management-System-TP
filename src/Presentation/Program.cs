@@ -5,6 +5,9 @@ using Unity;
 using Infraestructure.DataAccess.Repositories;
 using Infraestructure.DataAccess.Serialization;
 using Unity.Lifetime;
+using PresentationLayer.Views;
+using Services.Services.ReservaServices;
+using PresentationLayer.Presenters;
 
 
 namespace Presentation
@@ -36,8 +39,11 @@ namespace Presentation
                 // Registrar el repositorio de Usuario
                 .RegisterType<IAdminView, AdminView>(new ContainerControlledLifetimeManager())
                 .RegisterType<IAdminPresenter, AdminPresenter>(new ContainerControlledLifetimeManager())
+                .RegisterType<IGuestView, GuestView>(new ContainerControlledLifetimeManager())
+                .RegisterType<IGuestPresenter, GuestPresenter>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
                 .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager())
+                //.RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()) //
                 .RegisterType<IUsuarioRepository, UsuarioRepository>(
                     new ContainerControlledLifetimeManager()
                 );

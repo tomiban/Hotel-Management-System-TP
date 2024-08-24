@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using PresentationLayer.Presenters;
 using Unity;
 
 namespace Presentation.Presenters
@@ -10,6 +11,7 @@ namespace Presentation.Presenters
         ILoginView _view;
         Lazy<IRegisterPresenter> _registerPresenter;
         Lazy<IAdminPresenter> _adminPresenter;
+        Lazy<IGuestPresenter> _guestPresenter;
         IUsuarioRepository _userRepository;
 
         public ILoginView GetLoginView()
@@ -18,11 +20,12 @@ namespace Presentation.Presenters
         }
 
 
-        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, IUsuarioRepository userRepository)
+        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, Lazy<IGuestPresenter> guestPresenter, IUsuarioRepository userRepository)
         {
             _view = view;
             _registerPresenter = registerPresenter;
             _adminPresenter = adminPresenter;
+            _guestPresenter = guestPresenter;
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
             _userRepository = userRepository;
@@ -48,12 +51,11 @@ namespace Presentation.Presenters
 
                 if (usuario.Role == Role.Admin)
                 {
-                    _view.ShowMessage(" ENTRE", "ENTRE");
                     _adminPresenter.Value.GetAdminView().ShowView();
                 }
-                else if (usuario.Role == Role.Client)
+                else if (usuario.Role == Role.Guest)
                 {
-                    _view.ShowMessage(" ENTRE", "ENTRE");
+                    _guestPresenter.Value.GetGuestView().ShowView();
                 }
                 else
                 {

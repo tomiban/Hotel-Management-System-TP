@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Views
 {
-    partial class ClienteView
+    partial class GuestView
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             ListViewItem listViewItem1 = new ListViewItem("");
             ListViewItem listViewItem2 = new ListViewItem("");
             ListViewItem listViewItem3 = new ListViewItem("");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
@@ -623,7 +623,7 @@
             materialCard6.Padding = new Padding(14);
             materialCard6.Size = new Size(640, 361);
             materialCard6.TabIndex = 9;
-            materialCard6.Paint += materialCard6_Paint;
+    
             // 
             // txtPassword
             // 
@@ -878,7 +878,6 @@
             Name = "Cliente";
             Padding = new Padding(10, 64, 10, 3);
             Text = "El Molino Hotel";
-            Load += Cliente_Load;
             tcCliente.ResumeLayout(false);
             tpHabitaciones.ResumeLayout(false);
             tpHabitaciones.PerformLayout();

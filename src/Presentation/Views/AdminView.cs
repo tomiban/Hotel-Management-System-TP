@@ -62,7 +62,7 @@ namespace Presentation.Views
                        Apellido = "Doe",
                        Edad = 25,
                        Telefono = 987654321,
-                       Role = Role.Client
+                       Role = Role.Guest
                    }
             };
             foreach (var item in usuarios)
