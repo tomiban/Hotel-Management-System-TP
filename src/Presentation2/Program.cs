@@ -34,7 +34,10 @@ namespace Presentation
                 // Registra el presentador de registro (IRegisterPresenter) y lo implementa con la clase RegisterPresenter.
                 .RegisterType<IRegisterPresenter, RegisterPresenter>(new ContainerControlledLifetimeManager())
                 // Registrar el repositorio de Usuario
+                .RegisterType<IAdminView, AdminView>(new ContainerControlledLifetimeManager())
+                .RegisterType<IAdminPresenter, AdminPresenter>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
+                .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IUsuarioRepository, UsuarioRepository>(
                     new ContainerControlledLifetimeManager()
                 );

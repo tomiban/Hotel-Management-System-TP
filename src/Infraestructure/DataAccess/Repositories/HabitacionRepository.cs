@@ -1,19 +1,21 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
+using InfraestructureLayer.Helpers;
 
 namespace Infraestructure.DataAccess.Repositories
 {
     public class HabitacionRepository : IHabitacionRepository
     {
+        private string FILE_PATH;
+        private readonly string FILE_NAME = "habitaciones";
         private readonly IBinarySerialization _persistenceService;
-        private readonly string _filePath;
         private List<Habitacion> _habitaciones;
 
-        public HabitacionRepository(IBinarySerialization persistenceService, string filePath)
+        public HabitacionRepository(IBinarySerialization persistenceService)
         {
             _persistenceService = persistenceService;
-            _filePath = filePath;
+            FILE_PATH = FileHelper.GetFilePath(FILE_PATH);
             _habitaciones = GetAllAsync().Result; // Cargar habitaciones al iniciar el repositorio
         }
 
@@ -22,7 +24,7 @@ namespace Infraestructure.DataAccess.Repositories
             try
             {
                 _habitaciones.Add(entity);
-                _persistenceService.SaveAsync(_filePath, _habitaciones);
+                _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
                 return Task.CompletedTask;
             }
             catch (Exception ex)
@@ -43,7 +45,7 @@ namespace Infraestructure.DataAccess.Repositories
                     throw new NullReferenceException();
                 }
                 _habitaciones.Remove(habitacion);
-                _persistenceService.SaveAsync(_filePath, _habitaciones);
+                _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
                 return Task.CompletedTask;
             }
             catch (Exception ex)
@@ -100,7 +102,7 @@ namespace Infraestructure.DataAccess.Repositories
                 habitacion.Disponible = entity.Disponible;
 
 
-                _persistenceService.SaveAsync(_filePath, habitacion);
+                _persistenceService.SaveAsync(FILE_PATH, habitacion);
                 return Task.CompletedTask;
             }
             catch (Exception ex)

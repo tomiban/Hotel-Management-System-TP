@@ -9,8 +9,6 @@ namespace Presentation.Views
 {
     public interface IAdminView
     {
-
-
         void ActualizarListaUsuarios(List<Usuario> items);
         void ActualizarListaHabitaciones(List<Habitacion> items);
         void ObtenerDatos();

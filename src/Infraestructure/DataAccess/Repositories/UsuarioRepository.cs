@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
+using InfraestructureLayer.Helpers;
 using System.Runtime.CompilerServices;
 
 
@@ -8,20 +9,14 @@ namespace Infraestructure.DataAccess.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        const string FOLDER = ".\\Data";
-        const string FILE_NAME = "usuarios.bin";
-
-        string FILE_PATH = Path.Combine("Data", "usuarios.bin");
+        private string FILE_PATH;
+        private readonly string FILE_NAME = "usuarios";
         private readonly IBinarySerialization _persistenceService;
-        
         private List<Usuario> _usuarios;
 
         public UsuarioRepository(IBinarySerialization persistenceService)
         {
-            if (!Directory.Exists(FOLDER))
-            {
-                Directory.CreateDirectory(FOLDER);
-            }
+            FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
             _usuarios = GetAllAsync().Result; // Cargar usuarios al iniciar el repositorio
         }

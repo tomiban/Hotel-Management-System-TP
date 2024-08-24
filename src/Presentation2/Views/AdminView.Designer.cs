@@ -451,6 +451,7 @@
             // btnEditarHab
             // 
             btnEditarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditarHab.Cursor = Cursors.Hand;
             btnEditarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnEditarHab.Depth = 0;
             btnEditarHab.HighEmphasis = true;
@@ -470,6 +471,7 @@
             // btnBorrarHab
             // 
             btnBorrarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarHab.Cursor = Cursors.Hand;
             btnBorrarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnBorrarHab.Depth = 0;
             btnBorrarHab.HighEmphasis = true;
@@ -490,6 +492,7 @@
             // 
             btnAgregarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnAgregarHab.BackColor = Color.Black;
+            btnAgregarHab.Cursor = Cursors.Hand;
             btnAgregarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnAgregarHab.Depth = 0;
             btnAgregarHab.HighEmphasis = true;
@@ -589,6 +592,7 @@
             // btnEditarUsu
             // 
             btnEditarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditarUsu.Cursor = Cursors.Hand;
             btnEditarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnEditarUsu.Depth = 0;
             btnEditarUsu.HighEmphasis = true;
@@ -608,6 +612,7 @@
             // btnBorrarUsu
             // 
             btnBorrarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarUsu.Cursor = Cursors.Hand;
             btnBorrarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnBorrarUsu.Depth = 0;
             btnBorrarUsu.HighEmphasis = true;
@@ -628,6 +633,7 @@
             // 
             btnAgregarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnAgregarUsu.BackColor = Color.Black;
+            btnAgregarUsu.Cursor = Cursors.Hand;
             btnAgregarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnAgregarUsu.Depth = 0;
             btnAgregarUsu.HighEmphasis = true;
@@ -786,7 +792,7 @@
             imageListDash.Images.SetKeyName(1, "group.png");
             imageListDash.Images.SetKeyName(2, "money.png");
             // 
-            // Admin
+            // AdminView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -794,7 +800,7 @@
             Controls.Add(tcAdmin);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcAdmin;
-            Name = "Admin";
+            Name = "AdminView";
             Padding = new Padding(10, 64, 10, 3);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "El Molino Hotel";

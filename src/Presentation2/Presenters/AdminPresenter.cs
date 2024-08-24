@@ -7,29 +7,22 @@ namespace Presentation.Presenters
 {
     public class AdminPresenter : IAdminPresenter
     {
-        private readonly IAdminView _view;
-        private readonly IHabitacionRepository _habitacionRepository;
-        private readonly IUnityContainer _container;
+        IAdminView _view;
+        IHabitacionRepository _habitacionRepository;
 
-        public AdminPresenter(IAdminView view, IHabitacionRepository habitacionRepository, IUnityContainer container)
+        public AdminPresenter(IAdminView view, IHabitacionRepository habitacionRepository)
         {
-
             _view = view;
-            _container = container;
             _habitacionRepository = habitacionRepository;
-
-            _view.AñadirEvent += OnAñadirHab();
+            //_view.AñadirEvent += OnAñadirHab();
             CargarHabitaciones();
             CargarUsuarios();
         }
 
-        public IAdminView View => _view;
-
-
-        public EventHandler OnAñadirHab()
-        {
-            return null;
-        }
+        //public EventHandler OnAñadirHab()
+        //{
+        //    return null;
+        //}
 
         public void CargarHabitaciones()
         {
@@ -44,5 +37,9 @@ namespace Presentation.Presenters
             _view.ActualizarListaUsuarios(usuarios);
         }
 
+        public IAdminView GetAdminView()
+        {
+            return _view;
+        }
     }
 }

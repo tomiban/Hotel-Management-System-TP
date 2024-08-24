@@ -9,6 +9,7 @@ namespace Presentation.Presenters
     {
         ILoginView _view;
         Lazy<IRegisterPresenter> _registerPresenter;
+        Lazy<IAdminPresenter> _adminPresenter;
         IUsuarioRepository _userRepository;
 
         public ILoginView GetLoginView()
@@ -17,10 +18,11 @@ namespace Presentation.Presenters
         }
 
 
-        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, IUsuarioRepository userRepository)
+        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, IUsuarioRepository userRepository)
         {
             _view = view;
             _registerPresenter = registerPresenter;
+            _adminPresenter = adminPresenter;
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
             _userRepository = userRepository;
@@ -47,6 +49,7 @@ namespace Presentation.Presenters
                 if (usuario.Role == Role.Admin)
                 {
                     _view.ShowMessage(" ENTRE", "ENTRE");
+                    _adminPresenter.Value.GetAdminView().ShowView();
                 }
                 else if (usuario.Role == Role.Client)
                 {

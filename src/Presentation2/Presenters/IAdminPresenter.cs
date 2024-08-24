@@ -9,9 +9,9 @@ namespace Presentation.Presenters
 {
     public interface IAdminPresenter
     {
+        IAdminView GetAdminView();
         void CargarHabitaciones();
         void CargarUsuarios();
-        IAdminView View { get; }
-        EventHandler OnAñadirHab();
+        //EventHandler OnAñadirHab();
     }
 }
