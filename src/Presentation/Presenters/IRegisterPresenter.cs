@@ -9,9 +9,9 @@ namespace Presentation.Presenters
 {
     public interface IRegisterPresenter
     {
-        
-        void OnRegister(object? sender, EventArgs e);
+        IRegisterView GetRegisterView();
         void OnLoginRedirect(object? sender, EventArgs e);
+        void OnRegister(object? sender, EventArgs e);
     }
 
 }

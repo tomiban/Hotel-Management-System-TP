@@ -1,29 +1,36 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using Unity;
 
 namespace Presentation.Presenters
 {
     public class RegisterPresenter : IRegisterPresenter
     {
-        private readonly IRegisterView _view;
-        private readonly IUsuarioRepository _userRepository;
 
+        IRegisterView _view;
+        IUsuarioRepository _userRepository;
+        Lazy<ILoginPresenter> _loginPresenter;
 
-        public RegisterPresenter(IRegisterView view, IUsuarioRepository userRepository)
+        public RegisterPresenter(IRegisterView view, IUsuarioRepository userRepository, Lazy<ILoginPresenter> loginPresenter)
         {
             _view = view;
             _userRepository = userRepository;
+            _loginPresenter = loginPresenter;
             _view.RegisterEvent += OnRegister;
             _view.OnLoginRedirect += OnLoginRedirect;
         }
+
+
+        public IRegisterView GetRegisterView() => _view;
 
         public void OnLoginRedirect(object? sender, EventArgs e)
         {
             try
             {
-
                 _view.CloseView();
+                _loginPresenter.Value.GetLoginView().ShowView();
+
             }
             catch (Exception ex)
             {

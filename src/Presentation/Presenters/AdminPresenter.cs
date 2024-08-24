@@ -1,37 +1,33 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using Unity;
 
 namespace Presentation.Presenters
-{ 
-    public class AdminPresenter: IAdminPresenter
+{
+    public class AdminPresenter : IAdminPresenter
     {
-        private readonly IAdminView _view;
+        IAdminView _view;
+        IHabitacionRepository _habitacionRepository;
 
-        private readonly IHabitacionRepository _habitacionRepository;
-        private readonly IUsuarioRepository _usuarioRepository;
-     
-
-        public AdminPresenter(IAdminView view, IHabitacionRepository habitacionRepository, IUsuarioRepository usuarioRepository)
+        public AdminPresenter(IAdminView view, IHabitacionRepository habitacionRepository)
         {
             _view = view;
-
             _habitacionRepository = habitacionRepository;
-            _usuarioRepository = usuarioRepository;
-            _view.AñadirEvent += OnAñadirHab();
+            //_view.AñadirEvent += OnAñadirHab();
             CargarHabitaciones();
             CargarUsuarios();
         }
 
-        public EventHandler OnAñadirHab()
-        {
-            return null;
-        }
+        //public EventHandler OnAñadirHab()
+        //{
+        //    return null;
+        //}
 
         public void CargarHabitaciones()
         {
             var habitaciones = new List<Habitacion>();
-            
+
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
@@ -41,5 +37,9 @@ namespace Presentation.Presenters
             _view.ActualizarListaUsuarios(usuarios);
         }
 
+        public IAdminView GetAdminView()
+        {
+            return _view;
+        }
     }
 }

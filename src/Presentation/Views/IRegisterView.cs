@@ -20,11 +20,12 @@ namespace Presentation.Views
         event EventHandler RegisterEvent;
         event EventHandler OnLoginRedirect;
 
+
+
         void ShowMessage( string message, string title);
 
+        void ShowView();
         void CloseView();
         void HideView();
-
-        void Show();
     }
 }

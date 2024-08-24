@@ -24,7 +24,9 @@ namespace Presentation.Views
 
         void ShowMessage(string title, string message);
 
-        void Show();
+        void ShowView();
+        void CloseView();
+        void HideView();
     }
 
 }
