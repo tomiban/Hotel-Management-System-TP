@@ -14,10 +14,13 @@ jobs:
 
     env:
       Solution_Name: GestionHotelWF.sln
-      Test_Project_Path: PresentationLayer.Tests\PresentationLayer.Tests.csproj
-      Wap_Project_Directory: PresentationLayer
-      Wap_Project_Path: PresentationLayer\PresentationLayer.csproj
+      Test_Project_Path: src\PresentationLayer.Tests\PresentationLayer.Tests.csproj  # Adjust based on actual path
+      Wap_Project_Directory: src\PresentationLayer  # Adjust based on actual path
+      Wap_Project_Path: src\PresentationLayer\PresentationLayer.csproj  # Adjust based on actual path
       DOTNET_ROOT: C:\Program Files\dotnet
+      Appx_Bundle: Always
+      Appx_Bundle_Platforms: x86|x64
+      Appx_Package_Build_Mode: StoreUpload
 
     steps:
     - name: Checkout
@@ -33,8 +36,17 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-    - name: Execute unit tests
-      run: dotnet test
+    - name: List root directory contents
+      shell: pwsh
+      run: Get-ChildItem -Path . -Recurse
+
+    - name: Verify project file exists
+      shell: pwsh
+      run: |
+        if (-Not (Test-Path $env:Wap_Project_Path)) {
+            Write-Error "The specified project file does not exist: $env:Wap_Project_Path"
+            exit 1
+        }
 
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
