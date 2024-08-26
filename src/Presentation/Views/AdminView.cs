@@ -52,7 +52,7 @@ namespace Presentation.Views
                        Nombre = "John",
                        Apellido = "Doe",
                        Edad = 30,
-                       Telefono = 123456789,
+                       Telefono = "123456789",
                        Role = Role.Admin
                    },
                    new Usuario
@@ -61,7 +61,7 @@ namespace Presentation.Views
                        Nombre = "Jane",
                        Apellido = "Doe",
                        Edad = 25,
-                       Telefono = 987654321,
+                       Telefono = "987654321",
                        Role = Role.Guest
                    }
             };
