@@ -1,14 +1,11 @@
-
 on:
   push:
-    branches: [ "develop" ]
+    branches: ["develop"]
   pull_request:
-    branches: [ "develop" ]
+    branches: ["develop"]
 
 jobs:
-
   build:
-
     strategy:
       matrix:
         configuration: [Debug, Release]
@@ -16,10 +13,11 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: GestionHotelWF.sln                       # Nombre de la solución
-      Test_Project_Path: PresentationLayer.Tests\PresentationLayer.Tests.csproj  # Ajusta si tienes un proyecto de pruebas
-      Wap_Project_Directory: PresentationLayer                # Directorio del proyecto WAP (si es necesario)
-      Wap_Project_Path: PresentationLayer\PresentationLayer.csproj  # Ruta al proyecto de presentación que se ejecuta de inicio
+      Solution_Name: GestionHotelWF.sln
+      Test_Project_Path: PresentationLayer.Tests\PresentationLayer.Tests.csproj
+      Wap_Project_Directory: PresentationLayer
+      Wap_Project_Path: PresentationLayer\PresentationLayer.csproj
+      DOTNET_ROOT: C:\Program Files\dotnet
 
     steps:
     - name: Checkout
@@ -43,12 +41,16 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Si decides firmar la aplicación, mantén estos pasos
-    - name: Decode the pfx
+    - name: Decode the pfx and create directory if needed
+      shell: pwsh
       run: |
         $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+        $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath "GitHubActionsWorkflow.pfx"
+        $certificateDir = Split-Path -Path $certificatePath -Parent
+        if (-Not (Test-Path -Path $certificateDir)) {
+            New-Item -ItemType Directory -Path $certificateDir -Force
+        }
+        [IO.File]::WriteAllBytes($certificatePath, $pfx_cert_byte)
 
     - name: Create the app package
       run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
@@ -66,4 +68,3 @@ jobs:
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
-
