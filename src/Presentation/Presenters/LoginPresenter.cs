@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using ApplicationLayer.Services;
+using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
 using PresentationLayer.Presenters;
@@ -12,7 +13,7 @@ namespace Presentation.Presenters
         Lazy<IRegisterPresenter> _registerPresenter;
         Lazy<IAdminPresenter> _adminPresenter;
         Lazy<IGuestPresenter> _guestPresenter;
-        IUsuarioRepository _userRepository;
+        IAuthService _authService;
 
         public ILoginView GetLoginView()
         {
@@ -20,7 +21,7 @@ namespace Presentation.Presenters
         }
 
 
-        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, Lazy<IGuestPresenter> guestPresenter, IUsuarioRepository userRepository)
+        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, Lazy<IGuestPresenter> guestPresenter, IAuthService authService)
         {
             _view = view;
             _registerPresenter = registerPresenter;
@@ -28,25 +29,22 @@ namespace Presentation.Presenters
             _guestPresenter = guestPresenter;
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
-            _userRepository = userRepository;
+            _authService = authService;
         }
-
-        // Propiedad pública para acceder a la vista desde fuera del presentador
 
 
         public void OnLogin(object? sender, EventArgs e)
         {
             try
             {
-                var userExist = _userRepository.Authenticate(_view.Username, _view.Password);
+                var usuario = _authService.Login(_view.Username, _view.Password);
 
-                if (!userExist)
+                if (usuario == null)
                 {
                     _view.ShowMessage("Usuario o contraseña incorrectos.", "Error");
                     return;
                 }
 
-                var usuario = _userRepository.GetByUsername(_view.Username);
                 _view.HideView();
 
                 if (usuario.Role == Role.Admin)
@@ -75,8 +73,6 @@ namespace Presentation.Presenters
 
                 _registerPresenter.Value.GetRegisterView().ShowView();
                 _view.HideView();
-
-
             }
             catch (Exception ex)
             {

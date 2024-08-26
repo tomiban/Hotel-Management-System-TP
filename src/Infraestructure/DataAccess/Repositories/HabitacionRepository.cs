@@ -27,10 +27,14 @@ namespace Infraestructure.DataAccess.Repositories
                 _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
                 return Task.CompletedTask;
             }
+            catch (IOException ex)
+            {
+                throw new IOException($"Error al guardar los datos de la habitacion: {ex.Message}: ", ex);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al añadir la habitacion: {ex.Message}");
-                throw ex;
+                throw new ApplicationException($"Error al añadir la habitacion: {ex.Message}", ex);
             }
 
         }
@@ -48,10 +52,9 @@ namespace Infraestructure.DataAccess.Repositories
                 _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
                 return Task.CompletedTask;
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
-                Console.WriteLine($"Error al eliminar la habitacion: {ex.Message}");
-                throw ex;
+                throw new ApplicationException($"Error al eliminar la habitacion: {ex.Message}", ex);
             }
         }
 
@@ -61,10 +64,9 @@ namespace Infraestructure.DataAccess.Repositories
             {
                 return Task.FromResult(_habitaciones);
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
-                Console.WriteLine($"Error al obtener las habitaciones: {ex.Message}");
-                throw ex;
+                throw new ApplicationException($"Error al obtener las habitaciones: {ex.Message}", ex);
             }
         }
 
@@ -79,10 +81,9 @@ namespace Infraestructure.DataAccess.Repositories
                 }
                 return Task.FromResult(habitacion);
             }
-            catch (Exception ex)
+            catch (ApplicationException ex)
             {
-                Console.WriteLine($"Error al obtener la habitacion: {ex.Message}");
-                throw ex;
+                throw new ApplicationException($"Error al obtener la habitacion: {ex.Message}", ex);
             }
         }
 
@@ -105,10 +106,13 @@ namespace Infraestructure.DataAccess.Repositories
                 _persistenceService.SaveAsync(FILE_PATH, habitacion);
                 return Task.CompletedTask;
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
-                Console.WriteLine($"Error al actualizar la habitacion: {ex.Message}");
-                throw ex;
+                throw new IOException($"Error al guardar los datos de la habitacion: {ex.Message}: ", ex);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"Error al actualizar la habitacion: {ex.Message}", ex);
             }
         }
     }

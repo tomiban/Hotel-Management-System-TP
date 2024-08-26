@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
 using InfraestructureLayer.Helpers;
 using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace Infraestructure.DataAccess.Repositories
@@ -32,12 +33,11 @@ namespace Infraestructure.DataAccess.Repositories
             catch (IOException ex)
             {
 
-                throw new ApplicationException("Error al guardar los datos. Intente nuevamente.", ex);
+                throw new ApplicationException($"Error al guardar los datos del usuario {ex.Message}: ", ex);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding user: {ex.Message}");
-                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al agregar usuario: {ex.Message}", ex);
             }
         }
 
@@ -50,8 +50,7 @@ namespace Infraestructure.DataAccess.Repositories
 
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding user: {ex.Message}");
-                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al obtener usuarios: {ex.Message}", ex);
             }
         }
 
@@ -68,8 +67,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding user: {ex.Message}");
-                throw new ApplicationException($"Error adding user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al obtener usuario: {ex.Message}", ex);
             }
         }
 
@@ -90,10 +88,14 @@ namespace Infraestructure.DataAccess.Repositories
 
                 await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
             }
+            catch (IOException ex)
+            {
+
+                throw new ApplicationException($"Error al guardar los datos del usuario {ex.Message}: ", ex);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error updating user: {ex.Message}");
-                throw new ApplicationException($"Error updating user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al actualizar usuario: {ex.Message}", ex);
             }
         }
 
@@ -112,35 +114,32 @@ namespace Infraestructure.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error deleting user: {ex.Message}");
-                throw new ApplicationException($"Error deleting user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al eliminar usuario: {ex.Message}", ex);
             }
         }
 
         // Método específico para buscar un usuario por username
-        public Usuario GetByUsername(string username)
+        public bool GetByUsername(string username)
         {
             try
             {
-                return _usuarios.FirstOrDefault(u => u.Username == username);
+                return _usuarios.Any(u => u.Username == username);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error user: {ex.Message}");
-                throw new ApplicationException($"Error user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al obtener usuario: {ex.Message}", ex);
             }
         }
 
-        public bool Authenticate(string username, string password)
+        public Usuario Authenticate(string username, string password)
         {
             try
             {
-                return _usuarios.Any(u => u.Username == username && u.Contraseña == password);
+                return _usuarios.FirstOrDefault(u => u.Username == username && u.Contraseña == password);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error authenticate user: {ex.Message}");
-                throw new ApplicationException($"Error authenticate user: {ex.Message}", ex);
+                throw new ApplicationException($"Error al autenticar usuario: {ex.Message}", ex);
             }
         }
 

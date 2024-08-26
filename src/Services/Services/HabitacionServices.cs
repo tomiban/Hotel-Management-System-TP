@@ -6,8 +6,8 @@ namespace ApplicationLayer.Services
 {
     public class HabitacionServices : IHabitacionServices
     {
-        private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
-        private readonly IHabitacionRepository _habitacionRepository;
+        IModelDataAnnotationCheck _modelDataAnnotationCheck;
+        IHabitacionRepository _habitacionRepository;
 
         public HabitacionServices(IHabitacionRepository habitacionRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
         {
@@ -19,6 +19,5 @@ namespace ApplicationLayer.Services
         {
             _modelDataAnnotationCheck.ValidateModel(habitacion);
         }
-
     }
 }

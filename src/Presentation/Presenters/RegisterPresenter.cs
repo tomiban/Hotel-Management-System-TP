@@ -1,3 +1,4 @@
+using ApplicationLayer.Services;
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
@@ -8,13 +9,13 @@ namespace Presentation.Presenters
     public class RegisterPresenter : IRegisterPresenter
     {
         IRegisterView _view;
-        IUsuarioRepository _userRepository;
+        IAuthService _authService;
         Lazy<ILoginPresenter> _loginPresenter;
 
-        public RegisterPresenter(IRegisterView view, IUsuarioRepository userRepository, Lazy<ILoginPresenter> loginPresenter)
+        public RegisterPresenter(IRegisterView view, IAuthService authService, Lazy<ILoginPresenter> loginPresenter)
         {
             _view = view;
-            _userRepository = userRepository;
+            _authService = authService;
             _loginPresenter = loginPresenter;
             _view.RegisterEvent += OnRegister;
             _view.OnLoginRedirect += OnLoginRedirect;
@@ -27,8 +28,8 @@ namespace Presentation.Presenters
         {
             try
             {
-                _view.CloseView();
                 _loginPresenter.Value.GetLoginView().ShowView();
+                _view.HideView();  // Cambia CloseView por HideView
             }
             catch (Exception ex)
             {
@@ -41,9 +42,9 @@ namespace Presentation.Presenters
         {
             try
             {
-                var existingUser = _userRepository.GetByUsername(_view.Username);
+                var existingUser = _authService.CheckUsername(_view.Username);
 
-                if (existingUser != null)
+                if (existingUser)
                 {
                     _view.ShowMessage("El nombre de usuario ya existe.", "Error");
                     return;
@@ -55,25 +56,27 @@ namespace Presentation.Presenters
                     Apellido = _view.Apellido,
                     Username = _view.Username,
                     Contraseña = _view.Contraseña,
+                    Edad = int.Parse(_view.Edad), 
+                    Telefono = _view.Telefono,
                     Role = _view.Role
                 };
 
-                _userRepository.AddAsync(newUser);
+                _authService.Register(newUser); 
 
                 _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
 
                 _loginPresenter.Value.GetLoginView().ShowView();
 
-                _view.CloseView();
+                _view.HideView();
             }
             catch (IOException ex)
             {
-                _view.ShowMessage("Error al guardar los datos. Intente nuevamente.", "Error");
+                _view.ShowMessage($"Error al guardar los datos. Intente nuevamente.", "Error");
 
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrió un error al registrarse.", "Error");
+                _view.ShowMessage($"{ex.Message}", "Error");
 
             }
         }
