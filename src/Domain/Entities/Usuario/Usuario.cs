@@ -13,10 +13,13 @@ namespace Domain.Entities
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El nombre es requerido")]
+        //No puede contener numeros
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "El nombre solo puede contener letras")]
         [StringLength(50, ErrorMessage = "El nombre no puede exceder 50 caracteres")]
         public string Nombre { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El apellido es requerido")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "El apellido solo puede contener letras")]
         [StringLength(50, ErrorMessage = "El apellido no puede exceder 50 caracteres")]
         public string Apellido { get; set; }
 
@@ -25,8 +28,8 @@ namespace Domain.Entities
         public int Edad { get; set; }
 
         [Required(ErrorMessage = "El teléfono es requerido")]
-        [Range(100000000, 999999999999, ErrorMessage = "El teléfono debe ser un número de al menos 9 dígitos")]
-        public int Telefono { get; set; }
+        [StringLength(20, ErrorMessage = "El teléfono no puede exceder 20 caracteres")]
+        public string Telefono { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El nombre de usuario es requerido")]
         [StringLength(20, MinimumLength = 5, ErrorMessage = "El nombre de usuario debe tener entre 5 y 20 caracteres")]

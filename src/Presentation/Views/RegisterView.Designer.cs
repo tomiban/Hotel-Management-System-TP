@@ -51,7 +51,7 @@
             txtNombre.Depth = 0;
             txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.LeadingIcon = null;
-            txtNombre.Location = new Point(109, 103);
+            txtNombre.Location = new Point(122, 129);
             txtNombre.MaxLength = 32;
             txtNombre.MouseState = MaterialSkin.MouseState.OUT;
             txtNombre.Multiline = false;
@@ -68,7 +68,7 @@
             txtContraseña.Depth = 0;
             txtContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContraseña.LeadingIcon = null;
-            txtContraseña.Location = new Point(509, 296);
+            txtContraseña.Location = new Point(522, 322);
             txtContraseña.MaxLength = 16;
             txtContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseña.Multiline = false;
@@ -86,7 +86,7 @@
             txtUsuario.Depth = 0;
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsuario.LeadingIcon = null;
-            txtUsuario.Location = new Point(109, 296);
+            txtUsuario.Location = new Point(122, 322);
             txtUsuario.MaxLength = 32;
             txtUsuario.MouseState = MaterialSkin.MouseState.OUT;
             txtUsuario.Multiline = false;
@@ -103,7 +103,7 @@
             txtTelefono.Depth = 0;
             txtTelefono.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtTelefono.LeadingIcon = null;
-            txtTelefono.Location = new Point(509, 199);
+            txtTelefono.Location = new Point(522, 225);
             txtTelefono.MaxLength = 15;
             txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
             txtTelefono.Multiline = false;
@@ -120,7 +120,7 @@
             txtEdad.Depth = 0;
             txtEdad.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtEdad.LeadingIcon = null;
-            txtEdad.Location = new Point(109, 199);
+            txtEdad.Location = new Point(122, 225);
             txtEdad.MaxLength = 3;
             txtEdad.MouseState = MaterialSkin.MouseState.OUT;
             txtEdad.Multiline = false;
@@ -137,7 +137,7 @@
             txtApellido.Depth = 0;
             txtApellido.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtApellido.LeadingIcon = null;
-            txtApellido.Location = new Point(509, 103);
+            txtApellido.Location = new Point(522, 129);
             txtApellido.MaxLength = 32;
             txtApellido.MouseState = MaterialSkin.MouseState.OUT;
             txtApellido.Multiline = false;
@@ -152,7 +152,7 @@
             lblNombre.AutoSize = true;
             lblNombre.Depth = 0;
             lblNombre.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNombre.Location = new Point(109, 81);
+            lblNombre.Location = new Point(122, 107);
             lblNombre.MouseState = MaterialSkin.MouseState.HOVER;
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(57, 19);
@@ -164,7 +164,7 @@
             lblApellido.AutoSize = true;
             lblApellido.Depth = 0;
             lblApellido.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblApellido.Location = new Point(509, 81);
+            lblApellido.Location = new Point(522, 107);
             lblApellido.MouseState = MaterialSkin.MouseState.HOVER;
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(58, 19);
@@ -176,7 +176,7 @@
             lblEdad.AutoSize = true;
             lblEdad.Depth = 0;
             lblEdad.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblEdad.Location = new Point(109, 177);
+            lblEdad.Location = new Point(122, 203);
             lblEdad.MouseState = MaterialSkin.MouseState.HOVER;
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(37, 19);
@@ -188,7 +188,7 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Depth = 0;
             lblTelefono.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblTelefono.Location = new Point(509, 177);
+            lblTelefono.Location = new Point(522, 203);
             lblTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(64, 19);
@@ -200,7 +200,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.Depth = 0;
             lblUsuario.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsuario.Location = new Point(109, 274);
+            lblUsuario.Location = new Point(122, 300);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(136, 19);
@@ -216,7 +216,7 @@
             btnRegistrarse.Depth = 0;
             btnRegistrarse.HighEmphasis = true;
             btnRegistrarse.Icon = null;
-            btnRegistrarse.Location = new Point(339, 381);
+            btnRegistrarse.Location = new Point(353, 415);
             btnRegistrarse.Margin = new Padding(4, 6, 4, 6);
             btnRegistrarse.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegistrarse.Name = "btnRegistrarse";
@@ -233,7 +233,7 @@
             lblContraseña.AutoSize = true;
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseña.Location = new Point(509, 274);
+            lblContraseña.Location = new Point(522, 300);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(82, 19);
@@ -253,7 +253,7 @@
             btnRegresar.ForeColor = SystemColors.ControlDarkDark;
             btnRegresar.HighEmphasis = true;
             btnRegresar.Icon = null;
-            btnRegresar.Location = new Point(387, 433);
+            btnRegresar.Location = new Point(407, 467);
             btnRegresar.Margin = new Padding(4, 6, 4, 6);
             btnRegresar.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegresar.Name = "btnRegresar";
@@ -265,11 +265,11 @@
             btnRegresar.UseAccentColor = false;
             btnRegresar.UseVisualStyleBackColor = false;
             // 
-            // Register
+            // RegisterView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(918, 487);
+            ClientSize = new Size(918, 539);
             Controls.Add(btnRegresar);
             Controls.Add(lblContraseña);
             Controls.Add(btnRegistrarse);
@@ -284,7 +284,7 @@
             Controls.Add(txtUsuario);
             Controls.Add(txtContraseña);
             Controls.Add(txtNombre);
-            Name = "Register";
+            Name = "RegisterView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro";
             ResumeLayout(false);

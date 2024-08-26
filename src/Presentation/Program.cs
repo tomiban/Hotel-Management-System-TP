@@ -6,8 +6,9 @@ using Infraestructure.DataAccess.Repositories;
 using Infraestructure.DataAccess.Serialization;
 using Unity.Lifetime;
 using PresentationLayer.Views;
-using Services.Services.ReservaServices;
 using PresentationLayer.Presenters;
+using ApplicationLayer.Services;
+using Domain.Validation.ModelDataAnnotationCheck;
 
 
 namespace Presentation
@@ -41,15 +42,16 @@ namespace Presentation
                 .RegisterType<IAdminPresenter, AdminPresenter>(new ContainerControlledLifetimeManager())
                 .RegisterType<IGuestView, GuestView>(new ContainerControlledLifetimeManager())
                 .RegisterType<IGuestPresenter, GuestPresenter>(new ContainerControlledLifetimeManager())
+                .RegisterType<IModelDataAnnotationCheck, ModelDataAnnotationCheck>(new ContainerControlledLifetimeManager())
+                .RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
-                .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager())
-                //.RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()) //
-                .RegisterType<IUsuarioRepository, UsuarioRepository>(
-                    new ContainerControlledLifetimeManager()
-                );
+                .RegisterType<IUsuarioRepository, UsuarioRepository>(new ContainerControlledLifetimeManager())
+                .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager());
+            //.RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()) //
 
 
-          
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

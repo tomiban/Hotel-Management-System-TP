@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Helpers
 {
-    public class SkinHelper
+    public static class SkinHelper
     {
         public static void ApplyTheme(MaterialForm form, MaterialSkinManager.Themes theme, ColorScheme colorScheme)
         {

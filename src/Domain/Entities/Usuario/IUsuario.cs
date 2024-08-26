@@ -10,7 +10,7 @@ namespace Domain.Interfaces
         int Id { get; set; }
         string Nombre { get; set; }
         Role Role { get; set; }
-        int Telefono { get; set; }
+        string Telefono { get; set; }
         string Username { get; set; }
     }
 }
