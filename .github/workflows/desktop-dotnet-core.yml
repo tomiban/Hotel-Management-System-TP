@@ -14,9 +14,9 @@ jobs:
 
     env:
       Solution_Name: GestionHotelWF.sln
-      Test_Project_Path: src\PresentationLayer.Tests\PresentationLayer.Tests.csproj  # Adjust based on actual path
-      Wap_Project_Directory: src\PresentationLayer  # Adjust based on actual path
-      Wap_Project_Path: src\PresentationLayer\PresentationLayer.csproj  # Adjust based on actual path
+      Test_Project_Path: Services.Tests\Services.Tests.csproj  # Adjust based on actual path if different
+      Wap_Project_Directory: src/Presentation  # Correct directory path for the Presentation project
+      Wap_Project_Path: src/Presentation/PresentationLayer.csproj  # Correct path to the .csproj file
       DOTNET_ROOT: C:\Program Files\dotnet
       Appx_Bundle: Always
       Appx_Bundle_Platforms: x86|x64
@@ -80,3 +80,4 @@ jobs:
       with:
         name: MSIX Package
         path: ${{ env.Wap_Project_Directory }}\AppPackages
+
