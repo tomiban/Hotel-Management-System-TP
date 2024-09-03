@@ -41,12 +41,36 @@ namespace Presentation.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AssocciateAndRaiseViewEvents();
+            
+            // Inicializar el botón como deshabilitado
+            btnRegistrarse.Enabled = false;
+
+            // Asociar los eventos TextChanged a los campos de texto
+            txtNombre.TextChanged += ValidateFields;
+            txtApellido.TextChanged += ValidateFields;
+            txtEdad.TextChanged += ValidateFields;
+            txtTelefono.TextChanged += ValidateFields;
+            txtUsuario.TextChanged += ValidateFields;
+            txtContraseña.TextChanged += ValidateFields;
         }
 
         private void AssocciateAndRaiseViewEvents()
         {
             btnRegistrarse.Click += delegate { RegisterEvent?.Invoke(this, EventArgs.Empty); };
             btnRegresar.Click += delegate { OnLoginRedirect?.Invoke(this, EventArgs.Empty); };
+        }
+
+
+        private void ValidateFields(object sender, EventArgs e)
+        {
+            // Verifica si todos los campos están llenos
+            btnRegistrarse.Enabled =
+                !string.IsNullOrWhiteSpace(txtNombre.Text) &&
+                !string.IsNullOrWhiteSpace(txtApellido.Text) &&
+                !string.IsNullOrWhiteSpace(txtEdad.Text) &&
+                !string.IsNullOrWhiteSpace(txtTelefono.Text) &&
+                !string.IsNullOrWhiteSpace(txtUsuario.Text) &&
+                !string.IsNullOrWhiteSpace(txtContraseña.Text);
         }
 
         public void ShowMessage(string title, string message)

@@ -214,6 +214,7 @@
             btnRegistrarse.Cursor = Cursors.Hand;
             btnRegistrarse.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnRegistrarse.Depth = 0;
+            btnRegistrarse.Enabled = false;
             btnRegistrarse.HighEmphasis = true;
             btnRegistrarse.Icon = null;
             btnRegistrarse.Location = new Point(353, 415);
