@@ -3,42 +3,55 @@ using Domain.Entities;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Presentation.Views;
+using PresentationLayer.Helpers;
+using PresentationLayer.Utils;
 
 namespace Presentation.Views
 {
     public partial class AdminView : MaterialForm, IAdminView
     {
-        readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+       
+
+        public event EventHandler RedirectToCrearEditarHabitacion;
+        public event EventHandler RedirectToCrearEditarUsuario;
+        public event EventHandler EliminarHabitacion;
+        public event EventHandler EliminarUsuario;
+        public event EventHandler SearchHabitacion;
+        public event EventHandler SearchUsuario;
 
         public AdminView()
         {
             InitializeComponent();
-            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
 
-            materialSkinManager.ColorScheme = new ColorScheme(
-         Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-         Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-         Primary.Cyan700,   // Deep Purple base para fondos principales
-         Accent.Cyan700,         // Acento verde 400 para destacar
-         TextShade.WHITE          // Color de texto blanco para el contraste
-     );
+            var colorScheme = new ColorScheme(
+            Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
+            Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
+            Primary.Cyan700,   // Deep Purple base para fondos principales
+            Accent.Cyan700,         // Acento verde 400 para destacar
+            TextShade.WHITE          // Color de texto blanco para el contraste
+        );
+
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
+
+            AssociateAndRaiseViewEvents();
 
         }
 
-        public event EventHandler AñadirEvent;
-        public event EventHandler EditarEvent;
-        public event EventHandler EliminarEvent;
-        public event EventHandler SearchEvent;
-
-
-        private void AssocciateAndRaiseViewEvents()
+        private void AssociateAndRaiseViewEvents()
         {
-            btnAgregarHab.Click += delegate { AñadirEvent?.Invoke(this, EventArgs.Empty); };
-            btnEditarHab.Click += delegate { EditarEvent?.Invoke(this, EventArgs.Empty); };
-            btnBorrarHab.Click += delegate { EliminarEvent?.Invoke(this, EventArgs.Empty); };
+            AttachRedirectEvents();
+        }
+
+        private void AttachRedirectEvents()
+        {
+            btnAgregarHab.Click += (s, e) =>
+            {
+                EventHelper.RaiseEvent(this, RedirectToCrearEditarHabitacion, EventArgs.Empty);
+            };
+            btnAgregarUsu.Click += (s, e) =>
+            {
+                EventHelper.RaiseEvent(this, RedirectToCrearEditarUsuario, EventArgs.Empty);
+            };
         }
 
         public void ActualizarListaUsuarios(List<Usuario> items)
@@ -46,24 +59,7 @@ namespace Presentation.Views
             listUsuarios.Items.Clear();
             var usuarios = new List<Usuario>()
                {
-                   new Usuario
-                   {
-                       Id = 1,
-                       Nombre = "John",
-                       Apellido = "Doe",
-                       Edad = 30,
-                       Telefono = "123456789",
-                       Role = Role.Admin
-                   },
-                   new Usuario
-                   {
-                       Id = 2,
-                       Nombre = "Jane",
-                       Apellido = "Doe",
-                       Edad = 25,
-                       Telefono = "987654321",
-                       Role = Role.Guest
-                   }
+                
             };
             foreach (var item in usuarios)
             {

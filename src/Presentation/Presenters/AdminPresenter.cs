@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using ApplicationLayer.Services;
+using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
 using Unity;
@@ -8,21 +9,38 @@ namespace Presentation.Presenters
     public class AdminPresenter : IAdminPresenter
     {
         IAdminView _view;
-        IHabitacionRepository _habitacionRepository;
+        Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
+        IHabitacionServices _habitacionServices;
 
-        public AdminPresenter(IAdminView view, IHabitacionRepository habitacionRepository)
+        public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService)
         {
             _view = view;
-            _habitacionRepository = habitacionRepository;
-            //_view.AñadirEvent += OnAñadirHab();
+
+            _habitacionServices = habitacionService;
+            _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
+          
             CargarHabitaciones();
             CargarUsuarios();
+
+            _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
+    
         }
 
-        //public EventHandler OnAñadirHab()
-        //{
-        //    return null;
-        //}
+
+        public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
+        {
+            try
+            {
+                _view.HideView();
+                _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
+             
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
+        
+            }
+        }
 
         public void CargarHabitaciones()
         {

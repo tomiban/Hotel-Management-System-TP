@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using PresentationLayer.Helpers;
+using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,38 +15,71 @@ using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacion
+    public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
     {
-        readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
-        public CrearEditarHabitacionView( )
+        //TODO: 
+
+
+        public CrearEditarHabitacionView()
         {
             InitializeComponent();
-            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.DARK;
 
-            materialSkinManager.ColorScheme = new ColorScheme(
-         Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-         Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-         Primary.Cyan700,   // Deep Purple base para fondos principales
-         Accent.Cyan700,         // Acento verde 400 para destacar
-         TextShade.WHITE          // Color de texto blanco para el contraste
-     );
+            var ColorScheme = new ColorScheme(
+                 Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
+                 Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
+                 Primary.Cyan700,   // Deep Purple base para fondos principales
+                 Accent.Cyan700,         // Acento verde 400 para destacar
+                 TextShade.WHITE);
+
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
+
+            AssociateAndRaiseViewEvents();
         }
 
-        public int Id => throw new NotImplementedException();
 
-        public int NroHabitacion => throw new NotImplementedException();
+        private void AssociateAndRaiseViewEvents()
+        {
+            btnGuardarHab.Click += (s, e) => EventHelper.RaiseEvent(this, SaveEvent, EventArgs.Empty);
+            btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
+        }
 
-        public TipoHabitacion TipoHabitacion => throw new NotImplementedException();
+        public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
 
-        public bool Disponible => throw new NotImplementedException();
+        public TipoHabitacion TipoHabitacion => (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion), cmbTipoHabitacion.SelectedItem.ToString());
 
-        public int PrecioPorNoche => throw new NotImplementedException();
+        public bool Disponible => switchDisponibilidad.Checked;
+
+        public double PrecioPorNoche => Convert.ToDouble(txtPrecioHabitacion.Text);
+
+        public int CantidadPersonas => 3;
+
+        public int Id => 0;
 
         public event EventHandler SaveEvent;
         public event EventHandler BackEvent;
+        public event EventHandler ViewClosed;
+        public event EventHandler NavigateToAdminView;
+
+        public void ShowView()
+        {
+            this.Show();
+        }
+
+        public void HideView()
+        {
+            this.Hide();
+        }
+
+        public void CloseView()
+        {
+            this.Close();
+        }
+
+        public void ShowMessage(string title, string message)
+        {
+            MaterialMessageBox.Show(this, title, message);
+        }
+
     }
 }

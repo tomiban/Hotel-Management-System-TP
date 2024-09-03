@@ -13,7 +13,6 @@ namespace Presentation.Presenters
         ILoginView GetLoginView();
         void OnLogin(object? sender, EventArgs e);
         void OnRegisterRedirect(object? sender, EventArgs e);
-        void ShowLoginView();
     }
 
 }

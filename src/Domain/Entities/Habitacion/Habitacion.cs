@@ -23,7 +23,7 @@ namespace Domain.Entities
         public bool Disponible { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]
-        public int PrecioPorNoche { get; set; }
+        public double PrecioPorNoche { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "La cantidad de personas debe ser al menos 1.")]
         public int CantidadPersonas { get; set; }

@@ -19,5 +19,46 @@ namespace ApplicationLayer.Services
         {
             _modelDataAnnotationCheck.ValidateModel(habitacion);
         }
+
+        public void Add(Habitacion habitacion)
+        {
+            ValidateModel(habitacion);
+            _habitacionRepository.AddAsync(habitacion);
+        }
+
+        public void Update(Habitacion habitacion)
+        {
+            ValidateModel(habitacion);
+            _habitacionRepository.UpdateAsync(habitacion);
+        }
+
+        public void Delete(int id)
+        {
+            _habitacionRepository.DeleteAsync(id);
+        }
+
+        public Task<List<Habitacion>> GetAll()
+        {
+            return _habitacionRepository.GetAllAsync();
+        }
+
+        public Task<Habitacion> GetById(int id)
+        {
+            return _habitacionRepository.GetByIdAsync(id);
+        }
+
+        public Task<bool> CheckNroHabitacion(int id)
+        {
+            var habitacion = _habitacionRepository.GetByIdAsync(id);
+
+            if (habitacion.Result == null)
+            {
+                return Task.FromResult(false);
+            }
+          
+            return Task.FromResult(true);
+            
+          
+        }
     }
 }

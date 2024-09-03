@@ -8,7 +8,6 @@ namespace Presentation.Views
 {
     public partial class RegisterView : MaterialForm, IRegisterView
     {
-        readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
         public event EventHandler RegisterEvent;
         public event EventHandler OnLoginRedirect;
@@ -25,7 +24,7 @@ namespace Presentation.Views
 
         public string Contraseña => txtContraseña.Text;
 
-        public Role Role => Role.Guest;
+        public Role Role => Role.Admin;
 
         public RegisterView()
         {
@@ -76,7 +75,6 @@ namespace Presentation.Views
 
         public void ShowMessage(string title, string message)
         {
-
             MaterialMessageBox.Show(this, title, message);
         }
         public void HideView()

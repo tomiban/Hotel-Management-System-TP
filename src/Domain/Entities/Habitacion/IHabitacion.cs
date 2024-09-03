@@ -7,7 +7,7 @@ namespace Domain.Interfaces
         int NroHabitacion { get; set; }
         TipoHabitacion TipoHabitacion { get; set; }
         int CantidadPersonas { get; set; }
-        int PrecioPorNoche { get; set; }
+        double PrecioPorNoche { get; set; }
         bool Disponible { get; set; }
     }
 }
