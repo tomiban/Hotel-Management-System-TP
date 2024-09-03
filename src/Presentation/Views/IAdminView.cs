@@ -15,13 +15,13 @@ namespace Presentation.Views
         int ObtenerIdSeleccionado();
         void LimpiarFormulario();
 
-        event EventHandler AñadirEvent;
-        event EventHandler EditarEvent;
-        event EventHandler EliminarEvent;
-        event EventHandler SearchEvent;
+        event EventHandler RedirectToCrearEditarHabitacion;
+        event EventHandler RedirectToCrearEditarUsuario;
+        event EventHandler EliminarHabitacion;
+        event EventHandler EliminarUsuario;
+        event EventHandler SearchHabitacion;
+        event EventHandler SearchUsuario;
      
-
-
         void ShowMessage(string title, string message);
 
         void ShowView();

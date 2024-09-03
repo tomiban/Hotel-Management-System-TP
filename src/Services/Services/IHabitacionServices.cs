@@ -10,6 +10,7 @@ namespace ApplicationLayer.Services
         Task<List<Habitacion>> GetAll();
         Task<Habitacion> GetById(int id);
         void Update(Habitacion habitacion);
+        Task<bool> CheckNroHabitacion(int id);
         void ValidateModel(IHabitacion habitacion);
     }
 }

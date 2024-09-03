@@ -46,5 +46,19 @@ namespace ApplicationLayer.Services
         {
             return _habitacionRepository.GetByIdAsync(id);
         }
+
+        public Task<bool> CheckNroHabitacion(int id)
+        {
+            var habitacion = _habitacionRepository.GetByIdAsync(id);
+
+            if (habitacion.Result == null)
+            {
+                return Task.FromResult(false);
+            }
+          
+            return Task.FromResult(true);
+            
+          
+        }
     }
 }

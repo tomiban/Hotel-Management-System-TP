@@ -29,7 +29,7 @@ namespace Presentation.Presenters
             try
             {
                 _loginPresenter.Value.GetLoginView().ShowView();
-                _view.HideView();  // Cambia CloseView por HideView
+                _view.CloseView();  // Cambia CloseView por HideView
             }
             catch (Exception ex)
             {

@@ -20,7 +20,6 @@ namespace Presentation.Presenters
             return _view;
         }
 
-
         public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, Lazy<IGuestPresenter> guestPresenter, IAuthService authService)
         {
             _view = view;
@@ -31,7 +30,6 @@ namespace Presentation.Presenters
             _view.RedirectToRegister += OnRegisterRedirect;
             _authService = authService;
         }
-
 
         public void OnLogin(object? sender, EventArgs e)
         {
@@ -70,7 +68,6 @@ namespace Presentation.Presenters
         {
             try
             {
-
                 _registerPresenter.Value.GetRegisterView().ShowView();
                 _view.HideView();
             }
@@ -78,11 +75,6 @@ namespace Presentation.Presenters
             {
                 _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
-        }
-
-        public void ShowLoginView()
-        {
-            _view.ShowView();
         }
 
     }
