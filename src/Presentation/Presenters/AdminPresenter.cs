@@ -42,9 +42,9 @@ namespace Presentation.Presenters
             }
         }
 
-        public async void CargarHabitaciones()
+        public  void CargarHabitaciones()
         {
-            var habitaciones = await _habitacionServices.GetAll();
+            var habitaciones =  _habitacionServices.GetAll();
 
             _view.ActualizarListaHabitaciones(habitaciones);
         }

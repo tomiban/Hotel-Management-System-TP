@@ -16,16 +16,16 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _habitaciones = GetAllAsync().Result ?? []; 
+            _habitaciones = GetAllAsync() ?? [];
         }
 
-        public Task AddAsync(Habitacion entity)
+        public void AddAsync(Habitacion entity)
         {
             try
             {
                 _habitaciones.Add(entity);
-                _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
-                return Task.CompletedTask;
+                _persistenceService.Save(FILE_PATH, _habitaciones);
+
             }
             catch (IOException ex)
             {
@@ -39,7 +39,7 @@ namespace Infraestructure.DataAccess.Repositories
 
         }
 
-        public Task DeleteAsync(int id)
+        public void DeleteAsync(int id)
         {
             try
             {
@@ -49,8 +49,8 @@ namespace Infraestructure.DataAccess.Repositories
                     throw new NullReferenceException();
                 }
                 _habitaciones.Remove(habitacion);
-                _persistenceService.SaveAsync(FILE_PATH, _habitaciones);
-                return Task.CompletedTask;
+                _persistenceService.Save(FILE_PATH, _habitaciones);
+
             }
             catch (ApplicationException ex)
             {
@@ -58,13 +58,11 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public async Task<List<Habitacion>> GetAllAsync()
+        public List<Habitacion> GetAllAsync()
         {
             try
             {
-                return await _persistenceService.LoadAsync<List<Habitacion>>(FILE_PATH) ?? new List<Habitacion>();
-
-             
+                return _persistenceService.Load<List<Habitacion>>(FILE_PATH) ?? new List<Habitacion>();
             }
             catch (ApplicationException ex)
             {
@@ -72,12 +70,11 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Task<Habitacion> GetByIdAsync(int id)
+        public Habitacion GetByIdAsync(int id)
         {
             try
             {
-                var habitacion = _habitaciones.FirstOrDefault(h => h.Id == id);
-                return Task.FromResult(habitacion);
+                return _habitaciones.FirstOrDefault(h => h.Id == id);
             }
             catch (ApplicationException ex)
             {
@@ -85,7 +82,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Task UpdateAsync(Habitacion entity)
+        public void UpdateAsync(Habitacion entity)
         {
             try
             {
@@ -100,9 +97,7 @@ namespace Infraestructure.DataAccess.Repositories
                 habitacion.TipoHabitacion = entity.TipoHabitacion;
                 habitacion.Disponible = entity.Disponible;
 
-
-                _persistenceService.SaveAsync(FILE_PATH, habitacion);
-                return Task.CompletedTask;
+                 _persistenceService.Save(FILE_PATH, habitacion);
             }
             catch (IOException ex)
             {

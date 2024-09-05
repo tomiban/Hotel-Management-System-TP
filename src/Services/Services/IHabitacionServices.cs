@@ -7,10 +7,10 @@ namespace ApplicationLayer.Services
     {
         void Add(Habitacion habitacion);
         void Delete(int id);
-        Task<List<Habitacion>> GetAll();
-        Task<Habitacion> GetById(int id);
+        List<Habitacion> GetAll();
+        Habitacion GetById(int id);
         void Update(Habitacion habitacion);
-        Task<bool> CheckNroHabitacion(int id);
+       bool CheckNroHabitacion(int id);
         void ValidateModel(IHabitacion habitacion);
     }
 }

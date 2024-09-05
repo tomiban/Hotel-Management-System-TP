@@ -39,12 +39,12 @@ namespace ApplicationLayer.Services
             _usuarioRepository.DeleteAsync(id);
         }
 
-        public Task<List<Usuario>> GetAll()
+        public List<Usuario> GetAll()
         {
             return _usuarioRepository.GetAllAsync();
         }
 
-        public Task<Usuario> GetById(int id)
+        public Usuario GetById(int id)
         {
             return _usuarioRepository.GetByIdAsync(id);
         }

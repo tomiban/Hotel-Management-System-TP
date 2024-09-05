@@ -1,26 +1,25 @@
 ﻿using Infraestructure.DataAccess.Serialization;
 using MemoryPack;
-
+using System;
+using System.IO;
 
 namespace Infraestructure.DataAccess.Serialization
 {
     public class BinarySerialization : IBinarySerialization
     {
-        public async Task<T?> LoadAsync<T>(string filePath) where T : class
+        public T? Load<T>(string filePath) where T : class
         {
-           if(!File.Exists(filePath))
-           {
-            return default(T?);
-           }
+            if (!File.Exists(filePath))
+            {
+                return default(T);
+            }
             try
             {
                 byte[] bytes;
-                using (FileStream sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
+                using (FileStream sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     bytes = new byte[sourceStream.Length];
-                    //! ACA EXPLOTA
-                    //TODO Cmbiar sintaxis
-                    await sourceStream.ReadAsync(bytes, 0, (int)sourceStream.Length);
+                    sourceStream.Read(bytes, 0, (int)sourceStream.Length);
                 }
 
                 return MemoryPackSerializer.Deserialize<T>(bytes);
@@ -33,14 +32,14 @@ namespace Infraestructure.DataAccess.Serialization
             }
         }
 
-        public async Task<bool> SaveAsync<T>(string filePath, T data) where T : class
+        public bool Save<T>(string filePath, T data) where T : class
         {
             try
             {
                 byte[] bytes = MemoryPackSerializer.Serialize(data);
-                using (FileStream destinationStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
+                using (FileStream destinationStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
-                    await destinationStream.WriteAsync(bytes, 0, bytes.Length);
+                    destinationStream.Write(bytes, 0, bytes.Length);
                 }
                 return true;
             }

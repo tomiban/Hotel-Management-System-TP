@@ -17,6 +17,7 @@ namespace Presentation.Presenters
             _adminPresenter = adminPresenter;
             _habitacionServices = habitacionServices;
             _view.SaveEvent += OnSave;
+            
             _view.NavigateToAdminView += OnAdminRedirect;
             
         }
@@ -44,11 +45,11 @@ namespace Presentation.Presenters
             return _view;
         }
 
-        public async void OnSave(object? sender, EventArgs e)
+        public  void OnSave(object? sender, EventArgs e)
         {
             try
             {
-              var nroDisponible = await  _habitacionServices.CheckNroHabitacion(_view.NroHabitacion);
+              var nroDisponible =   _habitacionServices.CheckNroHabitacion(_view.NroHabitacion);
                 if (nroDisponible)
                 {
                     _view.ShowMessage("La habitación ya existe.", "Error");

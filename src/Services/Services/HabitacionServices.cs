@@ -37,26 +37,26 @@ namespace ApplicationLayer.Services
             _habitacionRepository.DeleteAsync(id);
         }
 
-        public async Task<List<Habitacion>> GetAll()
+        public  List<Habitacion> GetAll()
         {
-            return await _habitacionRepository.GetAllAsync();
+            return  _habitacionRepository.GetAllAsync();
         }
 
-        public Task<Habitacion> GetById(int id)
+        public Habitacion GetById(int id)
         {
             return _habitacionRepository.GetByIdAsync(id);
         }
 
-        public Task<bool> CheckNroHabitacion(int id)
+        public bool CheckNroHabitacion(int id)
         {
             var habitacion = _habitacionRepository.GetByIdAsync(id);
 
-            if (habitacion.Result == null)
+            if (habitacion == null)
             {
-                return Task.FromResult(false);
+                return false;
             }
           
-            return Task.FromResult(true);
+            return true;
             
           
         }

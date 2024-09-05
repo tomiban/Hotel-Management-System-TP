@@ -6,8 +6,8 @@ namespace ApplicationLayer.Services
     public interface IUsuarioService
     { 
         void Delete(int id);
-        Task<List<Usuario>> GetAll();
-        Task<Usuario> GetById(int id);
+       List<Usuario> GetAll();
+        Usuario GetById(int id);
         void Update(Usuario usuario);
         void ValidateModel(IUsuario usuario);
     }

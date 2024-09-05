@@ -19,15 +19,15 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _usuarios = GetAllAsync().Result; // Cargar usuarios al iniciar el repositorio
+            _usuarios = GetAllAsync(); // Cargar usuarios al iniciar el repositorio
         }
 
-        public async Task AddAsync(Usuario usuario)
+        public void   AddAsync(Usuario usuario)
         {
             try
             {
                 _usuarios.Add(usuario);
-                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
+                 _persistenceService.Save(FILE_PATH, _usuarios);
 
             }
             catch (IOException ex)
@@ -41,11 +41,11 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public async Task<List<Usuario>> GetAllAsync()
+        public List<Usuario> GetAllAsync()
         {
             try
             {
-                return await _persistenceService.LoadAsync<List<Usuario>>(FILE_PATH) ?? new List<Usuario>();
+                 return  _persistenceService.Load<List<Usuario>>(FILE_PATH) ?? new List<Usuario>();
             }
 
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public async Task<Usuario> GetByIdAsync(int id)
+        public Usuario GetByIdAsync(int id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Infraestructure.DataAccess.Repositories
                 {
                     throw new NullReferenceException();
                 }
-                return await Task.FromResult(usuario);
+                return usuario;
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public async Task UpdateAsync(Usuario usuario)
+        public void UpdateAsync(Usuario usuario)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Infraestructure.DataAccess.Repositories
                 usuario.Role = item.Role;
                 usuario.Telefono = item.Telefono;
 
-                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
+                 _persistenceService.Save(FILE_PATH, _usuarios);
             }
             catch (IOException ex)
             {
@@ -99,7 +99,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public  void  DeleteAsync(int id)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace Infraestructure.DataAccess.Repositories
                 }
 
                 _usuarios.Remove(usuario);
-                await _persistenceService.SaveAsync(FILE_PATH, _usuarios);
+                 _persistenceService.Save(FILE_PATH, _usuarios);
             }
             catch (Exception ex)
             {
