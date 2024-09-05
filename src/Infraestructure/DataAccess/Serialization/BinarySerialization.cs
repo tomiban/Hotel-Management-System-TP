@@ -8,17 +8,18 @@ namespace Infraestructure.DataAccess.Serialization
     {
         public async Task<T?> LoadAsync<T>(string filePath) where T : class
         {
-            if (!File.Exists(filePath))
-            {
-                return default; // Retorna null si el archivo no existe
-            }
-
+           if(!File.Exists(filePath))
+           {
+            return default(T?);
+           }
             try
             {
                 byte[] bytes;
                 using (FileStream sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
                 {
                     bytes = new byte[sourceStream.Length];
+                    //! ACA EXPLOTA
+                    //TODO Cmbiar sintaxis
                     await sourceStream.ReadAsync(bytes, 0, (int)sourceStream.Length);
                 }
 

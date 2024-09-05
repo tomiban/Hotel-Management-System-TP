@@ -3,7 +3,7 @@ using Domain.Interfaces;
 
 namespace ApplicationLayer.Services
 {
-    internal interface IUsuarioService
+    public interface IUsuarioService
     { 
         void Delete(int id);
         Task<List<Usuario>> GetAll();

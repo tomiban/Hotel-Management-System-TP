@@ -14,9 +14,9 @@ namespace Infraestructure.DataAccess.Repositories
 
         public HabitacionRepository(IBinarySerialization persistenceService)
         {
-            _persistenceService = persistenceService;
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
-            _habitaciones = GetAllAsync().Result ?? []; // Cargar habitaciones al iniciar el repositorio
+            _persistenceService = persistenceService;
+            _habitaciones = GetAllAsync().Result ?? []; 
         }
 
         public Task AddAsync(Habitacion entity)
@@ -58,11 +58,13 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Task<List<Habitacion>> GetAllAsync()
+        public async Task<List<Habitacion>> GetAllAsync()
         {
             try
             {
-                return Task.FromResult(_habitaciones);
+                return await _persistenceService.LoadAsync<List<Habitacion>>(FILE_PATH) ?? new List<Habitacion>();
+
+             
             }
             catch (ApplicationException ex)
             {

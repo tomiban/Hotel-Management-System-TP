@@ -143,7 +143,7 @@
             materialLabel2.Size = new Size(272, 41);
             materialLabel2.TabIndex = 9;
             materialLabel2.Text = "Añadir Habitación";
-            materialLabel2.Click += materialLabel2_Click;
+
             // 
             // switchDisponibilidad
             // 

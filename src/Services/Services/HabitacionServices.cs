@@ -37,9 +37,9 @@ namespace ApplicationLayer.Services
             _habitacionRepository.DeleteAsync(id);
         }
 
-        public Task<List<Habitacion>> GetAll()
+        public async Task<List<Habitacion>> GetAll()
         {
-            return _habitacionRepository.GetAllAsync();
+            return await _habitacionRepository.GetAllAsync();
         }
 
         public Task<Habitacion> GetById(int id)

@@ -19,8 +19,8 @@ namespace Presentation.Presenters
             _habitacionServices = habitacionService;
             _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
           
-            CargarHabitaciones();
-            CargarUsuarios();
+           CargarHabitaciones();
+            //CargarUsuarios();
 
             _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
     
@@ -42,9 +42,9 @@ namespace Presentation.Presenters
             }
         }
 
-        public void CargarHabitaciones()
+        public async void CargarHabitaciones()
         {
-            var habitaciones = new List<Habitacion>();
+            var habitaciones = await _habitacionServices.GetAll();
 
             _view.ActualizarListaHabitaciones(habitaciones);
         }

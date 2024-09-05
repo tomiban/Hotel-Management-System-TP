@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationLayer.Services
 {
-    class UsuarioService : IUsuarioService
+    public class UsuarioService : IUsuarioService
     {
         IUsuarioRepository _usuarioRepository;
         IModelDataAnnotationCheck _modelDataAnnotationCheck;

@@ -16,15 +16,12 @@ namespace Presentation
     internal static class Program
     {
         /// <summary>
-        ///  Punto de entrada principal para la aplicación.
+        ///  Punto de entrada principal para la aplicaciï¿½n.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            // Crear y configurar el contenedor de Unity
-            // Crear y configurar el contenedor de Unity
-            // El contenedor Unity es utilizado para manejar la inyección de dependencias en la aplicación.
-            // Aquí se registran los tipos que Unity resolverá en tiempo de ejecución.
+
             IUnityContainer unityC = new UnityContainer()
                 // Registra la vista de login (ILoginView) y la implementa con la clase Login.
                 .RegisterType<ILoginView, LoginView>(new ContainerControlledLifetimeManager())
@@ -46,6 +43,7 @@ namespace Presentation
                 .RegisterType<ICrearEditarHabitacionPresenter, CrearEditarHabitacionPresenter>(new ContainerControlledLifetimeManager())
                 .RegisterType<IModelDataAnnotationCheck, ModelDataAnnotationCheck>(new ContainerControlledLifetimeManager())
                 .RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager())
+                .RegisterType<IUsuarioService, UsuarioService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IHabitacionServices, HabitacionServices>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
                 .RegisterType<IUsuarioRepository, UsuarioRepository>(new ContainerControlledLifetimeManager())
@@ -58,12 +56,12 @@ namespace Presentation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Resolver el presentador de login (que también maneja la vista de login)
+           
             ILoginPresenter loginPresenter = unityC.Resolve<ILoginPresenter>();
             // Obtener la vista de login desde el presentador resuelto.
             ILoginView loginView = loginPresenter.GetLoginView();
 
-            // Iniciar la aplicación con la vista de Login como la ventana principal.
+           
             Application.Run((LoginView)loginView);
         }
     }

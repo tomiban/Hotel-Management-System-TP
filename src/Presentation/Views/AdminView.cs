@@ -73,33 +73,16 @@ namespace Presentation.Views
             }
         }
 
-        public void ActualizarListaHabitaciones(List<Habitacion> itemss)
+        public void ActualizarListaHabitaciones(List<Habitacion> habitaciones)
         {
             listHabitaciones.Items.Clear();
-            List<Habitacion> items = new List<Habitacion>
-                {
-                    new Habitacion
-                    {
-                        Id = 1,
-                        NroHabitacion = 1,
-                        TipoHabitacion = TipoHabitacion.Standard,
-                        Disponible = true,
-                        PrecioPorNoche = 100
-                    },
-                    new Habitacion
-                    {
-                        Id = 2,
-                        NroHabitacion = 2,
-                        TipoHabitacion = TipoHabitacion.Premium,
-                        Disponible = false,
-                        PrecioPorNoche = 200
-                    }
-            };
-            foreach (var hab in items)
+          
+            foreach (var hab in habitaciones)
             {
-                ListViewItem item = new ListViewItem(hab.Id.ToString());
+                 ListViewItem item = new ListViewItem(hab.Id.ToString());
                 item.SubItems.Add(hab.NroHabitacion.ToString());
                 item.SubItems.Add(hab.TipoHabitacion.ToString());
+                item.SubItems.Add(hab.CantidadPersonas.ToString());
                 item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
                 item.SubItems.Add(hab.PrecioPorNoche.ToString("C"));
                 listHabitaciones.Items.Add(item);
