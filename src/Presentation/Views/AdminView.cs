@@ -33,16 +33,12 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
-            AssociateAndRaiseViewEvents();
+            AttachAndRaiseViewEvents();
 
         }
 
-        private void AssociateAndRaiseViewEvents()
-        {
-            AttachRedirectEvents();
-        }
 
-        private void AttachRedirectEvents()
+        private void AttachAndRaiseViewEvents()
         {
             btnAgregarHab.Click += (s, e) =>
             {
@@ -78,7 +74,7 @@ namespace Presentation.Views
             listHabitaciones.Columns.Clear();
             listHabitaciones.Items.Clear();
             listHabitaciones.Columns.Add("Número de Habitación", 200, HorizontalAlignment.Left);
-            listHabitaciones.Columns.Add("Tipo", 160, HorizontalAlignment.Left);
+            listHabitaciones.Columns.Add("Tipo", 155, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Capacidad máxima", 200, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Disponibilidad", 150, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Precio por noche", 200, HorizontalAlignment.Left);

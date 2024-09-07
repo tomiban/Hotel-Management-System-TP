@@ -29,34 +29,16 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem1 = new ListViewItem("");
-            ListViewItem listViewItem2 = new ListViewItem("");
-            ListViewItem listViewItem3 = new ListViewItem("");
+            ListViewItem listViewItem4 = new ListViewItem("");
+            ListViewItem listViewItem5 = new ListViewItem("");
+            ListViewItem listViewItem6 = new ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            materialButton5 = new MaterialSkin.Controls.MaterialButton();
-            materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
+            panel1 = new Panel();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
-            materialCard5 = new MaterialSkin.Controls.MaterialCard();
-            materialButton4 = new MaterialSkin.Controls.MaterialButton();
-            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            materialCard3 = new MaterialSkin.Controls.MaterialCard();
-            materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            materialButton2 = new MaterialSkin.Controls.MaterialButton();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            cardHabitacion = new MaterialSkin.Controls.MaterialCard();
-            btnReserva = new MaterialSkin.Controls.MaterialButton();
-            lblPrecioHabitacion = new MaterialSkin.Controls.MaterialLabel();
-            lblHabitacion = new MaterialSkin.Controls.MaterialLabel();
+            flowLayoutPanel = new FlowLayoutPanel();
             tpReservas = new TabPage();
             listReservas = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
@@ -86,11 +68,7 @@
             imageListCliente = new ImageList(components);
             tcCliente.SuspendLayout();
             tpHabitaciones.SuspendLayout();
-            materialCard1.SuspendLayout();
-            materialCard5.SuspendLayout();
-            materialCard3.SuspendLayout();
-            materialCard2.SuspendLayout();
-            cardHabitacion.SuspendLayout();
+            panel1.SuspendLayout();
             tpReservas.SuspendLayout();
             tpCuenta.SuspendLayout();
             materialCard6.SuspendLayout();
@@ -115,13 +93,8 @@
             // 
             // tpHabitaciones
             // 
-            tpHabitaciones.Controls.Add(materialCard1);
-            tpHabitaciones.Controls.Add(lblHabitaciones);
-            tpHabitaciones.Controls.Add(cmbFiltroHabitaciones);
-            tpHabitaciones.Controls.Add(materialCard5);
-            tpHabitaciones.Controls.Add(materialCard3);
-            tpHabitaciones.Controls.Add(materialCard2);
-            tpHabitaciones.Controls.Add(cardHabitacion);
+            tpHabitaciones.Controls.Add(panel1);
+            tpHabitaciones.Controls.Add(flowLayoutPanel);
             tpHabitaciones.ImageKey = "apartment.png";
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
@@ -131,72 +104,15 @@
             tpHabitaciones.Text = "Habitaciones";
             tpHabitaciones.UseVisualStyleBackColor = true;
             // 
-            // materialCard1
+            // panel1
             // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(materialButton5);
-            materialCard1.Controls.Add(materialLabel18);
-            materialCard1.Controls.Add(materialLabel19);
-            materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(800, 96);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(158, 110);
-            materialCard1.TabIndex = 12;
-            // 
-            // materialButton5
-            // 
-            materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton5.Cursor = Cursors.Hand;
-            materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton5.Depth = 0;
-            materialButton5.HighEmphasis = true;
-            materialButton5.Icon = null;
-            materialButton5.Location = new Point(35, 77);
-            materialButton5.Margin = new Padding(4, 6, 4, 6);
-            materialButton5.MaximumSize = new Size(80, 20);
-            materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton5.Name = "materialButton5";
-            materialButton5.NoAccentTextColor = Color.Empty;
-            materialButton5.Size = new Size(80, 20);
-            materialButton5.TabIndex = 7;
-            materialButton5.Text = "Reserva";
-            materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton5.UseAccentColor = false;
-            materialButton5.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel18
-            // 
-            materialLabel18.AutoSize = true;
-            materialLabel18.Depth = 0;
-            materialLabel18.Enabled = false;
-            materialLabel18.FlatStyle = FlatStyle.Popup;
-            materialLabel18.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel18.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            materialLabel18.Location = new Point(14, 45);
-            materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel18.Name = "materialLabel18";
-            materialLabel18.Size = new Size(90, 17);
-            materialLabel18.TabIndex = 1;
-            materialLabel18.Text = "$150.000 ARS";
-            materialLabel18.UseAccent = true;
-            materialLabel18.UseCompatibleTextRendering = true;
-            // 
-            // materialLabel19
-            // 
-            materialLabel19.AutoSize = true;
-            materialLabel19.Depth = 0;
-            materialLabel19.Dock = DockStyle.Fill;
-            materialLabel19.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel19.Location = new Point(14, 14);
-            materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel19.Name = "materialLabel19";
-            materialLabel19.Size = new Size(91, 19);
-            materialLabel19.TabIndex = 0;
-            materialLabel19.Text = "Habitación 4";
+            panel1.Controls.Add(lblHabitaciones);
+            panel1.Controls.Add(cmbFiltroHabitaciones);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1014, 100);
+            panel1.TabIndex = 13;
             // 
             // lblHabitaciones
             // 
@@ -204,7 +120,7 @@
             lblHabitaciones.Depth = 0;
             lblHabitaciones.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblHabitaciones.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblHabitaciones.Location = new Point(56, 18);
+            lblHabitaciones.Location = new Point(57, 25);
             lblHabitaciones.MouseState = MaterialSkin.MouseState.HOVER;
             lblHabitaciones.Name = "lblHabitaciones";
             lblHabitaciones.Size = new Size(201, 41);
@@ -229,7 +145,7 @@
             cmbFiltroHabitaciones.IntegralHeight = false;
             cmbFiltroHabitaciones.ItemHeight = 43;
             cmbFiltroHabitaciones.Items.AddRange(new object[] { "Filtrar por categoría", "Economica", "Estándard", "Presidencial" });
-            cmbFiltroHabitaciones.Location = new Point(614, 18);
+            cmbFiltroHabitaciones.Location = new Point(613, 17);
             cmbFiltroHabitaciones.MaxDropDownItems = 4;
             cmbFiltroHabitaciones.MouseState = MaterialSkin.MouseState.OUT;
             cmbFiltroHabitaciones.Name = "cmbFiltroHabitaciones";
@@ -237,273 +153,15 @@
             cmbFiltroHabitaciones.StartIndex = 0;
             cmbFiltroHabitaciones.TabIndex = 10;
             // 
-            // materialCard5
+            // flowLayoutPanel
             // 
-            materialCard5.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard5.Controls.Add(materialButton4);
-            materialCard5.Controls.Add(materialLabel6);
-            materialCard5.Controls.Add(materialLabel7);
-            materialCard5.Depth = 0;
-            materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard5.Location = new Point(614, 96);
-            materialCard5.Margin = new Padding(14);
-            materialCard5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard5.Name = "materialCard5";
-            materialCard5.Padding = new Padding(14);
-            materialCard5.Size = new Size(158, 110);
-            materialCard5.TabIndex = 9;
-            // 
-            // materialButton4
-            // 
-            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton4.Cursor = Cursors.Hand;
-            materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton4.Depth = 0;
-            materialButton4.HighEmphasis = true;
-            materialButton4.Icon = null;
-            materialButton4.Location = new Point(35, 77);
-            materialButton4.Margin = new Padding(4, 6, 4, 6);
-            materialButton4.MaximumSize = new Size(80, 20);
-            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton4.Name = "materialButton4";
-            materialButton4.NoAccentTextColor = Color.Empty;
-            materialButton4.Size = new Size(80, 20);
-            materialButton4.TabIndex = 7;
-            materialButton4.Text = "Reserva";
-            materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton4.UseAccentColor = false;
-            materialButton4.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel6
-            // 
-            materialLabel6.AutoSize = true;
-            materialLabel6.Depth = 0;
-            materialLabel6.Enabled = false;
-            materialLabel6.FlatStyle = FlatStyle.Popup;
-            materialLabel6.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            materialLabel6.Location = new Point(14, 45);
-            materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel6.Name = "materialLabel6";
-            materialLabel6.Size = new Size(90, 17);
-            materialLabel6.TabIndex = 1;
-            materialLabel6.Text = "$150.000 ARS";
-            materialLabel6.UseAccent = true;
-            materialLabel6.UseCompatibleTextRendering = true;
-            // 
-            // materialLabel7
-            // 
-            materialLabel7.AutoSize = true;
-            materialLabel7.Depth = 0;
-            materialLabel7.Dock = DockStyle.Fill;
-            materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel7.Location = new Point(14, 14);
-            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel7.Name = "materialLabel7";
-            materialLabel7.Size = new Size(91, 19);
-            materialLabel7.TabIndex = 0;
-            materialLabel7.Text = "Habitación 4";
-            // 
-            // materialCard3
-            // 
-            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard3.Controls.Add(materialButton3);
-            materialCard3.Controls.Add(materialLabel4);
-            materialCard3.Controls.Add(materialLabel5);
-            materialCard3.Depth = 0;
-            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(428, 96);
-            materialCard3.Margin = new Padding(14);
-            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(14);
-            materialCard3.Size = new Size(158, 110);
-            materialCard3.TabIndex = 8;
-            // 
-            // materialButton3
-            // 
-            materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton3.Cursor = Cursors.Hand;
-            materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton3.Depth = 0;
-            materialButton3.HighEmphasis = true;
-            materialButton3.Icon = null;
-            materialButton3.Location = new Point(35, 77);
-            materialButton3.Margin = new Padding(4, 6, 4, 6);
-            materialButton3.MaximumSize = new Size(80, 20);
-            materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton3.Name = "materialButton3";
-            materialButton3.NoAccentTextColor = Color.Empty;
-            materialButton3.Size = new Size(80, 20);
-            materialButton3.TabIndex = 7;
-            materialButton3.Text = "Reserva";
-            materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton3.UseAccentColor = false;
-            materialButton3.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel4
-            // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Enabled = false;
-            materialLabel4.FlatStyle = FlatStyle.Popup;
-            materialLabel4.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            materialLabel4.Location = new Point(14, 45);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(90, 17);
-            materialLabel4.TabIndex = 1;
-            materialLabel4.Text = "$150.000 ARS";
-            materialLabel4.UseAccent = true;
-            materialLabel4.UseCompatibleTextRendering = true;
-            // 
-            // materialLabel5
-            // 
-            materialLabel5.AutoSize = true;
-            materialLabel5.Depth = 0;
-            materialLabel5.Dock = DockStyle.Fill;
-            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(14, 14);
-            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(91, 19);
-            materialLabel5.TabIndex = 0;
-            materialLabel5.Text = "Habitación 3";
-            // 
-            // materialCard2
-            // 
-            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard2.Controls.Add(materialButton2);
-            materialCard2.Controls.Add(materialLabel2);
-            materialCard2.Controls.Add(materialLabel3);
-            materialCard2.Depth = 0;
-            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(242, 96);
-            materialCard2.Margin = new Padding(14);
-            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(158, 110);
-            materialCard2.TabIndex = 6;
-            // 
-            // materialButton2
-            // 
-            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton2.Cursor = Cursors.Hand;
-            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton2.Depth = 0;
-            materialButton2.HighEmphasis = true;
-            materialButton2.Icon = null;
-            materialButton2.Location = new Point(35, 77);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
-            materialButton2.MaximumSize = new Size(80, 20);
-            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton2.Name = "materialButton2";
-            materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(80, 20);
-            materialButton2.TabIndex = 7;
-            materialButton2.Text = "Reserva";
-            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton2.UseAccentColor = false;
-            materialButton2.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel2
-            // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Enabled = false;
-            materialLabel2.FlatStyle = FlatStyle.Popup;
-            materialLabel2.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            materialLabel2.Location = new Point(14, 45);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(90, 17);
-            materialLabel2.TabIndex = 1;
-            materialLabel2.Text = "$150.000 ARS";
-            materialLabel2.UseAccent = true;
-            materialLabel2.UseCompatibleTextRendering = true;
-            // 
-            // materialLabel3
-            // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Dock = DockStyle.Fill;
-            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(14, 14);
-            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(91, 19);
-            materialLabel3.TabIndex = 0;
-            materialLabel3.Text = "Habitación 2";
-            // 
-            // cardHabitacion
-            // 
-            cardHabitacion.BackColor = Color.FromArgb(255, 255, 255);
-            cardHabitacion.Controls.Add(btnReserva);
-            cardHabitacion.Controls.Add(lblPrecioHabitacion);
-            cardHabitacion.Controls.Add(lblHabitacion);
-            cardHabitacion.Depth = 0;
-            cardHabitacion.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cardHabitacion.Location = new Point(56, 96);
-            cardHabitacion.Margin = new Padding(14);
-            cardHabitacion.MouseState = MaterialSkin.MouseState.HOVER;
-            cardHabitacion.Name = "cardHabitacion";
-            cardHabitacion.Padding = new Padding(14);
-            cardHabitacion.Size = new Size(158, 110);
-            cardHabitacion.TabIndex = 5;
-            // 
-            // btnReserva
-            // 
-            btnReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnReserva.Cursor = Cursors.Hand;
-            btnReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnReserva.Depth = 0;
-            btnReserva.HighEmphasis = true;
-            btnReserva.Icon = null;
-            btnReserva.Location = new Point(35, 77);
-            btnReserva.Margin = new Padding(4, 6, 4, 6);
-            btnReserva.MaximumSize = new Size(80, 20);
-            btnReserva.MouseState = MaterialSkin.MouseState.HOVER;
-            btnReserva.Name = "btnReserva";
-            btnReserva.NoAccentTextColor = Color.Empty;
-            btnReserva.Size = new Size(80, 20);
-            btnReserva.TabIndex = 7;
-            btnReserva.Text = "Reserva";
-            btnReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnReserva.UseAccentColor = false;
-            btnReserva.UseVisualStyleBackColor = true;
-            // 
-            // lblPrecioHabitacion
-            // 
-            lblPrecioHabitacion.AutoSize = true;
-            lblPrecioHabitacion.Depth = 0;
-            lblPrecioHabitacion.Enabled = false;
-            lblPrecioHabitacion.FlatStyle = FlatStyle.Popup;
-            lblPrecioHabitacion.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblPrecioHabitacion.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            lblPrecioHabitacion.Location = new Point(14, 45);
-            lblPrecioHabitacion.MouseState = MaterialSkin.MouseState.HOVER;
-            lblPrecioHabitacion.Name = "lblPrecioHabitacion";
-            lblPrecioHabitacion.Size = new Size(90, 17);
-            lblPrecioHabitacion.TabIndex = 1;
-            lblPrecioHabitacion.Text = "$150.000 ARS";
-            lblPrecioHabitacion.UseAccent = true;
-            lblPrecioHabitacion.UseCompatibleTextRendering = true;
-            // 
-            // lblHabitacion
-            // 
-            lblHabitacion.AutoSize = true;
-            lblHabitacion.Depth = 0;
-            lblHabitacion.Dock = DockStyle.Fill;
-            lblHabitacion.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblHabitacion.Location = new Point(14, 14);
-            lblHabitacion.MouseState = MaterialSkin.MouseState.HOVER;
-            lblHabitacion.Name = "lblHabitacion";
-            lblHabitacion.Size = new Size(91, 19);
-            lblHabitacion.TabIndex = 0;
-            lblHabitacion.Text = "Habitación 1";
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.Location = new Point(60, 109);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Padding = new Padding(20, 0, 0, 0);
+            flowLayoutPanel.Size = new Size(900, 331);
+            flowLayoutPanel.TabIndex = 12;
+            flowLayoutPanel.Paint += flowLayoutPanel_Paint;
             // 
             // tpReservas
             // 
@@ -529,7 +187,7 @@
             listReservas.Font = new Font("Garamond", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem4, listViewItem5, listViewItem6 });
             listReservas.Location = new Point(68, 62);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
@@ -623,7 +281,6 @@
             materialCard6.Padding = new Padding(14);
             materialCard6.Size = new Size(640, 361);
             materialCard6.TabIndex = 9;
-    
             // 
             // txtPassword
             // 
@@ -867,7 +524,7 @@
             imageListCliente.Images.SetKeyName(7, "add.png");
             imageListCliente.Images.SetKeyName(8, "bookmark_check.png");
             // 
-            // Cliente
+            // GuestView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -875,22 +532,13 @@
             Controls.Add(tcCliente);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcCliente;
-            Name = "Cliente";
+            Name = "GuestView";
             Padding = new Padding(10, 64, 10, 3);
             Text = "El Molino Hotel";
             tcCliente.ResumeLayout(false);
             tpHabitaciones.ResumeLayout(false);
-            tpHabitaciones.PerformLayout();
-            materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
-            materialCard5.ResumeLayout(false);
-            materialCard5.PerformLayout();
-            materialCard3.ResumeLayout(false);
-            materialCard3.PerformLayout();
-            materialCard2.ResumeLayout(false);
-            materialCard2.PerformLayout();
-            cardHabitacion.ResumeLayout(false);
-            cardHabitacion.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             tpReservas.ResumeLayout(false);
             tpReservas.PerformLayout();
             tpCuenta.ResumeLayout(false);
@@ -908,22 +556,6 @@
         private TabPage tpReservas;
         private TabPage tpLogout;
         private TabPage tpHabitaciones;
-        private MaterialSkin.Controls.MaterialCard cardHabitacion;
-        private MaterialSkin.Controls.MaterialCard materialCard3;
-        private MaterialSkin.Controls.MaterialCard materialCard2;
-        private MaterialSkin.Controls.MaterialCard materialCard5;
-        private MaterialSkin.Controls.MaterialLabel lblHabitacion;
-        private MaterialSkin.Controls.MaterialLabel lblPrecioHabitacion;
-        private MaterialSkin.Controls.MaterialButton btnReserva;
-        private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel6;
-        private MaterialSkin.Controls.MaterialLabel materialLabel7;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialMaskedTextBox materialMaskedTextBox1;
         private MaterialSkin.Controls.MaterialComboBox cmbFiltroHabitaciones;
         private MaterialSkin.Controls.MaterialLabel lblHabitaciones;
@@ -950,9 +582,7 @@
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtApellido;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
-        private MaterialSkin.Controls.MaterialButton materialButton5;
-        private MaterialSkin.Controls.MaterialLabel materialLabel18;
-        private MaterialSkin.Controls.MaterialLabel materialLabel19;
+        private FlowLayoutPanel flowLayoutPanel;
+        private Panel panel1;
     }
 }
