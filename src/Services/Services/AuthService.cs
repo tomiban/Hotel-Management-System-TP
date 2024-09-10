@@ -13,6 +13,7 @@ namespace ApplicationLayer.Services
     {
         IUsuarioRepository _usuarioRepository;
         IModelDataAnnotationCheck _modelDataAnnotationCheck;
+        private Usuario _currentUser;
 
         public AuthService(IUsuarioRepository usuarioRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
         {
@@ -27,13 +28,18 @@ namespace ApplicationLayer.Services
 
         public Usuario Login(string username, string contraseña)
         {
-            return _usuarioRepository.Authenticate(username, contraseña);
+            var usuario = _usuarioRepository.Authenticate(username, contraseña);
+            if (usuario != null)
+            {
+                _currentUser = usuario; // Almacenar usuario autenticado
+            }
+            return usuario;
         }
 
         public void Register(Usuario usuario)
         {
             ValidateModel(usuario);
-            _usuarioRepository.AddAsync(usuario);
+            _usuarioRepository.Add(usuario);
         }
 
         public bool CheckUsername(string username)
@@ -41,5 +47,9 @@ namespace ApplicationLayer.Services
             return _usuarioRepository.GetByUsername(username);
         }
 
+        public Usuario GetCurrentUser()
+        {
+            return _currentUser;
+        }
     }
 }

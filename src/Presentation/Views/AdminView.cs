@@ -10,7 +10,7 @@ namespace Presentation.Views
 {
     public partial class AdminView : MaterialForm, IAdminView
     {
-       
+
 
         public event EventHandler RedirectToCrearEditarHabitacion;
         public event EventHandler RedirectToCrearEditarUsuario;
@@ -54,8 +54,8 @@ namespace Presentation.Views
         {
             listUsuarios.Items.Clear();
             var usuarios = new List<Usuario>()
-               {
-                
+            {
+
             };
             foreach (var item in usuarios)
             {
@@ -82,7 +82,7 @@ namespace Presentation.Views
 
             foreach (var hab in habitaciones)
             {
-                 ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
+                ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
                 item.SubItems.Add(hab.TipoHabitacion.ToString());
                 item.SubItems.Add(string.Concat(hab.CantidadPersonas.ToString(), " personas"));
                 item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
@@ -128,5 +128,7 @@ namespace Presentation.Views
         {
             this.Show();
         }
+
+    
     }
 }

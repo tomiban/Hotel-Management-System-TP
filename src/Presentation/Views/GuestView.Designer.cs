@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem4 = new ListViewItem("");
-            ListViewItem listViewItem5 = new ListViewItem("");
-            ListViewItem listViewItem6 = new ListViewItem("");
+            ListViewItem listViewItem1 = new ListViewItem("");
+            ListViewItem listViewItem2 = new ListViewItem("");
+            ListViewItem listViewItem3 = new ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
@@ -66,6 +66,7 @@
             lblRolCuenta = new MaterialSkin.Controls.MaterialLabel();
             tpLogout = new TabPage();
             imageListCliente = new ImageList(components);
+            imageList1 = new ImageList(components);
             tcCliente.SuspendLayout();
             tpHabitaciones.SuspendLayout();
             panel1.SuspendLayout();
@@ -159,7 +160,7 @@
             flowLayoutPanel.Location = new Point(60, 109);
             flowLayoutPanel.Name = "flowLayoutPanel";
             flowLayoutPanel.Padding = new Padding(20, 0, 0, 0);
-            flowLayoutPanel.Size = new Size(900, 331);
+            flowLayoutPanel.Size = new Size(900, 364);
             flowLayoutPanel.TabIndex = 12;
             flowLayoutPanel.Paint += flowLayoutPanel_Paint;
             // 
@@ -187,7 +188,7 @@
             listReservas.Font = new Font("Garamond", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem4, listViewItem5, listViewItem6 });
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
             listReservas.Location = new Point(68, 62);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
@@ -524,6 +525,12 @@
             imageListCliente.Images.SetKeyName(7, "add.png");
             imageListCliente.Images.SetKeyName(8, "bookmark_check.png");
             // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
             // GuestView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -584,5 +591,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
         private FlowLayoutPanel flowLayoutPanel;
         private Panel panel1;
+        private ImageList imageList1;
     }
 }

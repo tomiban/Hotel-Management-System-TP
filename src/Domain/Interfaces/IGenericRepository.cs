@@ -7,10 +7,10 @@ namespace Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        void AddAsync(T entity);
-        void DeleteAsync(int id);
-        List<T> GetAllAsync();
-        T GetByIdAsync(int id);
-        void UpdateAsync(T entity);
+        void Add(T entity);
+        void Delete(int id);
+        List<T> GetAll();
+        T GetById(int id);
+        void Update(T entity);
     }
 }

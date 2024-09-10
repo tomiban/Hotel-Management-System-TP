@@ -21,6 +21,9 @@ namespace Presentation.Views
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer habitacionCardContainer;
+
+
+
         public GuestView()
         {
             InitializeComponent();
@@ -35,33 +38,29 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
-
-
-
             AttachAndRaiseViewEvents();
-
 
         }
 
         private void AttachAndRaiseViewEvents()
         {
-            // btnReserva.Click += (s, e) => EventHelper.RaiseEvent(this, OnReservaClicked, EventArgs.Empty);
-            cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) => EventHelper.RaiseEvent(this, OnCategoriaFiltrada, EventArgs.Empty);
+            cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) => EventHelper.RaiseEvent(this, OnFiltrarCategoria, EventArgs.Empty);
         }
 
-        public event EventHandler OnReservaClicked;
-        public event EventHandler OnCategoriaFiltrada;
+        public event EventHandler OnRealizarReserva;
+        public event EventHandler OnFiltrarCategoria;
 
-        //public void CargarHabitaciones(List<Habitacion> habitaciones)
-        //{
-        //    foreach (var item in habitaciones)
-        //    {
-        //        cmbFiltroHabitaciones.Items.Add(item);
-        //    }
-        //}
+        public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
+        {
+            foreach (var item in habitaciones)
+            {
+                cmbFiltroHabitaciones.Items.Add(item);
+            }
+        }
 
         public void CargarHabitaciones(List<Habitacion> habitaciones)
         {
+            //Pasrle desde el presentador la lista de habitaciones
             flowLayoutPanel.Controls.Clear();
             habitaciones.Add(
                 new Habitacion() { NroHabitacion = 1, PrecioPorNoche = 500, Disponible = true, CantidadPersonas = 3, TipoHabitacion = TipoHabitacion.Premium }
@@ -76,11 +75,19 @@ namespace Presentation.Views
                );
             foreach (var habitacion in habitaciones)
             {
-                var cardHabitacion = new HabitacionCard(habitacion.NroHabitacion, habitacion.PrecioPorNoche, habitacion.TipoHabitacion, habitacion.Disponible);
+                var cardHabitacion = new HabitacionCard(habitacion.Id, habitacion.NroHabitacion, habitacion.PrecioPorNoche, habitacion.TipoHabitacion, habitacion.Disponible, habitacion.CantidadPersonas);
                 flowLayoutPanel.Controls.Add(cardHabitacion);
+                // Suscribirse al evento ReservarButtonClick de cada tarjeta
+                cardHabitacion.OnReservarButtonClicked += (s, e) =>
+                {
+                   
+
+                    // También puedes invocar eventos personalizados si los tienes
+                    EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
+                };
             }
         }
-
+       
         public void CloseView()
         {
             this.Close();

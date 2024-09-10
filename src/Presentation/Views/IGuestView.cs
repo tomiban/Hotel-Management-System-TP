@@ -11,13 +11,14 @@ namespace PresentationLayer.Views
     {
 
         // Evento que se dispara cuando se hace clic en el botón "Reservar"
-        event EventHandler OnReservaClicked;
+        event EventHandler OnRealizarReserva;
 
         // Evento que se dispara cuando se selecciona una categoría del filtro
-        event EventHandler OnCategoriaFiltrada;
+        event EventHandler OnFiltrarCategoria;
 
         // Método para cargar las habitaciones (esto es opcional, pero útil)
         void CargarHabitaciones(List<Habitacion> habitaciones);
+        void CargarTipoHabitaciones(List<Habitacion> habitaciones);
 
 
 

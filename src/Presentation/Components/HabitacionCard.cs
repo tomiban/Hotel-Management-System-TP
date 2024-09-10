@@ -1,85 +1,185 @@
 ﻿using Domain.Entities;
 using MaterialSkin.Controls;
+using System;
 using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace PresentationLayer.Components
 {
     public class HabitacionCard : MaterialCard
     {
-        public MaterialLabel NroHabitacionLabel { get; set; }
-        public MaterialLabel PrecioLabel { get; set; }
-        public MaterialLabel TipoHabitacionPill { get; set; }
+        public Label NroHabitacionLabel { get; set; }
+        public Label PrecioLabel { get; set; }
+        public Label TipoHabitacionLabel { get; set; }
+        public Label CapacidadLabel { get; set; }
+        public PictureBox IconoCapacidad { get; set; }
         public MaterialButton ReservarButton { get; set; }
+        public ImageList ImageList { get; set; }
+        public MaterialLabel DescripcionTextBox { get; set; }
+        public DateTimePicker FechaDesdePicker { get; set; }
+        public DateTimePicker FechaHastaPicker { get; set; }
+        public int HabitacionId { get; set; }
 
-        public HabitacionCard(int nroHabitacion, double precio, TipoHabitacion tipoHabitacion, bool disponible)
+        public event EventHandler OnReservarButtonClicked;
+
+
+        Dictionary<TipoHabitacion, Color> tipoHabitacionColors = new Dictionary<TipoHabitacion, Color>
         {
+            { TipoHabitacion.Economic, Color.LightBlue },
+            { TipoHabitacion.Standard, Color.LightGreen },
+            { TipoHabitacion.Premium, Color.Gold },
+        };
+
+        public HabitacionCard(int habitacionId, int nroHabitacion, double precio, TipoHabitacion tipoHabitacion, bool disponible, int cantidadPersonas)
+        {
+            // Inicializa el ImageList y agrega imágenes
+            ImageList = new ImageList();
+            ImageList.ImageSize = new Size(24, 24);
+
+            // Ruta a la carpeta Assets relativa al directorio de salida
+            string assetsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets");
+
+            // Cargar imagen en el ImageList
+            string imagePath = Path.Combine(assetsPath, "bed.png");
+            if (File.Exists(imagePath))
+            {
+                ImageList.Images.Add("bed.png", Image.FromFile(imagePath));
+            }
+            else
+            {
+                throw new FileNotFoundException("No se encontró el archivo de imagen en la ruta especificada.", imagePath);
+            }
+
             // Definir propiedades de la tarjeta
-            this.Size = new Size(240, 170);  // Tamaño compacto
+            this.Size = new Size(260, 350);
             this.BackColor = Color.FromArgb(55, 71, 79);
-            this.Padding = new Padding(10); // Padding interno para mejor espaciamiento
-            this.Margin = new Padding(20);  // Margen entre tarjetas
-            this.Depth = 3; // Sombra más prominente para un look más profesional
+            this.Padding = new Padding(30, 10, 30, 10);
+            this.Margin = new Padding(10);
+            this.Depth = 4;
+
+            // Id
+            HabitacionId = habitacionId;
 
             // Etiqueta de número de habitación
-            NroHabitacionLabel = new MaterialLabel
+            NroHabitacionLabel = new Label
             {
                 Text = $"Habitación {nroHabitacion}",
                 Font = new Font("Roboto", 14, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(10, 10),
-                AutoSize = true
+                Location = new Point(15, 13),
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
 
-            // Precio con formato destacado
-            PrecioLabel = new MaterialLabel
+            // Precio de la habitación
+            PrecioLabel = new Label
             {
-                Text = $"${precio:N0} ARS", // Con separadores de miles
-                Font = new Font("Roboto", 16, FontStyle.Bold), // Formato destacado
-                ForeColor = Color.FromArgb(255, 215, 64), // Color dorado para destacar
-                Location = new Point(10, 50),
-                AutoSize = true
+                Text = $"${precio:N0} ARS",
+                ForeColor = Color.FromArgb(0, 188, 212),
+                Location = new Point(15, 50),
+                AutoSize = true,
+                Font = new Font("Roboto", 12, FontStyle.Regular),
+                BackColor = Color.Transparent
             };
 
-            // Pill simulado con MaterialLabel (borde redondeado y estilo de etiqueta)
-            TipoHabitacionPill = new MaterialLabel
+            // Etiqueta de tipo de habitación como "pill"
+            TipoHabitacionLabel = new Label
             {
                 Text = tipoHabitacion.ToString(),
-                Font = new Font("Roboto", 10, FontStyle.Bold), // Estilo más pequeño y en negrita
-                BackColor = Color.LightBlue,  // Color de fondo para el pill
-                ForeColor = Color.Black, // Texto oscuro para el pill
-                Size = new Size(70, 24),  // Tamaño adecuado para el pill
-                Location = new Point(PrecioLabel.Right + 10, PrecioLabel.Top),  // Ubicar al lado del precio
-                TextAlign = ContentAlignment.MiddleCenter,  // Centrar el texto
-                BorderStyle = BorderStyle.FixedSingle,  // Agregar un borde
-                FlatStyle = FlatStyle.Popup,
-                UseAccent = false,
+                Font = new Font("Roboto", 10, FontStyle.Bold),
+                ForeColor = Color.White,
+                Location = new Point(15, 80),
+                AutoSize = false,
+                Size = new Size(120, 25),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Padding = new Padding(5),
+                BackColor = tipoHabitacionColors[tipoHabitacion],
             };
 
-            // Crear bordes redondeados para el "pill"
-            TipoHabitacionPill.Paint += (s, e) =>
+
+            // Icono de capacidad de personas usando ImageList
+            IconoCapacidad = new PictureBox
             {
-                ControlPaint.DrawBorder(e.Graphics, TipoHabitacionPill.ClientRectangle, Color.LightBlue, ButtonBorderStyle.Solid);
-                Rectangle rect = new Rectangle(0, 0, TipoHabitacionPill.Width, TipoHabitacionPill.Height);
-                e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), rect);
-                e.Graphics.DrawString(TipoHabitacionPill.Text, TipoHabitacionPill.Font, new SolidBrush(Color.Black), rect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                Image = ImageList.Images["bed.png"],
+                Location = new Point(15, 115),
+                Size = new Size(24, 24),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.Transparent
+            };
+
+            // Etiqueta de capacidad máxima de personas
+            CapacidadLabel = new Label
+            {
+                Text = $"Capacidad: {cantidadPersonas} personas",
+                Font = new Font("Roboto", 10, FontStyle.Regular),
+                ForeColor = Color.White,
+                Location = new Point(50, IconoCapacidad.Top + 3),
+                AutoSize = true,
+                BackColor = Color.Transparent
+            };
+
+            // Campo de texto para la descripción de la habitación
+            DescripcionTextBox = new MaterialLabel
+            {
+                Text = "Habitación cómoda y acogedora ideal para 3 personas. Equipado con camas individuales, aire acondicionado y conexión Wi-Fi gratuita. Perfecta para familias o grupos pequeños.", // Hardcodeada por ahora
+                Font = new Font("Roboto", 10, FontStyle.Regular),
+                ForeColor = Color.Black,
+                Location = new Point(15, 150),
+                TextAlign = ContentAlignment.TopLeft,
+                Width = 230,
+                Height = 90,
+                Padding = new Padding(5, 0, 5, 0),
+                FontType = MaterialSkin.MaterialSkinManager.fontType.Caption
+            };
+
+            // DateTimePicker para la fecha de inicio de la reserva
+            FechaDesdePicker = new DateTimePicker
+            {
+                Format = DateTimePickerFormat.Short,
+                Location = new Point(15, 240),
+                Size = new Size(110, 30)
+            };
+
+            // DateTimePicker para la fecha de fin de la reserva
+            FechaHastaPicker = new DateTimePicker
+            {
+                Format = DateTimePickerFormat.Short,
+                Location = new Point(135, 240),
+                Size = new Size(110, 30)
             };
 
             // Botón de reserva
             ReservarButton = new MaterialButton
             {
+                Name = "btnReservar",
                 Text = disponible ? "RESERVA" : "NO DISPONIBLE",
-                Size = new Size(120, 36),
-                Location = new Point(10, 120),
+                Size = new Size(160, 36),
+                Location = new Point((this.Width - 160) / 2, 290),
                 Enabled = disponible,
-                HighEmphasis = true,  // Estilo de énfasis alto
-                BackColor = disponible ? Color.Purple : Color.Gray,
-                ForeColor = Color.White
+                HighEmphasis = true,
+                Type = MaterialButton.MaterialButtonType.Contained,
+                UseAccentColor = disponible,
+                ForeColor = Color.White,
+                AutoSize = false
             };
+
+            // Enlazar el click del botón al evento público
+            ReservarButton.Click += (sender, e) => OnReservarButtonClicked?.Invoke(this, e);
+
+            // Añadir Tooltip para el botón de reserva
+            var toolTip = new ToolTip();
+            toolTip.SetToolTip(ReservarButton, disponible ? "Presiona para reservar esta habitación" : "Habitación no disponible actualmente");
 
             // Agregar controles a la tarjeta
             this.Controls.Add(NroHabitacionLabel);
             this.Controls.Add(PrecioLabel);
-            this.Controls.Add(TipoHabitacionPill); // Añadir el "pill" simulado
+            this.Controls.Add(TipoHabitacionLabel);
+            this.Controls.Add(IconoCapacidad);
+            this.Controls.Add(CapacidadLabel);
+            this.Controls.Add(DescripcionTextBox);
+            this.Controls.Add(FechaDesdePicker);
+            this.Controls.Add(FechaHastaPicker);
             this.Controls.Add(ReservarButton);
         }
     }

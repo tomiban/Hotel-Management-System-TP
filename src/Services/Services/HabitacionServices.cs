@@ -23,33 +23,33 @@ namespace ApplicationLayer.Services
         public void Add(Habitacion habitacion)
         {
             ValidateModel(habitacion);
-            _habitacionRepository.AddAsync(habitacion);
+            _habitacionRepository.Add(habitacion);
         }
 
         public void Update(Habitacion habitacion)
         {
             ValidateModel(habitacion);
-            _habitacionRepository.UpdateAsync(habitacion);
+            _habitacionRepository.Update(habitacion);
         }
 
         public void Delete(int id)
         {
-            _habitacionRepository.DeleteAsync(id);
+            _habitacionRepository.Delete(id);
         }
 
         public  List<Habitacion> GetAll()
         {
-            return  _habitacionRepository.GetAllAsync();
+            return  _habitacionRepository.GetAll();
         }
 
         public Habitacion GetById(int id)
         {
-            return _habitacionRepository.GetByIdAsync(id);
+            return _habitacionRepository.GetById(id);
         }
 
         public bool CheckNroHabitacion(int id)
         {
-            var habitacion = _habitacionRepository.GetByIdAsync(id);
+            var habitacion = _habitacionRepository.GetById(id);
 
             if (habitacion == null)
             {

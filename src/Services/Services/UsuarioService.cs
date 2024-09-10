@@ -26,27 +26,27 @@ namespace ApplicationLayer.Services
 
         public void Add(Usuario usuario)
         {
-            _usuarioRepository.AddAsync(usuario);
+            _usuarioRepository.Add(usuario);
         }
 
         public void Update(Usuario usuario)
         {
-            _usuarioRepository.UpdateAsync(usuario);
+            _usuarioRepository.Update(usuario);
         }
 
         public void Delete(int id)
         {
-            _usuarioRepository.DeleteAsync(id);
+            _usuarioRepository.Delete(id);
         }
 
         public List<Usuario> GetAll()
         {
-            return _usuarioRepository.GetAllAsync();
+            return _usuarioRepository.GetAll();
         }
 
         public Usuario GetById(int id)
         {
-            return _usuarioRepository.GetByIdAsync(id);
+            return _usuarioRepository.GetById(id);
         }
 
     }
