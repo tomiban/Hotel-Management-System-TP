@@ -6,27 +6,27 @@ namespace Infraestructure.DataAccess.Repositories
 {
     public class ReservaRepository : IReservaRepository
     {
-        public void  AddAsync(Reserva entity)
+        public void  Add(Reserva entity)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteAsync(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Reserva> GetAllAsync()
+        public List<Reserva> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Reserva GetByIdAsync(int id)
+        public Reserva GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void  UpdateAsync(Reserva entity)
+        public void  Update(Reserva entity)
         {
             throw new NotImplementedException();
         }

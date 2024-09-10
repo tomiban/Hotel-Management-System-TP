@@ -19,10 +19,10 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _usuarios = GetAllAsync(); // Cargar usuarios al iniciar el repositorio
+            _usuarios = GetAll(); // Cargar usuarios al iniciar el repositorio
         }
 
-        public void   AddAsync(Usuario usuario)
+        public void   Add(Usuario usuario)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public List<Usuario> GetAllAsync()
+        public List<Usuario> GetAll()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Usuario GetByIdAsync(int id)
+        public Usuario GetById(int id)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public void UpdateAsync(Usuario usuario)
+        public void Update(Usuario usuario)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public  void  DeleteAsync(int id)
+        public  void  Delete(int id)
         {
             try
             {
