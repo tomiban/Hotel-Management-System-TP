@@ -16,10 +16,10 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _habitaciones = GetAllAsync() ?? [];
+            _habitaciones = GetAll() ?? [];
         }
 
-        public void AddAsync(Habitacion entity)
+        public void Add(Habitacion entity)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Infraestructure.DataAccess.Repositories
 
         }
 
-        public void DeleteAsync(int id)
+        public void Delete(int id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public List<Habitacion> GetAllAsync()
+        public List<Habitacion> GetAll()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Habitacion GetByIdAsync(int id)
+        public Habitacion GetById(int id)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public void UpdateAsync(Habitacion entity)
+        public void Update(Habitacion entity)
         {
             try
             {

@@ -33,7 +33,7 @@ namespace ApplicationLayer.Services
         public void Register(Usuario usuario)
         {
             ValidateModel(usuario);
-            _usuarioRepository.AddAsync(usuario);
+            _usuarioRepository.Add(usuario);
         }
 
         public bool CheckUsername(string username)
