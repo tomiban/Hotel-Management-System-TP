@@ -12,7 +12,7 @@ namespace Presentation.Views
         void ActualizarListaUsuarios(List<Usuario> items);
         void ActualizarListaHabitaciones(List<Habitacion> items);
         void ObtenerDatos();
-        int ObtenerIdSeleccionado();
+        int ObtenerNroHabitacionSeleccionado();
         void LimpiarFormulario();
 
         event EventHandler RedirectToCrearEditarHabitacion;

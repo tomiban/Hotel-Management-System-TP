@@ -34,9 +34,28 @@ namespace Presentation.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AttachAndRaiseViewEvents();
+            AttachDeleteEvents();
+            btnBorrarHab.Enabled = false;
+            listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
 
         }
 
+        private void OnHabitacionSeleccionada(object sender, EventArgs e)
+        {
+            btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0; // Habilitar "Ed" si se selecciona una habitación
+        }
+        //private void AttachDeleteEvents()
+        //{
+        //    btnBorrarHab.Click += (s, e) =>
+        //    {
+        //        EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+        //    };
+        //}
+        private void AttachDeleteEvents()
+        {
+            btnBorrarHab.Click -= (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+            btnBorrarHab.Click += (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+        }
 
         private void AttachAndRaiseViewEvents()
         {
@@ -105,9 +124,17 @@ namespace Presentation.Views
             throw new NotImplementedException();
         }
 
-        public int ObtenerIdSeleccionado()
+        public int ObtenerNroHabitacionSeleccionado()
         {
-            throw new NotImplementedException();
+            if (listHabitaciones.SelectedItems.Count == 0)
+            {
+                throw new ApplicationException("No hay ninguna habitación seleccionada.");
+            }
+
+            // Obtenemos el primer ítem seleccionado
+            var selectedItem = listHabitaciones.SelectedItems[0];
+            int id = int.Parse(selectedItem.Text); // El Nro de la habitación está en la primera columna
+            return id;
         }
 
         public void LimpiarFormulario()

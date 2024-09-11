@@ -23,7 +23,22 @@ namespace Presentation.Presenters
             //CargarUsuarios();
 
             _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
-    
+            _view.EliminarHabitacion += OnEliminarHabitacion;
+
+        }
+        private void OnEliminarHabitacion(object? sender, EventArgs e)
+        {
+            try
+            {
+                int id = _view.ObtenerNroHabitacionSeleccionado(); // Obtener el ID de la habitación seleccionada
+                _habitacionServices.Delete(id); // Llamar al servicio para eliminar la habitación
+                CargarHabitaciones(); // Refrescar la lista
+                _view.ShowMessage("Habitación eliminada", "La habitación ha sido eliminada correctamente.");
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error", $"No se pudo eliminar la habitación: {ex.Message}");
+            }
         }
 
 
