@@ -162,7 +162,7 @@
             flowLayoutPanel.Padding = new Padding(20, 0, 0, 0);
             flowLayoutPanel.Size = new Size(900, 364);
             flowLayoutPanel.TabIndex = 12;
-            flowLayoutPanel.Paint += flowLayoutPanel_Paint;
+          
             // 
             // tpReservas
             // 

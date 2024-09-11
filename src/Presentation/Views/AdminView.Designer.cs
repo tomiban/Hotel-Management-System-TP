@@ -135,7 +135,7 @@
             tpDashboard.TabIndex = 0;
             tpDashboard.Text = "Dashboard";
             tpDashboard.UseVisualStyleBackColor = true;
-          
+            // 
             // lblReservas
             // 
             lblReservas.AutoSize = true;

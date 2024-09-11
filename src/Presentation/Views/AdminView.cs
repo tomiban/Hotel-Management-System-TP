@@ -75,7 +75,7 @@ namespace Presentation.Views
             listHabitaciones.Items.Clear();
             listHabitaciones.Columns.Add("Número de Habitación", 200, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Tipo", 155, HorizontalAlignment.Left);
-            listHabitaciones.Columns.Add("Capacidad máxima", 200, HorizontalAlignment.Left);
+            listHabitaciones.Columns.Add("Capacidad", 200, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Disponibilidad", 150, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Precio por noche", 200, HorizontalAlignment.Left);
 
@@ -84,7 +84,7 @@ namespace Presentation.Views
             {
                 ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
                 item.SubItems.Add(hab.TipoHabitacion.ToString());
-                item.SubItems.Add(string.Concat(hab.CantidadPersonas.ToString(), " personas"));
+                item.SubItems.Add(string.Concat(hab.Capacidad.ToString(), " personas"));
                 item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
                 item.SubItems.Add(hab.PrecioPorNoche.ToString("C"));
                 listHabitaciones.Items.Add(item);

@@ -62,8 +62,9 @@ namespace Presentation.Presenters
                     TipoHabitacion = _view.TipoHabitacion,
                     PrecioPorNoche = _view.PrecioPorNoche,
                     Disponible = _view.Disponible,
-                    CantidadPersonas = 3,
-                    NroHabitacion = _view.NroHabitacion
+                    Capacidad = _view.Capacidad,
+                    NroHabitacion = _view.NroHabitacion,
+                    Descripcion = _view.Descripcion
                 };
 
                 _habitacionServices.Add(habitacion);

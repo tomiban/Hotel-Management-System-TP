@@ -19,16 +19,19 @@ namespace Domain.Entities
         [EnumDataType(typeof(TipoHabitacion), ErrorMessage = "El tipo de habitación no es válido.")]
         public TipoHabitacion TipoHabitacion { get; set; }
 
-
         public bool Disponible { get; set; }
 
+        [Required(ErrorMessage = "La descripción es requerida.")]
+        [MaxLength(100, ErrorMessage = "La descripción debe tener un maximo de 100 caracteres.")]
         public string Descripcion { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]
-        public double PrecioPorNoche { get; set; }
+        public decimal PrecioPorNoche { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "La cantidad de personas debe ser al menos 1.")]
-        public int CantidadPersonas { get; set; }
+        public int Capacidad { get; set; }
+
+
       
 
         public Habitacion()

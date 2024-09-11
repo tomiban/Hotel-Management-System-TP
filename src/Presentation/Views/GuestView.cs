@@ -70,8 +70,6 @@ namespace Presentation.Views
                 // Suscribirse al evento ReservarButtonClick de cada tarjeta
                 cardHabitacion.OnReservarButtonClicked += (s, e) =>
                 {
-                   
-
                     // También puedes invocar eventos personalizados si los tienes
                     EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
                 };
@@ -96,11 +94,6 @@ namespace Presentation.Views
         public void ShowView()
         {
             this.Show();
-        }
-
-        private void flowLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

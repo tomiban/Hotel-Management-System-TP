@@ -41,6 +41,8 @@
             btnGuardarHab = new MaterialSkin.Controls.MaterialButton();
             txtCantidadPersonas = new MaterialSkin.Controls.MaterialTextBox2();
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            txtDescripcion = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
+            lblDescribpcion = new MaterialSkin.Controls.MaterialLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(99, 192);
+            materialLabel1.Location = new Point(113, 185);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(159, 19);
@@ -61,7 +63,7 @@
             materialLabel3.AutoSize = true;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(528, 192);
+            materialLabel3.Location = new Point(470, 185);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(135, 19);
@@ -73,7 +75,7 @@
             materialLabel4.AutoSize = true;
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(99, 332);
+            materialLabel4.Location = new Point(113, 304);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
             materialLabel4.Size = new Size(119, 19);
@@ -89,7 +91,7 @@
             txtNroHabitacion.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNroHabitacion.HideSelection = true;
             txtNroHabitacion.LeadingIcon = null;
-            txtNroHabitacion.Location = new Point(99, 228);
+            txtNroHabitacion.Location = new Point(113, 224);
             txtNroHabitacion.MaxLength = 32767;
             txtNroHabitacion.MouseState = MaterialSkin.MouseState.OUT;
             txtNroHabitacion.Name = "txtNroHabitacion";
@@ -101,7 +103,7 @@
             txtNroHabitacion.SelectionLength = 0;
             txtNroHabitacion.SelectionStart = 0;
             txtNroHabitacion.ShortcutsEnabled = true;
-            txtNroHabitacion.Size = new Size(250, 48);
+            txtNroHabitacion.Size = new Size(301, 48);
             txtNroHabitacion.TabIndex = 4;
             txtNroHabitacion.TabStop = false;
             txtNroHabitacion.TextAlign = HorizontalAlignment.Left;
@@ -123,11 +125,11 @@
             cmbTipoHabitacion.IntegralHeight = false;
             cmbTipoHabitacion.ItemHeight = 43;
             cmbTipoHabitacion.Items.AddRange(new object[] { "Premium", "Standard", "Economic" });
-            cmbTipoHabitacion.Location = new Point(528, 228);
+            cmbTipoHabitacion.Location = new Point(470, 224);
             cmbTipoHabitacion.MaxDropDownItems = 4;
             cmbTipoHabitacion.MouseState = MaterialSkin.MouseState.OUT;
             cmbTipoHabitacion.Name = "cmbTipoHabitacion";
-            cmbTipoHabitacion.Size = new Size(250, 49);
+            cmbTipoHabitacion.Size = new Size(322, 49);
             cmbTipoHabitacion.StartIndex = 0;
             cmbTipoHabitacion.TabIndex = 7;
             // 
@@ -137,20 +139,19 @@
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            materialLabel2.Location = new Point(320, 106);
+            materialLabel2.Location = new Point(298, 100);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(272, 41);
             materialLabel2.TabIndex = 9;
             materialLabel2.Text = "Añadir Habitación";
-
             // 
             // switchDisponibilidad
             // 
             switchDisponibilidad.AutoSize = true;
             switchDisponibilidad.Cursor = Cursors.Hand;
             switchDisponibilidad.Depth = 0;
-            switchDisponibilidad.Location = new Point(718, 116);
+            switchDisponibilidad.Location = new Point(731, 132);
             switchDisponibilidad.Margin = new Padding(0);
             switchDisponibilidad.MouseLocation = new Point(-1, -1);
             switchDisponibilidad.MouseState = MaterialSkin.MouseState.HOVER;
@@ -170,7 +171,7 @@
             txtPrecioHabitacion.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPrecioHabitacion.HideSelection = true;
             txtPrecioHabitacion.LeadingIcon = null;
-            txtPrecioHabitacion.Location = new Point(99, 364);
+            txtPrecioHabitacion.Location = new Point(113, 347);
             txtPrecioHabitacion.MaxLength = 32767;
             txtPrecioHabitacion.MouseState = MaterialSkin.MouseState.OUT;
             txtPrecioHabitacion.Name = "txtPrecioHabitacion";
@@ -182,7 +183,7 @@
             txtPrecioHabitacion.SelectionLength = 0;
             txtPrecioHabitacion.SelectionStart = 0;
             txtPrecioHabitacion.ShortcutsEnabled = true;
-            txtPrecioHabitacion.Size = new Size(250, 48);
+            txtPrecioHabitacion.Size = new Size(301, 48);
             txtPrecioHabitacion.TabIndex = 11;
             txtPrecioHabitacion.TabStop = false;
             txtPrecioHabitacion.TextAlign = HorizontalAlignment.Left;
@@ -217,7 +218,7 @@
             // panel1
             // 
             panel1.Controls.Add(btnGuardarHab);
-            panel1.Location = new Point(320, 455);
+            panel1.Location = new Point(320, 589);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 43);
             panel1.TabIndex = 15;
@@ -253,7 +254,7 @@
             txtCantidadPersonas.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtCantidadPersonas.HideSelection = true;
             txtCantidadPersonas.LeadingIcon = null;
-            txtCantidadPersonas.Location = new Point(528, 364);
+            txtCantidadPersonas.Location = new Point(470, 347);
             txtCantidadPersonas.MaxLength = 32767;
             txtCantidadPersonas.MouseState = MaterialSkin.MouseState.OUT;
             txtCantidadPersonas.Name = "txtCantidadPersonas";
@@ -265,7 +266,7 @@
             txtCantidadPersonas.SelectionLength = 0;
             txtCantidadPersonas.SelectionStart = 0;
             txtCantidadPersonas.ShortcutsEnabled = true;
-            txtCantidadPersonas.Size = new Size(250, 48);
+            txtCantidadPersonas.Size = new Size(322, 48);
             txtCantidadPersonas.TabIndex = 16;
             txtCantidadPersonas.TabStop = false;
             txtCantidadPersonas.TextAlign = HorizontalAlignment.Left;
@@ -277,18 +278,56 @@
             materialLabel5.AutoSize = true;
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(528, 332);
+            materialLabel5.Location = new Point(470, 304);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(217, 19);
+            materialLabel5.Size = new Size(139, 19);
             materialLabel5.TabIndex = 17;
-            materialLabel5.Text = "Cantidad máxima de personas";
+            materialLabel5.Text = "Capacidad máxima";
+            // 
+            // txtDescripcion
+            // 
+            txtDescripcion.AnimateReadOnly = false;
+            txtDescripcion.BackgroundImageLayout = ImageLayout.None;
+            txtDescripcion.CharacterCasing = CharacterCasing.Normal;
+            txtDescripcion.Depth = 0;
+            txtDescripcion.HideSelection = true;
+            txtDescripcion.Location = new Point(113, 456);
+            txtDescripcion.MaxLength = 32767;
+            txtDescripcion.MouseState = MaterialSkin.MouseState.OUT;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.PasswordChar = '\0';
+            txtDescripcion.ReadOnly = false;
+            txtDescripcion.ScrollBars = ScrollBars.None;
+            txtDescripcion.SelectedText = "";
+            txtDescripcion.SelectionLength = 0;
+            txtDescripcion.SelectionStart = 0;
+            txtDescripcion.ShortcutsEnabled = true;
+            txtDescripcion.Size = new Size(679, 100);
+            txtDescripcion.TabIndex = 19;
+            txtDescripcion.TabStop = false;
+            txtDescripcion.TextAlign = HorizontalAlignment.Left;
+            txtDescripcion.UseSystemPasswordChar = false;
+            // 
+            // lblDescribpcion
+            // 
+            lblDescribpcion.AutoSize = true;
+            lblDescribpcion.Depth = 0;
+            lblDescribpcion.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblDescribpcion.Location = new Point(113, 421);
+            lblDescribpcion.MouseState = MaterialSkin.MouseState.HOVER;
+            lblDescribpcion.Name = "lblDescribpcion";
+            lblDescribpcion.Size = new Size(84, 19);
+            lblDescribpcion.TabIndex = 20;
+            lblDescribpcion.Text = "Descripción";
             // 
             // CrearEditarHabitacionView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(901, 546);
+            ClientSize = new Size(901, 683);
+            Controls.Add(lblDescribpcion);
+            Controls.Add(txtDescripcion);
             Controls.Add(materialLabel5);
             Controls.Add(txtCantidadPersonas);
             Controls.Add(panel1);
@@ -324,5 +363,7 @@
         private MaterialSkin.Controls.MaterialButton btnGuardarHab;
         private MaterialSkin.Controls.MaterialTextBox2 txtCantidadPersonas;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox2 txtDescripcion;
+        private MaterialSkin.Controls.MaterialLabel lblDescribpcion;
     }
 }

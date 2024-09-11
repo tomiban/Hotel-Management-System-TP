@@ -18,9 +18,6 @@ namespace Presentation.Views
     public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
     {
 
-        //TODO: 
-
-
         public CrearEditarHabitacionView()
         {
             InitializeComponent();
@@ -50,11 +47,11 @@ namespace Presentation.Views
 
         public bool Disponible => switchDisponibilidad.Checked;
 
-        public double PrecioPorNoche => Convert.ToDouble(txtPrecioHabitacion.Text);
+        public decimal PrecioPorNoche => Convert.ToDecimal(txtPrecioHabitacion.Text);
 
-        public int CantidadPersonas => 3;
+        public int Capacidad => Convert.ToInt32(txtCantidadPersonas.Text);
 
-        public int Id => 0;
+        public string Descripcion => txtDescripcion.Text;
 
         public event EventHandler SaveEvent;
         public event EventHandler BackEvent;

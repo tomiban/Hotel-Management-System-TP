@@ -3,11 +3,12 @@ namespace Domain.Interfaces
 {
     public interface IHabitacion
     {
-        int Id { get; set; }
-        int NroHabitacion { get; set; }
-        TipoHabitacion TipoHabitacion { get; set; }
-        int CantidadPersonas { get; set; }
-        double PrecioPorNoche { get; set; }
-        bool Disponible { get; set; }
+        int Id { get; }
+        bool Disponible { get; }
+        int NroHabitacion { get; }
+        decimal PrecioPorNoche { get; }
+        TipoHabitacion TipoHabitacion { get; }
+        string Descripcion { get; }
+        int Capacidad { get; }
     }
 }

@@ -110,7 +110,7 @@ namespace PresentationLayer.Components
             // Etiqueta de capacidad máxima de personas
             CapacidadLabel = new Label
             {
-                Text = $"Capacidad: {habitacion.CantidadPersonas} personas",
+                Text = $"Capacidad: {habitacion.Capacidad} personas",
                 Font = new Font("Roboto", 10, FontStyle.Regular),
                 ForeColor = Color.White,
                 Location = new Point(50, IconoCapacidad.Top + 3),
@@ -121,7 +121,7 @@ namespace PresentationLayer.Components
             // Campo de texto para la descripción de la habitación
             DescripcionTextBox = new MaterialLabel
             {
-                Text = "Habitación cómoda y acogedora ideal para 3 personas. Equipado con camas individuales, aire acondicionado y conexión Wi-Fi gratuita. Perfecta para familias o grupos pequeños.", // Hardcodeada por ahora
+                Text = habitacion.Descripcion, // Hardcodeada por ahora
                 Font = new Font("Roboto", 10, FontStyle.Regular),
                 ForeColor = Color.Black,
                 Location = new Point(15, 150),

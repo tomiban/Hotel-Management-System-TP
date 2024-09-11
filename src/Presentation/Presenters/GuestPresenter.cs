@@ -65,19 +65,6 @@ namespace PresentationLayer.Presenters
         public void CargarHabitaciones()
         {
             var habitaciones = _habitacionServices.GetAll();
-
-            //habitaciones.Add(
-            //  new Habitacion() { NroHabitacion = 1, PrecioPorNoche = 500, Disponible = true, CantidadPersonas = 3, TipoHabitacion = TipoHabitacion.Premium }
-            //  );
-
-            //habitaciones.Add(
-            //   new Habitacion() { NroHabitacion = 2, PrecioPorNoche = 123, Disponible = true, CantidadPersonas = 5, TipoHabitacion = TipoHabitacion.Economic }
-            //   );
-
-            //habitaciones.Add(
-            //   new Habitacion() { NroHabitacion = 3, PrecioPorNoche = 80, Disponible = false, CantidadPersonas = 3, TipoHabitacion = TipoHabitacion.Economic }
-            //   );
-
             _view.CargarHabitaciones(habitaciones);
         }
 

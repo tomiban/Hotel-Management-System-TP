@@ -4,16 +4,12 @@ namespace Presentation.Views
 {
     public interface ICrearEditarHabitacionView
     {
-        int Id { get; }
-        bool Disponible { get; }
         int NroHabitacion { get; }
-        double PrecioPorNoche { get; }
+        bool Disponible { get; }
+        decimal  PrecioPorNoche { get; }
         TipoHabitacion TipoHabitacion { get; }
-         int CantidadPersonas
-        {
-            get;
-          
-        }
+        string Descripcion { get; }
+        int Capacidad{ get; }
 
         void ShowMessage(string title, string message);
     
