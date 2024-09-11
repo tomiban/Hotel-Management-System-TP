@@ -1,14 +1,40 @@
 ﻿using Domain.Entities;
+using Infraestructure.DataAccess.Serialization;
+using InfraestructureLayer.Helpers;
 using Services.Services.ReservaServices;
-
 
 namespace Infraestructure.DataAccess.Repositories
 {
     public class ReservaRepository : IReservaRepository
     {
-        public void  Add(Reserva entity)
+        private string FILE_PATH;
+        private readonly string FILE_NAME = "reservas";
+        private readonly IBinarySerialization _persistenceService;
+        private List<Reserva> _reservas;
+
+        public ReservaRepository(IBinarySerialization persistenceService)
         {
-            throw new NotImplementedException();
+            FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
+            _persistenceService = persistenceService;
+            _reservas = GetAll(); 
+        }
+
+        public void Add(Reserva entity)
+        {
+            try
+            {
+                _reservas.Add(entity);
+                _persistenceService.Save(FILE_PATH, _reservas);
+            }
+            catch (IOException ex)
+            {
+
+                throw new ApplicationException($"Error al guardar los datos de la reserva {ex.Message}: ", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al agregar reserva: {ex.Message}", ex);
+            }
         }
 
         public void Delete(int id)
@@ -18,7 +44,14 @@ namespace Infraestructure.DataAccess.Repositories
 
         public List<Reserva> GetAll()
         {
-            throw new NotImplementedException();
+           try
+            {
+                return _persistenceService.Load<List<Reserva>>(FILE_PATH) ?? new List<Reserva>();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al agregar usuario: {ex.Message}", ex);
+            }
         }
 
         public Reserva GetById(int id)
@@ -26,7 +59,7 @@ namespace Infraestructure.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public void  Update(Reserva entity)
+        public void Update(Reserva entity)
         {
             throw new NotImplementedException();
         }

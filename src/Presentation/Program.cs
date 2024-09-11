@@ -9,6 +9,7 @@ using PresentationLayer.Views;
 using PresentationLayer.Presenters;
 using ApplicationLayer.Services;
 using Domain.Validation.ModelDataAnnotationCheck;
+using Services.Services.ReservaServices;
 
 
 namespace Presentation
@@ -25,30 +26,32 @@ namespace Presentation
             IUnityContainer unityC = new UnityContainer()
                 // Registra la vista de login (ILoginView) y la implementa con la clase Login.
                 .RegisterType<ILoginView, LoginView>(new ContainerControlledLifetimeManager())
+                .RegisterType<ILoginPresenter, LoginPresenter>(new ContainerControlledLifetimeManager())
 
-                // Registra el presentador de login (ILoginPresenter) y lo implementa con la clase LoginPresenter.
-                .RegisterType<ILoginPresenter, LoginPresenter>(
-                    new ContainerControlledLifetimeManager()
-                )
-                // Registra la vista de registro (IRegisterView) y la implementa con la clase Register.
                 .RegisterType<IRegisterView, RegisterView>(new ContainerControlledLifetimeManager())
-                // Registra el presentador de registro (IRegisterPresenter) y lo implementa con la clase RegisterPresenter.
                 .RegisterType<IRegisterPresenter, RegisterPresenter>(new ContainerControlledLifetimeManager())
-                // Registrar el repositorio de Usuario
+
                 .RegisterType<IAdminView, AdminView>(new ContainerControlledLifetimeManager())
                 .RegisterType<IAdminPresenter, AdminPresenter>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IGuestView, GuestView>(new ContainerControlledLifetimeManager())
                 .RegisterType<IGuestPresenter, GuestPresenter>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<ICrearEditarHabitacionView, CrearEditarHabitacionView>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICrearEditarHabitacionPresenter, CrearEditarHabitacionPresenter>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IModelDataAnnotationCheck, ModelDataAnnotationCheck>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IUsuarioService, UsuarioService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IHabitacionServices, HabitacionServices>(new ContainerControlledLifetimeManager())
+                .RegisterType<IReservaService, ReservaService>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IUsuarioRepository, UsuarioRepository>(new ContainerControlledLifetimeManager())
-                .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager());
-            //.RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()) //
+                .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager())
+                .RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()); //
 
 
 

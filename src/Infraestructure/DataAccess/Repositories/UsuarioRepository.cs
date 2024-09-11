@@ -22,7 +22,7 @@ namespace Infraestructure.DataAccess.Repositories
             _usuarios = GetAll(); // Cargar usuarios al iniciar el repositorio
         }
 
-        public void   Add(Usuario usuario)
+        public void  Add(Usuario usuario)
         {
             try
             {

@@ -10,7 +10,7 @@ namespace Presentation.Views
 {
     public partial class AdminView : MaterialForm, IAdminView
     {
-       
+
 
         public event EventHandler RedirectToCrearEditarHabitacion;
         public event EventHandler RedirectToCrearEditarUsuario;
@@ -33,16 +33,12 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
-            AssociateAndRaiseViewEvents();
+            AttachAndRaiseViewEvents();
 
         }
 
-        private void AssociateAndRaiseViewEvents()
-        {
-            AttachRedirectEvents();
-        }
 
-        private void AttachRedirectEvents()
+        private void AttachAndRaiseViewEvents()
         {
             btnAgregarHab.Click += (s, e) =>
             {
@@ -58,8 +54,8 @@ namespace Presentation.Views
         {
             listUsuarios.Items.Clear();
             var usuarios = new List<Usuario>()
-               {
-                
+            {
+
             };
             foreach (var item in usuarios)
             {
@@ -78,7 +74,7 @@ namespace Presentation.Views
             listHabitaciones.Columns.Clear();
             listHabitaciones.Items.Clear();
             listHabitaciones.Columns.Add("Número de Habitación", 200, HorizontalAlignment.Left);
-            listHabitaciones.Columns.Add("Tipo", 160, HorizontalAlignment.Left);
+            listHabitaciones.Columns.Add("Tipo", 155, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Capacidad máxima", 200, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Disponibilidad", 150, HorizontalAlignment.Left);
             listHabitaciones.Columns.Add("Precio por noche", 200, HorizontalAlignment.Left);
@@ -86,7 +82,7 @@ namespace Presentation.Views
 
             foreach (var hab in habitaciones)
             {
-                 ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
+                ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
                 item.SubItems.Add(hab.TipoHabitacion.ToString());
                 item.SubItems.Add(string.Concat(hab.CantidadPersonas.ToString(), " personas"));
                 item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
@@ -132,5 +128,7 @@ namespace Presentation.Views
         {
             this.Show();
         }
+
+    
     }
 }

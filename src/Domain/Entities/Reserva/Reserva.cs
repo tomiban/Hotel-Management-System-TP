@@ -19,19 +19,15 @@ namespace Domain.Entities
         public DateTime FechaFin { get; set; }
 
         [Required(ErrorMessage = "El ID de la habitación es requerido.")]
+        
         public int IdHabitacion { get; set; }
-
-        [Required(ErrorMessage = "La habitación es requerida.")]
-        public Habitacion Habitacion { get; set; }
+        public int NroHabitacion { get; set; }
 
         [Required(ErrorMessage = "El ID del usuario es requerido.")]
         public int IdUsuario { get; set; }
+        public string Username { get; set; }
 
-        [Required(ErrorMessage = "El usuario es requerido.")]
-        public Usuario Usuario { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad de noches debe ser al menos 1.")]
-        public int CantidadNoches { get; set; }
+        
 
         public Reserva()
         {
