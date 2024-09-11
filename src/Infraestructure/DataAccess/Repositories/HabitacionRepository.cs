@@ -39,11 +39,11 @@ namespace Infraestructure.DataAccess.Repositories
 
         }
 
-        public void Delete(int id)
+        public void Delete(int nroHabitacion)
         {
             try
             {
-                var habitacion = _habitaciones.FirstOrDefault(h => h.Id == id);
+                var habitacion = _habitaciones.FirstOrDefault(h => h.NroHabitacion == nroHabitacion);
                 if (habitacion == null)
                 {
                     throw new NullReferenceException();

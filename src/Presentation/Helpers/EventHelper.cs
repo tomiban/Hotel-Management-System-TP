@@ -10,7 +10,10 @@ namespace PresentationLayer.Utils
     {
         public static void RaiseEvent(object sender, EventHandler eventHandler, EventArgs e)
         {
-            eventHandler?.Invoke(sender, e);
+            if (eventHandler != null)
+            {
+                eventHandler?.Invoke(sender, e);
+            }
         }
 
         public static void RaiseEvent<TEventArgs>(object sender, EventHandler<TEventArgs> eventHandler, TEventArgs e) where TEventArgs : EventArgs
