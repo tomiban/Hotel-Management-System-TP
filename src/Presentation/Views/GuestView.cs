@@ -62,20 +62,10 @@ namespace Presentation.Views
         {
             //Pasrle desde el presentador la lista de habitaciones
             flowLayoutPanel.Controls.Clear();
-            habitaciones.Add(
-                new Habitacion() { NroHabitacion = 1, PrecioPorNoche = 500, Disponible = true, CantidadPersonas = 3, TipoHabitacion = TipoHabitacion.Premium }
-                );
-
-            habitaciones.Add(
-               new Habitacion() { NroHabitacion = 2, PrecioPorNoche = 123, Disponible = true, CantidadPersonas = 5, TipoHabitacion = TipoHabitacion.Economic }
-               );
-
-            habitaciones.Add(
-               new Habitacion() { NroHabitacion = 3, PrecioPorNoche = 80, Disponible = false, CantidadPersonas = 3, TipoHabitacion = TipoHabitacion.Economic }
-               );
+          
             foreach (var habitacion in habitaciones)
             {
-                var cardHabitacion = new HabitacionCard(habitacion.Id, habitacion.NroHabitacion, habitacion.PrecioPorNoche, habitacion.TipoHabitacion, habitacion.Disponible, habitacion.CantidadPersonas);
+                var cardHabitacion = new HabitacionCard(habitacion);
                 flowLayoutPanel.Controls.Add(cardHabitacion);
                 // Suscribirse al evento ReservarButtonClick de cada tarjeta
                 cardHabitacion.OnReservarButtonClicked += (s, e) =>

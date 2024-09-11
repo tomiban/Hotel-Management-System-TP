@@ -31,7 +31,7 @@ namespace PresentationLayer.Components
             { TipoHabitacion.Premium, Color.Gold },
         };
 
-        public HabitacionCard(int habitacionId, int nroHabitacion, double precio, TipoHabitacion tipoHabitacion, bool disponible, int cantidadPersonas)
+        public HabitacionCard(Habitacion habitacion)
         {
             // Inicializa el ImageList y agrega imágenes
             ImageList = new ImageList();
@@ -58,13 +58,12 @@ namespace PresentationLayer.Components
             this.Margin = new Padding(10);
             this.Depth = 4;
 
-            // Id
-            HabitacionId = habitacionId;
+
 
             // Etiqueta de número de habitación
             NroHabitacionLabel = new Label
             {
-                Text = $"Habitación {nroHabitacion}",
+                Text = $"Habitación {habitacion.NroHabitacion}",
                 Font = new Font("Roboto", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 Location = new Point(15, 13),
@@ -75,7 +74,7 @@ namespace PresentationLayer.Components
             // Precio de la habitación
             PrecioLabel = new Label
             {
-                Text = $"${precio:N0} ARS",
+                Text = $"${habitacion.PrecioPorNoche:N0} ARS",
                 ForeColor = Color.FromArgb(0, 188, 212),
                 Location = new Point(15, 50),
                 AutoSize = true,
@@ -86,7 +85,7 @@ namespace PresentationLayer.Components
             // Etiqueta de tipo de habitación como "pill"
             TipoHabitacionLabel = new Label
             {
-                Text = tipoHabitacion.ToString(),
+                Text = habitacion.TipoHabitacion.ToString(),
                 Font = new Font("Roboto", 10, FontStyle.Bold),
                 ForeColor = Color.White,
                 Location = new Point(15, 80),
@@ -94,7 +93,7 @@ namespace PresentationLayer.Components
                 Size = new Size(120, 25),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Padding = new Padding(5),
-                BackColor = tipoHabitacionColors[tipoHabitacion],
+                BackColor = tipoHabitacionColors[habitacion.TipoHabitacion],
             };
 
 
@@ -111,7 +110,7 @@ namespace PresentationLayer.Components
             // Etiqueta de capacidad máxima de personas
             CapacidadLabel = new Label
             {
-                Text = $"Capacidad: {cantidadPersonas} personas",
+                Text = $"Capacidad: {habitacion.CantidadPersonas} personas",
                 Font = new Font("Roboto", 10, FontStyle.Regular),
                 ForeColor = Color.White,
                 Location = new Point(50, IconoCapacidad.Top + 3),
@@ -153,13 +152,13 @@ namespace PresentationLayer.Components
             ReservarButton = new MaterialButton
             {
                 Name = "btnReservar",
-                Text = disponible ? "RESERVA" : "NO DISPONIBLE",
+                Text = habitacion.Disponible ? "RESERVA" : "NO DISPONIBLE",
                 Size = new Size(160, 36),
                 Location = new Point((this.Width - 160) / 2, 290),
-                Enabled = disponible,
+                Enabled = habitacion.Disponible,
                 HighEmphasis = true,
                 Type = MaterialButton.MaterialButtonType.Contained,
-                UseAccentColor = disponible,
+                UseAccentColor = habitacion.Disponible,
                 ForeColor = Color.White,
                 AutoSize = false
             };
@@ -169,7 +168,7 @@ namespace PresentationLayer.Components
 
             // Añadir Tooltip para el botón de reserva
             var toolTip = new ToolTip();
-            toolTip.SetToolTip(ReservarButton, disponible ? "Presiona para reservar esta habitación" : "Habitación no disponible actualmente");
+            toolTip.SetToolTip(ReservarButton, habitacion.Disponible ? "Presiona para reservar esta habitación" : "Habitación no disponible actualmente");
 
             // Agregar controles a la tarjeta
             this.Controls.Add(NroHabitacionLabel);
