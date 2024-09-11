@@ -70,6 +70,7 @@ namespace Presentation.Presenters
 
                 _habitacionServices.Add(habitacion);
                 _view.ShowMessage("Habitación guardada correctamente.", "Información");
+                _view.LimpiarCampos();
             }
             catch (Exception ex)
             {

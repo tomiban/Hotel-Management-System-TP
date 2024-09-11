@@ -23,6 +23,7 @@ namespace Presentation.Views
         event EventHandler SearchUsuario;
      
         void ShowMessage(string title, string message);
+        void SetEliminarHabitacionButtonState(bool enabled);
 
         void ShowView();
         void CloseView();
