@@ -40,6 +40,26 @@ namespace Presentation.Views
             btnGuardarHab.Click += (s, e) => EventHelper.RaiseEvent(this, SaveEvent, EventArgs.Empty);
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
+        public void LimpiarCampos()
+        {
+            // Limpia el campo de texto del número de habitación
+            txtNroHabitacion.Text = string.Empty;
+
+            // Restablece el ComboBox a su estado inicial
+            cmbTipoHabitacion.SelectedIndex = -1; // -1 para no seleccionar nada
+
+            // Restablece el switch de disponibilidad
+            switchDisponibilidad.Checked = false;
+
+            // Limpia el campo de texto del precio
+            txtPrecioHabitacion.Text = string.Empty;
+
+            // Limpia el campo de cantidad de personas
+            txtCantidadPersonas.Text = string.Empty;
+
+            // Si tienes algún campo de descripción o adicional, también lo limpias aquí
+            txtDescripcion.Text = string.Empty;
+        }
 
         public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
 

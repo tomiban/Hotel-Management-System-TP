@@ -22,6 +22,7 @@ namespace Presentation.Views
         public AdminView()
         {
             InitializeComponent();
+            btnBorrarHab.Enabled = false;
 
             var colorScheme = new ColorScheme(
             Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
@@ -35,26 +36,45 @@ namespace Presentation.Views
 
             AttachAndRaiseViewEvents();
             AttachDeleteEvents();
-            btnBorrarHab.Enabled = false;
-            listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
+            
+            //listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
+            listHabitaciones.SelectedIndexChanged += OnHabitacionSelectionChanged;
 
         }
 
-        private void OnHabitacionSeleccionada(object sender, EventArgs e)
+        private void OnHabitacionSelectionChanged(object sender, EventArgs e)
         {
-            btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0; // Habilitar "Ed" si se selecciona una habitación
+            // Si no hay ningún elemento seleccionado, desactiva el botón
+            if (listHabitaciones.SelectedItems.Count == 0)
+            {
+                btnBorrarHab.Enabled = false;
+            }
+            else
+            {
+                // Si hay una selección, activa el botón
+                btnBorrarHab.Enabled = true;
+            }
         }
-        //private void AttachDeleteEvents()
+
+        //private void OnHabitacionSeleccionada(object sender, EventArgs e)
         //{
-        //    btnBorrarHab.Click += (s, e) =>
-        //    {
-        //        EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
-        //    };
+        //    btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0; // Habilitar "Ed" si se selecciona una habitación
         //}
+        ////private void AttachDeleteEvents()
+        ////{
+        ////    btnBorrarHab.Click += (s, e) =>
+        ////    {
+        ////        EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+        ////    };
+        ////}
         private void AttachDeleteEvents()
         {
             btnBorrarHab.Click -= (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
             btnBorrarHab.Click += (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+        }
+        public void SetEliminarHabitacionButtonState(bool enabled)
+        {
+            btnBorrarHab.Enabled = enabled;
         }
 
         private void AttachAndRaiseViewEvents()
