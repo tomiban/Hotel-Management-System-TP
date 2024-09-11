@@ -44,16 +44,7 @@ namespace Presentation.Views
 
         private void OnHabitacionSelectionChanged(object sender, EventArgs e)
         {
-            // Si no hay ningún elemento seleccionado, desactiva el botón
-            if (listHabitaciones.SelectedItems.Count == 0)
-            {
-                btnBorrarHab.Enabled = false;
-            }
-            else
-            {
-                // Si hay una selección, activa el botón
-                btnBorrarHab.Enabled = true;
-            }
+            btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
         }
 
         //private void OnHabitacionSeleccionada(object sender, EventArgs e)
