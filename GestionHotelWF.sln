@@ -5,13 +5,13 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23880005-47EB-48E6-B8A1-A3E988A1B36E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "src\Domain\DomainLayer.csproj", "{8F7EEF5B-3E5C-44C6-AB92-6F2C54C139E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "src\Domain\DomainLayer.csproj", "{8F7EEF5B-3E5C-44C6-AB92-6F2C54C139E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "src\Presentation\PresentationLayer.csproj", "{867C9902-CAF9-48CB-A840-18C451A6D1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "src\Presentation\PresentationLayer.csproj", "{867C9902-CAF9-48CB-A840-18C451A6D1C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfraestructureLayer", "src\Infraestructure\InfraestructureLayer.csproj", "{E6DFA0E5-A653-400A-AAA4-75B3DBE8A5D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfraestructureLayer", "src\Infraestructure\InfraestructureLayer.csproj", "{E6DFA0E5-A653-400A-AAA4-75B3DBE8A5D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationLayer", "src\Services\ApplicationLayer.csproj", "{E5236102-3488-497A-9715-ED9A0095EA4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationLayer", "src\Services\ApplicationLayer.csproj", "{E5236102-3488-497A-9715-ED9A0095EA4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,13 +39,13 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7550480C-BD1E-4A16-A456-A9283D24CF68}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F7EEF5B-3E5C-44C6-AB92-6F2C54C139E8} = {23880005-47EB-48E6-B8A1-A3E988A1B36E}
 		{867C9902-CAF9-48CB-A840-18C451A6D1C3} = {23880005-47EB-48E6-B8A1-A3E988A1B36E}
 		{E6DFA0E5-A653-400A-AAA4-75B3DBE8A5D6} = {23880005-47EB-48E6-B8A1-A3E988A1B36E}
 		{E5236102-3488-497A-9715-ED9A0095EA4A} = {23880005-47EB-48E6-B8A1-A3E988A1B36E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7550480C-BD1E-4A16-A456-A9283D24CF68}
 	EndGlobalSection
 EndGlobal

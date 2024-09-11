@@ -8,6 +8,7 @@ namespace ApplicationLayer.Services
         Usuario Login(string username, string contraseña);
         void Register(Usuario usuario);
         bool CheckUsername(string username);
+        Usuario GetCurrentUser();
         void ValidateModel(IUsuario usuario);
     }
 }

@@ -22,6 +22,8 @@ namespace Domain.Entities
 
         public bool Disponible { get; set; }
 
+        public string Descripcion { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]
         public double PrecioPorNoche { get; set; }
 

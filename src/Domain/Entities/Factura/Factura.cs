@@ -24,7 +24,8 @@ namespace Domain.Entities.Factura
         {
             get
             {
-                return Reserva.Habitacion.PrecioPorNoche * Reserva.CantidadNoches;
+                //return Reserva.Habitacion.PrecioPorNoche * Reserva.CantidadNoches;
+                return 0;
             }
         }
 

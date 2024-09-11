@@ -1,20 +1,25 @@
 ﻿using Domain.Entities;
 using MaterialSkin.Controls;
+using System;
 using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace PresentationLayer.Components
 {
     public class HabitacionCard : MaterialCard
     {
-        public MaterialLabel NroHabitacionLabel { get; set; }
-        public MaterialLabel PrecioLabel { get; set; }
-        public MaterialLabel TipoHabitacionPill { get; set; }
+        public Label NroHabitacionLabel { get; set; }
+        public Label PrecioLabel { get; set; }
+        public Label TipoHabitacionLabel { get; set; }
+        public Label CapacidadLabel { get; set; }
+        public PictureBox IconoCapacidad { get; set; }
         public MaterialButton ReservarButton { get; set; }
         public ImageList ImageList { get; set; }
         public MaterialLabel DescripcionTextBox { get; set; }
         public DateTimePicker FechaDesdePicker { get; set; }
         public DateTimePicker FechaHastaPicker { get; set; }
-      
+        public int HabitacionId { get; set; }
 
         public event EventHandler OnReservarButtonClicked;
 
@@ -47,27 +52,27 @@ namespace PresentationLayer.Components
             }
 
             // Definir propiedades de la tarjeta
-            this.Size = new Size(240, 170);  // Tamaño compacto
+            this.Size = new Size(260, 350);
             this.BackColor = Color.FromArgb(55, 71, 79);
-            this.Padding = new Padding(10); // Padding interno para mejor espaciamiento
-            this.Margin = new Padding(20);  // Margen entre tarjetas
-            this.Depth = 3; // Sombra más prominente para un look más profesional
+            this.Padding = new Padding(30, 10, 30, 10);
+            this.Margin = new Padding(10);
+            this.Depth = 4;
 
-          
-        
+
 
             // Etiqueta de número de habitación
-            NroHabitacionLabel = new MaterialLabel
+            NroHabitacionLabel = new Label
             {
                 Text = $"Habitación {habitacion.NroHabitacion}",
                 Font = new Font("Roboto", 14, FontStyle.Bold),
                 ForeColor = Color.White,
-                Location = new Point(10, 10),
-                AutoSize = true
+                Location = new Point(15, 13),
+                AutoSize = true,
+                BackColor = Color.Transparent
             };
 
-            // Precio con formato destacado
-            PrecioLabel = new MaterialLabel
+            // Precio de la habitación
+            PrecioLabel = new Label
             {
                 Text = $"${habitacion.PrecioPorNoche:N0} ARS",
                 ForeColor = Color.FromArgb(0, 188, 212),
@@ -77,8 +82,8 @@ namespace PresentationLayer.Components
                 BackColor = Color.Transparent
             };
 
-            // Pill simulado con MaterialLabel (borde redondeado y estilo de etiqueta)
-            TipoHabitacionPill = new MaterialLabel
+            // Etiqueta de tipo de habitación como "pill"
+            TipoHabitacionLabel = new Label
             {
                 Text = habitacion.TipoHabitacion.ToString(),
                 Font = new Font("Roboto", 10, FontStyle.Bold),
@@ -135,13 +140,12 @@ namespace PresentationLayer.Components
                 Size = new Size(110, 30)
             };
 
-            // Crear bordes redondeados para el "pill"
-            TipoHabitacionPill.Paint += (s, e) =>
+            // DateTimePicker para la fecha de fin de la reserva
+            FechaHastaPicker = new DateTimePicker
             {
-                ControlPaint.DrawBorder(e.Graphics, TipoHabitacionPill.ClientRectangle, Color.LightBlue, ButtonBorderStyle.Solid);
-                Rectangle rect = new Rectangle(0, 0, TipoHabitacionPill.Width, TipoHabitacionPill.Height);
-                e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), rect);
-                e.Graphics.DrawString(TipoHabitacionPill.Text, TipoHabitacionPill.Font, new SolidBrush(Color.Black), rect, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                Format = DateTimePickerFormat.Short,
+                Location = new Point(135, 240),
+                Size = new Size(110, 30)
             };
 
             // Botón de reserva
@@ -169,7 +173,12 @@ namespace PresentationLayer.Components
             // Agregar controles a la tarjeta
             this.Controls.Add(NroHabitacionLabel);
             this.Controls.Add(PrecioLabel);
-            this.Controls.Add(TipoHabitacionPill); // Añadir el "pill" simulado
+            this.Controls.Add(TipoHabitacionLabel);
+            this.Controls.Add(IconoCapacidad);
+            this.Controls.Add(CapacidadLabel);
+            this.Controls.Add(DescripcionTextBox);
+            this.Controls.Add(FechaDesdePicker);
+            this.Controls.Add(FechaHastaPicker);
             this.Controls.Add(ReservarButton);
         }
     }

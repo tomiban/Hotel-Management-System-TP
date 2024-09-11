@@ -39,6 +39,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\account_circle.png" />
+    <None Remove="Assets\bed.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\account_circle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\bed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="C:\Users\tbanc\source\repos\GestionHotelWinForms\src\Presentation2\.editorconfig" />
   </ItemGroup>
 

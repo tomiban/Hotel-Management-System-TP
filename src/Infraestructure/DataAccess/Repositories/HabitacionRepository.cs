@@ -16,7 +16,7 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _habitaciones = GetAll() ?? [];
+            _habitaciones = GetAll();
         }
 
         public void Add(Habitacion entity)
