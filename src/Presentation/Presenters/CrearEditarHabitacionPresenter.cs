@@ -31,9 +31,9 @@ namespace Presentation.Presenters
         {
             try
             {
-                _adminPresenter.Value.CargarHabitaciones();
                 _adminPresenter.Value.GetAdminView().ShowView();
                 _view.HideView();
+            
             }
             catch (ApplicationException ex)
             {

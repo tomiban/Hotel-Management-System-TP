@@ -2,30 +2,39 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
-using Unity;
+using System;
+using System.Collections.Generic;
 
 namespace Presentation.Presenters
 {
-    public class AdminPresenter : IAdminPresenter
+    public class AdminPresenter : IAdminPresenter, IDisposable
     {
-        IAdminView _view;
-        Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
-        IHabitacionServices _habitacionServices;
+        private readonly IAdminView _view;
+        private readonly Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
+        private readonly IHabitacionServices _habitacionServices;
 
         public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService)
         {
             _view = view;
-
             _habitacionServices = habitacionService;
             _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
-          
-           CargarHabitaciones();
-            //CargarUsuarios();
 
+            SubscribeEvents();
+            CargarHabitaciones();
+        }
+
+        private void SubscribeEvents()
+        {
             _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
             _view.EliminarHabitacion += OnEliminarHabitacion;
-
         }
+
+        public void Dispose()
+        {
+            _view.RedirectToCrearEditarHabitacion -= OnRedirectToCrearEditarHabitacion;
+            _view.EliminarHabitacion -= OnEliminarHabitacion;
+        }
+
         private void OnEliminarHabitacion(object? sender, EventArgs e)
         {
             try
@@ -42,32 +51,29 @@ namespace Presentation.Presenters
             }
         }
 
-
         public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
         {
             try
             {
                 _view.HideView();
+                Dispose();
                 _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
-             
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
-        
+                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
 
-        public  void CargarHabitaciones()
+        public void CargarHabitaciones()
         {
-            var habitaciones =  _habitacionServices.GetAll();
-
+            var habitaciones = _habitacionServices.GetAll();
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
         public void CargarUsuarios()
         {
-            var usuarios = new List<Usuario>();
+            var usuarios = new List<Usuario>(); // Aquí podrías cargar los usuarios desde un servicio si lo tienes
             _view.ActualizarListaUsuarios(usuarios);
         }
 
