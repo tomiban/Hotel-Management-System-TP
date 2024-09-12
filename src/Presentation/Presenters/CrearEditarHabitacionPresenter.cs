@@ -31,8 +31,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                _adminPresenter.Value.CargarHabitaciones();
-                _adminPresenter.Value.ShowView();
+                _adminPresenter.Value.GetAdminView().ShowView();
                 _view.HideView();
             
             }
