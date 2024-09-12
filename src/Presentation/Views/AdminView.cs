@@ -47,20 +47,8 @@ namespace Presentation.Views
             btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
         }
 
-        //private void OnHabitacionSeleccionada(object sender, EventArgs e)
-        //{
-        //    btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0; // Habilitar "Ed" si se selecciona una habitación
-        //}
-        ////private void AttachDeleteEvents()
-        ////{
-        ////    btnBorrarHab.Click += (s, e) =>
-        ////    {
-        ////        EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
-        ////    };
-        ////}
         private void AttachDeleteEvents()
         {
-            btnBorrarHab.Click -= (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
             btnBorrarHab.Click += (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
         }
         public void SetEliminarHabitacionButtonState(bool enabled)

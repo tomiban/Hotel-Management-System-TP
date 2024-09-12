@@ -11,7 +11,7 @@ namespace Presentation.Presenters
         IAdminView _view;
         Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
         IHabitacionServices _habitacionServices;
-
+        private bool _eventosSuscritos = false;
         public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService)
         {
             _view = view;
@@ -22,10 +22,42 @@ namespace Presentation.Presenters
            CargarHabitaciones();
             //CargarUsuarios();
 
-            _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
-            _view.EliminarHabitacion += OnEliminarHabitacion;
+            SubscribeEvents();
 
         }
+
+        public void SubscribeEvents()
+        {
+            if (!_eventosSuscritos)
+            {
+                _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
+                _view.EliminarHabitacion += OnEliminarHabitacion;
+                _eventosSuscritos = true;
+            }
+        }
+
+        public void UnsubscribeEvents()
+        {
+            if (_eventosSuscritos)
+            {
+                _view.RedirectToCrearEditarHabitacion -= OnRedirectToCrearEditarHabitacion;
+                _view.EliminarHabitacion -= OnEliminarHabitacion;
+                _eventosSuscritos = false;
+            }
+        }
+
+        public void ShowView()
+        {
+            SubscribeEvents();
+            _view.ShowView();
+        }
+
+        public void HideView()
+        {
+            UnsubscribeEvents();
+            _view.HideView();
+        }
+
         private void OnEliminarHabitacion(object? sender, EventArgs e)
         {
             try
@@ -47,7 +79,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                _view.HideView();
+               HideView();
                 _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
              
             }
