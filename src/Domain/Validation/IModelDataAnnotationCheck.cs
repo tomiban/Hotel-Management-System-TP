@@ -1,7 +1,9 @@
-﻿namespace Domain.Validation.ModelDataAnnotationCheck
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Validation.ModelDataAnnotationCheck
 {
     public interface IModelDataAnnotationCheck
     {
-        void ValidateModel<TDomainModel>(TDomainModel domainModel);
+        ICollection<ValidationResult> ValidateModel<TDomainModel>(TDomainModel domainModel);
     }
 }

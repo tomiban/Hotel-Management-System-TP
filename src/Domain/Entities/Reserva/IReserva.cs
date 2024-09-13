@@ -8,7 +8,6 @@ namespace Domain.Interfaces
         int Id { get; set; }
         DateTime FechaInicio { get; set; }
         DateTime FechaFin { get; set; }
-        int IdHabitacion { get; set; }
         int NroHabitacion { get; set; }
         int IdUsuario { get; set; }
         string Username { get; set; }

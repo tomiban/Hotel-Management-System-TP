@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationLayer.Services
 {
@@ -9,6 +10,6 @@ namespace ApplicationLayer.Services
         void Register(Usuario usuario);
         bool CheckUsername(string username);
         Usuario GetCurrentUser();
-        void ValidateModel(IUsuario usuario);
+        ICollection<ValidationResult> ValidateModel(IUsuario usuario);
     }
 }

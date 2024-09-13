@@ -1,18 +1,16 @@
 ﻿using Domain.Entities;
 using Domain.Validation.ModelDataAnnotationCheck;
 using Services.Services.ReservaServices;
-using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApplicationLayer.Services
 {
     public class ReservaService : IReservaService
     {
-        IModelDataAnnotationCheck _modelDataAnnotationCheck;
-        IReservaRepository _reservaRepository;
+        private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
+        private readonly IReservaRepository _reservaRepository;
 
         public ReservaService(IModelDataAnnotationCheck modelDataAnnotationCheck, IReservaRepository reservaRepository)
         {
@@ -20,14 +18,18 @@ namespace ApplicationLayer.Services
             _reservaRepository = reservaRepository;
         }
 
-        public void ValidateModel(Reserva reserva)
+        public ICollection<ValidationResult> ValidateModel(Reserva reserva)
         {
-            _modelDataAnnotationCheck.ValidateModel(reserva);
+            return _modelDataAnnotationCheck.ValidateModel(reserva);
         }
 
         public void AgregarReserva(Reserva reserva)
         {
-            ValidateModel(reserva);
+            var validationResults = ValidateModel(reserva);
+            if (validationResults.Any())
+            {
+                throw new ValidationException("Error en la validación de la reserva: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+            }
             _reservaRepository.Add(reserva);
         }
     }

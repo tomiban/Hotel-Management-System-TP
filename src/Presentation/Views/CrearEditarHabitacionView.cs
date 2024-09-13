@@ -98,5 +98,9 @@ namespace Presentation.Views
             MaterialMessageBox.Show(this, title, message);
         }
 
+        private void CrearEditarHabitacionView_Load(object sender, EventArgs e)
+        {
+            cmbTipoHabitacion.Items.AddRange(Enum.GetNames(typeof(TipoHabitacion)));
+        }
     }
 }

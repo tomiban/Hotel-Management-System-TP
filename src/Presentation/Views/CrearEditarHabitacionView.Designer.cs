@@ -124,7 +124,6 @@
             cmbTipoHabitacion.FormattingEnabled = true;
             cmbTipoHabitacion.IntegralHeight = false;
             cmbTipoHabitacion.ItemHeight = 43;
-            cmbTipoHabitacion.Items.AddRange(new object[] { "Premium", "Standard", "Economic" });
             cmbTipoHabitacion.Location = new Point(470, 224);
             cmbTipoHabitacion.MaxDropDownItems = 4;
             cmbTipoHabitacion.MouseState = MaterialSkin.MouseState.OUT;
@@ -342,6 +341,7 @@
             Controls.Add(materialLabel1);
             Name = "CrearEditarHabitacionView";
             Text = "CrearEditarHabitacion";
+            Load += CrearEditarHabitacionView_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

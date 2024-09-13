@@ -6,7 +6,7 @@ namespace Domain.Entities.Factura
     [MemoryPackable]
     public partial class Factura : IFactura
     {
-        private int _contadorId;
+        private int _contadorId = 0;
         public int Id { get; set; }
 
         [Required(ErrorMessage = "La fecha es requerida.")]
@@ -31,8 +31,8 @@ namespace Domain.Entities.Factura
 
         public Factura()
         {
-            _contadorId++;
-            Id = _contadorId;
+          
+            Id = ++_contadorId;
         }
     }
 }

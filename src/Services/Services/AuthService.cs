@@ -2,17 +2,14 @@
 using Domain.Interfaces;
 using Domain.Validation.ModelDataAnnotationCheck;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationLayer.Services
 {
     public class AuthService : IAuthService
     {
-        IUsuarioRepository _usuarioRepository;
-        IModelDataAnnotationCheck _modelDataAnnotationCheck;
+        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
         private Usuario _currentUser;
 
         public AuthService(IUsuarioRepository usuarioRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
@@ -21,34 +18,67 @@ namespace ApplicationLayer.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public void ValidateModel(IUsuario usuario)
+        public ICollection<ValidationResult> ValidateModel(IUsuario usuario)
         {
-            _modelDataAnnotationCheck.ValidateModel(usuario);
+            return _modelDataAnnotationCheck.ValidateModel(usuario);
         }
 
         public Usuario Login(string username, string contraseña)
         {
-            var usuario = _usuarioRepository.Authenticate(username, contraseña);
-            if (usuario != null)
+            try
             {
-                _currentUser = usuario; // Almacenar usuario autenticado
+                var usuario = _usuarioRepository.Authenticate(username, contraseña);
+                if (usuario != null)
+                {
+                    _currentUser = usuario; // Almacenar usuario autenticado
+                    return usuario;
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("Credenciales inválidas.");
+                }
             }
-            return usuario;
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error inesperado durante el inicio de sesión.", ex);
+            }
         }
 
         public void Register(Usuario usuario)
         {
-            ValidateModel(usuario);
-            _usuarioRepository.Add(usuario);
+            var validationResults = ValidateModel(usuario);
+            if (validationResults.Any())
+            {
+                throw new ValidationException("Error en la validación del usuario: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+            }
+            try
+            {
+                _usuarioRepository.Add(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error inesperado durante el registro.", ex);
+            }
         }
 
         public bool CheckUsername(string username)
         {
-            return _usuarioRepository.GetByUsername(username);
+            try
+            {
+                return _usuarioRepository.GetByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error al verificar el nombre de usuario.", ex);
+            }
         }
 
         public Usuario GetCurrentUser()
         {
+            if (_currentUser == null)
+            {
+                throw new InvalidOperationException("No hay ningún usuario autenticado.");
+            }
             return _currentUser;
         }
     }

@@ -36,16 +36,16 @@ namespace Domain.Entities
 
         public Habitacion()
         {
-            _contadorId++;
-            Id = _contadorId;
+            
+            Id = ++_contadorId;
         }
     }
 
     public enum TipoHabitacion
     {
-        Default = 0,
-        Economic = 1,
-        Standard = 2,
-        Premium = 3
+        Economica = 1,  // Ahora "Economica" tiene el valor 1
+        Estándar = 2,   // "Estándar" tiene el valor 2
+        Premium = 3,    // "Premium" tiene el valor 3
+        Lujo = 4
     }
 }

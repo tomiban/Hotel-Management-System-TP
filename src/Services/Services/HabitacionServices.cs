@@ -1,13 +1,17 @@
-﻿using Domain.Validation.ModelDataAnnotationCheck;
+﻿using Domain.Entities;
 using Domain.Interfaces;
-using Domain.Entities;
+using Domain.Validation.ModelDataAnnotationCheck;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ApplicationLayer.Services
 {
     public class HabitacionServices : IHabitacionServices
     {
-        IModelDataAnnotationCheck _modelDataAnnotationCheck;
-        IHabitacionRepository _habitacionRepository;
+        private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
+        private readonly IHabitacionRepository _habitacionRepository;
 
         public HabitacionServices(IHabitacionRepository habitacionRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
         {
@@ -15,50 +19,92 @@ namespace ApplicationLayer.Services
             _habitacionRepository = habitacionRepository;
         }
 
-        public void ValidateModel(IHabitacion habitacion)
+        public ICollection<ValidationResult> ValidateModel(IHabitacion habitacion)
         {
-            _modelDataAnnotationCheck.ValidateModel(habitacion);
+            return _modelDataAnnotationCheck.ValidateModel(habitacion);
         }
 
         public void Add(Habitacion habitacion)
         {
-            ValidateModel(habitacion);
-            _habitacionRepository.Add(habitacion);
+            var validationResults = ValidateModel(habitacion);
+            if (validationResults.Any())
+            {
+                throw new ValidationException("Error en la validación de la habitación: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+            }
+            try
+            {
+                _habitacionRepository.Add(habitacion);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error inesperado al agregar la habitación.", ex);
+            }
         }
 
         public void Update(Habitacion habitacion)
         {
-            ValidateModel(habitacion);
-            _habitacionRepository.Update(habitacion);
+            var validationResults = ValidateModel(habitacion);
+            if (validationResults.Any())
+            {
+                throw new ValidationException("Error en la validación de la habitación: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+            }
+            try
+            {
+                _habitacionRepository.Update(habitacion);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error inesperado al actualizar la habitación.", ex);
+            }
         }
 
         public void Delete(int id)
         {
-            _habitacionRepository.Delete(id);
+            try
+            {
+                _habitacionRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error inesperado al eliminar la habitación.", ex);
+            }
         }
 
-        public  List<Habitacion> GetAll()
+        public List<Habitacion> GetAll()
         {
-            return  _habitacionRepository.GetAll();
+            try
+            {
+                return _habitacionRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error al obtener las habitaciones.", ex);
+            }
         }
 
         public Habitacion GetById(int id)
         {
-            return _habitacionRepository.GetById(id);
+            try
+            {
+                return _habitacionRepository.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Ocurrió un error al obtener la habitación con id {id}.", ex);
+            }
         }
 
         public bool CheckNroHabitacion(int id)
         {
-            var habitacion = _habitacionRepository.GetById(id);
-
-            if (habitacion == null)
+            try
             {
-                return false;
+                var habitacion = _habitacionRepository.GetById(id);
+                return habitacion != null;
             }
-          
-            return true;
-            
-          
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Ocurrió un error al verificar el número de la habitación.", ex);
+            }
         }
     }
 }

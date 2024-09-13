@@ -45,14 +45,14 @@ namespace Domain.Entities
 
         public Usuario()
         {
-            _contadorId++;
-            Id = _contadorId;
+           
+            Id = ++_contadorId;
         }
     }
 
     public enum Role
     {
-        Admin,
-        Guest
+        Admin = 1,
+        Cliente = 2
     }
 }

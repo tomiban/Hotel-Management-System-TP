@@ -24,7 +24,7 @@ namespace Presentation.Views
 
         public string Contraseña => txtContraseña.Text;
 
-        public Role Role => Role.Guest;
+        public Role Role => Role.Cliente;
 
         public RegisterView()
         {

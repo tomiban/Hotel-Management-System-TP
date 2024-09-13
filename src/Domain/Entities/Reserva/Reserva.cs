@@ -7,7 +7,7 @@ namespace Domain.Entities
     [MemoryPackable]
     public partial class Reserva : IReserva
     {
-        private int _contadorId;
+        private static int _contadorId;
         public int Id { get; set; }
 
         [Required(ErrorMessage = "La fecha de inicio es requerida.")]
@@ -19,20 +19,15 @@ namespace Domain.Entities
         public DateTime FechaFin { get; set; }
 
         [Required(ErrorMessage = "El ID de la habitación es requerido.")]
-        
-        public int IdHabitacion { get; set; }
         public int NroHabitacion { get; set; }
 
         [Required(ErrorMessage = "El ID del usuario es requerido.")]
         public int IdUsuario { get; set; }
         public string Username { get; set; }
 
-        
-
         public Reserva()
         {
-            _contadorId++;
-            Id = _contadorId;
+            Id = ++_contadorId; // Incrementar el contador de ID de manera estática
         }
     }
 }

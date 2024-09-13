@@ -26,9 +26,10 @@ namespace PresentationLayer.Components
 
         Dictionary<TipoHabitacion, Color> tipoHabitacionColors = new Dictionary<TipoHabitacion, Color>
         {
-            { TipoHabitacion.Economic, Color.LightBlue },
-            { TipoHabitacion.Standard, Color.LightGreen },
-            { TipoHabitacion.Premium, Color.Gold },
+            { TipoHabitacion.Economica, Color.LightBlue },
+            { TipoHabitacion.Estándar, Color.LightGreen },
+            { TipoHabitacion.Lujo, Color.Silver },
+            { TipoHabitacion.Premium, Color.Gold }
         };
 
         public HabitacionCard(Habitacion habitacion)

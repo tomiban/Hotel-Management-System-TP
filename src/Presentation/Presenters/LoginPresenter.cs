@@ -49,7 +49,7 @@ namespace Presentation.Presenters
                 {
                     _adminPresenter.Value.GetAdminView().ShowView();
                 }
-                else if (usuario.Role == Role.Guest)
+                else if (usuario.Role == Role.Cliente)
                 {
                     _guestPresenter.Value.GetGuestView().ShowView();
                 }

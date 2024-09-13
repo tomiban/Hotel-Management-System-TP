@@ -50,7 +50,6 @@ namespace PresentationLayer.Presenters
             {
                 FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
                 FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
-                IdHabitacion = habitacionSeleccionada.HabitacionId,
                 NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
                 Username = usuarioAutenticado.Username,
                 IdUsuario = usuarioAutenticado.Id
