@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PresentationLayer.Utils.EventHelper" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Helpers\EventHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PresentationLayer.Helpers.SkinHelper" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Helpers\SkinHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Presentation.Presenters.AdminPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAABAAAAAAAAAAAAgAAAAAAAAAAACAAAAAACAA=</HashCode>
+      <FileName>Presenters\AdminPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Presenters.CrearEditarHabitacionPresenter" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Presenters\CrearEditarHabitacionPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Presentation.Presenters.LoginPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAoAAAAAAAAAACAAgAAAAAAAAAAJCAAAAAAEAA=</HashCode>
+      <FileName>Presenters\LoginPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Presenters.RegisterPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAgAAAAAAAAAAAAAAAAAAAAAAAEAGAAAAAAAAQ=</HashCode>
+      <FileName>Presenters\RegisterPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PresentationLayer.Presenters.GuestPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Presenters\GuestPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Views.AdminView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QGAFg+gKISoAgKBMEQLEAAL+EwUGQAQAkIKUAgYOhIA=</HashCode>
+      <FileName>Views\AdminView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Views.CrearEditarHabitacionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAAACAkAAAAhADQgAAzAAAAQAAAAAAAQQQABAA=</HashCode>
+      <FileName>Views\CrearEditarHabitacionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Views.GuestView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEhABSgyAGCQAABEiQCEAAHmU2T5AAQgJJBIAQQAAAg=</HashCode>
+      <FileName>Views\GuestView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Views.LoginView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAAACEAgQCAAhACAQAAAEQDgAAAAABgAAA=</HashCode>
+      <FileName>Views\LoginView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Views.RegisterView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAIGCQAAIEkRCAgAACASAAAkQgAGoIAgQgAAA=</HashCode>
+      <FileName>Views\RegisterView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Presentation.Program" Collapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Presentation.Presenters.IAdminPresenter" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Presenters\IAdminPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Presenters.ILoginPresenter" Collapsed="true">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAgAAAAAAAAAABAAAAAAAEAA=</HashCode>
+      <FileName>Presenters\ILoginPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Presenters.IRegisterPresenter" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAAAAAAAQ=</HashCode>
+      <FileName>Presenters\IRegisterPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PresentationLayer.Presenters.IGuestPresenter" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presenters\IGuestPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Views.IAdminView" Collapsed="true">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAgEgAAAAAAIAAEQAAAAACEAAAAAQAAAAAAAIIAAA=</HashCode>
+      <FileName>Views\IAdminView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Views.ICrearEditarHabitacion" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAhAAAgAAQAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Views\ICrearEditarHabitacion.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Views.ILoginView" Collapsed="true">
+    <Position X="4.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAQAAAgACAAAAAAQCgAAAAAAAAAA=</HashCode>
+      <FileName>Views\ILoginView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Presentation.Views.IRegisterView" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAIEEQAAgAACAAAAAgQAAGAAAgAAAAA=</HashCode>
+      <FileName>Views\IRegisterView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PresentationLayer.Views.IGuestView" Collapsed="true">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAQAAAAACAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\IGuestView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
