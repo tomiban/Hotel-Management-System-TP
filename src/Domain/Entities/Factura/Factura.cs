@@ -20,12 +20,11 @@ namespace Domain.Entities.Factura
         public Reserva Reserva { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "El monto total debe ser positivo.")]
-        public double MontoTotal
+        public decimal MontoTotal
         {
             get
             {
-                //return Reserva.Habitacion.PrecioPorNoche * Reserva.CantidadNoches;
-                return 0;
+                return Reserva.Habitacion.PrecioPorNoche * Reserva.DiasDeEstadia;
             }
         }
 
