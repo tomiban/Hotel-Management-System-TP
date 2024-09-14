@@ -4,6 +4,7 @@ using Domain.Interfaces;
 using PresentationLayer.Components;
 using PresentationLayer.Views;
 using Services.Services.ReservaServices;
+using System.ComponentModel.DataAnnotations;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PresentationLayer.Presenters
@@ -15,7 +16,7 @@ namespace PresentationLayer.Presenters
         IAuthService _authService;
         IHabitacionServices _habitacionServices;
 
-        public GuestPresenter(IGuestView view,IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService)
+        public GuestPresenter(IGuestView view, IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService)
         {
             _view = view;
             _reservaService = reservaService;
@@ -30,35 +31,47 @@ namespace PresentationLayer.Presenters
 
         public void HandleRealizarReserva(object? sender, EventArgs e)
         {
-            var habitacionSeleccionada = sender as HabitacionCard;
-            if (habitacionSeleccionada == null)
+            try
             {
-                _view.ShowMessage("Debe seleccionar una habitación.", "Error");
-                return;
+
+                var habitacionSeleccionada = sender as HabitacionCard;
+                if (habitacionSeleccionada == null)
+                {
+                    _view.ShowMessage("Debe seleccionar una habitación.", "Error");
+                    return;
+                }
+
+                var usuarioAutenticado = _authService.GetCurrentUser();
+
+                if (usuarioAutenticado == null)
+                {
+                    _view.ShowMessage("Debe iniciar sesión antes de realizar una reserva.", "Error");
+                    return;
+                }
+
+
+                var reserva = new Reserva()
+                {
+                    FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
+                    FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
+                    NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
+                    Username = usuarioAutenticado.Username,
+                    IdUsuario = usuarioAutenticado.Id
+                };
+
+                _reservaService.AgregarReserva(reserva);
+
+                _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
+                CargarHabitaciones();
             }
-
-            var usuarioAutenticado = _authService.GetCurrentUser();
-
-            if (usuarioAutenticado == null)
+            catch (ValidationException ex)
             {
-                _view.ShowMessage("Debe iniciar sesión antes de realizar una reserva.", "Error");
-                return;
+                _view.ShowMessage($"{ex.Message}", "Error de validación");
             }
-
-
-            var reserva = new Reserva()
+            catch (Exception ex)
             {
-                FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
-                FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
-                NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
-                Username = usuarioAutenticado.Username,
-                IdUsuario = usuarioAutenticado.Id
-            };
-
-            _reservaService.AgregarReserva(reserva);
-
-            _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
-            CargarHabitaciones();
+                _view.ShowMessage($"Error al guardar la reserva: {ex.Message}", "Error");
+            }
         }
 
         public void CargarHabitaciones()

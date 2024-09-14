@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
 using PresentationLayer.Presenters;
+using System.ComponentModel.DataAnnotations;
 using Unity;
 
 namespace Presentation.Presenters
@@ -36,33 +37,38 @@ namespace Presentation.Presenters
             try
             {
                 var usuario = _authService.Login(_view.Username, _view.Password);
-
-                if (usuario == null)
-                {
-                    _view.ShowMessage("Usuario o contraseña incorrectos.", "Error");
-                    return;
-                }
-
                 _view.HideView();
 
-                if (usuario.Role == Role.Admin)
+                switch (usuario.Role)
                 {
-                    _adminPresenter.Value.GetAdminView().ShowView();
+                    case Role.Admin:
+                        _adminPresenter.Value.GetAdminView().ShowView();
+                        break;
+                    case Role.Cliente:
+                        _guestPresenter.Value.GetGuestView().ShowView();
+                        break;
+                    default:
+                        _view.ShowMessage("Rol inválido", "Error");
+                        break;
                 }
-                else if (usuario.Role == Role.Cliente)
-                {
-                    _guestPresenter.Value.GetGuestView().ShowView();
-                }
-                else
-                {
-                    _view.ShowMessage("Rol inválido", "Error");
-                }
+            }
+            catch (ValidationException ex)
+            {
+                // Mostrar errores de validación en la vista
+                _view.ShowMessage($"Validación fallida: {ex.Message}", "Error");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Mostrar errores de credenciales inválidas en la vista
+                _view.ShowMessage("Usuario o contraseña incorrectos.", "Credenciales inválidas");
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrió un error al iniciar sesión.", "Error");
+                // Cualquier otro error inesperado
+                _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
         }
+
 
         public void OnRegisterRedirect(object? sender, EventArgs e)
         {
@@ -76,6 +82,5 @@ namespace Presentation.Presenters
                 _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
-
     }
 }

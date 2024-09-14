@@ -2,9 +2,6 @@
 using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
 using InfraestructureLayer.Helpers;
-using System.Runtime.CompilerServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 
 namespace Infraestructure.DataAccess.Repositories
 {
@@ -22,22 +19,16 @@ namespace Infraestructure.DataAccess.Repositories
             _usuarios = GetAll(); // Cargar usuarios al iniciar el repositorio
         }
 
-        public void  Add(Usuario usuario)
+        public void Add(Usuario usuario)
         {
             try
             {
                 _usuarios.Add(usuario);
-                 _persistenceService.Save(FILE_PATH, _usuarios);
-
+                _persistenceService.Save(FILE_PATH, _usuarios);
             }
             catch (IOException ex)
             {
-
-                throw new ApplicationException($"Error al guardar los datos del usuario {ex.Message}: ", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException($"Error al agregar usuario: {ex.Message}", ex);
+                throw new ApplicationException($"Error al guardar los datos del usuario: {ex.Message}", ex);
             }
         }
 
@@ -45,9 +36,8 @@ namespace Infraestructure.DataAccess.Repositories
         {
             try
             {
-                 return  _persistenceService.Load<List<Usuario>>(FILE_PATH) ?? new List<Usuario>();
+                return _persistenceService.Load<List<Usuario>>(FILE_PATH) ?? new List<Usuario>();
             }
-
             catch (Exception ex)
             {
                 throw new ApplicationException($"Error al obtener usuarios: {ex.Message}", ex);
@@ -61,7 +51,7 @@ namespace Infraestructure.DataAccess.Repositories
                 var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
                 if (usuario == null)
                 {
-                    throw new NullReferenceException();
+                    throw new KeyNotFoundException($"Usuario con ID {id} no encontrado.");
                 }
                 return usuario;
             }
@@ -75,42 +65,41 @@ namespace Infraestructure.DataAccess.Repositories
         {
             try
             {
-                var item = _usuarios.FirstOrDefault(u => u.Id == usuario.Id);
-                if (item == null)
+                var existingUser = _usuarios.FirstOrDefault(u => u.Id == usuario.Id);
+                if (existingUser == null)
                 {
-                    throw new NullReferenceException();
+                    throw new KeyNotFoundException($"Usuario con ID {usuario.Id} no encontrado.");
                 }
-                usuario.Nombre = item.Nombre;
-                usuario.Username = item.Username;
-                usuario.Contraseña = item.Contraseña;
-                usuario.Role = item.Role;
-                usuario.Telefono = item.Telefono;
 
-                 _persistenceService.Save(FILE_PATH, _usuarios);
+                // Actualizar las propiedades del usuario existente
+                existingUser.Nombre = usuario.Nombre;
+                existingUser.Apellido = usuario.Apellido;
+                existingUser.Username = usuario.Username;
+                existingUser.Contraseña = usuario.Contraseña;
+                existingUser.Edad = usuario.Edad;
+                existingUser.Telefono = usuario.Telefono;
+                existingUser.Role = usuario.Role;
+
+                _persistenceService.Save(FILE_PATH, _usuarios);
             }
             catch (IOException ex)
             {
-
-                throw new ApplicationException($"Error al guardar los datos del usuario {ex.Message}: ", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException($"Error al actualizar usuario: {ex.Message}", ex);
+                throw new ApplicationException($"Error al guardar los datos del usuario: {ex.Message}", ex);
             }
         }
 
-        public  void  Delete(int id)
+        public void Delete(int id)
         {
             try
             {
                 var usuario = _usuarios.FirstOrDefault(u => u.Id == id);
                 if (usuario == null)
                 {
-                    throw new NullReferenceException();
+                    throw new KeyNotFoundException($"Usuario con ID {id} no encontrado.");
                 }
 
                 _usuarios.Remove(usuario);
-                 _persistenceService.Save(FILE_PATH, _usuarios);
+                _persistenceService.Save(FILE_PATH, _usuarios);
             }
             catch (Exception ex)
             {
@@ -118,7 +107,6 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        // Método específico para buscar un usuario por username
         public bool GetByUsername(string username)
         {
             try
@@ -142,6 +130,5 @@ namespace Infraestructure.DataAccess.Repositories
                 throw new ApplicationException($"Error al autenticar usuario: {ex.Message}", ex);
             }
         }
-
     }
 }

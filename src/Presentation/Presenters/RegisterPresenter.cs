@@ -2,6 +2,7 @@ using ApplicationLayer.Services;
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using System.ComponentModel.DataAnnotations;
 using Unity;
 
 namespace Presentation.Presenters
@@ -42,13 +43,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                var existingUser = _authService.CheckUsername(_view.Username);
-
-                if (existingUser)
-                {
-                    _view.ShowMessage("El nombre de usuario ya existe.", "Error");
-                    return;
-                }
+                _authService.CheckUsername(_view.Username);
 
                 var newUser = new Usuario
                 {
@@ -69,15 +64,23 @@ namespace Presentation.Presenters
 
                 _view.HideView();
             }
+            catch (ValidationException ex)
+            {
+                // Mostrar los errores de validación del servicio
+                _view.ShowMessage($"{ex.Message}", "Error de validación");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Caso de error de acceso no autorizado
+                _view.ShowMessage($"Error de autenticación: {ex.Message}", "Error de autenticación");
+            }
             catch (IOException ex)
             {
                 _view.ShowMessage($"Error al guardar los datos. Intente nuevamente.", "Error");
-
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"{ex.Message}", "Error");
-
+                _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
         }
 

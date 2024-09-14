@@ -2,7 +2,9 @@
 using Domain.Interfaces;
 using Domain.Validation.ModelDataAnnotationCheck;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ApplicationLayer.Services
 {
@@ -18,6 +20,7 @@ namespace ApplicationLayer.Services
             _usuarioRepository = usuarioRepository;
         }
 
+
         public ICollection<ValidationResult> ValidateModel(IUsuario usuario)
         {
             return _modelDataAnnotationCheck.ValidateModel(usuario);
@@ -25,51 +28,33 @@ namespace ApplicationLayer.Services
 
         public Usuario Login(string username, string contraseña)
         {
-            try
+            var usuario = _usuarioRepository.Authenticate(username, contraseña);
+            if (usuario == null)
             {
-                var usuario = _usuarioRepository.Authenticate(username, contraseña);
-                if (usuario != null)
-                {
-                    _currentUser = usuario; // Almacenar usuario autenticado
-                    return usuario;
-                }
-                else
-                {
-                    throw new UnauthorizedAccessException("Credenciales inválidas.");
-                }
+                throw new UnauthorizedAccessException("Credenciales inválidas.");
             }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Error inesperado durante el inicio de sesión.", ex);
-            }
+
+            _currentUser = usuario;
+            return usuario;
         }
+
 
         public void Register(Usuario usuario)
         {
             var validationResults = ValidateModel(usuario);
             if (validationResults.Any())
             {
-                throw new ValidationException("Error en la validación del usuario: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+                throw new ValidationException(string.Join("\n", validationResults.Select(v => v.ErrorMessage)));
             }
-            try
-            {
-                _usuarioRepository.Add(usuario);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Ocurrió un error inesperado durante el registro.", ex);
-            }
+            _usuarioRepository.Add(usuario);
         }
 
-        public bool CheckUsername(string username)
+
+        public void CheckUsername(string username)
         {
-            try
+            if (_usuarioRepository.GetByUsername(username))
             {
-                return _usuarioRepository.GetByUsername(username);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Ocurrió un error al verificar el nombre de usuario.", ex);
+                throw new ValidationException("El nombre de usuario ya existe.");
             }
         }
 

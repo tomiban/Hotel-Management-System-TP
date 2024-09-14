@@ -8,7 +8,7 @@ namespace ApplicationLayer.Services
     {
         Usuario Login(string username, string contraseña);
         void Register(Usuario usuario);
-        bool CheckUsername(string username);
+        void CheckUsername(string username);
         Usuario GetCurrentUser();
         ICollection<ValidationResult> ValidateModel(IUsuario usuario);
     }

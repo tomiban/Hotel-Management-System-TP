@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using System.ComponentModel.DataAnnotations;
 
 namespace Presentation.Presenters
 {
@@ -21,11 +22,6 @@ namespace Presentation.Presenters
             _view.NavigateToAdminView += OnAdminRedirect;
             
         }
-
-        //TODO: Editar datos formulario segun es crear o editar
-        //TODO: Bindear datos de la lista a la lista de material
-        //TODO: Buscar forma para que en editar se carguen los datos de esa habitacion}
-
 
         public void OnAdminRedirect(object? sender, EventArgs e)
         {
@@ -73,10 +69,15 @@ namespace Presentation.Presenters
                 _view.ShowMessage("Habitación guardada correctamente.", "Información");
                 _view.LimpiarCampos();
             }
+            catch (ValidationException ex)
+            {
+                _view.ShowMessage($"{ex.Message}", "Error de validación");
+            }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrio un error al guardar la habitación.", "Error");
+                _view.ShowMessage($"{ex.Message}", "Error");
             }
+           
 
         }
 

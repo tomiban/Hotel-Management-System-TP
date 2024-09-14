@@ -28,9 +28,26 @@ namespace ApplicationLayer.Services
             var validationResults = ValidateModel(reserva);
             if (validationResults.Any())
             {
-                throw new ValidationException("Error en la validación de la reserva: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+                throw new ValidationException("Error en la validación de la reserva: " +
+                    string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
             }
+
             _reservaRepository.Add(reserva);
+        }
+
+        public List<Reserva> GetAll()
+        {
+            return _reservaRepository.GetAll();
+        }
+
+        public Reserva GetById(int id)
+        {
+            return _reservaRepository.GetById(id);
+        }
+
+        public void Delete(int id)
+        {
+            _reservaRepository.Delete(id);
         }
     }
 }
