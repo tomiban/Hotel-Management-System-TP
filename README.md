@@ -67,16 +67,16 @@ El objetivo principal fue aplicar los conocimientos adquiridos para desarrollar 
 ## 🖼️ Capturas de Pantalla
 
 ### Pantalla de Login
-![Pantalla de inicio](assets/login.png)
+![Pantalla de inicio](./Assets/login.png)
 
 ### Pantalla de Registro
-![Pantalla de inicio](assets/registro.png)
+![Pantalla de inicio](./Assets/registro.png)
 
 ### Pantalla de Administrador
-![Pantalla de inicio](assets/habitaciones-admin.png)
+![Pantalla de inicio](./Assets/habitaciones-admin.png)
 
 ### Pantalla de Cliente
-![Gestión de reservas](assets/habitaciones-cliente.png)
+![Gestión de reservas](./Assets/habitaciones-cliente.png)
 
 
 ## 🚀 Instalación
