@@ -73,10 +73,10 @@ El objetivo principal fue aplicar los conocimientos adquiridos para desarrollar 
 ![Pantalla de inicio](assets/registro.png)
 
 ### Pantalla de Administrador
-![Pantalla de inicio](assets/admin.png)
+![Pantalla de inicio](assets/habitaciones-admin.png)
 
 ### Pantalla de Cliente
-![Gestión de reservas](assets/cliente.png)
+![Gestión de reservas](assets/habitaciones-cliente.png)
 
 
 ## 🚀 Instalación
@@ -122,5 +122,5 @@ El objetivo principal fue aplicar los conocimientos adquiridos para desarrollar 
 
 Este proyecto fue desarrollado en conjunto por:
 
-- [@tmendezz](https://github.com/tmendezz)
-- [@tomiban](https://github.com/tomiban) 
+- Tiziano Mendez ([@tmendezz](https://github.com/tmendezz))
+- Tomás Banchio
