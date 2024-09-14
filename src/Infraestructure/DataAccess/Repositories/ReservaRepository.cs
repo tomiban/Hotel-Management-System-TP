@@ -33,7 +33,7 @@ namespace Infraestructure.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error al agregar reserva: {ex.Message}", ex);
+                throw new ApplicationException($"{ex.Message}", ex);
             }
         }
 

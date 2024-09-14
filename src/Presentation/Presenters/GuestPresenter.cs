@@ -27,8 +27,6 @@ namespace PresentationLayer.Presenters
         }
 
 
-        // Todo ==> Validar fechas de inicio y fin
-
         public void HandleRealizarReserva(object? sender, EventArgs e)
         {
             try
@@ -70,7 +68,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error al guardar la reserva: {ex.Message}", "Error");
+                _view.ShowMessage($"{ex.Message}", "Error");
             }
         }
 

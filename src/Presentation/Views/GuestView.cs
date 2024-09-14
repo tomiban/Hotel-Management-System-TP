@@ -22,8 +22,6 @@ namespace Presentation.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer habitacionCardContainer;
 
-
-
         public GuestView()
         {
             InitializeComponent();
@@ -60,7 +58,6 @@ namespace Presentation.Views
 
         public void CargarHabitaciones(List<Habitacion> habitaciones)
         {
-            //Pasrle desde el presentador la lista de habitaciones
             flowLayoutPanel.Controls.Clear();
           
             foreach (var habitacion in habitaciones)
@@ -70,7 +67,6 @@ namespace Presentation.Views
                 // Suscribirse al evento ReservarButtonClick de cada tarjeta
                 cardHabitacion.OnReservarButtonClicked += (s, e) =>
                 {
-                    // También puedes invocar eventos personalizados si los tienes
                     EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
                 };
             }

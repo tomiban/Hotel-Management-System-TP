@@ -28,8 +28,8 @@ namespace ApplicationLayer.Services
             var validationResults = ValidateModel(reserva);
             if (validationResults.Any())
             {
-                throw new ValidationException("Error en la validación de la reserva: " +
-                    string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
+                throw new ValidationException(
+                    string.Join("\n", validationResults.Select(v => v.ErrorMessage)));
             }
 
             _reservaRepository.Add(reserva);
