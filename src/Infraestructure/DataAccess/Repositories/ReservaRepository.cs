@@ -1,7 +1,11 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
 using InfraestructureLayer.Helpers;
 using Services.Services.ReservaServices;
+using System.Diagnostics;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace Infraestructure.DataAccess.Repositories
 {
@@ -113,10 +117,15 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
+        // Queremos asegurarnos de que una nueva reserva no solape con una reserva existente.Esto se traduce en dos casos de solapamiento:
+        //La nueva reserva empieza antes de que termine la reserva existente.
+        //La nueva reserva termina después de que empiece la reserva existente.
         public bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
         {
-            // Verificar si alguna reserva de la misma habitación se solapa con las fechas solicitadas
-            return !_reservas.Any(r => r.NroHabitacion == nroHabitacion && (fechaInicio < r.FechaFin && fechaFin > r.FechaInicio));
+            return !_reservas
+                .Any(r => r.NroHabitacion == nroHabitacion &&
+                                             fechaInicio < r.FechaFin &&   // Verifica si la nueva reserva empieza antes de que termine una reserva existente.
+                                             fechaFin > r.FechaInicio.AddDays(-1)); //Verifica si la nueva reserva termina después del día anterior al que comienza una reserva existente. se resta un dia a la existente para permitir que la nueva reserva termine el día antes de que comience una reserva existente
         }
     }
 }
