@@ -57,6 +57,17 @@ namespace PresentationLayer.Presenters
                     IdUsuario = usuarioAutenticado.Id
                 };
 
+                var fechaInicio = habitacionSeleccionada.FechaDesdePicker.Value;
+                var fechaFin = habitacionSeleccionada.FechaHastaPicker.Value;
+                var nroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last());
+
+                // Verificar si la habitación está disponible en las fechas seleccionadas
+                if (!_reservaService.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin))
+                {
+                    _view.ShowMessage("La habitación no está disponible en las fechas seleccionadas.", "Error");
+                    return;
+                }
+
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");

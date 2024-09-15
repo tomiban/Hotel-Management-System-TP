@@ -49,5 +49,10 @@ namespace ApplicationLayer.Services
         {
             _reservaRepository.Delete(id);
         }
+
+        public bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
+        {
+            return _reservaRepository.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin);
+        }
     }
 }
