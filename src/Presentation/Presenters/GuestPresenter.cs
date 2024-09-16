@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using PresentationLayer.Components;
+using PresentationLayer.Factories;
 using PresentationLayer.Views;
 using Services.Services.ReservaServices;
 using System.ComponentModel.DataAnnotations;
@@ -26,8 +27,6 @@ namespace PresentationLayer.Presenters
             CargarHabitaciones();
         }
 
-
-        // Todo ==> Validar fechas de inicio y fin
 
         public void HandleRealizarReserva(object? sender, EventArgs e)
         {
@@ -62,7 +61,7 @@ namespace PresentationLayer.Presenters
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
-                CargarHabitaciones();
+                //CargarHabitaciones();
             }
             catch (ValidationException ex)
             {
@@ -74,10 +73,25 @@ namespace PresentationLayer.Presenters
             }
         }
 
+        // Cargar las habitaciones y crear las tarjetas usando la fábrica
         public void CargarHabitaciones()
         {
-            var habitaciones = _habitacionServices.GetAll();
-            _view.CargarHabitaciones(habitaciones);
+            var habitaciones = _habitacionServices.GetAll(); // Obtener todas las habitaciones
+            var habitacionCards = new List<HabitacionCard>();
+
+            // Usar la fábrica para crear las tarjetas de habitaciones
+            foreach (var habitacion in habitaciones)
+            {
+                var habitacionCard = HabitacionCardFactory.CreateHabitacionCard(habitacion);
+
+                // Conectar el evento OnReservarButtonClicked al manejador de eventos
+                habitacionCard.OnReservarButtonClicked += HandleRealizarReserva;
+
+                habitacionCards.Add(habitacionCard);
+            }
+
+            // Pasar las tarjetas al método de la vista para mostrarlas
+            _view.CargarHabitacionCards(habitacionCards);
         }
 
 

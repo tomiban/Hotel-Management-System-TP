@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using PresentationLayer.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,7 @@ namespace PresentationLayer.Views
         event EventHandler OnFiltrarCategoria;
 
         // Método para cargar las habitaciones (esto es opcional, pero útil)
-        void CargarHabitaciones(List<Habitacion> habitaciones);
-        void CargarTipoHabitaciones(List<Habitacion> habitaciones);
+        void CargarHabitacionCards(List<HabitacionCard> habitacionCards);
 
 
 
