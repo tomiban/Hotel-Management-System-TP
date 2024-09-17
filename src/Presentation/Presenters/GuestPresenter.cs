@@ -61,7 +61,7 @@ namespace PresentationLayer.Presenters
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
-                //CargarHabitaciones();
+                CargarHabitaciones();
             }
             catch (ValidationException ex)
             {
@@ -69,7 +69,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error al guardar la reserva: {ex.Message}", "Error");
+                _view.ShowMessage(ex.Message, "Error");
             }
         }
 

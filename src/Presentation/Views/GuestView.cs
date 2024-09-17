@@ -38,6 +38,8 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
+            habitacionCardContainer = new HabitacionCardContainer();
+            tpHabitaciones.Controls.Add(habitacionCardContainer);
             AttachAndRaiseViewEvents();
 
         }
@@ -62,11 +64,11 @@ namespace Presentation.Views
         // Método para cargar las tarjetas de habitaciones
         public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
         {
-            flowLayoutPanel.Controls.Clear(); // Limpiar las tarjetas previas
+            habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
 
             foreach (var card in habitacionCards)
             {
-                flowLayoutPanel.Controls.Add(card); // Añadir cada tarjeta al panel
+                habitacionCardContainer.Controls.Add(card); // Añadir cada tarjeta al panel
             }
         }
 
