@@ -4,7 +4,7 @@
     {
         int Id { get; set; }
         DateTime Fecha { get; set; }
-        double MontoTotal { get; }
+        decimal MontoTotal { get; }
         int IdReserva { get; set; }
         Reserva Reserva { get; set; }
     }

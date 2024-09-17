@@ -27,8 +27,6 @@ namespace PresentationLayer.Presenters
         }
 
 
-        // Todo ==> Validar fechas de inicio y fin
-
         public void HandleRealizarReserva(object? sender, EventArgs e)
         {
             try
@@ -59,6 +57,17 @@ namespace PresentationLayer.Presenters
                     IdUsuario = usuarioAutenticado.Id
                 };
 
+                var fechaInicio = habitacionSeleccionada.FechaDesdePicker.Value;
+                var fechaFin = habitacionSeleccionada.FechaHastaPicker.Value;
+                var nroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last());
+
+                // Verificar si la habitación está disponible en las fechas seleccionadas
+                if (!_reservaService.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin))
+                {
+                    _view.ShowMessage("La habitación no está disponible en las fechas seleccionadas.", "Error");
+                    return;
+                }
+
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
@@ -70,7 +79,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error al guardar la reserva: {ex.Message}", "Error");
+                _view.ShowMessage($"{ex.Message}", "Error");
             }
         }
 
