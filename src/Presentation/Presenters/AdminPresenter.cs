@@ -32,6 +32,7 @@ namespace Presentation.Presenters
             {
                 _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
                 _view.EliminarHabitacion += OnEliminarHabitacion;
+                _view.EditarHabitacion += OnEditHabitacion;
                 _eventosSuscritos = true;
             }
         }
@@ -71,6 +72,34 @@ namespace Presentation.Presenters
             catch (Exception ex)
             {
                 _view.ShowMessage("Error", $"No se pudo eliminar la habitación: {ex.Message}");
+            }
+        }
+
+        public void OnEditHabitacion(object? sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el número de habitación seleccionada
+                int nroHabitacion = _view.ObtenerNroHabitacionSeleccionado();
+                var habitacion = _habitacionServices.GetById(nroHabitacion);
+
+                if (habitacion == null)
+                {
+                    _view.ShowMessage("No se encontró la habitación seleccionada.", "Error");
+                    return;
+                }
+
+                // Redirigir a la vista de Crear/Editar Habitaciones
+                HideView();
+                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
+
+                // Llenar los campos de la vista con la habitación seleccionada
+                _crearEditarHabitacionPresenter.Value.SetEditMode(habitacion);  // Activa el modo de edición
+                crearEditarView.ShowView();
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Error al intentar editar la habitación: {ex.Message}", "Error");
             }
         }
 

@@ -70,11 +70,11 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
-        public Habitacion GetById(int id)
+        public Habitacion GetById(int nroHabitacion)
         {
             try
             {
-                return _habitaciones.FirstOrDefault(h => h.Id == id);
+                return _habitaciones.FirstOrDefault(h => h.NroHabitacion == nroHabitacion);
             }
             catch (ApplicationException ex)
             {
@@ -86,18 +86,24 @@ namespace Infraestructure.DataAccess.Repositories
         {
             try
             {
-                var habitacion = _habitaciones.FirstOrDefault(h => h.Id == entity.Id);
+                var habitacion = _habitaciones.FirstOrDefault(h => h.NroHabitacion == entity.NroHabitacion);
+               
                 if (habitacion == null)
                 {
                     throw new NullReferenceException();
                 }
 
                 habitacion.NroHabitacion = entity.NroHabitacion;
-                habitacion.PrecioPorNoche = entity.PrecioPorNoche;
                 habitacion.TipoHabitacion = entity.TipoHabitacion;
+                habitacion.PrecioPorNoche = entity.PrecioPorNoche;
                 habitacion.Disponible = entity.Disponible;
+                habitacion.Capacidad = entity.Capacidad;
+                habitacion.Descripcion = entity.Descripcion;
 
-                 _persistenceService.Save(FILE_PATH, habitacion);
+
+
+                _persistenceService.Save(FILE_PATH, _habitaciones);
+
             }
             catch (IOException ex)
             {

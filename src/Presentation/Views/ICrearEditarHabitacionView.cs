@@ -12,7 +12,8 @@ namespace Presentation.Views
         int Capacidad{ get; }
 
         void ShowMessage(string title, string message);
-    
+        void SetEditMode(Habitacion habitacion);
+
 
         event EventHandler SaveEvent;
         event EventHandler NavigateToAdminView;

@@ -18,6 +18,7 @@ namespace Presentation.Views
         public event EventHandler EliminarUsuario;
         public event EventHandler SearchHabitacion;
         public event EventHandler SearchUsuario;
+        public event EventHandler EditarHabitacion;
 
         public AdminView()
         {
@@ -36,7 +37,8 @@ namespace Presentation.Views
 
             AttachAndRaiseViewEvents();
             AttachDeleteEvents();
-            
+            AttachEditEvents();
+
             //listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
             listHabitaciones.SelectedIndexChanged += OnHabitacionSelectionChanged;
 
@@ -50,6 +52,14 @@ namespace Presentation.Views
         private void AttachDeleteEvents()
         {
             btnBorrarHab.Click += (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
+        }
+
+        private void AttachEditEvents()
+        {
+            btnEditarHab.Click += (s, e) =>
+            {
+                EventHelper.RaiseEvent(this, EditarHabitacion, EventArgs.Empty);
+            };
         }
         public void SetEliminarHabitacionButtonState(bool enabled)
         {

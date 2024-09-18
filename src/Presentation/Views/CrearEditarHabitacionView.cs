@@ -61,6 +61,23 @@ namespace Presentation.Views
             txtDescripcion.Text = string.Empty;
         }
 
+        public void SetEditMode(Habitacion habitacion)
+        {
+            // Cambiar el título del formulario para indicar que está en modo "Editar"
+            this.Text = "Editar Habitación";
+
+            // Llenar los campos con los datos de la habitación seleccionada
+            txtNroHabitacion.Text = habitacion.NroHabitacion.ToString();
+            cmbTipoHabitacion.SelectedItem = habitacion.TipoHabitacion.ToString();
+            switchDisponibilidad.Checked = habitacion.Disponible;
+            txtPrecioHabitacion.Text = habitacion.PrecioPorNoche.ToString();
+            txtCantidadPersonas.Text = habitacion.Capacidad.ToString();
+            txtDescripcion.Text = habitacion.Descripcion;
+
+            // Cambiar el texto del botón para indicar que se está editando
+            btnGuardarHab.Text = "Actualizar Habitación";
+        }
+
         public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
 
         public TipoHabitacion TipoHabitacion => (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion), cmbTipoHabitacion.SelectedItem.ToString());
