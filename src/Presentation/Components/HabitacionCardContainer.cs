@@ -14,6 +14,7 @@ namespace PresentationLayer.Components
             this.AutoScroll = true;  // Para mostrar el scroll automáticamente si hay muchas tarjetas
             this.WrapContents = true;  // Las tarjetas se acomodarán automáticamente
             this.FlowDirection = FlowDirection.LeftToRight;
+            this.Padding = new Padding(50, 90, 10, 10);
         }
     }
 }

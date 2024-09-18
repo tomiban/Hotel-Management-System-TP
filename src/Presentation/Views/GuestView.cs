@@ -38,6 +38,8 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
+            habitacionCardContainer = new HabitacionCardContainer();
+            tpHabitaciones.Controls.Add(habitacionCardContainer);
             AttachAndRaiseViewEvents();
 
         }
@@ -58,24 +60,18 @@ namespace Presentation.Views
             }
         }
 
-        public void CargarHabitaciones(List<Habitacion> habitaciones)
+
+        // Método para cargar las tarjetas de habitaciones
+        public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
         {
-            //Pasrle desde el presentador la lista de habitaciones
-            flowLayoutPanel.Controls.Clear();
-          
-            foreach (var habitacion in habitaciones)
+            habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
+
+            foreach (var card in habitacionCards)
             {
-                var cardHabitacion = new HabitacionCard(habitacion);
-                flowLayoutPanel.Controls.Add(cardHabitacion);
-                // Suscribirse al evento ReservarButtonClick de cada tarjeta
-                cardHabitacion.OnReservarButtonClicked += (s, e) =>
-                {
-                    // También puedes invocar eventos personalizados si los tienes
-                    EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
-                };
+                habitacionCardContainer.Controls.Add(card); // Añadir cada tarjeta al panel
             }
         }
-       
+
         public void CloseView()
         {
             this.Close();
