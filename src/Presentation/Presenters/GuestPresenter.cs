@@ -5,6 +5,7 @@ using PresentationLayer.Components;
 using PresentationLayer.Factories;
 using PresentationLayer.Views;
 using Services.Services.ReservaServices;
+using System.CodeDom;
 using System.ComponentModel.DataAnnotations;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -25,8 +26,8 @@ namespace PresentationLayer.Presenters
             _habitacionServices = habitacionServices;
             _view.OnRealizarReserva += HandleRealizarReserva;
             CargarHabitaciones();
+            CargarReservas();
         }
-
 
         public void HandleRealizarReserva(object? sender, EventArgs e)
         {
@@ -48,20 +49,29 @@ namespace PresentationLayer.Presenters
                     return;
                 }
 
+                if(habitacionSeleccionada.FechaDesdePicker.Value > habitacionSeleccionada.FechaHastaPicker.Value)
+                    throw new ApplicationException("La fecha de inicio debe ser anterior a la fecha de fin.");
+                
+                if(habitacionSeleccionada.FechaDesdePicker.Value < DateTime.Today)
+                    throw new ApplicationException("La fecha de inicio debe ser posterior a la fecha actual.");
+
+
 
                 var reserva = new Reserva()
                 {
                     FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
                     FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
                     NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
+                    UserId = usuarioAutenticado.Id,
                     Username = usuarioAutenticado.Username,
-                    IdUsuario = usuarioAutenticado.Id
+                    PrecioPorNoche = decimal.Parse((habitacionSeleccionada.PrecioLabel.Text.Replace("$", "").Replace("ARS", "").Trim())),
                 };
 
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
                 CargarHabitaciones();
+                CargarReservas();
             }
             catch (ValidationException ex)
             {
@@ -92,6 +102,14 @@ namespace PresentationLayer.Presenters
 
             // Pasar las tarjetas al método de la vista para mostrarlas
             _view.CargarHabitacionCards(habitacionCards);
+        }
+
+        public void CargarReservas()
+        {
+            var usuarioAutenticado = _authService.GetCurrentUser();
+            var reservasUsuario = _reservaService.GetAll(usuarioAutenticado.Id);
+
+            _view.CargarReservas(reservasUsuario);
         }
 
 

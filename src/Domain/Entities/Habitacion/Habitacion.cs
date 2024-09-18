@@ -32,8 +32,6 @@ namespace Domain.Entities
         public int Capacidad { get; set; }
 
 
-      
-
         public Habitacion()
         {
             

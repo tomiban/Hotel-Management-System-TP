@@ -54,6 +54,18 @@ namespace Infraestructure.DataAccess.Repositories
             }
         }
 
+        public List<Reserva> GetAllByUser(int userId)
+        {
+            try
+            {
+                return _reservas.Where(r => r.UserId == userId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al obtener las reservas del usuario: {ex.Message}", ex);
+            }
+        }
+
         public Reserva GetById(int id)
         {
             throw new NotImplementedException();
@@ -72,7 +84,7 @@ namespace Infraestructure.DataAccess.Repositories
                     reservaExistente.FechaFin = entity.FechaFin;
                     reservaExistente.NroHabitacion = entity.NroHabitacion;
                     reservaExistente.Username = entity.Username;
-                    reservaExistente.IdUsuario = entity.IdUsuario;
+               
 
                     _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada
                 }

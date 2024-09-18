@@ -12,11 +12,19 @@ namespace ApplicationLayer.Services
         private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
         private readonly IReservaRepository _reservaRepository;
 
+
+
         public ReservaService(IModelDataAnnotationCheck modelDataAnnotationCheck, IReservaRepository reservaRepository)
         {
             _modelDataAnnotationCheck = modelDataAnnotationCheck;
             _reservaRepository = reservaRepository;
         }
+
+        private bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
+        {
+            return _reservaRepository.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin);
+        }
+
 
         public ICollection<ValidationResult> ValidateModel(Reserva reserva)
         {
@@ -32,7 +40,7 @@ namespace ApplicationLayer.Services
                     string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
             }
 
-            var disponible = _reservaRepository.VerificarDisponibilidad(reserva.NroHabitacion, reserva.FechaInicio, reserva.FechaFin);
+            var disponible = VerificarDisponibilidadHabitacion(reserva.NroHabitacion, reserva.FechaInicio, reserva.FechaFin);
 
             if(!disponible)
                 throw new InvalidOperationException("La habitación no está disponible para las fechas seleccionadas.");
@@ -40,9 +48,9 @@ namespace ApplicationLayer.Services
             _reservaRepository.Add(reserva);
         }
 
-        public List<Reserva> GetAll()
+        public List<Reserva> GetAll(int id)
         {
-            return _reservaRepository.GetAll();
+            return _reservaRepository.GetAllByUser(id);
         }
 
         public Reserva GetById(int id)

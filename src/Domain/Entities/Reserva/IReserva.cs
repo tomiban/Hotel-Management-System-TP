@@ -9,8 +9,9 @@ namespace Domain.Interfaces
         DateTime FechaInicio { get; set; }
         DateTime FechaFin { get; set; }
         int NroHabitacion { get; set; }
-        int IdUsuario { get; set; }
+        int UserId { get; set; }
         string Username { get; set; }
-     
+        public int DiasDeEstadia { get; }
+        public Decimal MontoTotal { get; }
     }
 }
