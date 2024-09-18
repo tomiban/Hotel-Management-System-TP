@@ -97,21 +97,26 @@ namespace Presentation.Views
             listReservas.Items.Clear();
             listReservas.Columns.Clear();
 
-            listReservas.Columns.Add("Id");
-            listReservas.Columns.Add("Habitacion");
-            listReservas.Columns.Add("Categoria");
-            listReservas.Columns.Add("Check In");
-            listReservas.Columns.Add("Check Out");
+            listReservas.Columns.Add("Nro", 100);
+            listReservas.Columns.Add("Habitacion", 150);
+            listReservas.Columns.Add("Categoria", 154);
+            listReservas.Columns.Add("Check In", 170);
+            listReservas.Columns.Add("Check Out", 170);
+            listReservas.Columns.Add("Precio Final", 150);
 
+            int contador = 1;
 
             foreach (var reserva in reservas)
             {
-                ListViewItem listItem = new ListViewItem(reserva.Id.ToString());
+                ListViewItem listItem = new ListViewItem(contador.ToString());
                 listItem.SubItems.Add(reserva.NroHabitacion.ToString());
-                listItem.SubItems.Add(reserva.Username);
+                listItem.SubItems.Add(reserva.TipoHabitacion.ToString());
                 listItem.SubItems.Add(reserva.FechaInicio.ToString());
                 listItem.SubItems.Add(reserva.FechaFin.ToString());
-                listItem.SubItems.Add(reserva.MontoTotal.ToString());
+                listItem.SubItems.Add($"{reserva.MontoTotal.ToString("C"):NO} ARS");
+                listReservas.Items.Add(listItem);
+
+                contador++;
             }
         }
 

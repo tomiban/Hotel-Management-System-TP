@@ -62,6 +62,7 @@ namespace PresentationLayer.Presenters
                     FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
                     FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
                     NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
+                    TipoHabitacion = (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion),habitacionSeleccionada.TipoHabitacionLabel.Text),
                     UserId = usuarioAutenticado.Id,
                     Username = usuarioAutenticado.Username,
                     PrecioPorNoche = decimal.Parse((habitacionSeleccionada.PrecioLabel.Text.Replace("$", "").Replace("ARS", "").Trim())),

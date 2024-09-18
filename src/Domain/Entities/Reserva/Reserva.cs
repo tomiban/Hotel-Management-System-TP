@@ -21,6 +21,8 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El ID de la habitación es requerido.")]
         public int NroHabitacion { get; set; }
 
+        public TipoHabitacion TipoHabitacion { get; set; }
+
         public int UserId { get; set; }
 
         public string Username { get; set; }
@@ -32,7 +34,6 @@ namespace Domain.Entities
         public Decimal MontoTotal => DiasDeEstadia * PrecioPorNoche;
 
 
-        
 
         public Reserva()
         {
