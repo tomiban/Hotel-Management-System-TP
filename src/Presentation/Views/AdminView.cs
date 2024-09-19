@@ -11,7 +11,6 @@ namespace Presentation.Views
     public partial class AdminView : MaterialForm, IAdminView
     {
 
-
         public event EventHandler RedirectToCrearEditarHabitacion;
         public event EventHandler RedirectToCrearEditarUsuario;
         public event EventHandler EliminarHabitacion;
@@ -24,6 +23,7 @@ namespace Presentation.Views
         {
             InitializeComponent();
             btnBorrarHab.Enabled = false;
+            btnEditarHab.Enabled = false;
 
             var colorScheme = new ColorScheme(
             Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
@@ -47,6 +47,7 @@ namespace Presentation.Views
         private void OnHabitacionSelectionChanged(object sender, EventArgs e)
         {
             btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
+            btnEditarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
         }
 
         private void AttachDeleteEvents()
@@ -64,6 +65,10 @@ namespace Presentation.Views
         public void SetEliminarHabitacionButtonState(bool enabled)
         {
             btnBorrarHab.Enabled = enabled;
+        }
+        public void SetEditarHabitacionButtonState(bool enabled)
+        {
+            btnEditarHab.Enabled = enabled;
         }
 
         private void AttachAndRaiseViewEvents()

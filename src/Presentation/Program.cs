@@ -60,12 +60,12 @@ namespace Presentation
             Application.SetCompatibleTextRenderingDefault(false);
 
            
-            ILoginPresenter loginPresenter = unityC.Resolve<LoginPresenter>();
+            IAdminPresenter adminPresenter = unityC.Resolve<AdminPresenter>();
             // Obtener la vista de login desde el presentador resuelto.
-            ILoginView loginView = loginPresenter.GetLoginView();
+            IAdminView adminView = adminPresenter.GetAdminView();
 
            
-            Application.Run((LoginView)loginView);
+            Application.Run((AdminView)adminView);
         }
     }
 }

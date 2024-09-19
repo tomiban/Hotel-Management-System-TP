@@ -103,21 +103,42 @@ namespace Presentation.Presenters
             }
         }
 
-
         public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
         {
             try
             {
-               HideView();
-                _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
-             
+                // Ocultar la vista actual (AdminView)
+                HideView();
+
+                // Redirigir a la vista de Crear/Editar habitaciones
+                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
+
+                // Asegurarse de que esté en modo de creación (no edición)
+                _crearEditarHabitacionPresenter.Value.SetAddMode();
+
+                // Mostrar la vista de crear/editar habitación
+                crearEditarView.ShowView();
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
-        
+                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
+
+        //public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //       HideView();
+        //        _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
+
+        //    }
+        //}
 
         public  void CargarHabitaciones()
         {

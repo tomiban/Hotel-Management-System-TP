@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace Presentation.Views
 {
     public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
@@ -45,12 +47,11 @@ namespace Presentation.Views
             // Limpia el campo de texto del número de habitación
             txtNroHabitacion.Text = string.Empty;
 
-            // Restablece el ComboBox a su estado inicial
-            cmbTipoHabitacion.SelectedIndex = -1; // -1 para no seleccionar nada
-
             // Restablece el switch de disponibilidad
             switchDisponibilidad.Checked = false;
 
+            // Limpia el campo de texto del tipo de habitación
+            cmbTipoHabitacion.SelectedItem = 1;
             // Limpia el campo de texto del precio
             txtPrecioHabitacion.Text = string.Empty;
 
@@ -59,12 +60,13 @@ namespace Presentation.Views
 
             // Si tienes algún campo de descripción o adicional, también lo limpias aquí
             txtDescripcion.Text = string.Empty;
+
         }
 
         public void SetEditMode(Habitacion habitacion)
         {
             // Cambiar el título del formulario para indicar que está en modo "Editar"
-            this.Text = "Editar Habitación";
+            materialLabel2.Text = "Editar Habitación";
 
             // Llenar los campos con los datos de la habitación seleccionada
             txtNroHabitacion.Text = habitacion.NroHabitacion.ToString();
@@ -118,6 +120,21 @@ namespace Presentation.Views
         private void CrearEditarHabitacionView_Load(object sender, EventArgs e)
         {
             cmbTipoHabitacion.Items.AddRange(Enum.GetNames(typeof(TipoHabitacion)));
+        }
+
+        public void SetTitle(string title)
+        {
+            materialLabel2.Text = title;  // Actualiza el título del formulario
+        }
+
+        public void SetButtonText(string text)
+        {
+            btnGuardarHab.Text = text;  // Cambia el texto del botón
+        }
+
+        public void SetAddMode(Habitacion habitacion)
+        {
+            throw new NotImplementedException();
         }
     }
 }
