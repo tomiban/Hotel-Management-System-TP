@@ -20,9 +20,7 @@ namespace Presentation.Presenters
             _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
           
            CargarHabitaciones();
-            //CargarUsuarios();
-
-            SubscribeEvents();
+           SubscribeEvents();
 
         }
 
@@ -82,6 +80,7 @@ namespace Presentation.Presenters
                 // Obtener el número de habitación seleccionada
                 int nroHabitacion = _view.ObtenerNroHabitacionSeleccionado();
                 var habitacion = _habitacionServices.GetById(nroHabitacion);
+                _view.SetEditarHabitacionButtonState(false);
 
                 if (habitacion == null)
                 {
@@ -125,20 +124,6 @@ namespace Presentation.Presenters
             }
         }
 
-        //public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //       HideView();
-        //        _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView().ShowView();
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
-
-        //    }
-        //}
 
         public  void CargarHabitaciones()
         {

@@ -25,6 +25,7 @@ namespace Presentation.Views
 
         void ShowMessage(string title, string message);
         void SetEliminarHabitacionButtonState(bool enabled);
+        void SetEditarHabitacionButtonState(bool enabled);
 
         void ShowView();
         void CloseView();
