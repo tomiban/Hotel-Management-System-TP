@@ -22,7 +22,7 @@ namespace Domain.Entities
         public bool Disponible { get; set; }
 
         [Required(ErrorMessage = "La descripción es requerida.")]
-        [MaxLength(100, ErrorMessage = "La descripción debe tener un maximo de 100 caracteres.")]
+        [MaxLength(200, ErrorMessage = "La descripción debe tener un maximo de 200 caracteres.")]
         public string Descripcion { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]

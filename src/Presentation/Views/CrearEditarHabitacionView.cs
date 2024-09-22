@@ -4,97 +4,65 @@ using MaterialSkin.Controls;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
 
 namespace Presentation.Views
 {
     public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
     {
-
         public CrearEditarHabitacionView()
         {
             InitializeComponent();
 
-            var ColorScheme = new ColorScheme(
-                 Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-                 Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-                 Primary.Cyan700,   // Deep Purple base para fondos principales
-                 Accent.Cyan700,         // Acento verde 400 para destacar
+            var colorScheme = new ColorScheme(
+                 Primary.DeepPurple600,
+                 Primary.DeepPurple700,
+                 Primary.Cyan700,
+                 Accent.Cyan700,
                  TextShade.WHITE);
 
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AssociateAndRaiseViewEvents();
         }
-
 
         private void AssociateAndRaiseViewEvents()
         {
             btnGuardarHab.Click += (s, e) => EventHelper.RaiseEvent(this, SaveEvent, EventArgs.Empty);
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
+
         public void LimpiarCampos()
         {
-            // Limpia el campo de texto del número de habitación
+            // Limpiar los campos
             txtNroHabitacion.Text = string.Empty;
-
-            // Restablece el switch de disponibilidad
             switchDisponibilidad.Checked = false;
-
-            // Limpia el campo de texto del tipo de habitación
-            cmbTipoHabitacion.SelectedItem = 1;
-            // Limpia el campo de texto del precio
+            cmbTipoHabitacion.SelectedIndex = -1;  // Seleccionar ninguno
             txtPrecioHabitacion.Text = string.Empty;
-
-            // Limpia el campo de cantidad de personas
             txtCantidadPersonas.Text = string.Empty;
-
-            // Si tienes algún campo de descripción o adicional, también lo limpias aquí
             txtDescripcion.Text = string.Empty;
-
         }
 
         public void SetEditMode(Habitacion habitacion)
         {
-            // Cambiar el título del formulario para indicar que está en modo "Editar"
-            materialLabel2.Text = "Editar Habitación";
-
-            // Llenar los campos con los datos de la habitación seleccionada
+            // Cargar los datos de la habitación en los controles
             txtNroHabitacion.Text = habitacion.NroHabitacion.ToString();
             cmbTipoHabitacion.SelectedItem = habitacion.TipoHabitacion.ToString();
             switchDisponibilidad.Checked = habitacion.Disponible;
             txtPrecioHabitacion.Text = habitacion.PrecioPorNoche.ToString();
             txtCantidadPersonas.Text = habitacion.Capacidad.ToString();
             txtDescripcion.Text = habitacion.Descripcion;
-
-            // Cambiar el texto del botón para indicar que se está editando
-            btnGuardarHab.Text = "Actualizar Habitación";
         }
 
+        // Propiedades que permiten que el Presenter acceda a los datos de la vista
         public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
-
         public TipoHabitacion TipoHabitacion => (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion), cmbTipoHabitacion.SelectedItem.ToString());
-
         public bool Disponible => switchDisponibilidad.Checked;
-
         public decimal PrecioPorNoche => Convert.ToDecimal(txtPrecioHabitacion.Text);
-
         public int Capacidad => Convert.ToInt32(txtCantidadPersonas.Text);
-
         public string Descripcion => txtDescripcion.Text;
 
         public event EventHandler SaveEvent;
-        public event EventHandler BackEvent;
-        public event EventHandler ViewClosed;
         public event EventHandler NavigateToAdminView;
 
         public void ShowView()
@@ -117,24 +85,19 @@ namespace Presentation.Views
             MaterialMessageBox.Show(this, title, message);
         }
 
-        private void CrearEditarHabitacionView_Load(object sender, EventArgs e)
-        {
-            cmbTipoHabitacion.Items.AddRange(Enum.GetNames(typeof(TipoHabitacion)));
-        }
-
         public void SetTitle(string title)
         {
-            materialLabel2.Text = title;  // Actualiza el título del formulario
+            materialLabel2.Text = title;
         }
 
         public void SetButtonText(string text)
         {
-            btnGuardarHab.Text = text;  // Cambia el texto del botón
+            btnGuardarHab.Text = text;
         }
 
-        public void SetAddMode(Habitacion habitacion)
+        private void CrearEditarHabitacionView_Load(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            cmbTipoHabitacion.DataSource = Enum.GetValues(typeof(TipoHabitacion));
         }
     }
 }

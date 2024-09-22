@@ -13,7 +13,7 @@ namespace Presentation.Views
 
         void ShowMessage(string title, string message);
         void SetEditMode(Habitacion habitacion);
-        void SetAddMode(Habitacion habitacion);
+
         void SetTitle(string title);        
         void SetButtonText(string text);
 
