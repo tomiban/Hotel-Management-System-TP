@@ -12,6 +12,7 @@ namespace Presentation.Presenters
         IAdminView GetAdminView();
         void CargarHabitaciones();
         void CargarUsuarios();
+        void ShowView();
         //EventHandler OnAñadirHab();
     }
 }

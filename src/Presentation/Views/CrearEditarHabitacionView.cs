@@ -32,31 +32,53 @@ namespace Presentation.Views
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
 
-        public void LimpiarCampos()
-        {
-            // Limpiar los campos
-            txtNroHabitacion.Text = string.Empty;
-            switchDisponibilidad.Checked = false;
-            cmbTipoHabitacion.SelectedIndex = -1;  // Seleccionar ninguno
-            txtPrecioHabitacion.Text = string.Empty;
-            txtCantidadPersonas.Text = string.Empty;
-            txtDescripcion.Text = string.Empty;
-        }
+        //public void LimpiarCampos()
+        //{
+        //    // Limpiar los campos
+        //    txtNroHabitacion.Text = string.Empty;
+        //    switchDisponibilidad.Checked = false;
+        //    cmbTipoHabitacion.SelectedIndex = -1;  // Seleccionar ninguno
+        //    txtPrecioHabitacion.Text = string.Empty;
+        //    txtCantidadPersonas.Text = string.Empty;
+        //    txtDescripcion.Text = string.Empty;
+        //}
 
         public void SetEditMode(Habitacion habitacion)
         {
             // Cargar los datos de la habitación en los controles
             txtNroHabitacion.Text = habitacion.NroHabitacion.ToString();
-            cmbTipoHabitacion.SelectedItem = habitacion.TipoHabitacion.ToString();
+            txtNroHabitacion.Enabled = false;
+
+            // Asignar el valor del enum directamente en el ComboBox
+            cmbTipoHabitacion.SelectedItem = habitacion.TipoHabitacion;
+
+            // Asignar el resto de valores
             switchDisponibilidad.Checked = habitacion.Disponible;
             txtPrecioHabitacion.Text = habitacion.PrecioPorNoche.ToString();
             txtCantidadPersonas.Text = habitacion.Capacidad.ToString();
             txtDescripcion.Text = habitacion.Descripcion;
         }
 
+        //public void SetAddMode()
+        //{
+        //   txtNroHabitacion.Enabled = true;
+        //}
+        public void SetAddMode()
+        {
+            txtNroHabitacion.Enabled = true;
+            txtNroHabitacion.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            cmbTipoHabitacion.SelectedIndex = -1;
+            switchDisponibilidad.Checked = false;
+            txtPrecioHabitacion.Text = string.Empty;
+            txtCantidadPersonas.Text = string.Empty;
+        }
+
+
+
         // Propiedades que permiten que el Presenter acceda a los datos de la vista
         public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
-        public TipoHabitacion TipoHabitacion => (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion), cmbTipoHabitacion.SelectedItem.ToString());
+        public TipoHabitacion TipoHabitacion => (TipoHabitacion)cmbTipoHabitacion.SelectedItem;
         public bool Disponible => switchDisponibilidad.Checked;
         public decimal PrecioPorNoche => Convert.ToDecimal(txtPrecioHabitacion.Text);
         public int Capacidad => Convert.ToInt32(txtCantidadPersonas.Text);
@@ -97,7 +119,7 @@ namespace Presentation.Views
 
         private void CrearEditarHabitacionView_Load(object sender, EventArgs e)
         {
-            cmbTipoHabitacion.DataSource = Enum.GetValues(typeof(TipoHabitacion));
+            cmbTipoHabitacion.DataSource = Enum.GetValues(typeof(TipoHabitacion));  // Se cargan los valores del enum
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Presentation.Presenters
                 int id = _view.ObtenerNroHabitacionSeleccionado(); // Obtener el ID de la habitación seleccionada
                 _habitacionServices.Delete(id); // Llamar al servicio para eliminar la habitación
                 CargarHabitaciones(); // Refrescar la lista
-                _view.ShowMessage("Habitación eliminada", "La habitación ha sido eliminada correctamente.");
+                _view.ShowMessage("Habitación eliminada correctamente.", "Información");
                 _view.SetEliminarHabitacionButtonState(false);
             }
             catch (Exception ex)
