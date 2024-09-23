@@ -32,6 +32,11 @@ namespace ApplicationLayer.Services
                     string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
             }
 
+            var disponible = _reservaRepository.VerificarDisponibilidad(reserva.NroHabitacion, reserva.FechaInicio, reserva.FechaFin);
+
+            if(!disponible)
+                throw new InvalidOperationException("La habitación no está disponible para las fechas seleccionadas.");
+
             _reservaRepository.Add(reserva);
         }
 

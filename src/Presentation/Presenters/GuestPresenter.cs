@@ -69,7 +69,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error al guardar la reserva: {ex.Message}", "Error");
+                _view.ShowMessage(ex.Message, "Error");
             }
         }
 

@@ -38,7 +38,6 @@
             panel1 = new Panel();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
-            flowLayoutPanel = new FlowLayoutPanel();
             tpReservas = new TabPage();
             listReservas = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
@@ -95,7 +94,6 @@
             // tpHabitaciones
             // 
             tpHabitaciones.Controls.Add(panel1);
-            tpHabitaciones.Controls.Add(flowLayoutPanel);
             tpHabitaciones.ImageKey = "apartment.png";
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
@@ -153,16 +151,6 @@
             cmbFiltroHabitaciones.Size = new Size(344, 49);
             cmbFiltroHabitaciones.StartIndex = 0;
             cmbFiltroHabitaciones.TabIndex = 10;
-            // 
-            // flowLayoutPanel
-            // 
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.Location = new Point(60, 109);
-            flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Padding = new Padding(20, 0, 0, 0);
-            flowLayoutPanel.Size = new Size(900, 364);
-            flowLayoutPanel.TabIndex = 12;
-          
             // 
             // tpReservas
             // 
@@ -589,7 +577,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtApellido;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
-        private FlowLayoutPanel flowLayoutPanel;
         private Panel panel1;
         private ImageList imageList1;
     }
