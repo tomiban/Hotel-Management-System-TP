@@ -26,11 +26,11 @@ namespace Presentation.Views
             btnEditarHab.Enabled = false;
 
             var colorScheme = new ColorScheme(
-            Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-            Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-            Primary.Cyan700,   // Deep Purple base para fondos principales
-            Accent.Cyan700,         // Acento verde 400 para destacar
-            TextShade.WHITE          // Color de texto blanco para el contraste
+            Primary.DeepPurple600,   
+            Primary.DeepPurple700,   
+            Primary.Cyan700,  
+            Accent.Cyan700,        
+            TextShade.WHITE          
         );
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
@@ -130,8 +130,6 @@ namespace Presentation.Views
 
             MaterialMessageBox.Show(this, title, message);
         }
-
-
 
         public void ObtenerDatos()
         {

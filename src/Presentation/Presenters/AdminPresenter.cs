@@ -124,7 +124,6 @@ namespace Presentation.Presenters
             }
         }
 
-
         public  void CargarHabitaciones()
         {
             var habitaciones =  _habitacionServices.GetAll();
