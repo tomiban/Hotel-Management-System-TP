@@ -3,7 +3,7 @@ namespace Domain.Interfaces
 {
     public interface IHabitacion
     {
-        int Id { get; }
+        
         bool Disponible { get; }
         int NroHabitacion { get; }
         decimal PrecioPorNoche { get; }
