@@ -79,7 +79,8 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"{ex.Message}", "Error");
+                _view.ShowMessage(ex.Message, "Error");
+
             }
         }
 
