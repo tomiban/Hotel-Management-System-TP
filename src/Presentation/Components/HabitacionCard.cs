@@ -122,7 +122,7 @@ namespace PresentationLayer.Components
             // Campo de texto para la descripción de la habitación
             DescripcionTextBox = new MaterialLabel
             {
-                Text = habitacion.Descripcion, // Hardcodeada por ahora
+                Text = habitacion.Descripcion, 
                 Font = new Font("Roboto", 10, FontStyle.Regular),
                 ForeColor = Color.Black,
                 Location = new Point(15, 150),

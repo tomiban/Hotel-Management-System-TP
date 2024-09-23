@@ -38,14 +38,8 @@
             panel1 = new Panel();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
-            flowLayoutPanel = new FlowLayoutPanel();
             tpReservas = new TabPage();
             listReservas = new MaterialSkin.Controls.MaterialListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader5 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
-            columnHeader4 = new ColumnHeader();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();
             tpCuenta = new TabPage();
             materialCard6 = new MaterialSkin.Controls.MaterialCard();
@@ -95,7 +89,6 @@
             // tpHabitaciones
             // 
             tpHabitaciones.Controls.Add(panel1);
-            tpHabitaciones.Controls.Add(flowLayoutPanel);
             tpHabitaciones.ImageKey = "apartment.png";
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
@@ -154,16 +147,6 @@
             cmbFiltroHabitaciones.StartIndex = 0;
             cmbFiltroHabitaciones.TabIndex = 10;
             // 
-            // flowLayoutPanel
-            // 
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.Location = new Point(60, 109);
-            flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Padding = new Padding(20, 0, 0, 0);
-            flowLayoutPanel.Size = new Size(900, 364);
-            flowLayoutPanel.TabIndex = 12;
-          
-            // 
             // tpReservas
             // 
             tpReservas.Controls.Add(listReservas);
@@ -183,7 +166,6 @@
             listReservas.AutoSizeTable = false;
             listReservas.BackColor = Color.FromArgb(255, 255, 255);
             listReservas.BorderStyle = BorderStyle.None;
-            listReservas.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader5, columnHeader3, columnHeader4 });
             listReservas.Depth = 0;
             listReservas.Font = new Font("Garamond", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listReservas.FullRowSelect = true;
@@ -200,35 +182,6 @@
             listReservas.TileSize = new Size(3, 3);
             listReservas.UseCompatibleStateImageBehavior = false;
             listReservas.View = View.Details;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "       Id";
-            columnHeader1.Width = 94;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "              Habitacion";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
-            columnHeader2.Width = 200;
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "              Categoría";
-            columnHeader5.TextAlign = HorizontalAlignment.Right;
-            columnHeader5.Width = 200;
-            // 
-            // columnHeader3
-            // 
-            columnHeader3.Text = "                  Check in";
-            columnHeader3.TextAlign = HorizontalAlignment.Center;
-            columnHeader3.Width = 200;
-            // 
-            // columnHeader4
-            // 
-            columnHeader4.Text = "                Check out";
-            columnHeader4.TextAlign = HorizontalAlignment.Center;
-            columnHeader4.Width = 200;
             // 
             // lblReservas
             // 
@@ -568,11 +521,6 @@
         private MaterialSkin.Controls.MaterialLabel lblHabitaciones;
         private MaterialSkin.Controls.MaterialListView listReservas;
         private MaterialSkin.Controls.MaterialLabel lblReservas;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
         private LinkLabel linkCambiarContraseña;
         private MaterialSkin.Controls.MaterialLabel lblRolCuenta;
         private MaterialSkin.Controls.MaterialLabel lblDomicilio;
@@ -589,7 +537,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtApellido;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
-        private FlowLayoutPanel flowLayoutPanel;
         private Panel panel1;
         private ImageList imageList1;
     }

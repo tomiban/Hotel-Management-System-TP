@@ -12,11 +12,19 @@ namespace ApplicationLayer.Services
         private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
         private readonly IReservaRepository _reservaRepository;
 
+
+
         public ReservaService(IModelDataAnnotationCheck modelDataAnnotationCheck, IReservaRepository reservaRepository)
         {
             _modelDataAnnotationCheck = modelDataAnnotationCheck;
             _reservaRepository = reservaRepository;
         }
+
+        public bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
+        {
+            return _reservaRepository.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin);
+        }
+
 
         public ICollection<ValidationResult> ValidateModel(Reserva reserva)
         {
@@ -28,16 +36,21 @@ namespace ApplicationLayer.Services
             var validationResults = ValidateModel(reserva);
             if (validationResults.Any())
             {
-                throw new ValidationException(
-                    string.Join("\n", validationResults.Select(v => v.ErrorMessage)));
+                throw new ValidationException("Error en la validación de la reserva: " +
+                    string.Join(", ", validationResults.Select(v => v.ErrorMessage)));
             }
+
+            var disponible = VerificarDisponibilidadHabitacion(reserva.NroHabitacion, reserva.FechaInicio, reserva.FechaFin);
+
+            if(!disponible)
+                throw new InvalidOperationException("La habitación no está disponible para las fechas seleccionadas.");
 
             _reservaRepository.Add(reserva);
         }
 
-        public List<Reserva> GetAll()
+        public List<Reserva> GetAll(int id)
         {
-            return _reservaRepository.GetAll();
+            return _reservaRepository.GetAllByUser(id);
         }
 
         public Reserva GetById(int id)
@@ -48,11 +61,6 @@ namespace ApplicationLayer.Services
         public void Delete(int id)
         {
             _reservaRepository.Delete(id);
-        }
-
-        public bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
-        {
-            return _reservaRepository.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin);
         }
     }
 }

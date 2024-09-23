@@ -6,7 +6,8 @@ namespace ApplicationLayer.Services
     public interface IReservaService
     {
         void AgregarReserva(Reserva reserva);
+        List<Reserva> GetAll(int id);
         ICollection<ValidationResult> ValidateModel(Reserva reserva);
-        bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
+        bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
     }
 }

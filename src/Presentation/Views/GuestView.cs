@@ -22,20 +22,24 @@ namespace Presentation.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer habitacionCardContainer;
 
+
+
         public GuestView()
         {
             InitializeComponent();
 
             var ColorScheme = new ColorScheme(
-                 Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-                 Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-                 Primary.Cyan300,   // Deep Purple base para fondos principales
-                 Accent.Cyan700,         // Acento verde 400 para destacar
-                 TextShade.WHITE          // Color de texto blanco para el contraste
+                 Primary.DeepPurple600,
+                 Primary.DeepPurple700,
+                 Primary.Cyan300,
+                 Accent.Cyan700,
+                 TextShade.WHITE
              );
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
+            habitacionCardContainer = new HabitacionCardContainer();
+            tpHabitaciones.Controls.Add(habitacionCardContainer);
             AttachAndRaiseViewEvents();
 
         }
@@ -56,22 +60,18 @@ namespace Presentation.Views
             }
         }
 
-        public void CargarHabitaciones(List<Habitacion> habitaciones)
+
+
+        public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
         {
-            flowLayoutPanel.Controls.Clear();
-          
-            foreach (var habitacion in habitaciones)
+            habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
+
+            foreach (var card in habitacionCards)
             {
-                var cardHabitacion = new HabitacionCard(habitacion);
-                flowLayoutPanel.Controls.Add(cardHabitacion);
-                // Suscribirse al evento ReservarButtonClick de cada tarjeta
-                cardHabitacion.OnReservarButtonClicked += (s, e) =>
-                {
-                    EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
-                };
+                habitacionCardContainer.Controls.Add(card); 
             }
         }
-       
+
         public void CloseView()
         {
             this.Close();
@@ -91,5 +91,34 @@ namespace Presentation.Views
         {
             this.Show();
         }
+
+        public void CargarReservas(List<Reserva> reservas)
+        {
+            listReservas.Items.Clear();
+            listReservas.Columns.Clear();
+
+            listReservas.Columns.Add("Nro", 100);
+            listReservas.Columns.Add("Habitacion", 150);
+            listReservas.Columns.Add("Categoria", 154);
+            listReservas.Columns.Add("Check In", 170);
+            listReservas.Columns.Add("Check Out", 170);
+            listReservas.Columns.Add("Precio Final", 150);
+
+            int contador = 1;
+
+            foreach (var reserva in reservas)
+            {
+                ListViewItem listItem = new ListViewItem(contador.ToString());
+                listItem.SubItems.Add(reserva.NroHabitacion.ToString());
+                listItem.SubItems.Add(reserva.TipoHabitacion.ToString());
+                listItem.SubItems.Add(reserva.FechaInicio.ToString());
+                listItem.SubItems.Add(reserva.FechaFin.ToString());
+                listItem.SubItems.Add($"{reserva.MontoTotal.ToString("C"):NO} ARS");
+                listReservas.Items.Add(listItem);
+
+                contador++;
+            }
+        }
+
     }
 }
