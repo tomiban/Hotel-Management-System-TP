@@ -9,8 +9,8 @@ namespace Domain.Entities
     [MemoryPackable]
     public partial class Habitacion : IHabitacion
     {
-        private static int _contadorId = 0;
-        public int Id { get; set; }
+        
+   
 
         [Range(1, int.MaxValue, ErrorMessage = "El número de habitación debe ser positivo.")]
         public int NroHabitacion { get; set; }
@@ -22,7 +22,7 @@ namespace Domain.Entities
         public bool Disponible { get; set; }
 
         [Required(ErrorMessage = "La descripción es requerida.")]
-        [MaxLength(100, ErrorMessage = "La descripción debe tener un maximo de 100 caracteres.")]
+        [MaxLength(200, ErrorMessage = "La descripción debe tener un maximo de 200 caracteres.")]
         public string Descripcion { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]
@@ -34,11 +34,7 @@ namespace Domain.Entities
 
       
 
-        public Habitacion()
-        {
-            
-            Id = ++_contadorId;
-        }
+
     }
 
     public enum TipoHabitacion

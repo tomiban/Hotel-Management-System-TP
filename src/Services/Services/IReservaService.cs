@@ -7,5 +7,6 @@ namespace ApplicationLayer.Services
     {
         void AgregarReserva(Reserva reserva);
         ICollection<ValidationResult> ValidateModel(Reserva reserva);
+        bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
     }
 }

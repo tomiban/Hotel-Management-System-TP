@@ -11,32 +11,34 @@ namespace Presentation.Views
     public partial class AdminView : MaterialForm, IAdminView
     {
 
-
         public event EventHandler RedirectToCrearEditarHabitacion;
         public event EventHandler RedirectToCrearEditarUsuario;
         public event EventHandler EliminarHabitacion;
         public event EventHandler EliminarUsuario;
         public event EventHandler SearchHabitacion;
         public event EventHandler SearchUsuario;
+        public event EventHandler EditarHabitacion;
 
         public AdminView()
         {
             InitializeComponent();
             btnBorrarHab.Enabled = false;
+            btnEditarHab.Enabled = false;
 
             var colorScheme = new ColorScheme(
-            Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-            Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-            Primary.Cyan700,   // Deep Purple base para fondos principales
-            Accent.Cyan700,         // Acento verde 400 para destacar
-            TextShade.WHITE          // Color de texto blanco para el contraste
+            Primary.DeepPurple600,   
+            Primary.DeepPurple700,   
+            Primary.Cyan700,  
+            Accent.Cyan700,        
+            TextShade.WHITE          
         );
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AttachAndRaiseViewEvents();
             AttachDeleteEvents();
-            
+            AttachEditEvents();
+
             //listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
             listHabitaciones.SelectedIndexChanged += OnHabitacionSelectionChanged;
 
@@ -45,15 +47,28 @@ namespace Presentation.Views
         private void OnHabitacionSelectionChanged(object sender, EventArgs e)
         {
             btnBorrarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
+            btnEditarHab.Enabled = listHabitaciones.SelectedItems.Count > 0;
         }
 
         private void AttachDeleteEvents()
         {
             btnBorrarHab.Click += (s, e) => EventHelper.RaiseEvent(this, EliminarHabitacion, EventArgs.Empty);
         }
+
+        private void AttachEditEvents()
+        {
+            btnEditarHab.Click += (s, e) =>
+            {
+                EventHelper.RaiseEvent(this, EditarHabitacion, EventArgs.Empty);
+            };
+        }
         public void SetEliminarHabitacionButtonState(bool enabled)
         {
             btnBorrarHab.Enabled = enabled;
+        }
+        public void SetEditarHabitacionButtonState(bool enabled)
+        {
+            btnEditarHab.Enabled = enabled;
         }
 
         private void AttachAndRaiseViewEvents()
@@ -115,8 +130,6 @@ namespace Presentation.Views
 
             MaterialMessageBox.Show(this, title, message);
         }
-
-
 
         public void ObtenerDatos()
         {

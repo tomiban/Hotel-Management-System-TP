@@ -19,7 +19,14 @@ namespace Domain.Entities.Factura
         [Required(ErrorMessage = "La reserva es requerida.")]
         public Reserva Reserva { get; set; }
 
-      
+        [Range(0, double.MaxValue, ErrorMessage = "El monto total debe ser positivo.")]
+        public decimal MontoTotal
+        {
+            get
+            {
+                return Reserva.Habitacion.PrecioPorNoche * Reserva.DiasDeEstadia;
+            }
+        }
 
         public Factura()
         {

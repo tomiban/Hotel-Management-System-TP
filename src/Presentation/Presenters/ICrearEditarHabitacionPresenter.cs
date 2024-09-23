@@ -1,4 +1,5 @@
-﻿using Presentation.Views;
+﻿using Domain.Entities;
+using Presentation.Views;
 
 namespace Presentation.Presenters
 {
@@ -6,5 +7,7 @@ namespace Presentation.Presenters
     {
         ICrearEditarHabitacionView GetCrearEditarHabitacionView();
         void OnAdminRedirect(object? sender, EventArgs e);
+        void SetAddMode();
+        void SetEditMode(Habitacion habitacion);
     }
 }   
