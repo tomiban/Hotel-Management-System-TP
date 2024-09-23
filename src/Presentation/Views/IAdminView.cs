@@ -21,9 +21,11 @@ namespace Presentation.Views
         event EventHandler EliminarUsuario;
         event EventHandler SearchHabitacion;
         event EventHandler SearchUsuario;
-     
+        event EventHandler EditarHabitacion;
+
         void ShowMessage(string title, string message);
         void SetEliminarHabitacionButtonState(bool enabled);
+        void SetEditarHabitacionButtonState(bool enabled);
 
         void ShowView();
         void CloseView();

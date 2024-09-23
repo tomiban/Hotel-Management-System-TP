@@ -22,8 +22,6 @@ namespace Presentation.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer habitacionCardContainer;
 
-
-
         public GuestView()
         {
             InitializeComponent();
@@ -38,8 +36,6 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
-            habitacionCardContainer = new HabitacionCardContainer();
-            tpHabitaciones.Controls.Add(habitacionCardContainer);
             AttachAndRaiseViewEvents();
 
         }
@@ -60,18 +56,22 @@ namespace Presentation.Views
             }
         }
 
-
-        // Método para cargar las tarjetas de habitaciones
-        public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
+        public void CargarHabitaciones(List<Habitacion> habitaciones)
         {
-            habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
-
-            foreach (var card in habitacionCards)
+            flowLayoutPanel.Controls.Clear();
+          
+            foreach (var habitacion in habitaciones)
             {
-                habitacionCardContainer.Controls.Add(card); // Añadir cada tarjeta al panel
+                var cardHabitacion = new HabitacionCard(habitacion);
+                flowLayoutPanel.Controls.Add(cardHabitacion);
+                // Suscribirse al evento ReservarButtonClick de cada tarjeta
+                cardHabitacion.OnReservarButtonClicked += (s, e) =>
+                {
+                    EventHelper.RaiseEvent(cardHabitacion, OnRealizarReserva, EventArgs.Empty);
+                };
             }
         }
-
+       
         public void CloseView()
         {
             this.Close();

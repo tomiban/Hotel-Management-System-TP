@@ -59,12 +59,12 @@ namespace Presentation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-           
+
             ILoginPresenter loginPresenter = unityC.Resolve<LoginPresenter>();
             // Obtener la vista de login desde el presentador resuelto.
             ILoginView loginView = loginPresenter.GetLoginView();
 
-           
+
             Application.Run((LoginView)loginView);
         }
     }

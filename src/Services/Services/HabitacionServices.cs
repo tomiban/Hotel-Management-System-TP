@@ -63,10 +63,9 @@ namespace ApplicationLayer.Services
             return _habitacionRepository.GetById(id);
         }
 
-        public bool CheckNroHabitacion(int id)
+        public bool Exists(int id)
         {
-            var habitacion = _habitacionRepository.GetById(id);
-            return habitacion != null;
+            return _habitacionRepository.GetById(id) != null;
         }
     }
 }

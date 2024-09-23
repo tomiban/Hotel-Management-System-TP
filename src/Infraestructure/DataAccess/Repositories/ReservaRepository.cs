@@ -1,7 +1,11 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
 using InfraestructureLayer.Helpers;
 using Services.Services.ReservaServices;
+using System.Diagnostics;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace Infraestructure.DataAccess.Repositories
 {
@@ -16,47 +20,73 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _reservas = GetAll(); 
+            _reservas = GetAll(); // Cargar todas las reservas al inicializar el repositorio
         }
 
+        // Agregar nueva reserva
         public void Add(Reserva entity)
         {
             try
             {
-                _reservas.Add(entity);
-                _persistenceService.Save(FILE_PATH, _reservas);
+                _reservas.Add(entity); // Agregar reserva a la lista en memoria
+                _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada en archivo
             }
             catch (IOException ex)
             {
-
-                throw new ApplicationException($"Error al guardar los datos de la reserva {ex.Message}: ", ex);
+                throw new ApplicationException($"Error al guardar los datos de la reserva: {ex.Message}", ex);
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error al agregar reserva: {ex.Message}", ex);
+                throw new ApplicationException($"{ex.Message}", ex);
             }
         }
 
+        // Eliminar reserva por ID
         public void Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Reserva> GetAll()
-        {
-           try
+            try
             {
-                return _persistenceService.Load<List<Reserva>>(FILE_PATH) ?? new List<Reserva>();
+                var reserva = _reservas.FirstOrDefault(r => r.Id == id);
+                if (reserva != null)
+                {
+                    _reservas.Remove(reserva); // Remover la reserva de la lista
+                    _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada
+                }
+                else
+                {
+                    throw new ArgumentException("La reserva no existe.");
+                }
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error al agregar usuario: {ex.Message}", ex);
+                throw new ApplicationException($"Error al eliminar la reserva: {ex.Message}", ex);
             }
         }
 
+        // Obtener todas las reservas
+        public List<Reserva> GetAll()
+        {
+            try
+            {
+                return _persistenceService.Load<List<Reserva>>(FILE_PATH) ?? new List<Reserva>(); // Cargar desde archivo o retornar lista vacía
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al cargar las reservas: {ex.Message}", ex);
+            }
+        }
+
+        // Obtener reserva por ID
         public Reserva GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _reservas.FirstOrDefault(r => r.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al obtener la reserva: {ex.Message}", ex);
+            }
         }
 
         // Actualizar reserva existente

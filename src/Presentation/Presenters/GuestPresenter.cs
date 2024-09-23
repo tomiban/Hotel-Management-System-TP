@@ -2,7 +2,6 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using PresentationLayer.Components;
-using PresentationLayer.Factories;
 using PresentationLayer.Views;
 using Services.Services.ReservaServices;
 using System.ComponentModel.DataAnnotations;
@@ -58,10 +57,21 @@ namespace PresentationLayer.Presenters
                     IdUsuario = usuarioAutenticado.Id
                 };
 
+                var fechaInicio = habitacionSeleccionada.FechaDesdePicker.Value;
+                var fechaFin = habitacionSeleccionada.FechaHastaPicker.Value;
+                var nroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last());
+
+                // Verificar si la habitación está disponible en las fechas seleccionadas
+                if (!_reservaService.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin))
+                {
+                    _view.ShowMessage("La habitación no está disponible en las fechas seleccionadas.", "Error");
+                    return;
+                }
+
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
-                //CargarHabitaciones();
+                CargarHabitaciones();
             }
             catch (ValidationException ex)
             {
@@ -69,29 +79,14 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage(ex.Message, "Error");
+                _view.ShowMessage($"{ex.Message}", "Error");
             }
         }
 
-        // Cargar las habitaciones y crear las tarjetas usando la fábrica
         public void CargarHabitaciones()
         {
-            var habitaciones = _habitacionServices.GetAll(); // Obtener todas las habitaciones
-            var habitacionCards = new List<HabitacionCard>();
-
-            // Usar la fábrica para crear las tarjetas de habitaciones
-            foreach (var habitacion in habitaciones)
-            {
-                var habitacionCard = HabitacionCardFactory.CreateHabitacionCard(habitacion);
-
-                // Conectar el evento OnReservarButtonClicked al manejador de eventos
-                habitacionCard.OnReservarButtonClicked += HandleRealizarReserva;
-
-                habitacionCards.Add(habitacionCard);
-            }
-
-            // Pasar las tarjetas al método de la vista para mostrarlas
-            _view.CargarHabitacionCards(habitacionCards);
+            var habitaciones = _habitacionServices.GetAll();
+            _view.CargarHabitaciones(habitaciones);
         }
 
 

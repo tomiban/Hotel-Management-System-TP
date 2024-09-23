@@ -11,7 +11,7 @@ namespace ApplicationLayer.Services
         List<Habitacion> GetAll();
         Habitacion GetById(int id);
         void Update(Habitacion habitacion);
-        bool CheckNroHabitacion(int id);
+        bool Exists(int id);
         ICollection<ValidationResult> ValidateModel(IHabitacion habitacion);
     }
 }
