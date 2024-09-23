@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Domain.Interfaces;
 using MemoryPack;
 
@@ -22,26 +21,24 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El ID de la habitación es requerido.")]
         public int NroHabitacion { get; set; }
 
-        [Required(ErrorMessage = "El ID del usuario es requerido.")]
-        public int IdUsuario { get; set; }
+        public TipoHabitacion TipoHabitacion { get; set; }
+
+        public int UserId { get; set; }
+
         public string Username { get; set; }
-        public Habitacion Habitacion { get; set; }
+
+        public decimal PrecioPorNoche { get; set; }
+
+        public int DiasDeEstadia => FechaInicio > FechaFin ? throw new Exception("La fecha de inicio no puede ser posterior a la fecha de fin.") : (int)(FechaFin - FechaInicio).TotalDays;
+
+        public Decimal MontoTotal => DiasDeEstadia * PrecioPorNoche;
+
+
 
         public Reserva()
         {
-            Id = ++_contadorId;
-        }
-
-        public int DiasDeEstadia
-        {
-            get
-            {
-                if (FechaFin < FechaInicio)
-                {
-                    throw new InvalidOperationException("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                }
-                return (FechaFin - FechaInicio).Days;
-            }
+            Id = ++_contadorId; // Incrementar el contador de ID de manera estática
+            
         }
     }
 }

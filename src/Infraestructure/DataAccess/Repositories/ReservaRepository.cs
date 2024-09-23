@@ -1,11 +1,7 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
 using Infraestructure.DataAccess.Serialization;
 using InfraestructureLayer.Helpers;
 using Services.Services.ReservaServices;
-using System.Diagnostics;
-using System.Net;
-using System.Security.Cryptography;
 
 namespace Infraestructure.DataAccess.Repositories
 {
@@ -20,73 +16,59 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _reservas = GetAll(); // Cargar todas las reservas al inicializar el repositorio
+            _reservas = GetAll(); 
         }
 
-        // Agregar nueva reserva
         public void Add(Reserva entity)
         {
             try
             {
-                _reservas.Add(entity); // Agregar reserva a la lista en memoria
-                _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada en archivo
+                _reservas.Add(entity);
+                _persistenceService.Save(FILE_PATH, _reservas);
             }
             catch (IOException ex)
             {
-                throw new ApplicationException($"Error al guardar los datos de la reserva: {ex.Message}", ex);
+
+                throw new ApplicationException($"Error al guardar los datos de la reserva {ex.Message}: ", ex);
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"{ex.Message}", ex);
+                throw new ApplicationException($"Error al agregar reserva: {ex.Message}", ex);
             }
         }
 
-        // Eliminar reserva por ID
         public void Delete(int id)
         {
-            try
-            {
-                var reserva = _reservas.FirstOrDefault(r => r.Id == id);
-                if (reserva != null)
-                {
-                    _reservas.Remove(reserva); // Remover la reserva de la lista
-                    _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada
-                }
-                else
-                {
-                    throw new ArgumentException("La reserva no existe.");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException($"Error al eliminar la reserva: {ex.Message}", ex);
-            }
+            throw new NotImplementedException();
         }
 
-        // Obtener todas las reservas
         public List<Reserva> GetAll()
         {
-            try
+           try
             {
-                return _persistenceService.Load<List<Reserva>>(FILE_PATH) ?? new List<Reserva>(); // Cargar desde archivo o retornar lista vacía
+                return _persistenceService.Load<List<Reserva>>(FILE_PATH) ?? new List<Reserva>();
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error al cargar las reservas: {ex.Message}", ex);
+                throw new ApplicationException($"Error al agregar usuario: {ex.Message}", ex);
             }
         }
 
-        // Obtener reserva por ID
-        public Reserva GetById(int id)
+        public List<Reserva> GetAllByUser(int userId)
         {
             try
             {
-                return _reservas.FirstOrDefault(r => r.Id == id);
+                return _reservas.Where(r => r.UserId == userId).ToList();
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error al obtener la reserva: {ex.Message}", ex);
+                throw new ApplicationException($"Error al obtener las reservas del usuario: {ex.Message}", ex);
             }
+        }
+
+        public Reserva GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         // Actualizar reserva existente
@@ -102,7 +84,7 @@ namespace Infraestructure.DataAccess.Repositories
                     reservaExistente.FechaFin = entity.FechaFin;
                     reservaExistente.NroHabitacion = entity.NroHabitacion;
                     reservaExistente.Username = entity.Username;
-                    reservaExistente.IdUsuario = entity.IdUsuario;
+               
 
                     _persistenceService.Save(FILE_PATH, _reservas); // Guardar lista actualizada
                 }

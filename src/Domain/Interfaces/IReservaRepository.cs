@@ -11,5 +11,6 @@ namespace Services.Services.ReservaServices
     public interface IReservaRepository : IGenericRepository<Reserva>
     {
         bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
+        List<Reserva> GetAllByUser(int id);
     }
 }

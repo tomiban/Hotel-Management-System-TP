@@ -115,12 +115,12 @@ namespace Presentation.Views
 
             foreach (var hab in habitaciones)
             {
-                ListViewItem item = new ListViewItem(hab.NroHabitacion.ToString());
-                item.SubItems.Add(hab.TipoHabitacion.ToString());
-                item.SubItems.Add(string.Concat(hab.Capacidad.ToString(), " personas"));
-                item.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
-                item.SubItems.Add(hab.PrecioPorNoche.ToString("C"));
-                listHabitaciones.Items.Add(item);
+                ListViewItem listItem = new ListViewItem(hab.NroHabitacion.ToString());
+                listItem.SubItems.Add(hab.TipoHabitacion.ToString());
+                listItem.SubItems.Add(string.Concat(hab.Capacidad.ToString(), " personas"));
+                listItem.SubItems.Add(hab.Disponible ? "Disponible" : "Ocupada");
+                listItem.SubItems.Add(hab.PrecioPorNoche.ToString("C"));
+                listHabitaciones.Items.Add(listItem);
             }
         }
 

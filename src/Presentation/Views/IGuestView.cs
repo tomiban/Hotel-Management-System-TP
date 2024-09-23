@@ -20,7 +20,7 @@ namespace PresentationLayer.Views
         // Método para cargar las habitaciones (esto es opcional, pero útil)
         void CargarHabitacionCards(List<HabitacionCard> habitacionCards);
 
-
+        void CargarReservas(List<Reserva> reservas);
 
         void ShowMessage(string title, string message);
 
