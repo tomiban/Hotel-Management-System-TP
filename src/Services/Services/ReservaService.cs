@@ -20,7 +20,7 @@ namespace ApplicationLayer.Services
             _reservaRepository = reservaRepository;
         }
 
-        private bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
+        public bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin)
         {
             return _reservaRepository.VerificarDisponibilidad(nroHabitacion, fechaInicio, fechaFin);
         }
