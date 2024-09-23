@@ -32,21 +32,22 @@ namespace Presentation.Views
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
 
-        public void LimpiarCampos()
-        {
-            // Limpiar los campos
-            txtNroHabitacion.Text = string.Empty;
-            switchDisponibilidad.Checked = false;
-            cmbTipoHabitacion.SelectedIndex = -1;  // Seleccionar ninguno
-            txtPrecioHabitacion.Text = string.Empty;
-            txtCantidadPersonas.Text = string.Empty;
-            txtDescripcion.Text = string.Empty;
-        }
+        //public void LimpiarCampos()
+        //{
+        //    // Limpiar los campos
+        //    txtNroHabitacion.Text = string.Empty;
+        //    switchDisponibilidad.Checked = false;
+        //    cmbTipoHabitacion.SelectedIndex = -1;  // Seleccionar ninguno
+        //    txtPrecioHabitacion.Text = string.Empty;
+        //    txtCantidadPersonas.Text = string.Empty;
+        //    txtDescripcion.Text = string.Empty;
+        //}
 
         public void SetEditMode(Habitacion habitacion)
         {
             // Cargar los datos de la habitación en los controles
             txtNroHabitacion.Text = habitacion.NroHabitacion.ToString();
+            txtNroHabitacion.Enabled = false;
 
             // Asignar el valor del enum directamente en el ComboBox
             cmbTipoHabitacion.SelectedItem = habitacion.TipoHabitacion;
@@ -58,9 +59,19 @@ namespace Presentation.Views
             txtDescripcion.Text = habitacion.Descripcion;
         }
 
+        //public void SetAddMode()
+        //{
+        //   txtNroHabitacion.Enabled = true;
+        //}
         public void SetAddMode()
         {
-           txtNroHabitacion.Enabled = true;
+            txtNroHabitacion.Enabled = true;
+            txtNroHabitacion.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
+            cmbTipoHabitacion.SelectedIndex = -1;
+            switchDisponibilidad.Checked = false;
+            txtPrecioHabitacion.Text = string.Empty;
+            txtCantidadPersonas.Text = string.Empty;
         }
 
 

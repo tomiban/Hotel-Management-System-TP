@@ -55,7 +55,7 @@ namespace Presentation.Presenters
 
             // Pedir a la vista que se limpie y se configure para agregar
             _view.SetAddMode();
-            _view.LimpiarCampos();
+            //_view.LimpiarCampos();
             _view.SetTitle("Añadir Habitación");
             _view.SetButtonText("Guardar Habitación");
             
@@ -92,7 +92,7 @@ namespace Presentation.Presenters
                     // Crear nueva habitación
                     _habitacionServices.Add(habitacion);
                     _view.ShowMessage("Habitación creada correctamente.", "Información");
-                    _view.LimpiarCampos();
+                    //_view.LimpiarCampos();
                 }
 
                 // Resetear el modo de edición
