@@ -67,5 +67,11 @@ namespace ApplicationLayer.Services
         {
             return _habitacionRepository.GetById(id) != null;
         }
+
+        public List<Habitacion> FiltrarPorFecha(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            // Filtra las habitaciones que están disponibles en el rango de fechas
+            return _habitaciones.Where(h => h.DisponibleDesde <= fechaDesde && h.DisponibleHasta >= fechaHasta).ToList();
+        }
     }
 }

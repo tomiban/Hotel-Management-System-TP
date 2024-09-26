@@ -17,6 +17,8 @@ namespace PresentationLayer.Views
         // Evento que se dispara cuando se selecciona una categoría del filtro
         event EventHandler OnFiltrarCategoria;
 
+        event EventHandler<int> ReservaSeleccionada;
+
         // Método para cargar las habitaciones (esto es opcional, pero útil)
         void CargarHabitacionCards(List<HabitacionCard> habitacionCards);
 

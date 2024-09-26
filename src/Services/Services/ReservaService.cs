@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces;
 using Domain.Validation.ModelDataAnnotationCheck;
 using Services.Services.ReservaServices;
 using System.Collections.Generic;
@@ -48,6 +49,14 @@ namespace ApplicationLayer.Services
             _reservaRepository.Add(reserva);
         }
 
+        public void ActualizarReserva(Reserva reserva)
+        {
+            var validationResults = ValidateModel(reserva);
+            if (validationResults.Any())
+                { throw new InvalidOperationException("Error en la validación de la reserva: " + string.Join(", ", validationResults.Select(v => v.ErrorMessage))); }
+            _reservaRepository.Update(reserva);
+        }
+
         public List<Reserva> GetAll(int id)
         {
             return _reservaRepository.GetAllByUser(id);
@@ -58,9 +67,23 @@ namespace ApplicationLayer.Services
             return _reservaRepository.GetById(id);
         }
 
-        public void Delete(int id)
+        public void CancelarReserva(int id)
         {
             _reservaRepository.Delete(id);
+        }
+
+        // Método para filtrar habitaciones por disponibilidad en el rango de fechas seleccionado
+        public List<Habitacion> FiltrarPorFechaDisponibilidad(DateTime fechaInicio, DateTime fechaFin)
+        {
+            // Obtener todas las habitaciones
+            var habitaciones = _habitacionRepository.GetAll();
+
+            // Filtrar las habitaciones que estén disponibles en el rango de fechas
+            var habitacionesDisponibles = habitaciones
+                .Where(habitacion => _reservaRepository.VerificarDisponibilidad(habitacion.NroHabitacion, fechaInicio, fechaFin))
+                .ToList();
+
+            return habitacionesDisponibles;
         }
     }
 }

@@ -16,9 +16,12 @@ namespace PresentationLayer.Utils
             }
         }
 
-        public static void RaiseEvent<TEventArgs>(object sender, EventHandler<TEventArgs> eventHandler, TEventArgs e) where TEventArgs : EventArgs
+        public static void RaiseEvent<T>(object sender, EventHandler<T> eventHandler, T e)
         {
-            eventHandler?.Invoke(sender, e);
+            if (eventHandler != null)
+            {
+                eventHandler?.Invoke(sender, e);
+            }
         }
     }
 

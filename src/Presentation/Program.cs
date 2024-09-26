@@ -40,6 +40,9 @@ namespace Presentation
                 .RegisterType<ICrearEditarHabitacionView, CrearEditarHabitacionView>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICrearEditarHabitacionPresenter, CrearEditarHabitacionPresenter>(new ContainerControlledLifetimeManager())
 
+                .RegisterType<IDetallesReservaView, DetallesReservaView>(new ContainerControlledLifetimeManager())
+                .RegisterType<IDetallesReservaPresenter, DetallesReservaPresenter>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IModelDataAnnotationCheck, ModelDataAnnotationCheck>(new ContainerControlledLifetimeManager())
 
                 .RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager())

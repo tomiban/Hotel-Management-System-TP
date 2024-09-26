@@ -54,17 +54,14 @@ namespace Presentation.Presenters
             }
             catch (ValidationException ex)
             {
-                // Mostrar errores de validación en la vista
                 _view.ShowMessage($"Validación fallida: {ex.Message}", "Error");
             }
             catch (UnauthorizedAccessException ex)
             {
-                // Mostrar errores de credenciales inválidas en la vista
                 _view.ShowMessage("Usuario o contraseña incorrectos.", "Credenciales inválidas");
             }
             catch (Exception ex)
             {
-                // Cualquier otro error inesperado
                 _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
         }
