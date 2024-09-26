@@ -8,21 +8,30 @@ namespace Presentation.Presenters
 {
     public class AdminPresenter : IAdminPresenter
     {
+        IUsuarioService _usuarioService;
         IAdminView _view;
         Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
         IHabitacionServices _habitacionServices;
         private bool _eventosSuscritos = false;
-        public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService)
+        private bool isEditMode = false;
+        public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService, IUsuarioService usuarioService)
         {
-            _view = view;
+            _view = view ?? throw new ArgumentNullException(nameof(view));  // Asegúrate de que la vista no es null
+            _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));  // Verifica que el servicio no sea null
+            _habitacionServices = habitacionService ?? throw new ArgumentNullException(nameof(habitacionService));  // Verifica que el servicio no sea null
+            _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter ?? throw new ArgumentNullException(nameof(crearEditarHabitacionPresenter));
 
-            _habitacionServices = habitacionService;
-            _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
-          
-           CargarHabitaciones();
+
+            _view.EliminarUsuario += OnEliminarUsuario;
+            _view.ActualizarRol += OnActualizarRol;
+            //_view.EditarGuardarUsuario += OnEditarGuardarUsuario;
+            CargarHabitaciones();
+           CargarUsuarios();
            SubscribeEvents();
 
         }
+
+
 
         public void SubscribeEvents()
         {
@@ -57,6 +66,61 @@ namespace Presentation.Presenters
             _view.HideView();
         }
 
+        private void OnActualizarRol(object? sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el ID del usuario seleccionado
+                int userId = _view.GetSelectedUserId();
+                if (userId == -1)
+                {
+                    _view.ShowMessage("No hay usuario seleccionado.", "Error");
+                    return;
+                }
+
+                // Obtener el nuevo rol seleccionado
+                Role newRole = _view.GetSelectedUserRole();
+
+                // Obtener el usuario desde el servicio
+                var usuario = _usuarioService.GetUsuarioById(userId);
+                if (usuario != null)
+                {
+                    // Actualizar el rol del usuario
+                    usuario.Role = newRole;
+
+                    // Actualizar el usuario en el repositorio
+                    _usuarioService.UpdateUsuario(usuario);
+
+                    // Mostrar mensaje de éxito
+                    _view.ShowMessage("Rol del usuario actualizado correctamente.", "Información");
+
+                    // Refrescar la lista de usuarios
+                    CargarUsuarios();
+                }
+                else
+                {
+                    _view.ShowMessage("Usuario no encontrado.", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Error al actualizar el rol: {ex.Message}", "Error");
+            }
+        }
+
+        private void OnEliminarUsuario(int userId)
+        {
+            try
+            {
+                _usuarioService.DeleteUsuario(userId);  // Llamar a UsuarioService para eliminar el usuario
+                CargarUsuarios();  // Refrescar la lista de usuarios después de eliminar
+                _view.ShowMessage("Usuario eliminado correctamente.", "Información");
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Error al eliminar el usuario: {ex.Message}", "Error");
+            }
+        }
         private void OnEliminarHabitacion(object? sender, EventArgs e)
         {
             try
@@ -131,12 +195,20 @@ namespace Presentation.Presenters
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
+
+
         public void CargarUsuarios()
         {
-            var usuarios = new List<Usuario>();
-            _view.ActualizarListaUsuarios(usuarios);
+            try
+            {
+                var usuarios = _usuarioService.GetAllUsuarios(); // Método para obtener todos los usuarios
+                _view.ActualizarListaUsuarios(usuarios);
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error al cargar los usuarios.", $"Error: {ex.Message}");
+            }
         }
-
         public IAdminView GetAdminView()
         {
             return _view;

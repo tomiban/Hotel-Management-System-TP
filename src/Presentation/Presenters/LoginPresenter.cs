@@ -52,23 +52,11 @@ namespace Presentation.Presenters
                         break;
                 }
             }
-            catch (ValidationException ex)
-            {
-                // Mostrar errores de validación en la vista
-                _view.ShowMessage($"Validación fallida: {ex.Message}", "Error");
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Mostrar errores de credenciales inválidas en la vista
-                _view.ShowMessage("Usuario o contraseña incorrectos.", "Credenciales inválidas");
-            }
             catch (Exception ex)
             {
-                // Cualquier otro error inesperado
-                _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
+                _view.ShowMessage($"Error al iniciar sesión: {ex.Message}", "Error");
             }
         }
-
 
         public void OnRegisterRedirect(object? sender, EventArgs e)
         {

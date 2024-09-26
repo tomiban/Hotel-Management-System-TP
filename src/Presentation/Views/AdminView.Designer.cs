@@ -1,4 +1,6 @@
-﻿namespace Presentation.Views
+﻿using System.Windows.Forms;
+
+namespace Presentation.Views
 {
     partial class AdminView
     {
@@ -30,6 +32,8 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminView));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tcAdmin = new MaterialSkin.Controls.MaterialTabControl();
             tpDashboard = new TabPage();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();
@@ -70,16 +74,10 @@
             columnHeader5 = new ColumnHeader();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             tpUsuarios = new TabPage();
-            btnEditarUsu = new MaterialSkin.Controls.MaterialButton();
+            panelUsuarios = new Panel();
+            dataGridViewUsuarios = new DataGridView();
+            btnActualizarRol = new MaterialSkin.Controls.MaterialButton();
             btnBorrarUsu = new MaterialSkin.Controls.MaterialButton();
-            btnAgregarUsu = new MaterialSkin.Controls.MaterialButton();
-            listUsuarios = new MaterialSkin.Controls.MaterialListView();
-            columnHeader6 = new ColumnHeader();
-            columnHeader7 = new ColumnHeader();
-            columnHeader8 = new ColumnHeader();
-            columnHeader9 = new ColumnHeader();
-            columnHeader10 = new ColumnHeader();
-            columnHeader11 = new ColumnHeader();
             lblUsuarios = new MaterialSkin.Controls.MaterialLabel();
             tpFacturacion = new TabPage();
             listFacturas = new MaterialSkin.Controls.MaterialListView();
@@ -97,6 +95,8 @@
             ((System.ComponentModel.ISupportInitialize)imgReservas).BeginInit();
             tpHabitaciones.SuspendLayout();
             tpUsuarios.SuspendLayout();
+            panelUsuarios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).BeginInit();
             tpFacturacion.SuspendLayout();
             SuspendLayout();
             // 
@@ -575,10 +575,9 @@
             // 
             // tpUsuarios
             // 
-            tpUsuarios.Controls.Add(btnEditarUsu);
+            tpUsuarios.Controls.Add(panelUsuarios);
+            tpUsuarios.Controls.Add(btnActualizarRol);
             tpUsuarios.Controls.Add(btnBorrarUsu);
-            tpUsuarios.Controls.Add(btnAgregarUsu);
-            tpUsuarios.Controls.Add(listUsuarios);
             tpUsuarios.Controls.Add(lblUsuarios);
             tpUsuarios.ImageKey = "person_search.png";
             tpUsuarios.Location = new Point(4, 39);
@@ -589,25 +588,60 @@
             tpUsuarios.Text = "Usuarios";
             tpUsuarios.UseVisualStyleBackColor = true;
             // 
-            // btnEditarUsu
+            // panelUsuarios
             // 
-            btnEditarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnEditarUsu.Cursor = Cursors.Hand;
-            btnEditarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnEditarUsu.Depth = 0;
-            btnEditarUsu.HighEmphasis = true;
-            btnEditarUsu.Icon = null;
-            btnEditarUsu.Location = new Point(154, 82);
-            btnEditarUsu.Margin = new Padding(4, 6, 4, 6);
-            btnEditarUsu.MouseState = MaterialSkin.MouseState.HOVER;
-            btnEditarUsu.Name = "btnEditarUsu";
-            btnEditarUsu.NoAccentTextColor = Color.Empty;
-            btnEditarUsu.Size = new Size(71, 36);
-            btnEditarUsu.TabIndex = 26;
-            btnEditarUsu.Text = "EDITAR";
-            btnEditarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            btnEditarUsu.UseAccentColor = true;
-            btnEditarUsu.UseVisualStyleBackColor = true;
+            panelUsuarios.Controls.Add(dataGridViewUsuarios);
+            panelUsuarios.Location = new Point(56, 180);
+            panelUsuarios.Name = "panelUsuarios";
+            panelUsuarios.Size = new Size(905, 198);
+            panelUsuarios.TabIndex = 28;
+            // 
+            // dataGridViewUsuarios
+            // 
+            dataGridViewUsuarios.AllowUserToAddRows = false;
+            dataGridViewUsuarios.BackgroundColor = Color.FromArgb(45, 45, 48);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(31, 31, 31);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(51, 153, 255);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewUsuarios.Dock = DockStyle.Fill;
+            dataGridViewUsuarios.EnableHeadersVisualStyles = false;
+            dataGridViewUsuarios.Location = new Point(0, 0);
+            dataGridViewUsuarios.Name = "dataGridViewUsuarios";
+            dataGridViewUsuarios.Size = new Size(905, 198);
+            dataGridViewUsuarios.TabIndex = 0;
+            // 
+            // btnActualizarRol
+            // 
+            btnActualizarRol.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnActualizarRol.Cursor = Cursors.Hand;
+            btnActualizarRol.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnActualizarRol.Depth = 0;
+            btnActualizarRol.HighEmphasis = true;
+            btnActualizarRol.Icon = null;
+            btnActualizarRol.Location = new Point(56, 82);
+            btnActualizarRol.Margin = new Padding(4, 6, 4, 6);
+            btnActualizarRol.MouseState = MaterialSkin.MouseState.HOVER;
+            btnActualizarRol.Name = "btnActualizarRol";
+            btnActualizarRol.NoAccentTextColor = Color.Empty;
+            btnActualizarRol.Size = new Size(140, 36);
+            btnActualizarRol.TabIndex = 26;
+            btnActualizarRol.Text = "Actualizar Rol";
+            btnActualizarRol.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            btnActualizarRol.UseAccentColor = true;
+            btnActualizarRol.UseVisualStyleBackColor = true;
             // 
             // btnBorrarUsu
             // 
@@ -628,78 +662,6 @@
             btnBorrarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             btnBorrarUsu.UseAccentColor = false;
             btnBorrarUsu.UseVisualStyleBackColor = true;
-            // 
-            // btnAgregarUsu
-            // 
-            btnAgregarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAgregarUsu.BackColor = Color.Black;
-            btnAgregarUsu.Cursor = Cursors.Hand;
-            btnAgregarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnAgregarUsu.Depth = 0;
-            btnAgregarUsu.HighEmphasis = true;
-            btnAgregarUsu.Icon = null;
-            btnAgregarUsu.Location = new Point(56, 82);
-            btnAgregarUsu.Margin = new Padding(4, 6, 4, 6);
-            btnAgregarUsu.MouseState = MaterialSkin.MouseState.HOVER;
-            btnAgregarUsu.Name = "btnAgregarUsu";
-            btnAgregarUsu.NoAccentTextColor = Color.Empty;
-            btnAgregarUsu.Size = new Size(74, 36);
-            btnAgregarUsu.TabIndex = 24;
-            btnAgregarUsu.Text = "AÑADIR";
-            btnAgregarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            btnAgregarUsu.UseAccentColor = true;
-            btnAgregarUsu.UseMnemonic = false;
-            btnAgregarUsu.UseVisualStyleBackColor = false;
-            // 
-            // listUsuarios
-            // 
-            listUsuarios.AutoSizeTable = false;
-            listUsuarios.BackColor = Color.FromArgb(255, 255, 255);
-            listUsuarios.BorderStyle = BorderStyle.None;
-            listUsuarios.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10, columnHeader11 });
-            listUsuarios.Cursor = Cursors.Hand;
-            listUsuarios.Depth = 0;
-            listUsuarios.FullRowSelect = true;
-            listUsuarios.Location = new Point(56, 127);
-            listUsuarios.MinimumSize = new Size(200, 100);
-            listUsuarios.MouseLocation = new Point(-1, -1);
-            listUsuarios.MouseState = MaterialSkin.MouseState.OUT;
-            listUsuarios.Name = "listUsuarios";
-            listUsuarios.OwnerDraw = true;
-            listUsuarios.Size = new Size(905, 320);
-            listUsuarios.TabIndex = 21;
-            listUsuarios.UseCompatibleStateImageBehavior = false;
-            listUsuarios.View = View.Details;
-            // 
-            // columnHeader6
-            // 
-            columnHeader6.Text = "Id";
-            columnHeader6.Width = 92;
-            // 
-            // columnHeader7
-            // 
-            columnHeader7.Text = "Nombre";
-            columnHeader7.Width = 150;
-            // 
-            // columnHeader8
-            // 
-            columnHeader8.Text = "Apellido";
-            columnHeader8.Width = 150;
-            // 
-            // columnHeader9
-            // 
-            columnHeader9.Text = "Edad";
-            columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            columnHeader10.Text = "Telefono";
-            columnHeader10.Width = 210;
-            // 
-            // columnHeader11
-            // 
-            columnHeader11.Text = "Role";
-            columnHeader11.Width = 100;
             // 
             // lblUsuarios
             // 
@@ -820,6 +782,8 @@
             tpHabitaciones.PerformLayout();
             tpUsuarios.ResumeLayout(false);
             tpUsuarios.PerformLayout();
+            panelUsuarios.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUsuarios).EndInit();
             tpFacturacion.ResumeLayout(false);
             tpFacturacion.PerformLayout();
             ResumeLayout(false);
@@ -866,23 +830,18 @@
         private ColumnHeader columnCheckout;
         private MaterialSkin.Controls.MaterialListView listHabitaciones;
         private MaterialSkin.Controls.MaterialListView listFacturas;
-        private MaterialSkin.Controls.MaterialListView listUsuarios;
         private MaterialSkin.Controls.MaterialButton btnAgregarHab;
         private MaterialSkin.Controls.MaterialButton btnBorrarHab;
         private MaterialSkin.Controls.MaterialButton btnEditarHab;
-        private MaterialSkin.Controls.MaterialButton btnEditarUsu;
         private MaterialSkin.Controls.MaterialButton btnBorrarUsu;
-        private MaterialSkin.Controls.MaterialButton btnAgregarUsu;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
-        private ColumnHeader columnHeader6;
-        private ColumnHeader columnHeader7;
-        private ColumnHeader columnHeader8;
-        private ColumnHeader columnHeader9;
-        private ColumnHeader columnHeader10;
-        private ColumnHeader columnHeader11;
+        private MaterialSkin.Controls.MaterialButton btnActualizarRol;
+        private DataGridView dataGridViewUsuarios;
+        private Panel panelUsuarios;
+        private MaterialSkin.Controls.MaterialButton btnGuardarUsu;
     }
 }
