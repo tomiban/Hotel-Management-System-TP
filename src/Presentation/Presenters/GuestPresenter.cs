@@ -14,19 +14,65 @@ namespace PresentationLayer.Presenters
     public class GuestPresenter : IGuestPresenter
     {
         IGuestView _view;
+        Lazy<IDetallesReservaPresenter> _detallesReservaPresenter;
         IReservaService _reservaService;
         IAuthService _authService;
         IHabitacionServices _habitacionServices;
+        Reserva _reservaActual;
 
-        public GuestPresenter(IGuestView view, IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService)
+        public GuestPresenter(IGuestView view, Lazy<IDetallesReservaPresenter> detallesReservaPresenter, IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService)
         {
             _view = view;
             _reservaService = reservaService;
             _authService = authService;
             _habitacionServices = habitacionServices;
+            _detallesReservaPresenter = detallesReservaPresenter;  // Asignar Lazy<T> correctamente
+
             _view.OnRealizarReserva += HandleRealizarReserva;
+            _view.ReservaSeleccionada += HandleReservaSeleccionada;
+            // Suscribirse al evento que indica que una reserva ha sido modificada
+            _detallesReservaPresenter.Value.OnReservaModificada += OnReservaModificada;
+
             CargarHabitaciones();
             CargarReservas();
+        }
+
+        // Maneja el evento de reserva modificada
+        private void OnReservaModificada(object sender, EventArgs e)
+        {
+            CargarReservas();
+        }
+
+
+        private void HandleReservaSeleccionada(object? sender, int reservaId)
+        {
+            try
+            {
+                if (reservaId > 0)
+                {
+                    var reserva = _reservaService.GetById(reservaId);
+
+                    if (reserva == null)
+                    {
+                        _view.ShowMessage("No se encontró la reserva seleccionada.", "Error");
+                        return;
+                    }
+
+                    _reservaActual = reserva;
+
+                
+                    _detallesReservaPresenter.Value.SetEditMode(_reservaActual);
+                    _detallesReservaPresenter.Value.GetDetallesReservaView().ShowView();  // Acceder a .Value
+                }
+                else
+                {
+                    _view.ShowMessage("ID de reserva no válido.", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Ocurrió un error al intentar cargar los detalles de la reserva: {ex.Message}", "Error");
+            }
         }
 
         public void HandleRealizarReserva(object? sender, EventArgs e)
@@ -83,6 +129,8 @@ namespace PresentationLayer.Presenters
                 _view.ShowMessage(ex.Message, "Error");
             }
         }
+
+
 
         // Cargar las habitaciones y crear las tarjetas usando la fábrica
         public void CargarHabitaciones()

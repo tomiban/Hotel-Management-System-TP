@@ -67,5 +67,6 @@ namespace ApplicationLayer.Services
         {
             return _habitacionRepository.GetById(id) != null;
         }
+
     }
 }

@@ -39,7 +39,23 @@ namespace Infraestructure.DataAccess.Repositories
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var reserva = _reservas.FirstOrDefault(r => r.Id == id);
+                if (reserva != null)
+                {
+                    _reservas.Remove(reserva);
+                    _persistenceService.Save(FILE_PATH, _reservas);
+                }
+                else
+                {
+                    throw new ArgumentException("La reserva no existe.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al eliminar la reserva: {ex.Message}", ex);
+            }
         }
 
         public List<Reserva> GetAll()
@@ -68,7 +84,14 @@ namespace Infraestructure.DataAccess.Repositories
 
         public Reserva GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _reservas.FirstOrDefault(r => r.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error al obtener la reserva: {ex.Message}", ex);
+            }
         }
 
         // Actualizar reserva existente

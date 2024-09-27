@@ -7,12 +7,6 @@ using PresentationLayer.Utils;
 using PresentationLayer.Views;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentation.Views
@@ -22,35 +16,41 @@ namespace Presentation.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer habitacionCardContainer;
 
-
-
         public GuestView()
         {
             InitializeComponent();
 
             var ColorScheme = new ColorScheme(
-                 Primary.DeepPurple600,
-                 Primary.DeepPurple700,
-                 Primary.Cyan300,
-                 Accent.Cyan700,
-                 TextShade.WHITE
-             );
+                Primary.DeepPurple600,
+                Primary.DeepPurple700,
+                Primary.Cyan300,
+                Accent.Cyan700,
+                TextShade.WHITE
+            );
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
             habitacionCardContainer = new HabitacionCardContainer();
             tpHabitaciones.Controls.Add(habitacionCardContainer);
             AttachAndRaiseViewEvents();
-
         }
+
 
         private void AttachAndRaiseViewEvents()
         {
             cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) => EventHelper.RaiseEvent(this, OnFiltrarCategoria, EventArgs.Empty);
+
+            // Usamos el MouseClick para detectar la selección
+            listReservas.MouseClick += (s, e) =>
+            {
+                var reservaId = (int)listReservas.SelectedItems[0].Tag;
+                EventHelper.RaiseEvent(this, ReservaSeleccionada, reservaId);
+            };
         }
 
         public event EventHandler OnRealizarReserva;
         public event EventHandler OnFiltrarCategoria;
+        public event EventHandler<int> ReservaSeleccionada; // Cambiar a EventHandler<int> para pasar el ID de la reserva
 
         public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
         {
@@ -60,15 +60,13 @@ namespace Presentation.Views
             }
         }
 
-
-
         public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
         {
             habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
 
             foreach (var card in habitacionCards)
             {
-                habitacionCardContainer.Controls.Add(card); 
+                habitacionCardContainer.Controls.Add(card);
             }
         }
 
@@ -108,17 +106,23 @@ namespace Presentation.Views
 
             foreach (var reserva in reservas)
             {
+                // Crear el ListViewItem y añadir las subcolumnas
                 ListViewItem listItem = new ListViewItem(contador.ToString());
                 listItem.SubItems.Add(reserva.NroHabitacion.ToString());
                 listItem.SubItems.Add(reserva.TipoHabitacion.ToString());
-                listItem.SubItems.Add(reserva.FechaInicio.ToString());
-                listItem.SubItems.Add(reserva.FechaFin.ToString());
-                listItem.SubItems.Add($"{reserva.MontoTotal.ToString("C"):NO} ARS");
-                listReservas.Items.Add(listItem);
+                listItem.SubItems.Add(reserva.FechaInicio.ToShortDateString());
+                listItem.SubItems.Add(reserva.FechaFin.ToShortDateString());
+                listItem.SubItems.Add($"{reserva.MontoTotal:C} ARS");
 
+                // Guardar el ID de la reserva en el Tag del ListViewItem
+                listItem.Tag = reserva.Id;
+
+                listReservas.Items.Add(listItem);
                 contador++;
             }
+
         }
+
 
     }
 }
