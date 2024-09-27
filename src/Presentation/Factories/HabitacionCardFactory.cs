@@ -16,11 +16,10 @@ namespace PresentationLayer.Factories
             if (habitacion == null)
                 throw new ArgumentNullException(nameof(habitacion));
 
-            // Crear la tarjeta con base en la habitación recibida
+        
             HabitacionCard card = new HabitacionCard(habitacion);
 
-       
-
+      
             return card;
         }
     }

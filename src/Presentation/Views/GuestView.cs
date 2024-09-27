@@ -2,6 +2,7 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using PresentationLayer.Components;
+using PresentationLayer.Events;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
 using PresentationLayer.Views;
@@ -14,7 +15,12 @@ namespace Presentation.Views
     public partial class GuestView : MaterialForm, IGuestView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-        HabitacionCardContainer habitacionCardContainer;
+        HabitacionCardContainer HabitacionCardContainer;
+
+        public DateTime ReservaFechaDesde => dtpFechaDesde.Value;
+        public DateTime ReservaFechaHasta => dtpFechaHasta.Value;
+
+        public HabitacionCardContainer habitacionCardContainer { get => HabitacionCardContainer; }
 
         public GuestView()
         {
@@ -30,9 +36,12 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
-            habitacionCardContainer = new HabitacionCardContainer();
-            tpHabitaciones.Controls.Add(habitacionCardContainer);
+            HabitacionCardContainer = new HabitacionCardContainer();
+            panel2.Controls.Add(HabitacionCardContainer);
+            dtpFechaDesde.Value = DateTime.Today;
+            dtpFechaHasta.Value = DateTime.Today.AddDays(7);
             AttachAndRaiseViewEvents();
+            MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
         }
 
 
@@ -46,11 +55,38 @@ namespace Presentation.Views
                 var reservaId = (int)listReservas.SelectedItems[0].Tag;
                 EventHelper.RaiseEvent(this, ReservaSeleccionada, reservaId);
             };
+
+            btnBuscarHabitaciones.Click += (s, e) =>
+            {
+            
+                if (dtpFechaDesde.Value == null || dtpFechaHasta.Value == null)
+                {
+                    MessageBox.Show("Por favor, ingrese una fecha de inicio y una fecha de fin.");
+                    return;
+                }
+                if (dtpFechaHasta.Value < dtpFechaDesde.Value)
+                {
+                    MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                    return;
+                }
+                if (DateTime.Today > dtpFechaDesde.Value)
+                {
+                    MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.");
+                    return;
+                }
+             
+                EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value));
+            };
+
+
+
         }
 
-        public event EventHandler OnRealizarReserva;
+
         public event EventHandler OnFiltrarCategoria;
         public event EventHandler<int> ReservaSeleccionada; // Cambiar a EventHandler<int> para pasar el ID de la reserva
+        public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
+        public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
 
         public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
         {
@@ -62,11 +98,19 @@ namespace Presentation.Views
 
         public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)
         {
-            habitacionCardContainer.Controls.Clear(); // Limpiar las tarjetas previas
+            habitacionCardContainer.Clear(); // Limpiar las tarjetas previas
 
-            foreach (var card in habitacionCards)
+            // Si no hay habitaciones, mostramos el mensaje correspondiente
+            if (habitacionCards.Count == 0)
             {
-                habitacionCardContainer.Controls.Add(card);
+                this.MostrarMensaje("No hay habitaciones disponibles en este rango de fechas.");
+            }
+            else
+            {
+                foreach (var card in habitacionCards)
+                {
+                    habitacionCardContainer.Add(card); // Añadir las tarjetas de las habitaciones
+                }
             }
         }
 
@@ -123,6 +167,13 @@ namespace Presentation.Views
 
         }
 
+        // Implementación del método para mostrar el mensaje inicial
+        // Método único para mostrar diferentes mensajes
+        public void MostrarMensaje(string mensaje)
+        {
+            habitacionCardContainer.Clear();  // Limpiar cualquier contenido previo
+            habitacionCardContainer.MostrarMensaje(mensaje); // Mostrar el mensaje en el contenedor
+        }
 
     }
 }

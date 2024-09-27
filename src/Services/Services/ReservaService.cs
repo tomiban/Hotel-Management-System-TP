@@ -72,18 +72,6 @@ namespace ApplicationLayer.Services
             _reservaRepository.Delete(id);
         }
 
-        // Método para filtrar habitaciones por disponibilidad en el rango de fechas seleccionado
-        public List<Habitacion> FiltrarPorFechaDisponibilidad(DateTime fechaInicio, DateTime fechaFin)
-        {
-            // Obtener todas las habitaciones
-            var habitaciones = _habitacionRepository.GetAll();
-
-            // Filtrar las habitaciones que estén disponibles en el rango de fechas
-            var habitacionesDisponibles = habitaciones
-                .Where(habitacion => _reservaRepository.VerificarDisponibilidad(habitacion.NroHabitacion, fechaInicio, fechaFin))
-                .ToList();
-
-            return habitacionesDisponibles;
-        }
+      
     }
 }

@@ -2,7 +2,9 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using PresentationLayer.Components;
+using PresentationLayer.Events;
 using PresentationLayer.Factories;
+using PresentationLayer.Helpers;
 using PresentationLayer.Views;
 using Services.Services.ReservaServices;
 using System.CodeDom;
@@ -27,14 +29,36 @@ namespace PresentationLayer.Presenters
             _authService = authService;
             _habitacionServices = habitacionServices;
             _detallesReservaPresenter = detallesReservaPresenter;  // Asignar Lazy<T> correctamente
-
+            _view.OnFiltrarHabitacionesRangoFechas += HandleFiltrarHabitacionesRangoFechas;
             _view.OnRealizarReserva += HandleRealizarReserva;
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
             // Suscribirse al evento que indica que una reserva ha sido modificada
             _detallesReservaPresenter.Value.OnReservaModificada += OnReservaModificada;
 
-            CargarHabitaciones();
             CargarReservas();
+        }
+
+
+
+        private void HandleFiltrarHabitacionesRangoFechas(object? sender, FiltroFechaEventArgs e)
+        {
+            try
+            {
+                var habitacionesDisponibles = _habitacionServices.FiltrarHabitacionesDisponibles(e.FechaDesde, e.FechaHasta);
+
+                // Crear las tarjetas de las habitaciones disponibles
+                var habitacionCards = habitacionesDisponibles
+                    .Select(h => new HabitacionCard(h))
+                    .ToList();
+
+                // Actualizar la vista con las nuevas tarjetas filtradas
+                _view.CargarHabitacionCards(habitacionCards);
+                
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error", $"Ocurrió un error al filtrar las habitaciones: {ex.Message}");
+            }
         }
 
         // Maneja el evento de reserva modificada
@@ -60,7 +84,7 @@ namespace PresentationLayer.Presenters
 
                     _reservaActual = reserva;
 
-                
+
                     _detallesReservaPresenter.Value.SetEditMode(_reservaActual);
                     _detallesReservaPresenter.Value.GetDetallesReservaView().ShowView();  // Acceder a .Value
                 }
@@ -75,17 +99,10 @@ namespace PresentationLayer.Presenters
             }
         }
 
-        public void HandleRealizarReserva(object? sender, EventArgs e)
+        public void HandleRealizarReserva(object? sender, HabitacionEventArgs e)
         {
             try
             {
-
-                var habitacionSeleccionada = sender as HabitacionCard;
-                if (habitacionSeleccionada == null)
-                {
-                    _view.ShowMessage("Debe seleccionar una habitación.", "Error");
-                    return;
-                }
 
                 var usuarioAutenticado = _authService.GetCurrentUser();
 
@@ -94,31 +111,23 @@ namespace PresentationLayer.Presenters
                     _view.ShowMessage("Debe iniciar sesión antes de realizar una reserva.", "Error");
                     return;
                 }
-
-                if(habitacionSeleccionada.FechaDesdePicker.Value > habitacionSeleccionada.FechaHastaPicker.Value)
-                    throw new ApplicationException("La fecha de inicio debe ser anterior a la fecha de fin.");
-                
-                if(habitacionSeleccionada.FechaDesdePicker.Value < DateTime.Today)
-                    throw new ApplicationException("La fecha de inicio debe ser posterior a la fecha actual.");
-
-
-
                 var reserva = new Reserva()
                 {
-                    FechaInicio = habitacionSeleccionada.FechaDesdePicker.Value,
-                    FechaFin = habitacionSeleccionada.FechaHastaPicker.Value,
-                    NroHabitacion = int.Parse(habitacionSeleccionada.NroHabitacionLabel.Text.Split(' ').Last()),
-                    TipoHabitacion = (TipoHabitacion)Enum.Parse(typeof(TipoHabitacion),habitacionSeleccionada.TipoHabitacionLabel.Text),
+                    FechaInicio = _view.ReservaFechaDesde,
+                    FechaFin = _view.ReservaFechaHasta,
+                    NroHabitacion = e.Habitacion.NroHabitacion,
+                    TipoHabitacion = e.Habitacion.TipoHabitacion,
                     UserId = usuarioAutenticado.Id,
                     Username = usuarioAutenticado.Username,
-                    PrecioPorNoche = decimal.Parse((habitacionSeleccionada.PrecioLabel.Text.Replace("$", "").Replace("ARS", "").Trim())),
+                    PrecioPorNoche = e.Habitacion.PrecioPorNoche,
                 };
 
                 _reservaService.AgregarReserva(reserva);
 
                 _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
-                CargarHabitaciones();
+
                 CargarReservas();
+                _habitacionServices.FiltrarHabitacionesDisponibles(_view.ReservaFechaDesde, _view.ReservaFechaHasta);
             }
             catch (ValidationException ex)
             {
@@ -130,28 +139,6 @@ namespace PresentationLayer.Presenters
             }
         }
 
-
-
-        // Cargar las habitaciones y crear las tarjetas usando la fábrica
-        public void CargarHabitaciones()
-        {
-            var habitaciones = _habitacionServices.GetAll(); // Obtener todas las habitaciones
-            var habitacionCards = new List<HabitacionCard>();
-
-            // Usar la fábrica para crear las tarjetas de habitaciones
-            foreach (var habitacion in habitaciones)
-            {
-                var habitacionCard = HabitacionCardFactory.CreateHabitacionCard(habitacion);
-
-                // Conectar el evento OnReservarButtonClicked al manejador de eventos
-                habitacionCard.OnReservarButtonClicked += HandleRealizarReserva;
-
-                habitacionCards.Add(habitacionCard);
-            }
-
-            // Pasar las tarjetas al método de la vista para mostrarlas
-            _view.CargarHabitacionCards(habitacionCards);
-        }
 
         public void CargarReservas()
         {

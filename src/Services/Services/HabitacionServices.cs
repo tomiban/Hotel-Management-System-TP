@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Validation.ModelDataAnnotationCheck;
+using Services.Services.ReservaServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,11 +13,27 @@ namespace ApplicationLayer.Services
     {
         private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
         private readonly IHabitacionRepository _habitacionRepository;
+        private readonly IReservaRepository _reservaRepository;
 
-        public HabitacionServices(IHabitacionRepository habitacionRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
+        public HabitacionServices(IHabitacionRepository habitacionRepository, IReservaRepository reservaRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
         {
             _modelDataAnnotationCheck = modelDataAnnotationCheck;
             _habitacionRepository = habitacionRepository;
+            _reservaRepository = reservaRepository;
+        }
+
+        // Método optimizado para filtrar habitaciones disponibles
+        public List<Habitacion> FiltrarHabitacionesDisponibles(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            var reservas = _reservaRepository.GetAll();
+
+            // Obtener las habitaciones que NO tienen reservas en el rango de fechas especificado
+            return _habitacionRepository.GetAll()
+                .Where(h => !reservas.Any(r =>
+                        r.NroHabitacion == h.NroHabitacion &&
+                        (fechaDesde < r.FechaFin && fechaHasta > r.FechaInicio)
+                    )
+                ).ToList();
         }
 
         public ICollection<ValidationResult> ValidateModel(IHabitacion habitacion)
@@ -68,10 +85,6 @@ namespace ApplicationLayer.Services
             return _habitacionRepository.GetById(id) != null;
         }
 
-        public List<Habitacion> FiltrarPorFecha(DateTime fechaDesde, DateTime fechaHasta)
-        {
-            // Filtra las habitaciones que están disponibles en el rango de fechas
-            return _habitaciones.Where(h => h.DisponibleDesde <= fechaDesde && h.DisponibleHasta >= fechaHasta).ToList();
-        }
+
     }
 }
