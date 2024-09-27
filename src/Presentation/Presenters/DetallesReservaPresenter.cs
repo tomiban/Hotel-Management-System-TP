@@ -22,6 +22,24 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         _view.OnActualizarReserva += HandleActualizarReserva;
         _view.OnCancelarReserva += HandleCancelarReserva;
         _view.OnRedirectToClientView += HandleRedirectToClientView;
+        _view.OnFechaCambiada += HandleFechaCambiada;
+    }
+
+    private void HandleFechaCambiada(object? sender, EventArgs e)
+    {
+        try
+        {
+            _reservaActual.FechaInicio = _view.FechaInicio;
+            _reservaActual.FechaFin = _view.FechaFin;
+            decimal nuevoPrecio = _reservaService.RecalcularDiasYPrecio(_reservaActual);
+
+            // Actualizar la vista con el nuevo precio
+            _view.MostrarPrecioActualizado(nuevoPrecio);
+        }
+        catch (Exception ex)
+        {
+            _view.ShowMessage($"Error al recalcular el precio: {ex.Message}", "Error");
+        }
     }
 
     private void HandleRedirectToClientView(object? sender, EventArgs e)

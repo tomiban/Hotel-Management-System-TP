@@ -84,7 +84,7 @@ namespace PresentationLayer.Presenters
 
                     _reservaActual = reserva;
 
-
+                    _view.HideView();
                     _detallesReservaPresenter.Value.SetEditMode(_reservaActual);
                     _detallesReservaPresenter.Value.GetDetallesReservaView().ShowView();  // Acceder a .Value
                 }
@@ -148,6 +148,7 @@ namespace PresentationLayer.Presenters
             _view.CargarReservas(reservasUsuario);
         }
 
+      
 
         public IGuestView GetGuestView()
         {

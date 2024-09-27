@@ -72,6 +72,15 @@ namespace ApplicationLayer.Services
             _reservaRepository.Delete(id);
         }
 
-      
+        public decimal RecalcularDiasYPrecio(Reserva reserva)
+        {
+            
+            int diasDeEstadia = (reserva.FechaFin.Date - reserva.FechaInicio.Date).Days;
+            if (diasDeEstadia <= 0)
+                throw new ArgumentException("La fecha de fin debe ser posterior a la fecha de inicio.");
+
+            decimal precioTotal = diasDeEstadia * reserva.PrecioPorNoche;
+            return precioTotal;
+        }
     }
 }

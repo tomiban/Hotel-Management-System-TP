@@ -12,5 +12,6 @@ namespace ApplicationLayer.Services
         void CancelarReserva(int id);
         ICollection<ValidationResult> ValidateModel(Reserva reserva);
         bool VerificarDisponibilidadHabitacion(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
+        decimal RecalcularDiasYPrecio(Reserva reserva);
     }
 }

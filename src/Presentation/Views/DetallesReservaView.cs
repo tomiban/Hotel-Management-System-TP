@@ -16,10 +16,18 @@ namespace PresentationLayer.Views
         // Reserva actual
         private Reserva _reservaActual;
 
+        // Propiedades para obtener las fechas actuales del DateTimePicker
+        public DateTime FechaInicio => dateTimePickerInicio.Value;
+        public DateTime FechaFin => dateTimePickerFin.Value;
+
         // Eventos para actualizar y cancelar la reserva
         public event EventHandler OnActualizarReserva;
         public event EventHandler OnCancelarReserva;
         public event EventHandler OnRedirectToClientView;
+        public event EventHandler OnFechaCambiada;
+
+        // Nueva propiedad para controlar si las fechas han sido inicializadas
+        private bool _fechasInicializadas = false;
 
         public DetallesReservaView()
         {
@@ -40,26 +48,20 @@ namespace PresentationLayer.Views
         private void AssociateAndRaiseViewEvents()
         {
             btnRegresarCliente.Click += (s, e) => { EventHelper.RaiseEvent(this, OnRedirectToClientView, EventArgs.Empty); };
+
             // Botón de actualización de reserva
             btnActualizarReserva.Click += (s, e) =>
             {
-                // Validar fechas al final, antes de actualizar
-                if (dateTimePickerInicio.Value > dateTimePickerFin.Value)
+                // Validar que la fecha de inicio no sea posterior a la fecha de fin
+                if (FechaInicio > FechaFin)
                 {
                     this.ShowMessage("La fecha de inicio no puede ser posterior a la fecha de fin.", "Error");
                     return;
                 }
 
-                // Actualizar los valores de la reserva con las nuevas fechas
-                _reservaActual.FechaInicio = dateTimePickerInicio.Value;
-                _reservaActual.FechaFin = dateTimePickerFin.Value;
-
                 // Lanzar el evento de actualización de reserva
                 EventHelper.RaiseEvent(this, OnActualizarReserva, EventArgs.Empty);
-
             };
-
-           
 
             // Botón de cancelación de reserva
             btnCancelarReserva.Click += (s, e) =>
@@ -68,57 +70,66 @@ namespace PresentationLayer.Views
             };
 
             // Eventos para cambios en las fechas
-            dateTimePickerInicio.ValueChanged += (s, e) => RecalcularDiasYPrecio();
-            dateTimePickerFin.ValueChanged += (s, e) => RecalcularDiasYPrecio();
+            dateTimePickerInicio.ValueChanged += (s, e) => OnFechaCambiadaHandler();
+            dateTimePickerFin.ValueChanged += (s, e) => OnFechaCambiadaHandler();
+        }
+
+        // Este método ahora maneja ambos DateTimePickers
+        private void OnFechaCambiadaHandler()
+        {
+            // Solo permitir que el evento se dispare si las fechas ya han sido inicializadas
+            if (_fechasInicializadas)
+            {
+                EventHelper.RaiseEvent(this, OnFechaCambiada, EventArgs.Empty);
+            }
         }
 
         // Mostrar los detalles de la reserva en los controles correspondientes
         public void MostrarDetalleReserva(Reserva reserva)
         {
-            _reservaActual = reserva;  // Guardar la reserva actual para su uso en la actualización
+            _reservaActual = reserva;  // Guardar la reserva actual para futuras actualizaciones
 
+            // Desactivar temporalmente el evento durante la inicialización
+            _fechasInicializadas = false;
+
+            // Mostrar los detalles de la reserva en los controles
             txtNroHabitacionDetalle.Text = reserva.NroHabitacion.ToString();
             dateTimePickerInicio.Value = reserva.FechaInicio;
             dateTimePickerFin.Value = reserva.FechaFin;
             txtTipoHabitacion.Text = reserva.TipoHabitacion.ToString();
             txtDiasEstadia.Text = reserva.DiasDeEstadia.ToString();
             txtPrecioFinal.Text = $"{reserva.MontoTotal:C}";
+
+            // Después de inicializar correctamente las fechas, habilitar el control de fechas
+            _fechasInicializadas = true;
         }
 
-        // Recalcular días de estadía y precio total cuando cambian las fechas
-        private void RecalcularDiasYPrecio()
+        // Mostrar el precio actualizado y los días de estadía cuando se cambian las fechas
+        public void MostrarPrecioActualizado(decimal nuevoPrecio)
         {
-            // Calcular días de estadía
-            int diasDeEstadia = (int)(dateTimePickerFin.Value - dateTimePickerInicio.Value).TotalDays;
-
-            // Actualizar campo de días de estadía
-            txtDiasEstadia.Text = diasDeEstadia.ToString();
-
-            // Calcular y actualizar el precio final (Precio por noche * días de estadía)
-            decimal precioPorNoche = _reservaActual.PrecioPorNoche;
-            decimal montoTotal = diasDeEstadia * precioPorNoche;
-            txtPrecioFinal.Text = $"{montoTotal:C}";
+            txtPrecioFinal.Text = $"{nuevoPrecio:C}";  // Actualizar el precio total
+            txtDiasEstadia.Text = $"{(FechaFin.Date - FechaInicio.Date).Days}";  // Calcular los días de estadía
         }
 
         // Métodos para manejar la vista
         public void ShowView()
         {
-            this.Show(); // Mostrar la vista como modal
+            this.Show(); // Mostrar la vista
         }
 
         public void CloseView()
         {
-            this.Close();
+            this.Close();  // Cerrar la vista
         }
 
         public void ShowMessage(string message, string title)
         {
-            MaterialMessageBox.Show(this, title, message);
+            MaterialMessageBox.Show(this, title, message);  // Mostrar un mensaje
         }
 
         public void HideView()
         {
-            this.Hide();
+            this.Hide();  // Ocultar la vista
         }
     }
 }
