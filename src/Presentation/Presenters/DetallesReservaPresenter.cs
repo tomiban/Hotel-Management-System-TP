@@ -1,6 +1,7 @@
 ﻿using ApplicationLayer.Services;
 using Domain.Entities;
 using PresentationLayer.Presenters;
+using PresentationLayer.Utils;
 using PresentationLayer.Views;
 
 public class DetallesReservaPresenter : IDetallesReservaPresenter
@@ -71,9 +72,9 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
             _view.ShowMessage("Reserva actualizada con éxito.", "Éxito");
 
             // Lanzar evento cuando la reserva es actualizada
-            OnReservaModificada?.Invoke(this, EventArgs.Empty);
+            EventHelper.RaiseEvent(this, OnReservaModificada, EventArgs.Empty);
 
-            _view.HideView();  // Cerrar la vista después de actualizar
+           // _view.HideView();  // Cerrar la vista después de actualizar
         }
         catch (Exception ex)
         {

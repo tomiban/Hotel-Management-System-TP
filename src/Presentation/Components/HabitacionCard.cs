@@ -58,8 +58,6 @@ namespace PresentationLayer.Components
             // Definir propiedades de la tarjeta
             this.Size = new Size(260, 330);
             this.BackColor = Color.FromArgb(55, 71, 79);
-         
-            
 
             // Etiqueta de número de habitación
             NroHabitacionLabel = new Label

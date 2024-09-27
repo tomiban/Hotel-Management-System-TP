@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PresentationLayer.Helpers
+namespace PresentationLayer.Events
 {
     public class FiltroFechaEventArgs : EventArgs
     {

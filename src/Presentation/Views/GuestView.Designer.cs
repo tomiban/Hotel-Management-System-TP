@@ -89,7 +89,7 @@
             tcCliente.Multiline = true;
             tcCliente.Name = "tcCliente";
             tcCliente.SelectedIndex = 0;
-            tcCliente.Size = new Size(1028, 733);
+            tcCliente.Size = new Size(1028, 721);
             tcCliente.TabIndex = 0;
             // 
             // tpHabitaciones
@@ -100,7 +100,7 @@
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
             tpHabitaciones.Padding = new Padding(3);
-            tpHabitaciones.Size = new Size(1020, 690);
+            tpHabitaciones.Size = new Size(1020, 678);
             tpHabitaciones.TabIndex = 5;
             tpHabitaciones.Text = "Habitaciones";
             tpHabitaciones.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(3, 149);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1014, 538);
+            panel2.Size = new Size(1014, 526);
             panel2.TabIndex = 14;
             // 
             // panel1
@@ -236,7 +236,7 @@
             tpReservas.ImageKey = "book.png";
             tpReservas.Location = new Point(4, 39);
             tpReservas.Name = "tpReservas";
-            tpReservas.Size = new Size(1020, 690);
+            tpReservas.Size = new Size(1020, 678);
             tpReservas.TabIndex = 3;
             tpReservas.Text = "Reservas";
             tpReservas.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@
             tpCuenta.Location = new Point(4, 39);
             tpCuenta.Name = "tpCuenta";
             tpCuenta.Padding = new Padding(3);
-            tpCuenta.Size = new Size(1020, 690);
+            tpCuenta.Size = new Size(1020, 678);
             tpCuenta.TabIndex = 1;
             tpCuenta.Text = "Mi Cuenta";
             tpCuenta.UseVisualStyleBackColor = true;
@@ -540,7 +540,7 @@
             tpLogout.ImageKey = "logout.png";
             tpLogout.Location = new Point(4, 39);
             tpLogout.Name = "tpLogout";
-            tpLogout.Size = new Size(1020, 690);
+            tpLogout.Size = new Size(1020, 678);
             tpLogout.TabIndex = 4;
             tpLogout.Text = "Salir";
             tpLogout.UseVisualStyleBackColor = true;
@@ -570,7 +570,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1048, 800);
+            ClientSize = new Size(1048, 788);
             Controls.Add(tcCliente);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcCliente;

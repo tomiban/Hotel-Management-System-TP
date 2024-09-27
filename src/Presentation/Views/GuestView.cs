@@ -109,8 +109,16 @@ namespace Presentation.Views
             {
                 foreach (var card in habitacionCards)
                 {
+                    // Suscribir al evento OnRealizarReserva para cada tarjeta
+                    card.OnRealizarReserva += (sender, e) =>
+                    {
+                        // Elevar el evento hacia el Presenter desde la vista
+                        EventHelper.RaiseEvent(this, OnRealizarReserva, e);
+                    };
+
                     habitacionCardContainer.Add(card); // Añadir las tarjetas de las habitaciones
                 }
+            
             }
         }
 
