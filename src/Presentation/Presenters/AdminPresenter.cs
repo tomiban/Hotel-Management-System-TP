@@ -10,7 +10,6 @@ namespace Presentation.Presenters
     public class AdminPresenter : IAdminPresenter
     {
         private readonly IAdminView _view;
-        IUsuarioService _usuarioService;
         private readonly IHabitacionServices _habitacionServices;
         private readonly IReservaService _reservaService;
         private readonly IUsuarioService _usuarioService;
@@ -200,14 +199,14 @@ namespace Presentation.Presenters
 
         private void CargarUsuarios()
         {
-            var usuarios = _usuarioService.GetAll();
+            var usuarios = _usuarioService.GetAllUsuarios();
             _usuarios = usuarios;
         }
 
         public void CargarDatosDashboard()
         {
-          
-           
+
+
             int totalUsuarios = _usuarios.Count;
             int totalHabitaciones = _habitaciones.Count;
             int totalReservasCurso = _reservas.Where(r =>
@@ -222,7 +221,8 @@ namespace Presentation.Presenters
 
             _view.ActualizarDashboard(totalReservasCurso, porcentajeOcupacion, totalUsuarios, totalUsuariosRecientes, totalFacturado);
 
-        public void CargarListaUsuarios()
+        }
+            public void CargarListaUsuarios()
         {
             try
             {
@@ -234,5 +234,4 @@ namespace Presentation.Presenters
             }
         }
     }
-}
 }
