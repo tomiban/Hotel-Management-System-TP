@@ -55,6 +55,7 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
     {
         try
         {
+            _navigationService.GetPresenter<IGuestPresenter>().CargarReservas();
             _navigationService.GoBack();  // Navegar de regreso a la vista del cliente
         }
         catch (Exception ex)

@@ -5,6 +5,6 @@ namespace PresentationLayer.Presenters
 {
     public interface IGuestPresenter: IPresenter
     {
-   
+        public void CargarReservas();
     }
 }
