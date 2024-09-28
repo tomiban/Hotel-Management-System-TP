@@ -11,9 +11,11 @@ namespace Presentation.Views
     {
         void ActualizarListaUsuarios(List<Usuario> items);
         void ActualizarListaHabitaciones(List<Habitacion> items);
-        void ObtenerDatos();
+        void CargarListaReservasActivas(List<Reserva> reservas);
+        void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual);
+
         int ObtenerNroHabitacionSeleccionado();
-        void LimpiarFormulario();
+
 
         event EventHandler RedirectToCrearEditarHabitacion;
         event EventHandler RedirectToCrearEditarUsuario;

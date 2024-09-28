@@ -12,5 +12,7 @@ namespace Domain.Interfaces
         Role Role { get; set; }
         string Telefono { get; set; }
         string Username { get; set; }
+
+        DateTime? FechaRegistro { get; set; }
     }
 }

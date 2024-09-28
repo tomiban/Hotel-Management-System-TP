@@ -38,16 +38,15 @@ namespace Presentation.Views
             tpDashboard = new TabPage();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();
             cardFactura = new MaterialSkin.Controls.MaterialCard();
-            imgPesos = new PictureBox();
             captionLblFactura = new MaterialSkin.Controls.MaterialLabel();
             lblTotalFacturado = new MaterialSkin.Controls.MaterialLabel();
             lblFactura = new MaterialSkin.Controls.MaterialLabel();
             cardUsuarios = new MaterialSkin.Controls.MaterialCard();
             imgUsuarios = new PictureBox();
             captionLblUsuarios = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            lblTotalUsuarios = new MaterialSkin.Controls.MaterialLabel();
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
-            listReservas = new MaterialSkin.Controls.MaterialListView();
+            listReservasActivas = new MaterialSkin.Controls.MaterialListView();
             columnId = new ColumnHeader();
             columnHabitacion = new ColumnHeader();
             columnCategoria = new ColumnHeader();
@@ -56,9 +55,9 @@ namespace Presentation.Views
             columnCheckin = new ColumnHeader();
             columnCheckout = new ColumnHeader();
             cardReservas = new MaterialSkin.Controls.MaterialCard();
-            captionLblReservas = new Label();
+            captionLblOcupacion = new Label();
             imgReservas = new PictureBox();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            lblTotalReservas = new MaterialSkin.Controls.MaterialLabel();
             progressBarOcupacion = new MaterialSkin.Controls.MaterialProgressBar();
             lblHabitacionesActivas = new MaterialSkin.Controls.MaterialLabel();
             lblDashboard = new MaterialSkin.Controls.MaterialLabel();
@@ -88,7 +87,6 @@ namespace Presentation.Views
             tcAdmin.SuspendLayout();
             tpDashboard.SuspendLayout();
             cardFactura.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgPesos).BeginInit();
             cardUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgUsuarios).BeginInit();
             cardReservas.SuspendLayout();
@@ -124,7 +122,7 @@ namespace Presentation.Views
             tpDashboard.Controls.Add(lblReservas);
             tpDashboard.Controls.Add(cardFactura);
             tpDashboard.Controls.Add(cardUsuarios);
-            tpDashboard.Controls.Add(listReservas);
+            tpDashboard.Controls.Add(listReservasActivas);
             tpDashboard.Controls.Add(cardReservas);
             tpDashboard.Controls.Add(lblDashboard);
             tpDashboard.ImageKey = "dashboard.png";
@@ -145,14 +143,13 @@ namespace Presentation.Views
             lblReservas.Location = new Point(56, 224);
             lblReservas.MouseState = MaterialSkin.MouseState.HOVER;
             lblReservas.Name = "lblReservas";
-            lblReservas.Size = new Size(212, 24);
+            lblReservas.Size = new Size(154, 24);
             lblReservas.TabIndex = 22;
-            lblReservas.Text = "Habitaciones Ocupadas";
+            lblReservas.Text = "Reservas Activas";
             // 
             // cardFactura
             // 
             cardFactura.BackColor = Color.FromArgb(255, 255, 255);
-            cardFactura.Controls.Add(imgPesos);
             cardFactura.Controls.Add(captionLblFactura);
             cardFactura.Controls.Add(lblTotalFacturado);
             cardFactura.Controls.Add(lblFactura);
@@ -165,17 +162,6 @@ namespace Presentation.Views
             cardFactura.Padding = new Padding(14);
             cardFactura.Size = new Size(285, 125);
             cardFactura.TabIndex = 21;
-            // 
-            // imgPesos
-            // 
-            imgPesos.Image = (Image)resources.GetObject("imgPesos.Image");
-            imgPesos.Location = new Point(206, 28);
-            imgPesos.Margin = new Padding(0);
-            imgPesos.Name = "imgPesos";
-            imgPesos.Size = new Size(65, 68);
-            imgPesos.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgPesos.TabIndex = 3;
-            imgPesos.TabStop = false;
             // 
             // captionLblFactura
             // 
@@ -223,7 +209,7 @@ namespace Presentation.Views
             cardUsuarios.BackColor = Color.FromArgb(255, 255, 255);
             cardUsuarios.Controls.Add(imgUsuarios);
             cardUsuarios.Controls.Add(captionLblUsuarios);
-            cardUsuarios.Controls.Add(materialLabel4);
+            cardUsuarios.Controls.Add(lblTotalUsuarios);
             cardUsuarios.Controls.Add(materialLabel5);
             cardUsuarios.Depth = 0;
             cardUsuarios.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -259,18 +245,18 @@ namespace Presentation.Views
             captionLblUsuarios.TabIndex = 2;
             captionLblUsuarios.Text = "3 Nuevos Usuarios";
             // 
-            // materialLabel4
+            // lblTotalUsuarios
             // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel4.Location = new Point(31, 33);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(55, 58);
-            materialLabel4.TabIndex = 1;
-            materialLabel4.Text = "14";
+            lblTotalUsuarios.AutoSize = true;
+            lblTotalUsuarios.Depth = 0;
+            lblTotalUsuarios.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTotalUsuarios.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblTotalUsuarios.Location = new Point(31, 33);
+            lblTotalUsuarios.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTotalUsuarios.Name = "lblTotalUsuarios";
+            lblTotalUsuarios.Size = new Size(55, 58);
+            lblTotalUsuarios.TabIndex = 1;
+            lblTotalUsuarios.Text = "14";
             // 
             // materialLabel5
             // 
@@ -286,24 +272,24 @@ namespace Presentation.Views
             materialLabel5.TabIndex = 0;
             materialLabel5.Text = "USUARIOS TOTALES";
             // 
-            // listReservas
+            // listReservasActivas
             // 
-            listReservas.AutoSizeTable = false;
-            listReservas.BackColor = Color.FromArgb(255, 255, 255);
-            listReservas.BorderStyle = BorderStyle.None;
-            listReservas.Columns.AddRange(new ColumnHeader[] { columnId, columnHabitacion, columnCategoria, columnCapacidad, columnCliente, columnCheckin, columnCheckout });
-            listReservas.Depth = 0;
-            listReservas.FullRowSelect = true;
-            listReservas.Location = new Point(56, 266);
-            listReservas.MinimumSize = new Size(200, 100);
-            listReservas.MouseLocation = new Point(-1, -1);
-            listReservas.MouseState = MaterialSkin.MouseState.OUT;
-            listReservas.Name = "listReservas";
-            listReservas.OwnerDraw = true;
-            listReservas.Size = new Size(861, 197);
-            listReservas.TabIndex = 18;
-            listReservas.UseCompatibleStateImageBehavior = false;
-            listReservas.View = View.Details;
+            listReservasActivas.AutoSizeTable = false;
+            listReservasActivas.BackColor = Color.FromArgb(255, 255, 255);
+            listReservasActivas.BorderStyle = BorderStyle.None;
+            listReservasActivas.Columns.AddRange(new ColumnHeader[] { columnId, columnHabitacion, columnCategoria, columnCapacidad, columnCliente, columnCheckin, columnCheckout });
+            listReservasActivas.Depth = 0;
+            listReservasActivas.FullRowSelect = true;
+            listReservasActivas.Location = new Point(56, 266);
+            listReservasActivas.MinimumSize = new Size(200, 100);
+            listReservasActivas.MouseLocation = new Point(-1, -1);
+            listReservasActivas.MouseState = MaterialSkin.MouseState.OUT;
+            listReservasActivas.Name = "listReservasActivas";
+            listReservasActivas.OwnerDraw = true;
+            listReservasActivas.Size = new Size(861, 197);
+            listReservasActivas.TabIndex = 18;
+            listReservasActivas.UseCompatibleStateImageBehavior = false;
+            listReservasActivas.View = View.Details;
             // 
             // columnId
             // 
@@ -343,9 +329,9 @@ namespace Presentation.Views
             // cardReservas
             // 
             cardReservas.BackColor = Color.FromArgb(255, 255, 255);
-            cardReservas.Controls.Add(captionLblReservas);
+            cardReservas.Controls.Add(captionLblOcupacion);
             cardReservas.Controls.Add(imgReservas);
-            cardReservas.Controls.Add(materialLabel1);
+            cardReservas.Controls.Add(lblTotalReservas);
             cardReservas.Controls.Add(progressBarOcupacion);
             cardReservas.Controls.Add(lblHabitacionesActivas);
             cardReservas.Depth = 0;
@@ -358,15 +344,15 @@ namespace Presentation.Views
             cardReservas.Size = new Size(262, 125);
             cardReservas.TabIndex = 15;
             // 
-            // captionLblReservas
+            // captionLblOcupacion
             // 
-            captionLblReservas.AutoSize = true;
-            captionLblReservas.Dock = DockStyle.Bottom;
-            captionLblReservas.Location = new Point(14, 91);
-            captionLblReservas.Name = "captionLblReservas";
-            captionLblReservas.Size = new Size(90, 15);
-            captionLblReservas.TabIndex = 20;
-            captionLblReservas.Text = "50% Ocupación";
+            captionLblOcupacion.AutoSize = true;
+            captionLblOcupacion.Dock = DockStyle.Bottom;
+            captionLblOcupacion.Location = new Point(14, 91);
+            captionLblOcupacion.Name = "captionLblOcupacion";
+            captionLblOcupacion.Size = new Size(90, 15);
+            captionLblOcupacion.TabIndex = 20;
+            captionLblOcupacion.Text = "50% Ocupación";
             // 
             // imgReservas
             // 
@@ -378,31 +364,30 @@ namespace Presentation.Views
             imgReservas.TabIndex = 3;
             imgReservas.TabStop = false;
             // 
-            // materialLabel1
+            // lblTotalReservas
             // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
-            materialLabel1.Location = new Point(31, 33);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(55, 58);
-            materialLabel1.TabIndex = 1;
-            materialLabel1.Text = "10";
+            lblTotalReservas.AutoSize = true;
+            lblTotalReservas.Depth = 0;
+            lblTotalReservas.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblTotalReservas.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblTotalReservas.Location = new Point(31, 33);
+            lblTotalReservas.MouseState = MaterialSkin.MouseState.HOVER;
+            lblTotalReservas.Name = "lblTotalReservas";
+            lblTotalReservas.Size = new Size(55, 58);
+            lblTotalReservas.TabIndex = 1;
+            lblTotalReservas.Text = "10";
             // 
             // progressBarOcupacion
             // 
             progressBarOcupacion.Depth = 0;
             progressBarOcupacion.Dock = DockStyle.Bottom;
             progressBarOcupacion.Location = new Point(14, 106);
-            progressBarOcupacion.Maximum = 10;
             progressBarOcupacion.MouseState = MaterialSkin.MouseState.HOVER;
             progressBarOcupacion.Name = "progressBarOcupacion";
             progressBarOcupacion.Size = new Size(234, 5);
             progressBarOcupacion.Step = 1;
             progressBarOcupacion.TabIndex = 19;
-            progressBarOcupacion.Value = 5;
+            progressBarOcupacion.Value = 50;
             // 
             // lblHabitacionesActivas
             // 
@@ -771,7 +756,6 @@ namespace Presentation.Views
             tpDashboard.PerformLayout();
             cardFactura.ResumeLayout(false);
             cardFactura.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgPesos).EndInit();
             cardUsuarios.ResumeLayout(false);
             cardUsuarios.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)imgUsuarios).EndInit();
@@ -805,21 +789,20 @@ namespace Presentation.Views
         private MaterialSkin.Controls.MaterialCard cardReservas;
         private MaterialSkin.Controls.MaterialCard cardFactura;
         private MaterialSkin.Controls.MaterialCard cardUsuarios;
-        private MaterialSkin.Controls.MaterialListView listReservas;
+        private MaterialSkin.Controls.MaterialListView listReservasActivas;
         private MaterialSkin.Controls.MaterialProgressBar progressBarOcupacion;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel lblTotalReservas;
         private MaterialSkin.Controls.MaterialLabel lblHabitacionesActivas;
         private ImageList imageListDash;
         private PictureBox imgReservas;
-        private PictureBox imgPesos;
         private MaterialSkin.Controls.MaterialLabel captionLblFactura;
         private MaterialSkin.Controls.MaterialLabel lblTotalFacturado;
         private MaterialSkin.Controls.MaterialLabel lblFactura;
         private PictureBox imgUsuarios;
         private MaterialSkin.Controls.MaterialLabel captionLblUsuarios;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel lblTotalUsuarios;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private Label captionLblReservas;
+        private Label captionLblOcupacion;
         private MaterialSkin.Controls.MaterialLabel lblReservas;
         private ColumnHeader columnId;
         private ColumnHeader columnHabitacion;

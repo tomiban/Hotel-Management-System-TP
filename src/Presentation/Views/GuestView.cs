@@ -152,7 +152,7 @@ namespace Presentation.Views
             listReservas.Columns.Add("Categoria", 154);
             listReservas.Columns.Add("Check In", 170);
             listReservas.Columns.Add("Check Out", 170);
-            listReservas.Columns.Add("Precio Final", 100);
+            listReservas.Columns.Add("Precio Final", 120);
             listReservas.Columns.Add("Estado", 100);
 
             int contador = 1;

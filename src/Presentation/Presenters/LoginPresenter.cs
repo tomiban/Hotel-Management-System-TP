@@ -11,11 +11,9 @@ namespace Presentation.Presenters
 {
     public class LoginPresenter : ILoginPresenter
     {
-        private readonly ILoginView _view;
-        private readonly IAuthService _authService;
-        private readonly INavigationService _navigationService;
-
-       
+          ILoginView _view;
+          IAuthService _authService;
+          INavigationService _navigationService;
 
         public LoginPresenter(ILoginView view, IAuthService authService, INavigationService navigationService)
         {
