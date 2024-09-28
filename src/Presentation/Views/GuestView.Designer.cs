@@ -45,6 +45,7 @@
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
             tpReservas = new TabPage();
+            btnModificarReserva = new MaterialSkin.Controls.MaterialButton();
             listReservas = new MaterialSkin.Controls.MaterialListView();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();
             tpCuenta = new TabPage();
@@ -231,6 +232,7 @@
             // 
             // tpReservas
             // 
+            tpReservas.Controls.Add(btnModificarReserva);
             tpReservas.Controls.Add(listReservas);
             tpReservas.Controls.Add(lblReservas);
             tpReservas.ImageKey = "book.png";
@@ -240,6 +242,25 @@
             tpReservas.TabIndex = 3;
             tpReservas.Text = "Reservas";
             tpReservas.UseVisualStyleBackColor = true;
+            // 
+            // btnModificarReserva
+            // 
+            btnModificarReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnModificarReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnModificarReserva.Depth = 0;
+            btnModificarReserva.HighEmphasis = true;
+            btnModificarReserva.Icon = null;
+            btnModificarReserva.Location = new Point(56, 85);
+            btnModificarReserva.Margin = new Padding(4, 6, 4, 6);
+            btnModificarReserva.MouseState = MaterialSkin.MouseState.HOVER;
+            btnModificarReserva.Name = "btnModificarReserva";
+            btnModificarReserva.NoAccentTextColor = Color.Empty;
+            btnModificarReserva.Size = new Size(166, 36);
+            btnModificarReserva.TabIndex = 2;
+            btnModificarReserva.Text = "MODIFICAR RESERVA";
+            btnModificarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnModificarReserva.UseAccentColor = false;
+            btnModificarReserva.UseVisualStyleBackColor = true;
             // 
             // listReservas
             // 
@@ -253,13 +274,13 @@
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
             listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
-            listReservas.Location = new Point(68, 62);
+            listReservas.Location = new Point(56, 123);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
             listReservas.MouseState = MaterialSkin.MouseState.OUT;
             listReservas.Name = "listReservas";
             listReservas.OwnerDraw = true;
-            listReservas.Size = new Size(894, 386);
+            listReservas.Size = new Size(913, 386);
             listReservas.TabIndex = 1;
             listReservas.TileSize = new Size(3, 3);
             listReservas.UseCompatibleStateImageBehavior = false;
@@ -627,5 +648,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private Panel panel2;
+        private MaterialSkin.Controls.MaterialButton btnModificarReserva;
     }
 }

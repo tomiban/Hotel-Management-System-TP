@@ -6,6 +6,7 @@ using PresentationLayer.Events;
 using PresentationLayer.Utils;
 using PresentationLayer.Views;
 using System.ComponentModel.DataAnnotations;
+using static Domain.Entities.Reserva;
 
 namespace PresentationLayer.Presenters
 {
@@ -16,7 +17,7 @@ namespace PresentationLayer.Presenters
         private readonly IAuthService _authService;
         private readonly IHabitacionServices _habitacionServices;
         private readonly INavigationService _navigationService;
-        private Reserva _reservaActual;
+        private Reserva _reservaSeleccionada;  //
 
         public GuestPresenter(IGuestView view, IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService, INavigationService navigationService)
         {
@@ -29,6 +30,7 @@ namespace PresentationLayer.Presenters
             _view.OnFiltrarHabitacionesRangoFechas += HandleFiltrarHabitacionesRangoFechas;
             _view.OnRealizarReserva += HandleRealizarReserva;
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
+            _view.OnModificarReserva += HandleModificarReserva;
 
             CargarReservas();
         }
@@ -56,7 +58,7 @@ namespace PresentationLayer.Presenters
                 _view.ShowMessage("Error", $"Ocurrió un error al filtrar las habitaciones: {ex.Message}");
             }
         }
-
+        // Método que maneja la selección de una reserva
         private void HandleReservaSeleccionada(object? sender, int reservaId)
         {
             try
@@ -65,10 +67,17 @@ namespace PresentationLayer.Presenters
 
                 if (reserva != null)
                 {
-                    _reservaActual = reserva;
+                    _reservaSeleccionada = reserva;  // Almacenar la reserva seleccionada
 
-                    _view.HideView();
-                    _navigationService.NavigateTo<IDetallesReservaPresenter>();  // Navegar a los detalles de la reserva
+                    // Habilitar/deshabilitar el botón según el estado de la reserva
+                    if (reserva.Estado == EstadoReserva.Activa)
+                    {
+                        _view.SetModificarReservaButtonState(true);  // Habilitar el botón
+                    }
+                    else
+                    {
+                        _view.SetModificarReservaButtonState(false);  // Deshabilitar el botón
+                    }
                 }
                 else
                 {
@@ -78,6 +87,20 @@ namespace PresentationLayer.Presenters
             catch (Exception ex)
             {
                 _view.ShowMessage($"Ocurrió un error al intentar cargar los detalles de la reserva: {ex.Message}", "Error");
+            }
+        }
+
+        // Método que maneja el clic en el botón "Modificar Reserva"
+        private void HandleModificarReserva(object? sender, EventArgs e)
+        {
+            if (_reservaSeleccionada != null && _reservaSeleccionada.Estado == EstadoReserva.Activa)
+            {
+                _view.HideView();
+                _navigationService.NavigateTo<IDetallesReservaPresenter, Reserva>(_reservaSeleccionada);  // Navegar a la vista de detalles
+            }
+            else
+            {
+                _view.ShowMessage("La reserva seleccionada no se puede modificar.", "Error");
             }
         }
 
@@ -122,7 +145,7 @@ namespace PresentationLayer.Presenters
         public void CargarReservas()
         {
             var usuarioAutenticado = _authService.GetCurrentUser();
-            var reservasUsuario = _reservaService.GetAll(usuarioAutenticado.Id);
+            var reservasUsuario = _reservaService.GetAllReservasUser(usuarioAutenticado.Id);
             _view.CargarReservas(reservasUsuario);
         }
 

@@ -57,9 +57,9 @@ namespace ApplicationLayer.Services
             _reservaRepository.Update(reserva);
         }
 
-        public List<Reserva> GetAll(int id)
+        public List<Reserva> GetAllReservasUser(int userId)
         {
-            return _reservaRepository.GetAllByUser(id);
+            return _reservaRepository.GetAllByUser(userId);
         }
 
         public Reserva GetById(int id)
@@ -81,6 +81,11 @@ namespace ApplicationLayer.Services
 
             decimal precioTotal = diasDeEstadia * reserva.PrecioPorNoche;
             return precioTotal;
+        }
+
+        public List<Reserva> GetAllReservasActivas()
+        {
+            return _reservaRepository.GetReservasActivas();
         }
     }
 }

@@ -53,10 +53,10 @@ namespace Presentation.Presenters
                         break;
                     default:
                         _view.ShowMessage("Rol inválido", "Error");
-                        break;
+                        return;  // Terminar el flujo si el rol es inválido
                 }
 
-                _view.HideView();
+                _view.HideView();  // Ocultar la vista de login solo si la navegación es exitosa
             }
             catch (ValidationException ex)
             {
@@ -71,6 +71,7 @@ namespace Presentation.Presenters
                 _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
         }
+
 
         public void OnRegisterRedirect(object? sender, EventArgs e)
         {

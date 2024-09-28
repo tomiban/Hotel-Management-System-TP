@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Entities;
+using PresentationLayer.Presenters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +30,35 @@ namespace PresentationLayer.Utils
                 _navigationStack.Peek().HideView(); 
             }
 
+            _navigationStack.Push(presenter);  
+        }
+
+        // Método de navegación con parámetro
+        public void NavigateTo<TPresenter, TParam>(TParam param) where TPresenter : IPresenter
+        {
+            var presenter = _container.Resolve<TPresenter>();
+
+            if (param == null)
+            {
+                throw new ArgumentNullException(nameof(param), "El parámetro no puede ser nulo.");
+            }
+
+            // Asignar el parámetro al presentador, por ejemplo:
+            if (presenter is IDetallesReservaPresenter detallesReservaPresenter)
+            {
+                detallesReservaPresenter.SetEditMode(param as Reserva);
+            }
+
+            presenter.ShowView();
+
+            if (_navigationStack.Count > 0)
+            {
+                _navigationStack.Peek().HideView();
+            }
+
             _navigationStack.Push(presenter);
         }
+
 
         public void GoBack()
         {
@@ -40,6 +69,10 @@ namespace PresentationLayer.Utils
 
                 var previousPresenter = _navigationStack.Peek();
                 previousPresenter.ShowView();
+            }
+            else
+            {
+                _navigationStack.Peek().ShowView(); 
             }
         }
     }
