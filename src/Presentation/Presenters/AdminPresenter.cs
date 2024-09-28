@@ -10,6 +10,7 @@ namespace Presentation.Presenters
     public class AdminPresenter : IAdminPresenter
     {
         private readonly IAdminView _view;
+        IUsuarioService _usuarioService;
         private readonly IHabitacionServices _habitacionServices;
         private readonly IReservaService _reservaService;
         private readonly IUsuarioService _usuarioService;
@@ -20,10 +21,13 @@ namespace Presentation.Presenters
         private List<Usuario> _usuarios;
 
         private bool _eventosSuscritos = false;
+        private bool isEditMode = false;
 
         public AdminPresenter(IAdminView view, IHabitacionServices habitacionServices, IReservaService reservaService, IUsuarioService usuarioService, INavigationService navigationService)
         {
             _view = view;
+            _view.EliminarUsuario += OnEliminarUsuario;
+            _view.ActualizarRol += OnActualizarRol;
             _habitacionServices = habitacionServices;
             _reservaService = reservaService;
             _usuarioService = usuarioService;
@@ -34,6 +38,7 @@ namespace Presentation.Presenters
             CargarUsuarios();
             CargarDatosDashboard();
             CargarListaReservasActivas();
+            CargarListaUsuarios();
             SubscribeEvents();
         }
 
@@ -75,6 +80,61 @@ namespace Presentation.Presenters
             _view.HideView();
         }
 
+        private void OnActualizarRol(object? sender, EventArgs e)
+        {
+            try
+            {
+                // Obtener el ID del usuario seleccionado
+                int userId = _view.GetSelectedUserId();
+                if (userId == -1)
+                {
+                    _view.ShowMessage("No hay usuario seleccionado.", "Error");
+                    return;
+                }
+
+                // Obtener el nuevo rol seleccionado
+                Role newRole = _view.GetSelectedUserRole();
+
+                // Obtener el usuario desde el servicio
+                var usuario = _usuarioService.GetUsuarioById(userId);
+                if (usuario != null)
+                {
+                    // Actualizar el rol del usuario
+                    usuario.Role = newRole;
+
+                    // Actualizar el usuario en el repositorio
+                    _usuarioService.UpdateUsuario(usuario);
+
+                    // Mostrar mensaje de éxito
+                    _view.ShowMessage("Rol del usuario actualizado correctamente.", "Información");
+
+                    // Refrescar la lista de usuarios
+                    CargarUsuarios();
+                }
+                else
+                {
+                    _view.ShowMessage("Usuario no encontrado.", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Error al actualizar el rol: {ex.Message}", "Error");
+            }
+        }
+
+        private void OnEliminarUsuario(int userId)
+        {
+            try
+            {
+                _usuarioService.DeleteUsuario(userId);  // Llamar a UsuarioService para eliminar el usuario
+                CargarUsuarios();  // Refrescar la lista de usuarios después de eliminar
+                _view.ShowMessage("Usuario eliminado correctamente.", "Información");
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage($"Error al eliminar el usuario: {ex.Message}", "Error");
+            }
+        }
         private void OnEliminarHabitacion(object? sender, EventArgs e)
         {
             try
@@ -132,7 +192,6 @@ namespace Presentation.Presenters
             _habitaciones = habitaciones;
         }
 
-
         private void CargarReservas()
         {
             var reservas = _reservaService.GetAllReservasActivas();
@@ -163,6 +222,17 @@ namespace Presentation.Presenters
 
             _view.ActualizarDashboard(totalReservasCurso, porcentajeOcupacion, totalUsuarios, totalUsuariosRecientes, totalFacturado);
 
+        public void CargarListaUsuarios()
+        {
+            try
+            {
+                _view.ActualizarListaUsuarios(_usuarios);
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error al cargar los usuarios.", $"Error: {ex.Message}");
+            }
         }
     }
+}
 }

@@ -34,18 +34,22 @@ public class UsuarioService : IUsuarioService
         _usuarioRepository.Update(usuario);
     }
 
-    public void Delete(int id)
-    {
-        _usuarioRepository.Delete(id);
-    }
-
-    public List<Usuario> GetAll()
+    public List<Usuario> GetAllUsuarios()
     {
         return _usuarioRepository.GetAll();
     }
 
-    public Usuario GetById(int id)
+    public Usuario GetUsuarioById(int id)
     {
         return _usuarioRepository.GetById(id);
+    }
+    public void UpdateUsuario(Usuario usuario)
+    {
+        _usuarioRepository.Update(usuario); // Actualizar el usuario en el repositorio
+    }
+
+    public void DeleteUsuario(int id)
+    {
+        _usuarioRepository.Delete(id); // Eliminar el usuario del repositorio
     }
 }

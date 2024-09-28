@@ -20,10 +20,13 @@ namespace Presentation.Views
         event EventHandler RedirectToCrearEditarHabitacion;
         event EventHandler RedirectToCrearEditarUsuario;
         event EventHandler EliminarHabitacion;
-        event EventHandler EliminarUsuario;
         event EventHandler SearchHabitacion;
         event EventHandler SearchUsuario;
         event EventHandler EditarHabitacion;
+        event Action<int> EliminarUsuario;
+        event EventHandler ActualizarRol;
+        Role GetSelectedUserRole();
+        int GetSelectedUserId();
 
         void ShowMessage(string message, string tittle);
         void SetEliminarHabitacionButtonState(bool enabled);
