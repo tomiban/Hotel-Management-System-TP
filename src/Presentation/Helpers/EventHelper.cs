@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,7 @@ namespace PresentationLayer.Utils
     {
         public static void RaiseEvent(object sender, EventHandler eventHandler, EventArgs e)
         {
-            if (eventHandler != null)
-            {
-                eventHandler?.Invoke(sender, e);
-            }
+            eventHandler?.Invoke(sender, e);
         }
 
         public static void RaiseEvent<T>(object sender, EventHandler<T> eventHandler, T e)
@@ -23,6 +21,11 @@ namespace PresentationLayer.Utils
                 eventHandler?.Invoke(sender, e);
             }
         }
-    }
 
+        // Sobrecarga para eventos que manejan un tipo de dato simple como int
+        public static void RaiseEvent(object sender, EventHandler<int> eventHandler, int e)
+        {
+            eventHandler?.Invoke(sender, e);
+        }
+    }
 }

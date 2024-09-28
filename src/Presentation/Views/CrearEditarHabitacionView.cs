@@ -49,7 +49,6 @@ namespace Presentation.Views
             txtDescripcion.Text = habitacion.Descripcion;
         }
 
-
         public void SetAddMode()
         {
             txtNroHabitacion.Enabled = true;

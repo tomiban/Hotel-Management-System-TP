@@ -72,7 +72,6 @@ namespace Presentation.Presenters
             }
         }
 
-
         public void OnRegisterRedirect(object? sender, EventArgs e)
         {
             try
