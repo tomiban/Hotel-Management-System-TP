@@ -27,6 +27,9 @@ namespace Presentation.Presenters
             _view = view;
             _view.EliminarUsuario += OnEliminarUsuario;
             _view.ActualizarRol += OnActualizarRol;
+            _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
+            _view.EliminarHabitacion += OnEliminarHabitacion;
+            _view.EditarHabitacion += OnEditHabitacion;
             _habitacionServices = habitacionServices;
             _reservaService = reservaService;
             _usuarioService = usuarioService;
@@ -36,46 +39,27 @@ namespace Presentation.Presenters
             CargarReservas();
             CargarUsuarios();
             CargarDatosDashboard();
-            CargarListaReservasActivas();
-            CargarListaUsuarios();
-            SubscribeEvents();
         }
 
-        private void CargarListaReservasActivas()
+        public void CargarListaHabitaciones(List<Habitacion> habitaciones)
         {
-            _view.CargarListaReservasActivas(_reservas);
+            _view.ActualizarListaHabitaciones(habitaciones);
         }
 
-        public void SubscribeEvents()
+        public void CargarListaReservasActivas(List<Reserva> reservas)
         {
-            if (!_eventosSuscritos)
-            {
-                _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
-                _view.EliminarHabitacion += OnEliminarHabitacion;
-                _view.EditarHabitacion += OnEditHabitacion;
-                _eventosSuscritos = true;
-            }
+            _view.CargarListaReservasActivas(reservas);
         }
 
-        public void UnsubscribeEvents()
-        {
-            if (_eventosSuscritos)
-            {
-                _view.RedirectToCrearEditarHabitacion -= OnRedirectToCrearEditarHabitacion;
-                _view.EliminarHabitacion -= OnEliminarHabitacion;
-                _eventosSuscritos = false;
-            }
-        }
+
 
         public void ShowView()
         {
-            SubscribeEvents();
             _view.ShowView();
         }
 
         public void HideView()
         {
-            UnsubscribeEvents();
             _view.HideView();
         }
 
@@ -162,9 +146,9 @@ namespace Presentation.Presenters
                     _view.ShowMessage("No se encontró la habitación seleccionada.", "Error");
                     return;
                 }
-
+                
                 // Usar el NavigationService para navegar a Crear/Editar Habitación en modo edición
-                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
+                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter, Habitacion>(habitacion);
             }
             catch (Exception ex)
             {
@@ -176,8 +160,9 @@ namespace Presentation.Presenters
         {
             try
             {
-                // Usar el NavigationService para navegar a Crear/Editar Habitación en modo creación
                 _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
+               _navigationService.GetPresenter<ICrearEditarHabitacionPresenter>().SetAddMode();
+                
             }
             catch (Exception ex)
             {
@@ -185,22 +170,25 @@ namespace Presentation.Presenters
             }
         }
 
-        private void CargarHabitaciones()
+        public void CargarHabitaciones()
         {
             var habitaciones = _habitacionServices.GetAll();
-            _habitaciones = habitaciones;
+            _habitaciones = habitaciones.ToList();
+            CargarListaHabitaciones(habitaciones);
         }
 
-        private void CargarReservas()
+        public void CargarReservas()
         {
             var reservas = _reservaService.GetAllReservasActivas();
-            _reservas = reservas;
+            _reservas = reservas.ToList();
+            CargarListaReservasActivas(reservas);
         }
 
-        private void CargarUsuarios()
+        public void CargarUsuarios()
         {
             var usuarios = _usuarioService.GetAllUsuarios();
-            _usuarios = usuarios;
+            _usuarios = usuarios.ToList();
+            CargarListaUsuarios(usuarios);
         }
 
         public void CargarDatosDashboard()
@@ -210,7 +198,7 @@ namespace Presentation.Presenters
             int totalUsuarios = _usuarios.Count;
             int totalHabitaciones = _habitaciones.Count;
             int totalReservasCurso = _reservas.Where(r =>
-           r.FechaInicio <= DateTime.Today && r.FechaFin >= DateTime.Today).ToList().Count;
+                r.FechaInicio <= DateTime.Today && r.FechaFin >= DateTime.Today).ToList().Count;
 
             // Obtener la ocupación (habitaciones ocupadas / total habitaciones)
             double porcentajeOcupacion = totalHabitaciones > 0 ? (double)totalReservasCurso / totalHabitaciones * 100 : 0;
@@ -222,11 +210,11 @@ namespace Presentation.Presenters
             _view.ActualizarDashboard(totalReservasCurso, porcentajeOcupacion, totalUsuarios, totalUsuariosRecientes, totalFacturado);
 
         }
-            public void CargarListaUsuarios()
+        public void CargarListaUsuarios(List<Usuario> usuarios)
         {
             try
             {
-                _view.ActualizarListaUsuarios(_usuarios);
+                _view.ActualizarListaUsuarios(usuarios);
             }
             catch (Exception ex)
             {
