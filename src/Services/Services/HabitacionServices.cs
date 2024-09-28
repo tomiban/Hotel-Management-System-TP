@@ -25,11 +25,12 @@ namespace ApplicationLayer.Services
         // Método optimizado para filtrar habitaciones disponibles
         public List<Habitacion> FiltrarHabitacionesDisponibles(DateTime fechaDesde, DateTime fechaHasta)
         {
-            var reservas = _reservaRepository.GetAll();
+          
+            var reservasActivas = _reservaRepository.GetReservasActivas();
 
-            // Obtener las habitaciones que NO tienen reservas en el rango de fechas especificado
+            // Obtener las habitaciones que NO tienen reservas activas en el rango de fechas especificado
             return _habitacionRepository.GetAll()
-                .Where(h => !reservas.Any(r =>
+                .Where(h => !reservasActivas.Any(r =>
                         r.NroHabitacion == h.NroHabitacion &&
                         (fechaDesde < r.FechaFin && fechaHasta > r.FechaInicio)
                     )

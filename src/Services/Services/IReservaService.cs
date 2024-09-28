@@ -6,7 +6,8 @@ namespace ApplicationLayer.Services
     public interface IReservaService
     {
         void AgregarReserva(Reserva reserva);
-        List<Reserva> GetAll(int id);
+        List<Reserva> GetAllReservasUser(int userId);
+        List<Reserva> GetAllReservasActivas();
         Reserva GetById(int id);
         void ActualizarReserva(Reserva reserva);
         void CancelarReserva(int id);

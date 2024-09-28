@@ -48,7 +48,7 @@ namespace Presentation.Views
         private void AttachAndRaiseViewEvents()
         {
             cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) => EventHelper.RaiseEvent(this, OnFiltrarCategoria, EventArgs.Empty);
-
+            btnModificarReserva.Click += (s, e) => EventHelper.RaiseEvent(this, OnModificarReserva, EventArgs.Empty);
             // Usamos el MouseClick para detectar la selección
             listReservas.MouseClick += (s, e) =>
             {
@@ -79,7 +79,6 @@ namespace Presentation.Views
             };
 
 
-
         }
 
 
@@ -87,6 +86,7 @@ namespace Presentation.Views
         public event EventHandler<int> ReservaSeleccionada; // Cambiar a EventHandler<int> para pasar el ID de la reserva
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
         public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
+        public event EventHandler OnModificarReserva;
 
         public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
         {
@@ -148,11 +148,12 @@ namespace Presentation.Views
             listReservas.Columns.Clear();
 
             listReservas.Columns.Add("Nro", 100);
-            listReservas.Columns.Add("Habitacion", 150);
+            listReservas.Columns.Add("Habitacion", 100);
             listReservas.Columns.Add("Categoria", 154);
             listReservas.Columns.Add("Check In", 170);
             listReservas.Columns.Add("Check Out", 170);
-            listReservas.Columns.Add("Precio Final", 150);
+            listReservas.Columns.Add("Precio Final", 100);
+            listReservas.Columns.Add("Estado", 100);
 
             int contador = 1;
 
@@ -165,6 +166,7 @@ namespace Presentation.Views
                 listItem.SubItems.Add(reserva.FechaInicio.ToShortDateString());
                 listItem.SubItems.Add(reserva.FechaFin.ToShortDateString());
                 listItem.SubItems.Add($"{reserva.MontoTotal:C} ARS");
+                listItem.SubItems.Add(reserva.Estado.ToString());
 
                 // Guardar el ID de la reserva en el Tag del ListViewItem
                 listItem.Tag = reserva.Id;
@@ -183,5 +185,9 @@ namespace Presentation.Views
             habitacionCardContainer.MostrarMensaje(mensaje); // Mostrar el mensaje en el contenedor
         }
 
+        public void SetModificarReservaButtonState(bool enabled)
+        {
+            btnModificarReserva.Enabled = enabled;  // Habilitar o deshabilitar el botón
+        }
     }
 }

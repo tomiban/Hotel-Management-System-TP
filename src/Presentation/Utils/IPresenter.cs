@@ -10,6 +10,7 @@ namespace PresentationLayer.Utils
     {
         void ShowView();  // Mostrar la vista asociada con el presentador
         void HideView();  // Ocultar la vista asociada con el presentador
+
     }
 
 }
