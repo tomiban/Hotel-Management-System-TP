@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Presentation.Views;
+﻿using Presentation.Views;
 using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,13 +11,6 @@ namespace Presentation.Presenters
     public interface IAdminPresenter: IPresenter
     {
      
-        void CargarHabitaciones();
-        void CargarReservas();
-        void CargarUsuarios();
-        void CargarListaReservasActivas(List<Reserva> reservas);
-        void CargarListaHabitaciones(List<Habitacion> habitaciones);
-        void CargarListaUsuarios(List<Usuario> usuarios);
-        void CargarDatosDashboard();
   
     }
 }
