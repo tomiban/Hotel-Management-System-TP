@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Presentation.Presenters;
 using PresentationLayer.Presenters;
 using System;
 using System.Collections.Generic;
@@ -28,10 +27,10 @@ namespace PresentationLayer.Utils
 
             if (_navigationStack.Count > 0)
             {
-                _navigationStack.Peek().HideView();
+                _navigationStack.Peek().HideView(); 
             }
 
-            _navigationStack.Push(presenter);
+            _navigationStack.Push(presenter);  
         }
 
         // Método de navegación con parámetro
@@ -50,11 +49,6 @@ namespace PresentationLayer.Utils
                 detallesReservaPresenter.SetEditMode(param as Reserva);
             }
 
-            if (presenter is ICrearEditarHabitacionPresenter crearEditarHabitacionPresenter)
-            {
-                crearEditarHabitacionPresenter.SetEditMode(param as Habitacion);  // Pasar la habitación al modo edición
-            }
-
             presenter.ShowView();
 
             if (_navigationStack.Count > 0)
@@ -63,12 +57,6 @@ namespace PresentationLayer.Utils
             }
 
             _navigationStack.Push(presenter);
-        }
-
-   
-        public TPresenter GetPresenter<TPresenter>() where TPresenter : IPresenter
-        {
-            return _navigationStack.OfType<TPresenter>().FirstOrDefault();
         }
 
 

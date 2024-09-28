@@ -38,8 +38,6 @@ namespace Presentation.Presenters
         {
             try
             {
-                var adminPresenter = _navigationService.GetPresenter<IAdminPresenter>();
-                adminPresenter.CargarHabitaciones();  // Actualizar la lista de habitaciones
                 _navigationService.GoBack();  // Regresar a la vista de Admin
             }
             catch (Exception ex)
@@ -64,7 +62,7 @@ namespace Presentation.Presenters
             _view.SetAddMode();
             _view.SetTitle("Añadir Habitación");
             _view.SetButtonText("Guardar Habitación");
-
+            
         }
 
         private void OnSave(object? sender, EventArgs e)
@@ -98,7 +96,6 @@ namespace Presentation.Presenters
 
                 _isEditMode = false;
                 _editingHabitacionId = 0;
-
             }
             catch (Exception ex)
             {
