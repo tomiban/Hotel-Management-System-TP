@@ -114,10 +114,6 @@ namespace Presentation.Presenters
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
-        public IAdminView GetAdminView()
-        {
-            return _view;
-        }
 
         public void CargarUsuarios()
         {

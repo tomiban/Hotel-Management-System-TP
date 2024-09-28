@@ -11,7 +11,6 @@ namespace Presentation.Presenters
 {
     public interface ILoginPresenter: IPresenter
     {
-        ILoginView GetLoginView();
         void OnLogin(object? sender, EventArgs e);
         void OnRegisterRedirect(object? sender, EventArgs e);
     }

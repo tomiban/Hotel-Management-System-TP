@@ -10,7 +10,6 @@ namespace Presentation.Presenters
 {
     public interface IRegisterPresenter: IPresenter
     {
-        IRegisterView GetRegisterView();
         void OnLoginRedirect(object? sender, EventArgs e);
         void OnRegister(object? sender, EventArgs e);
     }

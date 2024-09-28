@@ -10,7 +10,6 @@ namespace Presentation.Presenters
 {
     public interface IAdminPresenter: IPresenter
     {
-        IAdminView GetAdminView();
         void CargarHabitaciones();
         void CargarUsuarios();
         void ShowView();

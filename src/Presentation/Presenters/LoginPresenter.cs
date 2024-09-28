@@ -15,7 +15,7 @@ namespace Presentation.Presenters
         private readonly IAuthService _authService;
         private readonly INavigationService _navigationService;
 
-        public ILoginView GetLoginView() => _view;
+       
 
         public LoginPresenter(ILoginView view, IAuthService authService, INavigationService navigationService)
         {
@@ -37,7 +37,7 @@ namespace Presentation.Presenters
             _view.HideView();
         }
 
-        private void OnLogin(object? sender, EventArgs e)
+        public void OnLogin(object? sender, EventArgs e)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Presentation.Presenters
             }
         }
 
-        private void OnRegisterRedirect(object? sender, EventArgs e)
+        public void OnRegisterRedirect(object? sender, EventArgs e)
         {
             try
             {
@@ -85,14 +85,5 @@ namespace Presentation.Presenters
             }
         }
 
-        void ILoginPresenter.OnLogin(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        void ILoginPresenter.OnRegisterRedirect(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -33,7 +33,7 @@ namespace Presentation.Presenters
             _view.HideView();
         }
 
-        private void OnLoginRedirect(object? sender, EventArgs e)
+        public void OnLoginRedirect(object? sender, EventArgs e)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Presentation.Presenters
             }
         }
 
-        private void OnRegister(object? sender, EventArgs e)
+        public void OnRegister(object? sender, EventArgs e)
         {
             try
             {
@@ -91,21 +91,6 @@ namespace Presentation.Presenters
             {
                 _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
-        }
-
-        public IRegisterView GetRegisterView()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRegisterPresenter.OnLoginRedirect(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRegisterPresenter.OnRegister(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

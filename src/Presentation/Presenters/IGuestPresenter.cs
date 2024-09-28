@@ -5,6 +5,6 @@ namespace PresentationLayer.Presenters
 {
     public interface IGuestPresenter: IPresenter
     {
-        IGuestView GetGuestView();
+   
     }
 }

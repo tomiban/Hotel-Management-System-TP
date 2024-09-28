@@ -19,7 +19,7 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
-            // Configuración del contenedor de Unity
+           
             IUnityContainer unityC = new UnityContainer()
                 .RegisterType<ILoginView, LoginView>(new ContainerControlledLifetimeManager())
                 .RegisterType<ILoginPresenter, LoginPresenter>(new ContainerControlledLifetimeManager())

@@ -126,9 +126,6 @@ namespace PresentationLayer.Presenters
             _view.CargarReservas(reservasUsuario);
         }
 
-        public IGuestView GetGuestView()
-        {
-            return _view;
-        }
+    
     }
 }

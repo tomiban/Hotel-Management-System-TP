@@ -114,10 +114,5 @@ namespace Presentation.Presenters
                 Descripcion = _view.Descripcion
             };
         }
-
-        public ICrearEditarHabitacionView GetCrearEditarHabitacionView()
-        {
-            return _view;
-        }
     }
 }

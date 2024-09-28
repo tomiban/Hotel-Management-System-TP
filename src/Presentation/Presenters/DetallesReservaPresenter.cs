@@ -100,8 +100,4 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         }
     }
 
-    public IDetallesReservaView GetDetallesReservaView()
-    {
-        return _view;
-    }
 }
