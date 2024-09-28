@@ -8,22 +8,32 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
 {
     private readonly IDetallesReservaView _view;
     private readonly IReservaService _reservaService;
+    private readonly INavigationService _navigationService;
     private Reserva _reservaActual;
 
-    // Evento que será lanzado cuando la reserva sea actualizada o cancelada
     public event EventHandler OnReservaModificada;
 
     // Constructor
-    public DetallesReservaPresenter(IDetallesReservaView view, IReservaService reservaService)
+    public DetallesReservaPresenter(IDetallesReservaView view, IReservaService reservaService, INavigationService navigationService)
     {
         _view = view;
         _reservaService = reservaService;
+        _navigationService = navigationService;
 
-        // Suscribirse a los eventos de la vista
         _view.OnActualizarReserva += HandleActualizarReserva;
         _view.OnCancelarReserva += HandleCancelarReserva;
         _view.OnRedirectToClientView += HandleRedirectToClientView;
         _view.OnFechaCambiada += HandleFechaCambiada;
+    }
+
+    public void ShowView()
+    {
+        _view.ShowView();
+    }
+
+    public void HideView()
+    {
+        _view.HideView();
     }
 
     private void HandleFechaCambiada(object? sender, EventArgs e)
@@ -33,8 +43,6 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
             _reservaActual.FechaInicio = _view.FechaInicio;
             _reservaActual.FechaFin = _view.FechaFin;
             decimal nuevoPrecio = _reservaService.RecalcularDiasYPrecio(_reservaActual);
-
-            // Actualizar la vista con el nuevo precio
             _view.MostrarPrecioActualizado(nuevoPrecio);
         }
         catch (Exception ex)
@@ -47,8 +55,7 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
     {
         try
         {
-            _view.HideView();
-
+            _navigationService.GoBack();  // Navegar de regreso a la vista del cliente
         }
         catch (Exception ex)
         {
@@ -56,25 +63,20 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         }
     }
 
-    // Método para cargar y mostrar los detalles de una reserva
     public void SetEditMode(Reserva reserva)
     {
-        _reservaActual = reserva;  // Guardar la reserva actual para futuras acciones
-        _view.MostrarDetalleReserva(reserva);  // Mostrar los detalles de la reserva en la vista
+        _reservaActual = reserva;
+        _view.MostrarDetalleReserva(reserva);
     }
 
-    // Maneja la actualización de la reserva
     private void HandleActualizarReserva(object sender, EventArgs e)
     {
         try
         {
-            _reservaService.ActualizarReserva(_reservaActual);  // Llamada al servicio para actualizar la reserva
+            _reservaService.ActualizarReserva(_reservaActual);
             _view.ShowMessage("Reserva actualizada con éxito.", "Éxito");
 
-            // Lanzar evento cuando la reserva es actualizada
             EventHelper.RaiseEvent(this, OnReservaModificada, EventArgs.Empty);
-
-           // _view.HideView();  // Cerrar la vista después de actualizar
         }
         catch (Exception ex)
         {
@@ -82,18 +84,15 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         }
     }
 
-    // Maneja la cancelación de la reserva
     private void HandleCancelarReserva(object sender, EventArgs e)
     {
         try
         {
-            _reservaService.CancelarReserva(_reservaActual.Id);  // Llamada al servicio para cancelar la reserva
+            _reservaService.CancelarReserva(_reservaActual.Id);
             _view.ShowMessage("Reserva cancelada con éxito.", "Éxito");
 
-            // Lanzar evento cuando la reserva es cancelada
             OnReservaModificada?.Invoke(this, EventArgs.Empty);
-
-            _view.HideView();  // Cerrar la vista después de cancelar
+            _navigationService.GoBack();  // Regresar a la vista anterior (Cliente)
         }
         catch (Exception ex)
         {

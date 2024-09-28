@@ -2,47 +2,56 @@ using ApplicationLayer.Services;
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using PresentationLayer.Utils;
 using System.ComponentModel.DataAnnotations;
-using Unity;
 
 namespace Presentation.Presenters
 {
     public class RegisterPresenter : IRegisterPresenter
     {
-        IRegisterView _view;
-        IAuthService _authService;
-        Lazy<ILoginPresenter> _loginPresenter;
+        private readonly IRegisterView _view;
+        private readonly IAuthService _authService;
+        private readonly INavigationService _navigationService;
 
-        public RegisterPresenter(IRegisterView view, IAuthService authService, Lazy<ILoginPresenter> loginPresenter)
+        public RegisterPresenter(IRegisterView view, IAuthService authService, INavigationService navigationService)
         {
             _view = view;
             _authService = authService;
-            _loginPresenter = loginPresenter;
+            _navigationService = navigationService;
+
             _view.RegisterEvent += OnRegister;
             _view.OnLoginRedirect += OnLoginRedirect;
         }
 
+        public void ShowView()
+        {
+            _view.ShowView();
+        }
 
-        public IRegisterView GetRegisterView() => _view;
+        public void HideView()
+        {
+            _view.HideView();
+        }
 
-        public void OnLoginRedirect(object? sender, EventArgs e)
+        private void OnLoginRedirect(object? sender, EventArgs e)
         {
             try
             {
-                _loginPresenter.Value.GetLoginView().ShowView();
-                _view.HideView();  // Cambia CloseView por HideView
+                // Usar el NavigationService para navegar a la vista de login
+                _navigationService.NavigateTo<ILoginPresenter>();
+                _view.HideView();  // Ocultar la vista de registro
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrio un error al redirigir.", "Error");
+                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
 
-
-        public void OnRegister(object? sender, EventArgs e)
+        private void OnRegister(object? sender, EventArgs e)
         {
             try
             {
+                // Validar el nombre de usuario
                 _authService.CheckUsername(_view.Username);
 
                 var newUser = new Usuario
@@ -51,32 +60,32 @@ namespace Presentation.Presenters
                     Apellido = _view.Apellido,
                     Username = _view.Username,
                     Contraseña = _view.Contraseña,
-                    Edad = int.Parse(_view.Edad), 
+                    Edad = int.Parse(_view.Edad),
                     Telefono = _view.Telefono,
                     Role = _view.Role
                 };
 
-                _authService.Register(newUser); 
-
+                // Registrar el nuevo usuario
+                _authService.Register(newUser);
                 _view.ShowMessage("Usuario registrado correctamente.", "Éxito");
 
-                _loginPresenter.Value.GetLoginView().ShowView();
+                // Navegar a la vista de login
+                _navigationService.NavigateTo<ILoginPresenter>();
 
+                // Ocultar la vista de registro
                 _view.HideView();
             }
             catch (ValidationException ex)
             {
-                // Mostrar los errores de validación del servicio
                 _view.ShowMessage($"{ex.Message}", "Error de validación");
             }
             catch (UnauthorizedAccessException ex)
             {
-                // Caso de error de acceso no autorizado
                 _view.ShowMessage($"Error de autenticación: {ex.Message}", "Error de autenticación");
             }
             catch (IOException ex)
             {
-                _view.ShowMessage($"Error al guardar los datos. Intente nuevamente.", "Error");
+                _view.ShowMessage("Error al guardar los datos. Intente nuevamente.", "Error");
             }
             catch (Exception ex)
             {
@@ -84,6 +93,19 @@ namespace Presentation.Presenters
             }
         }
 
+        public IRegisterView GetRegisterView()
+        {
+            throw new NotImplementedException();
+        }
 
+        void IRegisterPresenter.OnLoginRedirect(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRegisterPresenter.OnRegister(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
