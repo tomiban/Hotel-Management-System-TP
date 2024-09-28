@@ -13,5 +13,6 @@ namespace ApplicationLayer.Services
         void Update(Habitacion habitacion);
         bool Exists(int id);
         ICollection<ValidationResult> ValidateModel(IHabitacion habitacion);
+        List<Habitacion> FiltrarHabitacionesDisponibles(DateTime fechaDesde, DateTime fechaHasta);
     }
 }

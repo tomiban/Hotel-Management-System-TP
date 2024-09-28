@@ -23,7 +23,7 @@ namespace Presentation.Views
         event EventHandler SaveEvent;
         event EventHandler NavigateToAdminView;
 
-        void LimpiarCampos();
+        //void LimpiarCampos();
         void CloseView();
         void HideView();
         void ShowView();

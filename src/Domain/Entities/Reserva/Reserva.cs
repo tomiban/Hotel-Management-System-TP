@@ -33,12 +33,43 @@ namespace Domain.Entities
 
         public Decimal MontoTotal => DiasDeEstadia * PrecioPorNoche;
 
+        public EstadoReserva Estado { get; set; }
+
+
+        // Método para verificar si la reserva ha expirado
+        public void VerificarExpiracion()
+        {
+            if (FechaFin < DateTime.Now && Estado == EstadoReserva.Activa)
+            {
+                Estado = EstadoReserva.Expirada;  // Si la fecha de fin ha pasado, marcar como expirada
+            }
+        }
+
+        // Método para cancelar una reserva solo si está activa
+        public void Cancelar()
+        {
+            if (Estado == EstadoReserva.Activa)
+            {
+                Estado = EstadoReserva.Cancelada;
+            }
+            else
+            {
+                throw new InvalidOperationException("Solo se pueden cancelar reservas activas.");
+            }
+        }
 
 
         public Reserva()
         {
             Id = ++_contadorId; // Incrementar el contador de ID de manera estática
-            
+            Estado = EstadoReserva.Activa;
+        }
+
+        public enum EstadoReserva
+        {
+            Activa = 1,
+            Cancelada = 2,
+            Expirada = 3  // Añadido nuevo estado Expirada
         }
     }
 }

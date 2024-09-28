@@ -3,6 +3,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
 using PresentationLayer.Presenters;
+using PresentationLayer.Utils;
 using System.ComponentModel.DataAnnotations;
 using Unity;
 
@@ -10,26 +11,30 @@ namespace Presentation.Presenters
 {
     public class LoginPresenter : ILoginPresenter
     {
-        ILoginView _view;
-        Lazy<IRegisterPresenter> _registerPresenter;
-        Lazy<IAdminPresenter> _adminPresenter;
-        Lazy<IGuestPresenter> _guestPresenter;
-        IAuthService _authService;
+        private readonly ILoginView _view;
+        private readonly IAuthService _authService;
+        private readonly INavigationService _navigationService;
 
-        public ILoginView GetLoginView()
-        {
-            return _view;
-        }
+       
 
-        public LoginPresenter(ILoginView view, Lazy<IRegisterPresenter> registerPresenter, Lazy<IAdminPresenter> adminPresenter, Lazy<IGuestPresenter> guestPresenter, IAuthService authService)
+        public LoginPresenter(ILoginView view, IAuthService authService, INavigationService navigationService)
         {
             _view = view;
-            _registerPresenter = registerPresenter;
-            _adminPresenter = adminPresenter;
-            _guestPresenter = guestPresenter;
+            _authService = authService;
+            _navigationService = navigationService;
+
             _view.LoginEvent += OnLogin;
             _view.RedirectToRegister += OnRegisterRedirect;
-            _authService = authService;
+        }
+
+        public void ShowView()
+        {
+            _view.ShowView();
+        }
+
+        public void HideView()
+        {
+            _view.HideView();
         }
 
         public void OnLogin(object? sender, EventArgs e)
@@ -37,34 +42,32 @@ namespace Presentation.Presenters
             try
             {
                 var usuario = _authService.Login(_view.Username, _view.Password);
-                _view.HideView();
 
                 switch (usuario.Role)
                 {
                     case Role.Admin:
-                        _adminPresenter.Value.GetAdminView().ShowView();
+                        _navigationService.NavigateTo<IAdminPresenter>();  // Navegar a Admin
                         break;
                     case Role.Cliente:
-                        _guestPresenter.Value.GetGuestView().ShowView();
+                        _navigationService.NavigateTo<IGuestPresenter>();  // Navegar a Cliente
                         break;
                     default:
                         _view.ShowMessage("Rol inválido", "Error");
-                        break;
+                        return;  // Terminar el flujo si el rol es inválido
                 }
+
+                _view.HideView();  // Ocultar la vista de login solo si la navegación es exitosa
             }
             catch (ValidationException ex)
             {
-                // Mostrar errores de validación en la vista
                 _view.ShowMessage($"Validación fallida: {ex.Message}", "Error");
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
-                // Mostrar errores de credenciales inválidas en la vista
                 _view.ShowMessage("Usuario o contraseña incorrectos.", "Credenciales inválidas");
             }
             catch (Exception ex)
             {
-                // Cualquier otro error inesperado
                 _view.ShowMessage($"Ocurrió un error inesperado: {ex.Message}", "Error");
             }
         }
@@ -74,7 +77,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                _registerPresenter.Value.GetRegisterView().ShowView();
+                _navigationService.NavigateTo<IRegisterPresenter>();  // Navegar a la vista de Registro
                 _view.HideView();
             }
             catch (Exception ex)
@@ -82,5 +85,6 @@ namespace Presentation.Presenters
                 _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
             }
         }
+
     }
 }

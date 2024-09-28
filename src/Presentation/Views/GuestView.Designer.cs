@@ -35,10 +35,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
+            panel2 = new Panel();
             panel1 = new Panel();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            btnBuscarHabitaciones = new MaterialSkin.Controls.MaterialButton();
+            dtpFechaHasta = new DateTimePicker();
+            dtpFechaDesde = new DateTimePicker();
             lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
             tpReservas = new TabPage();
+            btnModificarReserva = new MaterialSkin.Controls.MaterialButton();
             listReservas = new MaterialSkin.Controls.MaterialListView();
             lblReservas = new MaterialSkin.Controls.MaterialLabel();
             tpCuenta = new TabPage();
@@ -83,30 +90,104 @@
             tcCliente.Multiline = true;
             tcCliente.Name = "tcCliente";
             tcCliente.SelectedIndex = 0;
-            tcCliente.Size = new Size(1028, 486);
+            tcCliente.Size = new Size(1028, 721);
             tcCliente.TabIndex = 0;
             // 
             // tpHabitaciones
             // 
+            tpHabitaciones.Controls.Add(panel2);
             tpHabitaciones.Controls.Add(panel1);
             tpHabitaciones.ImageKey = "apartment.png";
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
             tpHabitaciones.Padding = new Padding(3);
-            tpHabitaciones.Size = new Size(1020, 443);
+            tpHabitaciones.Size = new Size(1020, 678);
             tpHabitaciones.TabIndex = 5;
             tpHabitaciones.Text = "Habitaciones";
             tpHabitaciones.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 149);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1014, 526);
+            panel2.TabIndex = 14;
+            // 
             // panel1
             // 
+            panel1.Controls.Add(materialLabel2);
+            panel1.Controls.Add(materialLabel1);
+            panel1.Controls.Add(btnBuscarHabitaciones);
+            panel1.Controls.Add(dtpFechaHasta);
+            panel1.Controls.Add(dtpFechaDesde);
             panel1.Controls.Add(lblHabitaciones);
             panel1.Controls.Add(cmbFiltroHabitaciones);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1014, 100);
+            panel1.Size = new Size(1014, 146);
             panel1.TabIndex = 13;
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(350, 101);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(47, 19);
+            materialLabel2.TabIndex = 16;
+            materialLabel2.Text = "Hasta:";
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(57, 101);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(49, 19);
+            materialLabel1.TabIndex = 15;
+            materialLabel1.Text = "Desde:";
+            // 
+            // btnBuscarHabitaciones
+            // 
+            btnBuscarHabitaciones.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBuscarHabitaciones.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnBuscarHabitaciones.Depth = 0;
+            btnBuscarHabitaciones.HighEmphasis = true;
+            btnBuscarHabitaciones.Icon = null;
+            btnBuscarHabitaciones.Location = new Point(625, 94);
+            btnBuscarHabitaciones.Margin = new Padding(4, 6, 4, 6);
+            btnBuscarHabitaciones.MaximumSize = new Size(0, 30);
+            btnBuscarHabitaciones.MouseState = MaterialSkin.MouseState.HOVER;
+            btnBuscarHabitaciones.Name = "btnBuscarHabitaciones";
+            btnBuscarHabitaciones.NoAccentTextColor = Color.Empty;
+            btnBuscarHabitaciones.Size = new Size(79, 30);
+            btnBuscarHabitaciones.TabIndex = 14;
+            btnBuscarHabitaciones.Text = "FILTRAR";
+            btnBuscarHabitaciones.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnBuscarHabitaciones.UseAccentColor = false;
+            btnBuscarHabitaciones.UseVisualStyleBackColor = true;
+            // 
+            // dtpFechaHasta
+            // 
+            dtpFechaHasta.Format = DateTimePickerFormat.Short;
+            dtpFechaHasta.Location = new Point(403, 97);
+            dtpFechaHasta.Name = "dtpFechaHasta";
+            dtpFechaHasta.Size = new Size(200, 23);
+            dtpFechaHasta.TabIndex = 13;
+            // 
+            // dtpFechaDesde
+            // 
+            dtpFechaDesde.Format = DateTimePickerFormat.Short;
+            dtpFechaDesde.Location = new Point(112, 97);
+            dtpFechaDesde.Name = "dtpFechaDesde";
+            dtpFechaDesde.Size = new Size(200, 23);
+            dtpFechaDesde.TabIndex = 12;
             // 
             // lblHabitaciones
             // 
@@ -133,31 +214,53 @@
             cmbFiltroHabitaciones.DropDownHeight = 174;
             cmbFiltroHabitaciones.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFiltroHabitaciones.DropDownWidth = 121;
+            cmbFiltroHabitaciones.FlatStyle = FlatStyle.Popup;
             cmbFiltroHabitaciones.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbFiltroHabitaciones.ForeColor = Color.FromArgb(222, 0, 0, 0);
             cmbFiltroHabitaciones.FormattingEnabled = true;
+            cmbFiltroHabitaciones.ImeMode = ImeMode.On;
             cmbFiltroHabitaciones.IntegralHeight = false;
             cmbFiltroHabitaciones.ItemHeight = 43;
             cmbFiltroHabitaciones.Items.AddRange(new object[] { "Filtrar por categoría", "Economica", "Estándard", "Presidencial" });
-            cmbFiltroHabitaciones.Location = new Point(613, 17);
+            cmbFiltroHabitaciones.Location = new Point(738, 80);
             cmbFiltroHabitaciones.MaxDropDownItems = 4;
             cmbFiltroHabitaciones.MouseState = MaterialSkin.MouseState.OUT;
             cmbFiltroHabitaciones.Name = "cmbFiltroHabitaciones";
-            cmbFiltroHabitaciones.Size = new Size(344, 49);
+            cmbFiltroHabitaciones.Size = new Size(242, 49);
             cmbFiltroHabitaciones.StartIndex = 0;
             cmbFiltroHabitaciones.TabIndex = 10;
             // 
             // tpReservas
             // 
+            tpReservas.Controls.Add(btnModificarReserva);
             tpReservas.Controls.Add(listReservas);
             tpReservas.Controls.Add(lblReservas);
             tpReservas.ImageKey = "book.png";
             tpReservas.Location = new Point(4, 39);
             tpReservas.Name = "tpReservas";
-            tpReservas.Size = new Size(1020, 443);
+            tpReservas.Size = new Size(1020, 678);
             tpReservas.TabIndex = 3;
             tpReservas.Text = "Reservas";
             tpReservas.UseVisualStyleBackColor = true;
+            // 
+            // btnModificarReserva
+            // 
+            btnModificarReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnModificarReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnModificarReserva.Depth = 0;
+            btnModificarReserva.HighEmphasis = true;
+            btnModificarReserva.Icon = null;
+            btnModificarReserva.Location = new Point(56, 85);
+            btnModificarReserva.Margin = new Padding(4, 6, 4, 6);
+            btnModificarReserva.MouseState = MaterialSkin.MouseState.HOVER;
+            btnModificarReserva.Name = "btnModificarReserva";
+            btnModificarReserva.NoAccentTextColor = Color.Empty;
+            btnModificarReserva.Size = new Size(166, 36);
+            btnModificarReserva.TabIndex = 2;
+            btnModificarReserva.Text = "MODIFICAR RESERVA";
+            btnModificarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnModificarReserva.UseAccentColor = false;
+            btnModificarReserva.UseVisualStyleBackColor = true;
             // 
             // listReservas
             // 
@@ -171,13 +274,13 @@
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
             listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
-            listReservas.Location = new Point(68, 62);
+            listReservas.Location = new Point(56, 123);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
             listReservas.MouseState = MaterialSkin.MouseState.OUT;
             listReservas.Name = "listReservas";
             listReservas.OwnerDraw = true;
-            listReservas.Size = new Size(894, 386);
+            listReservas.Size = new Size(913, 386);
             listReservas.TabIndex = 1;
             listReservas.TileSize = new Size(3, 3);
             listReservas.UseCompatibleStateImageBehavior = false;
@@ -205,7 +308,7 @@
             tpCuenta.Location = new Point(4, 39);
             tpCuenta.Name = "tpCuenta";
             tpCuenta.Padding = new Padding(3);
-            tpCuenta.Size = new Size(1020, 443);
+            tpCuenta.Size = new Size(1020, 678);
             tpCuenta.TabIndex = 1;
             tpCuenta.Text = "Mi Cuenta";
             tpCuenta.UseVisualStyleBackColor = true;
@@ -458,7 +561,7 @@
             tpLogout.ImageKey = "logout.png";
             tpLogout.Location = new Point(4, 39);
             tpLogout.Name = "tpLogout";
-            tpLogout.Size = new Size(1020, 443);
+            tpLogout.Size = new Size(1020, 678);
             tpLogout.TabIndex = 4;
             tpLogout.Text = "Salir";
             tpLogout.UseVisualStyleBackColor = true;
@@ -488,7 +591,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1048, 553);
+            ClientSize = new Size(1048, 788);
             Controls.Add(tcCliente);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcCliente;
@@ -539,5 +642,12 @@
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
         private Panel panel1;
         private ImageList imageList1;
+        private MaterialSkin.Controls.MaterialButton btnBuscarHabitaciones;
+        private DateTimePicker dtpFechaHasta;
+        private DateTimePicker dtpFechaDesde;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private Panel panel2;
+        private MaterialSkin.Controls.MaterialButton btnModificarReserva;
     }
 }

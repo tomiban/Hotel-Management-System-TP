@@ -2,26 +2,26 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using PresentationLayer.Utils;
 using Unity;
 
 namespace Presentation.Presenters
 {
     public class AdminPresenter : IAdminPresenter
     {
-        IAdminView _view;
-        Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
-        IHabitacionServices _habitacionServices;
+        private readonly IAdminView _view;
+        private readonly IHabitacionServices _habitacionServices;
+        private readonly INavigationService _navigationService;
         private bool _eventosSuscritos = false;
-        public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService)
+
+        public AdminPresenter(IAdminView view, IHabitacionServices habitacionServices, INavigationService navigationService)
         {
             _view = view;
+            _habitacionServices = habitacionServices;
+            _navigationService = navigationService;
 
-            _habitacionServices = habitacionService;
-            _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter;
-          
-           CargarHabitaciones();
-           SubscribeEvents();
-
+            CargarHabitaciones();
+            SubscribeEvents();
         }
 
         public void SubscribeEvents()
@@ -61,26 +61,24 @@ namespace Presentation.Presenters
         {
             try
             {
-                int id = _view.ObtenerNroHabitacionSeleccionado(); // Obtener el ID de la habitación seleccionada
-                _habitacionServices.Delete(id); // Llamar al servicio para eliminar la habitación
-                CargarHabitaciones(); // Refrescar la lista
-                _view.ShowMessage("Habitación eliminada", "La habitación ha sido eliminada correctamente.");
+                int id = _view.ObtenerNroHabitacionSeleccionado();
+                _habitacionServices.Delete(id);  // Eliminar la habitación seleccionada
+                CargarHabitaciones();  // Refrescar la lista de habitaciones
+                _view.ShowMessage("Habitación eliminada correctamente.", "Información");
                 _view.SetEliminarHabitacionButtonState(false);
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"No se pudo eliminar la habitación: {ex.Message}");
+                _view.ShowMessage($"Error: {ex.Message}", "No se pudo eliminar la habitación");
             }
         }
 
-        public void OnEditHabitacion(object? sender, EventArgs e)
+        private void OnEditHabitacion(object? sender, EventArgs e)
         {
             try
             {
-                // Obtener el número de habitación seleccionada
                 int nroHabitacion = _view.ObtenerNroHabitacionSeleccionado();
                 var habitacion = _habitacionServices.GetById(nroHabitacion);
-                _view.SetEditarHabitacionButtonState(false);
 
                 if (habitacion == null)
                 {
@@ -88,13 +86,8 @@ namespace Presentation.Presenters
                     return;
                 }
 
-                // Redirigir a la vista de Crear/Editar Habitaciones
-                HideView();
-                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
-
-                // Llenar los campos de la vista con la habitación seleccionada
-                _crearEditarHabitacionPresenter.Value.SetEditMode(habitacion);  // Activa el modo de edición
-                crearEditarView.ShowView();
+                // Usar el NavigationService para navegar a Crear/Editar Habitación en modo edición
+                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
             }
             catch (Exception ex)
             {
@@ -102,44 +95,29 @@ namespace Presentation.Presenters
             }
         }
 
-        public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
+        private void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
         {
             try
             {
-                // Ocultar la vista actual (AdminView)
-                HideView();
-
-                // Redirigir a la vista de Crear/Editar habitaciones
-                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
-
-                // Asegurarse de que esté en modo de creación (no edición)
-                _crearEditarHabitacionPresenter.Value.SetAddMode();
-
-                // Mostrar la vista de crear/editar habitación
-                crearEditarView.ShowView();
+                // Usar el NavigationService para navegar a Crear/Editar Habitación en modo creación
+                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
+                _view.ShowMessage($"Error al redirigir: {ex.Message}", "Error");
             }
         }
 
-        public  void CargarHabitaciones()
+        public void CargarHabitaciones()
         {
-            var habitaciones =  _habitacionServices.GetAll();
-
+            var habitaciones = _habitacionServices.GetAll();
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
+
         public void CargarUsuarios()
         {
-            var usuarios = new List<Usuario>();
-            _view.ActualizarListaUsuarios(usuarios);
-        }
-
-        public IAdminView GetAdminView()
-        {
-            return _view;
+            throw new NotImplementedException();
         }
     }
 }
