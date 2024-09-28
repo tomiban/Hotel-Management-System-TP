@@ -2,29 +2,25 @@ using Domain.Interfaces;
 using Presentation.Presenters;
 using Presentation.Views;
 using Unity;
+using ApplicationLayer.Services;
 using Infraestructure.DataAccess.Repositories;
 using Infraestructure.DataAccess.Serialization;
-using Unity.Lifetime;
-using PresentationLayer.Views;
-using PresentationLayer.Presenters;
-using ApplicationLayer.Services;
 using Domain.Validation.ModelDataAnnotationCheck;
 using Services.Services.ReservaServices;
-
+using PresentationLayer.Presenters;
+using PresentationLayer.Utils;
+using PresentationLayer.Views;
+using Unity.Lifetime;
 
 namespace Presentation
 {
     internal static class Program
     {
-        /// <summary>
-        ///  Punto de entrada principal para la aplicaci�n.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-
+           
             IUnityContainer unityC = new UnityContainer()
-                // Registra la vista de login (ILoginView) y la implementa con la clase Login.
                 .RegisterType<ILoginView, LoginView>(new ContainerControlledLifetimeManager())
                 .RegisterType<ILoginPresenter, LoginPresenter>(new ContainerControlledLifetimeManager())
 
@@ -40,33 +36,36 @@ namespace Presentation
                 .RegisterType<ICrearEditarHabitacionView, CrearEditarHabitacionView>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICrearEditarHabitacionPresenter, CrearEditarHabitacionPresenter>(new ContainerControlledLifetimeManager())
 
+                .RegisterType<IDetallesReservaView, DetallesReservaView>(new ContainerControlledLifetimeManager())
+                .RegisterType<IDetallesReservaPresenter, DetallesReservaPresenter>(new ContainerControlledLifetimeManager())
+
                 .RegisterType<IModelDataAnnotationCheck, ModelDataAnnotationCheck>(new ContainerControlledLifetimeManager())
 
+                // Servicios
                 .RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IUsuarioService, UsuarioService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IHabitacionServices, HabitacionServices>(new ContainerControlledLifetimeManager())
                 .RegisterType<IReservaService, ReservaService>(new ContainerControlledLifetimeManager())
 
+                // Repositorios
                 .RegisterType<IBinarySerialization, BinarySerialization>(new ContainerControlledLifetimeManager())
-
                 .RegisterType<IUsuarioRepository, UsuarioRepository>(new ContainerControlledLifetimeManager())
                 .RegisterType<IHabitacionRepository, HabitacionRepository>(new ContainerControlledLifetimeManager())
-                .RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager()); //
+                .RegisterType<IReservaRepository, ReservaRepository>(new ContainerControlledLifetimeManager())
 
+                // Registrar el NavigationService
+                .RegisterType<INavigationService, NavigationService>(new ContainerControlledLifetimeManager());
 
-
-
+            // Iniciar el sistema visual de Windows Forms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Resolver el servicio de navegación y comenzar en el LoginPresenter
+            var navigationService = unityC.Resolve<INavigationService>();
+            navigationService.NavigateTo<ILoginPresenter>();
 
-            ILoginPresenter loginPresenter = unityC.Resolve<LoginPresenter>();
-            // Obtener la vista de login desde el presentador resuelto.
-            ILoginView loginView = loginPresenter.GetLoginView();
-
-
-            Application.Run((LoginView)loginView);
+            // Iniciar la aplicación
+            Application.Run();
         }
     }
 }
-

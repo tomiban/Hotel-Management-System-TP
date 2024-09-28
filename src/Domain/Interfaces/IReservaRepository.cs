@@ -12,5 +12,6 @@ namespace Services.Services.ReservaServices
     {
         bool VerificarDisponibilidad(int nroHabitacion, DateTime fechaInicio, DateTime fechaFin);
         List<Reserva> GetAllByUser(int id);
+        List<Reserva> GetReservasActivas();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Presentation.Views;
+using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Presentation.Presenters
 {
-    public interface IAdminPresenter
+    public interface IAdminPresenter: IPresenter
     {
-        IAdminView GetAdminView();
         void CargarHabitaciones();
         void CargarUsuarios();
         void ShowView();

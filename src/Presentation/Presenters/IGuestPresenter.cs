@@ -1,9 +1,10 @@
-﻿using PresentationLayer.Views;
+﻿using PresentationLayer.Utils;
+using PresentationLayer.Views;
 
 namespace PresentationLayer.Presenters
 {
-    public interface IGuestPresenter
+    public interface IGuestPresenter: IPresenter
     {
-        IGuestView GetGuestView();
+   
     }
 }

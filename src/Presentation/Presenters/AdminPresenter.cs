@@ -2,33 +2,32 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Presentation.Views;
+using PresentationLayer.Utils;
 using Unity;
 
 namespace Presentation.Presenters
 {
     public class AdminPresenter : IAdminPresenter
     {
+        private readonly IAdminView _view;
         IUsuarioService _usuarioService;
-        IAdminView _view;
-        Lazy<ICrearEditarHabitacionPresenter> _crearEditarHabitacionPresenter;
-        IHabitacionServices _habitacionServices;
+        private readonly IHabitacionServices _habitacionServices;
+        private readonly INavigationService _navigationService;
         private bool _eventosSuscritos = false;
         private bool isEditMode = false;
-        public AdminPresenter(IAdminView view, Lazy<ICrearEditarHabitacionPresenter> crearEditarHabitacionPresenter, IHabitacionServices habitacionService, IUsuarioService usuarioService)
+
+        public AdminPresenter(IAdminView view, IHabitacionServices habitacionServices, INavigationService navigationService, IUsuarioService usuarioService)
         {
-            _view = view ?? throw new ArgumentNullException(nameof(view));  // Asegúrate de que la vista no es null
-            _usuarioService = usuarioService ?? throw new ArgumentNullException(nameof(usuarioService));  // Verifica que el servicio no sea null
-            _habitacionServices = habitacionService ?? throw new ArgumentNullException(nameof(habitacionService));  // Verifica que el servicio no sea null
-            _crearEditarHabitacionPresenter = crearEditarHabitacionPresenter ?? throw new ArgumentNullException(nameof(crearEditarHabitacionPresenter));
-
-
+            _view = view;
             _view.EliminarUsuario += OnEliminarUsuario;
             _view.ActualizarRol += OnActualizarRol;
-            //_view.EditarGuardarUsuario += OnEditarGuardarUsuario;
-            CargarHabitaciones();
-           CargarUsuarios();
-           SubscribeEvents();
+            _habitacionServices = habitacionServices;
+            _usuarioService = usuarioService; 
+            _navigationService = navigationService;
 
+            CargarHabitaciones();
+            CargarUsuarios();
+            SubscribeEvents();
         }
 
 
@@ -125,26 +124,24 @@ namespace Presentation.Presenters
         {
             try
             {
-                int id = _view.ObtenerNroHabitacionSeleccionado(); // Obtener el ID de la habitación seleccionada
-                _habitacionServices.Delete(id); // Llamar al servicio para eliminar la habitación
-                CargarHabitaciones(); // Refrescar la lista
+                int id = _view.ObtenerNroHabitacionSeleccionado();
+                _habitacionServices.Delete(id);  // Eliminar la habitación seleccionada
+                CargarHabitaciones();  // Refrescar la lista de habitaciones
                 _view.ShowMessage("Habitación eliminada correctamente.", "Información");
                 _view.SetEliminarHabitacionButtonState(false);
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"No se pudo eliminar la habitación: {ex.Message}");
+                _view.ShowMessage($"Error: {ex.Message}", "No se pudo eliminar la habitación");
             }
         }
 
-        public void OnEditHabitacion(object? sender, EventArgs e)
+        private void OnEditHabitacion(object? sender, EventArgs e)
         {
             try
             {
-                // Obtener el número de habitación seleccionada
                 int nroHabitacion = _view.ObtenerNroHabitacionSeleccionado();
                 var habitacion = _habitacionServices.GetById(nroHabitacion);
-                _view.SetEditarHabitacionButtonState(false);
 
                 if (habitacion == null)
                 {
@@ -152,13 +149,8 @@ namespace Presentation.Presenters
                     return;
                 }
 
-                // Redirigir a la vista de Crear/Editar Habitaciones
-                HideView();
-                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
-
-                // Llenar los campos de la vista con la habitación seleccionada
-                _crearEditarHabitacionPresenter.Value.SetEditMode(habitacion);  // Activa el modo de edición
-                crearEditarView.ShowView();
+                // Usar el NavigationService para navegar a Crear/Editar Habitación en modo edición
+                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
             }
             catch (Exception ex)
             {
@@ -166,32 +158,22 @@ namespace Presentation.Presenters
             }
         }
 
-        public void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
+        private void OnRedirectToCrearEditarHabitacion(object? sender, EventArgs e)
         {
             try
             {
-                // Ocultar la vista actual (AdminView)
-                HideView();
-
-                // Redirigir a la vista de Crear/Editar habitaciones
-                var crearEditarView = _crearEditarHabitacionPresenter.Value.GetCrearEditarHabitacionView();
-
-                // Asegurarse de que esté en modo de creación (no edición)
-                _crearEditarHabitacionPresenter.Value.SetAddMode();
-
-                // Mostrar la vista de crear/editar habitación
-                crearEditarView.ShowView();
+                // Usar el NavigationService para navegar a Crear/Editar Habitación en modo creación
+                _navigationService.NavigateTo<ICrearEditarHabitacionPresenter>();
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Ocurrió un error al redirigir.", "Error");
+                _view.ShowMessage($"Error al redirigir: {ex.Message}", "Error");
             }
         }
 
-        public  void CargarHabitaciones()
+        public void CargarHabitaciones()
         {
-            var habitaciones =  _habitacionServices.GetAll();
-
+            var habitaciones = _habitacionServices.GetAll();
             _view.ActualizarListaHabitaciones(habitaciones);
         }
 
@@ -208,10 +190,6 @@ namespace Presentation.Presenters
             {
                 _view.ShowMessage("Error al cargar los usuarios.", $"Error: {ex.Message}");
             }
-        }
-        public IAdminView GetAdminView()
-        {
-            return _view;
         }
     }
 }
