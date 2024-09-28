@@ -747,12 +747,12 @@ namespace Presentation.Views
             // 
             // imageListDash
             // 
-            imageListDash.ColorDepth = ColorDepth.Depth32Bit;
-            imageListDash.ImageStream = (ImageListStreamer)resources.GetObject("imageListDash.ImageStream");
-            imageListDash.TransparentColor = Color.Transparent;
-            imageListDash.Images.SetKeyName(0, "door.png");
-            imageListDash.Images.SetKeyName(1, "group.png");
-            imageListDash.Images.SetKeyName(2, "money.png");
+            //imageListDash.ColorDepth = ColorDepth.Depth32Bit;
+            //imageListDash.ImageStream = (ImageListStreamer)resources.GetObject("imageListDash.ImageStream");
+            //imageListDash.TransparentColor = Color.Transparent;
+            //imageListDash.Images.SetKeyName(0, "door.png");
+            //imageListDash.Images.SetKeyName(1, "group.png");
+            //imageListDash.Images.SetKeyName(2, "money.png");
             // 
             // AdminView
             // 
