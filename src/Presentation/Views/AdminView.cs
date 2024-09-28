@@ -26,11 +26,11 @@ namespace Presentation.Views
             btnEditarHab.Enabled = false;
 
             var colorScheme = new ColorScheme(
-            Primary.DeepPurple600,   
-            Primary.DeepPurple700,   
-            Primary.Cyan700,  
-            Accent.Cyan700,        
-            TextShade.WHITE          
+            Primary.DeepPurple600,
+            Primary.DeepPurple700,
+            Primary.Cyan700,
+            Accent.Cyan700,
+            TextShade.WHITE
         );
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
@@ -123,6 +123,45 @@ namespace Presentation.Views
                 listHabitaciones.Items.Add(listItem);
             }
         }
+        public void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual)
+        {
+            // Actualizar el texto y la barra de progreso para "Reservas"
+            lblTotalReservas.Text = reservasActivas.ToString();
+            captionLblOcupacion.Text = $"{porcentajeOcupacion}% Ocupación";
+            progressBarOcupacion.Value = (int)porcentajeOcupacion;
+
+            // Actualizar los valores para "Usuarios Totales"
+            lblTotalUsuarios.Text = totalUsuarios.ToString();
+            captionLblUsuarios.Text = $"{nuevosUsuarios} Nuevos Usuarios";
+
+            // Actualizar la facturación
+            lblTotalFacturado.Text = $"{facturacionAnual:C}"; // Mostrar el monto formateado con símbolo de moneda
+        }
+
+        public void CargarListaReservasActivas(List<Reserva> reservas)
+        {
+            listReservasActivas.Columns.Clear();
+            listReservasActivas.Items.Clear();
+
+            // Definir columnas de la lista
+            listReservasActivas.Columns.Add("Número de Habitación", 200, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Nombre de Usuario", 155, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Fecha de Inicio", 200, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Fecha de Fin", 200, HorizontalAlignment.Left);
+
+
+            // Cargar las reservas activas en el ListView
+            foreach (var reserva in reservas)
+            {
+                ListViewItem listItem = new ListViewItem(reserva.NroHabitacion.ToString());
+                listItem.SubItems.Add(reserva.Username);
+                listItem.SubItems.Add(reserva.FechaInicio.ToShortDateString());
+                listItem.SubItems.Add(reserva.FechaFin.ToShortDateString());
+
+
+                listReservasActivas.Items.Add(listItem);
+            }
+        }
 
 
         public void ShowMessage(string title, string message)
@@ -131,10 +170,6 @@ namespace Presentation.Views
             MaterialMessageBox.Show(this, title, message);
         }
 
-        public void ObtenerDatos()
-        {
-            throw new NotImplementedException();
-        }
 
         public int ObtenerNroHabitacionSeleccionado()
         {
@@ -149,10 +184,6 @@ namespace Presentation.Views
             return id;
         }
 
-        public void LimpiarFormulario()
-        {
-            throw new NotImplementedException();
-        }
 
         public void HideView()
         {
@@ -168,6 +199,5 @@ namespace Presentation.Views
             this.Show();
         }
 
-    
     }
 }

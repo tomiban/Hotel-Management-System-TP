@@ -131,6 +131,7 @@ namespace Infraestructure.DataAccess.Repositories
         {
             return !_reservas
                 .Any(r => r.NroHabitacion == nroHabitacion &&
+                          r.Estado == Reserva.EstadoReserva.Activa &&
                           fechaInicio < r.FechaFin &&
                           fechaFin > r.FechaInicio.AddDays(-1));
         }
