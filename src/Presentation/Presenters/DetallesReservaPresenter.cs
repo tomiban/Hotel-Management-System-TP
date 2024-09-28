@@ -1,6 +1,7 @@
 ﻿using ApplicationLayer.Services;
 using Domain.Entities;
 using PresentationLayer.Presenters;
+using PresentationLayer.Utils;
 using PresentationLayer.Views;
 
 public class DetallesReservaPresenter : IDetallesReservaPresenter
@@ -22,6 +23,24 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         _view.OnActualizarReserva += HandleActualizarReserva;
         _view.OnCancelarReserva += HandleCancelarReserva;
         _view.OnRedirectToClientView += HandleRedirectToClientView;
+        _view.OnFechaCambiada += HandleFechaCambiada;
+    }
+
+    private void HandleFechaCambiada(object? sender, EventArgs e)
+    {
+        try
+        {
+            _reservaActual.FechaInicio = _view.FechaInicio;
+            _reservaActual.FechaFin = _view.FechaFin;
+            decimal nuevoPrecio = _reservaService.RecalcularDiasYPrecio(_reservaActual);
+
+            // Actualizar la vista con el nuevo precio
+            _view.MostrarPrecioActualizado(nuevoPrecio);
+        }
+        catch (Exception ex)
+        {
+            _view.ShowMessage($"Error al recalcular el precio: {ex.Message}", "Error");
+        }
     }
 
     private void HandleRedirectToClientView(object? sender, EventArgs e)
@@ -53,9 +72,9 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
             _view.ShowMessage("Reserva actualizada con éxito.", "Éxito");
 
             // Lanzar evento cuando la reserva es actualizada
-            OnReservaModificada?.Invoke(this, EventArgs.Empty);
+            EventHelper.RaiseEvent(this, OnReservaModificada, EventArgs.Empty);
 
-            _view.HideView();  // Cerrar la vista después de actualizar
+           // _view.HideView();  // Cerrar la vista después de actualizar
         }
         catch (Exception ex)
         {
