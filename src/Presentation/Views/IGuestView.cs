@@ -38,6 +38,8 @@ namespace PresentationLayer.Views
         void ShowView();
         void CloseView();
         void HideView();
+
+
     }
 }
 

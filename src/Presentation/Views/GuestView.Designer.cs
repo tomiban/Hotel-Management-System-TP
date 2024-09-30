@@ -68,6 +68,7 @@
             tpLogout = new TabPage();
             imageListCliente = new ImageList(components);
             imageList1 = new ImageList(components);
+            colorDialog1 = new ColorDialog();
             tcCliente.SuspendLayout();
             tpHabitaciones.SuspendLayout();
             panel1.SuspendLayout();
@@ -649,5 +650,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private Panel panel2;
         private MaterialSkin.Controls.MaterialButton btnModificarReserva;
+        private ColorDialog colorDialog1;
     }
 }

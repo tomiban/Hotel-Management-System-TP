@@ -42,6 +42,10 @@ namespace Presentation.Views
             dtpFechaHasta.Value = DateTime.Today.AddDays(7);
             AttachAndRaiseViewEvents();
             MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
+       
+            tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;  
+
+
         }
 
 
@@ -56,9 +60,10 @@ namespace Presentation.Views
                 EventHelper.RaiseEvent(this, ReservaSeleccionada, reservaId);
             };
 
+
             btnBuscarHabitaciones.Click += (s, e) =>
             {
-            
+
                 if (dtpFechaDesde.Value == null || dtpFechaHasta.Value == null)
                 {
                     MessageBox.Show("Por favor, ingrese una fecha de inicio y una fecha de fin.");
@@ -74,7 +79,7 @@ namespace Presentation.Views
                     MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.");
                     return;
                 }
-             
+
                 EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value));
             };
 
@@ -118,7 +123,7 @@ namespace Presentation.Views
 
                     habitacionCardContainer.Add(card); // Añadir las tarjetas de las habitaciones
                 }
-            
+
             }
         }
 
@@ -188,6 +193,28 @@ namespace Presentation.Views
         public void SetModificarReservaButtonState(bool enabled)
         {
             btnModificarReserva.Enabled = enabled;  // Habilitar o deshabilitar el botón
+        }
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificamos si la pestaña seleccionada es "tpLogout"
+            if (tcCliente.SelectedTab == tpLogout)
+            {
+                var dialog = new MaterialDialog(this, "Confirmar Salida",
+                    "¿Está seguro que desea salir de la aplicación?", "Salir", true, "Cancelar", true);
+
+                dialog.StartPosition = FormStartPosition.CenterParent;
+
+                var result = dialog.ShowDialog(this);
+
+                if (result == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    tcCliente.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

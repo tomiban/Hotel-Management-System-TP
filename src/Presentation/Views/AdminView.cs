@@ -6,6 +6,7 @@ using MaterialSkin.Controls;
 using Presentation.Views;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using System.Net.Sockets;
 
 namespace Presentation.Views
 {
@@ -47,7 +48,7 @@ namespace Presentation.Views
             //listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
             listHabitaciones.SelectedIndexChanged += OnHabitacionSelectionChanged;
             dataGridViewUsuarios.CurrentCellDirtyStateChanged += DataGridViewUsuarios_CurrentCellDirtyStateChanged;
-
+            tcAdmin.SelectedIndexChanged += TabControl_SelectedIndexChanged;
         }
 
         private void DataGridViewUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -297,6 +298,29 @@ namespace Presentation.Views
         public void ShowView()
         {
             this.Show();
+        }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificamos si la pestaña seleccionada es "tpLogout"
+            if (tcAdmin.SelectedTab == tpLogout)
+            {
+                var dialog = new MaterialDialog(this, "Confirmar Salida",
+                    "¿Está seguro que desea salir de la aplicación?", "Salir", true, "Cancelar", true);
+
+                dialog.StartPosition = FormStartPosition.CenterParent;
+
+                var result = dialog.ShowDialog(this);
+
+                if (result == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    tcAdmin.SelectedIndex = 0;
+                }
+            }
         }
 
     }
