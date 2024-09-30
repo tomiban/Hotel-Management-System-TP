@@ -52,7 +52,6 @@
             materialCard6 = new MaterialSkin.Controls.MaterialCard();
             txtPassword = new MaterialSkin.Controls.MaterialTextBox();
             txtUsername = new MaterialSkin.Controls.MaterialTextBox();
-            txtDomicilio = new MaterialSkin.Controls.MaterialTextBox();
             txtTelefono = new MaterialSkin.Controls.MaterialTextBox();
             txtApellido = new MaterialSkin.Controls.MaterialTextBox();
             txtNombre = new MaterialSkin.Controls.MaterialTextBox();
@@ -60,7 +59,6 @@
             lblUsername = new MaterialSkin.Controls.MaterialLabel();
             linkCambiarContraseña = new LinkLabel();
             lblApellido = new MaterialSkin.Controls.MaterialLabel();
-            lblDomicilio = new MaterialSkin.Controls.MaterialLabel();
             lblTelefono = new MaterialSkin.Controls.MaterialLabel();
             lblNombre = new MaterialSkin.Controls.MaterialLabel();
             lblCuenta = new MaterialSkin.Controls.MaterialLabel();
@@ -319,7 +317,6 @@
             materialCard6.BackColor = Color.FromArgb(255, 255, 255);
             materialCard6.Controls.Add(txtPassword);
             materialCard6.Controls.Add(txtUsername);
-            materialCard6.Controls.Add(txtDomicilio);
             materialCard6.Controls.Add(txtTelefono);
             materialCard6.Controls.Add(txtApellido);
             materialCard6.Controls.Add(txtNombre);
@@ -327,7 +324,6 @@
             materialCard6.Controls.Add(lblUsername);
             materialCard6.Controls.Add(linkCambiarContraseña);
             materialCard6.Controls.Add(lblApellido);
-            materialCard6.Controls.Add(lblDomicilio);
             materialCard6.Controls.Add(lblTelefono);
             materialCard6.Controls.Add(lblNombre);
             materialCard6.Depth = 0;
@@ -345,9 +341,9 @@
             txtPassword.AnimateReadOnly = false;
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Depth = 0;
-            txtPassword.Font = new Font("Roboto", 12F);
+            txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(397, 276);
+            txtPassword.Location = new Point(385, 157);
             txtPassword.MaxLength = 50;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Multiline = false;
@@ -356,7 +352,7 @@
             txtPassword.ReadOnly = true;
             txtPassword.Size = new Size(208, 50);
             txtPassword.TabIndex = 13;
-            txtPassword.Text = "tomasbanchio16";
+            txtPassword.Text = "";
             txtPassword.TrailingIcon = null;
             // 
             // txtUsername
@@ -364,9 +360,9 @@
             txtUsername.AnimateReadOnly = false;
             txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.Depth = 0;
-            txtUsername.Font = new Font("Roboto", 12F);
+            txtUsername.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(52, 276);
+            txtUsername.Location = new Point(385, 66);
             txtUsername.MaxLength = 50;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             txtUsername.Multiline = false;
@@ -374,35 +370,17 @@
             txtUsername.ReadOnly = true;
             txtUsername.Size = new Size(208, 50);
             txtUsername.TabIndex = 12;
-            txtUsername.Text = "tomiban";
+            txtUsername.Text = "";
             txtUsername.TrailingIcon = null;
-            // 
-            // txtDomicilio
-            // 
-            txtDomicilio.AnimateReadOnly = false;
-            txtDomicilio.BorderStyle = BorderStyle.None;
-            txtDomicilio.Depth = 0;
-            txtDomicilio.Font = new Font("Roboto", 12F);
-            txtDomicilio.LeadingIcon = null;
-            txtDomicilio.Location = new Point(395, 167);
-            txtDomicilio.MaxLength = 50;
-            txtDomicilio.MouseState = MaterialSkin.MouseState.OUT;
-            txtDomicilio.Multiline = false;
-            txtDomicilio.Name = "txtDomicilio";
-            txtDomicilio.ReadOnly = true;
-            txtDomicilio.Size = new Size(208, 50);
-            txtDomicilio.TabIndex = 11;
-            txtDomicilio.Text = "Gabarret 1824";
-            txtDomicilio.TrailingIcon = null;
             // 
             // txtTelefono
             // 
             txtTelefono.AnimateReadOnly = false;
             txtTelefono.BorderStyle = BorderStyle.None;
             txtTelefono.Depth = 0;
-            txtTelefono.Font = new Font("Roboto", 12F);
+            txtTelefono.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtTelefono.LeadingIcon = null;
-            txtTelefono.Location = new Point(52, 167);
+            txtTelefono.Location = new Point(52, 254);
             txtTelefono.MaxLength = 50;
             txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
             txtTelefono.Multiline = false;
@@ -410,7 +388,7 @@
             txtTelefono.ReadOnly = true;
             txtTelefono.Size = new Size(208, 50);
             txtTelefono.TabIndex = 10;
-            txtTelefono.Text = "3496547076";
+            txtTelefono.Text = "";
             txtTelefono.TrailingIcon = null;
             // 
             // txtApellido
@@ -418,9 +396,9 @@
             txtApellido.AnimateReadOnly = false;
             txtApellido.BorderStyle = BorderStyle.None;
             txtApellido.Depth = 0;
-            txtApellido.Font = new Font("Roboto", 12F);
+            txtApellido.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtApellido.LeadingIcon = null;
-            txtApellido.Location = new Point(395, 65);
+            txtApellido.Location = new Point(52, 157);
             txtApellido.MaxLength = 50;
             txtApellido.MouseState = MaterialSkin.MouseState.OUT;
             txtApellido.Multiline = false;
@@ -428,7 +406,7 @@
             txtApellido.ReadOnly = true;
             txtApellido.Size = new Size(208, 50);
             txtApellido.TabIndex = 9;
-            txtApellido.Text = "Banchio";
+            txtApellido.Text = "";
             txtApellido.TrailingIcon = null;
             // 
             // txtNombre
@@ -436,7 +414,7 @@
             txtNombre.AnimateReadOnly = false;
             txtNombre.BorderStyle = BorderStyle.None;
             txtNombre.Depth = 0;
-            txtNombre.Font = new Font("Roboto", 12F);
+            txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.LeadingIcon = null;
             txtNombre.Location = new Point(52, 66);
             txtNombre.MaxLength = 50;
@@ -446,7 +424,7 @@
             txtNombre.ReadOnly = true;
             txtNombre.Size = new Size(208, 50);
             txtNombre.TabIndex = 8;
-            txtNombre.Text = "Tomás";
+            txtNombre.Text = "";
             txtNombre.TrailingIcon = null;
             // 
             // lblContraseña
@@ -454,7 +432,7 @@
             lblContraseña.AutoSize = true;
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseña.Location = new Point(397, 258);
+            lblContraseña.Location = new Point(385, 139);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(71, 19);
@@ -466,7 +444,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Depth = 0;
             lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsername.Location = new Point(52, 253);
+            lblUsername.Location = new Point(385, 43);
             lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(72, 19);
@@ -476,7 +454,7 @@
             // linkCambiarContraseña
             // 
             linkCambiarContraseña.AutoSize = true;
-            linkCambiarContraseña.Location = new Point(544, 259);
+            linkCambiarContraseña.Location = new Point(532, 140);
             linkCambiarContraseña.Name = "linkCambiarContraseña";
             linkCambiarContraseña.Size = new Size(58, 15);
             linkCambiarContraseña.TabIndex = 7;
@@ -488,31 +466,19 @@
             lblApellido.AutoSize = true;
             lblApellido.Depth = 0;
             lblApellido.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblApellido.Location = new Point(396, 44);
+            lblApellido.Location = new Point(53, 136);
             lblApellido.MouseState = MaterialSkin.MouseState.HOVER;
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(58, 19);
             lblApellido.TabIndex = 0;
             lblApellido.Text = "Apellido";
             // 
-            // lblDomicilio
-            // 
-            lblDomicilio.AutoSize = true;
-            lblDomicilio.Depth = 0;
-            lblDomicilio.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblDomicilio.Location = new Point(396, 145);
-            lblDomicilio.MouseState = MaterialSkin.MouseState.HOVER;
-            lblDomicilio.Name = "lblDomicilio";
-            lblDomicilio.Size = new Size(68, 19);
-            lblDomicilio.TabIndex = 5;
-            lblDomicilio.Text = "Domicilio";
-            // 
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
             lblTelefono.Depth = 0;
             lblTelefono.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblTelefono.Location = new Point(52, 145);
+            lblTelefono.Location = new Point(52, 232);
             lblTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(64, 19);
@@ -627,7 +593,6 @@
         private MaterialSkin.Controls.MaterialLabel lblReservas;
         private LinkLabel linkCambiarContraseña;
         private MaterialSkin.Controls.MaterialLabel lblRolCuenta;
-        private MaterialSkin.Controls.MaterialLabel lblDomicilio;
         private MaterialSkin.Controls.MaterialLabel lblTelefono;
         private MaterialSkin.Controls.MaterialLabel lblUsername;
         private MaterialSkin.Controls.MaterialLabel lblNombre;
@@ -637,7 +602,6 @@
         private MaterialSkin.Controls.MaterialLabel lblCuenta;
         private MaterialSkin.Controls.MaterialTextBox txtPassword;
         private MaterialSkin.Controls.MaterialTextBox txtUsername;
-        private MaterialSkin.Controls.MaterialTextBox txtDomicilio;
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtApellido;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;

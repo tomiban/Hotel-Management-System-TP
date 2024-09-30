@@ -37,6 +37,7 @@ namespace PresentationLayer.Views
         void MostrarMensaje(string mensaje);
         void ShowDialogLogout();
 
+        void CargarDatosUsuario(Usuario usuario);
         void ShowView();
         void CloseView();
         void HideView();
