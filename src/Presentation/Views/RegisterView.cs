@@ -52,6 +52,17 @@ namespace Presentation.Views
             txtTelefono.TextChanged += ValidateFields;
             txtUsuario.TextChanged += ValidateFields;
             txtContraseña.TextChanged += ValidateFields;
+
+            FormClosing += RegisterView_FormClosing;
+        }
+
+
+        private void RegisterView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
 
         private void AssocciateAndRaiseViewEvents()

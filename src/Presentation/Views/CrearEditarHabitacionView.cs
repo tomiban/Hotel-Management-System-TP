@@ -24,6 +24,15 @@ namespace Presentation.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AssociateAndRaiseViewEvents();
+            FormClosing += CrearEditarHabitacionView_FormClosing;
+        }
+
+        private void CrearEditarHabitacionView_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -32,7 +41,7 @@ namespace Presentation.Views
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
 
-      
+
         public void SetEditMode(Habitacion habitacion)
         {
             // Cargar los datos de la habitación en los controles

@@ -5,6 +5,7 @@ using MaterialSkin.Controls;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
 using System;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Views
@@ -43,6 +44,16 @@ namespace PresentationLayer.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
+
+            this.FormClosing += DetallesReservaView_FormClosing;
+        }
+
+        private void DetallesReservaView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
 
         private void AssociateAndRaiseViewEvents()
