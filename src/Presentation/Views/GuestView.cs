@@ -21,7 +21,6 @@ namespace Presentation.Views
         public DateTime ReservaFechaHasta => dtpFechaHasta.Value;
 
         public HabitacionCardContainer habitacionCardContainer { get => HabitacionCardContainer; }
-
         public GuestView()
         {
             InitializeComponent();
@@ -43,7 +42,6 @@ namespace Presentation.Views
             AttachAndRaiseViewEvents();
             MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
         }
-
 
         private void AttachAndRaiseViewEvents()
         {
@@ -94,6 +92,15 @@ namespace Presentation.Views
             {
                 cmbFiltroHabitaciones.Items.Add(item);
             }
+        }
+
+        public void CargarDatosUsuario(Usuario usuario)
+        {
+            txtNombre.Text = usuario.Nombre;
+            txtApellido.Text = usuario.Apellido;
+            txtTelefono.Text = usuario.Telefono;
+            txtUsername.Text = usuario.Username;
+            txtPassword.Text = usuario.Contraseña;
         }
 
         public void CargarHabitacionCards(List<HabitacionCard> habitacionCards)

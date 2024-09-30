@@ -31,10 +31,22 @@ namespace PresentationLayer.Presenters
             _view.OnRealizarReserva += HandleRealizarReserva;
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
             _view.OnModificarReserva += HandleModificarReserva;
-
+            CargarDatosUsuario();
             CargarReservas();
         }
 
+        private void CargarDatosUsuario()
+        {
+            try
+            {
+                var usuarioAutenticado = _authService.GetCurrentUser();
+                _view.CargarDatosUsuario(usuarioAutenticado);
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error", $"No se pudo cargar los datos del usuario: {ex.Message}");
+            }
+        }
         public void ShowView()
         {
             _view.ShowView();
@@ -149,6 +161,5 @@ namespace PresentationLayer.Presenters
             _view.CargarReservas(reservasUsuario);
         }
 
-    
     }
 }
