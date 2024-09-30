@@ -6,10 +6,12 @@ using MaterialSkin.Controls;
 using Presentation.Views;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
+using System.Net.Sockets;
 
 namespace Presentation.Views
 {
-    public partial class AdminView : MaterialForm, IAdminView
+    public partial class AdminView : BaseView, IAdminView
     {
 
         public event EventHandler RedirectToCrearEditarHabitacion;
@@ -18,6 +20,7 @@ namespace Presentation.Views
         public event EventHandler SearchHabitacion;
         public event EventHandler SearchUsuario;
         public event EventHandler EditarHabitacion;
+        public event EventHandler OnLogoutTabSelected;
         public event Action<int, Role> RolUsuarioCambiado;
         public event Action<int> EliminarUsuario;
         public event EventHandler ActualizarRol;
@@ -44,11 +47,12 @@ namespace Presentation.Views
             AttachDeleteEvents();
             AttachEditEvents();
 
-            //listHabitaciones.SelectedIndexChanged += OnHabitacionSeleccionada;
             listHabitaciones.SelectedIndexChanged += OnHabitacionSelectionChanged;
             dataGridViewUsuarios.CurrentCellDirtyStateChanged += DataGridViewUsuarios_CurrentCellDirtyStateChanged;
+            tcAdmin.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
         }
+
 
         private void DataGridViewUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -136,6 +140,15 @@ namespace Presentation.Views
             {
                 EventHelper.RaiseEvent(this, RedirectToCrearEditarHabitacion, EventArgs.Empty);
             };
+            tcAdmin.SelectedIndexChanged += TabControl_SelectedIndexChanged;
+        }
+
+        private void TabControl_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (tcAdmin.SelectedTab == tpLogout)
+            {
+                EventHelper.RaiseEvent(this, OnLogoutTabSelected, EventArgs.Empty);
+            }
         }
 
         public void ActualizarListaUsuarios(List<Usuario> usuarios)
@@ -297,6 +310,26 @@ namespace Presentation.Views
         public void ShowView()
         {
             this.Show();
+        }
+
+
+        public void ShowDialogLogout()
+        {
+            // Mostrar el diálogo de confirmación
+            var dialog = new MaterialDialog(this, "Confirmar Salida",
+                "¿Está seguro que desea salir de la aplicación?", "Salir", true, "Cancelar", true);
+
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            var result = dialog.ShowDialog(this);
+
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                tcAdmin.SelectedIndex = 0; // Redirigir a la primera pestaña si elige cancelar
+            }
         }
 
     }

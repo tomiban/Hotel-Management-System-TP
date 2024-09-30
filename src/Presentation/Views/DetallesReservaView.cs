@@ -5,11 +5,12 @@ using MaterialSkin.Controls;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
 using System;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace PresentationLayer.Views
 {
-    public partial class DetallesReservaView : MaterialForm, IDetallesReservaView
+    public partial class DetallesReservaView : BaseView, IDetallesReservaView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
@@ -44,6 +45,7 @@ namespace PresentationLayer.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
         }
+
 
         private void AssociateAndRaiseViewEvents()
         {

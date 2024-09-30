@@ -3,12 +3,13 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
 using System;
 using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
+    public partial class CrearEditarHabitacionView : BaseView, ICrearEditarHabitacionView
     {
         public CrearEditarHabitacionView()
         {
@@ -32,7 +33,7 @@ namespace Presentation.Views
             btnRegresarAdmin.Click += (s, e) => EventHelper.RaiseEvent(this, NavigateToAdminView, EventArgs.Empty);
         }
 
-      
+
         public void SetEditMode(Habitacion habitacion)
         {
             // Cargar los datos de la habitación en los controles

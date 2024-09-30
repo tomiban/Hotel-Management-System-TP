@@ -3,10 +3,11 @@ using MaterialSkin;
 using Presentation.Views;
 using Domain.Entities;
 using PresentationLayer.Helpers;
+using PresentationLayer.Views;
 
 namespace Presentation.Views
 {
-    public partial class RegisterView : MaterialForm, IRegisterView
+    public partial class RegisterView : BaseView, IRegisterView
     {
 
         public event EventHandler RegisterEvent;
@@ -53,6 +54,9 @@ namespace Presentation.Views
             txtUsuario.TextChanged += ValidateFields;
             txtContraseña.TextChanged += ValidateFields;
         }
+
+
+
 
         private void AssocciateAndRaiseViewEvents()
         {

@@ -31,8 +31,14 @@ namespace PresentationLayer.Presenters
             _view.OnRealizarReserva += HandleRealizarReserva;
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
             _view.OnModificarReserva += HandleModificarReserva;
+            _view.OnLogoutTabSelected += HandleLogoutTabSelected;
             CargarDatosUsuario();
             CargarReservas();
+        }
+
+        private void HandleLogoutTabSelected(object? sender, EventArgs e)
+        {
+            _view.ShowDialogLogout();
         }
 
         private void CargarDatosUsuario()
