@@ -3,10 +3,11 @@ using MaterialSkin;
 using Presentation.Views;
 using Domain.Entities;
 using PresentationLayer.Helpers;
+using PresentationLayer.Views;
 
 namespace Presentation.Views
 {
-    public partial class RegisterView : MaterialForm, IRegisterView
+    public partial class RegisterView : BaseView, IRegisterView
     {
 
         public event EventHandler RegisterEvent;
@@ -52,18 +53,10 @@ namespace Presentation.Views
             txtTelefono.TextChanged += ValidateFields;
             txtUsuario.TextChanged += ValidateFields;
             txtContraseña.TextChanged += ValidateFields;
-
-            FormClosing += RegisterView_FormClosing;
         }
 
 
-        private void RegisterView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
-        }
+
 
         private void AssocciateAndRaiseViewEvents()
         {

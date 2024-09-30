@@ -6,11 +6,12 @@ using MaterialSkin.Controls;
 using Presentation.Views;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
 using System.Net.Sockets;
 
 namespace Presentation.Views
 {
-    public partial class AdminView : MaterialForm, IAdminView
+    public partial class AdminView : BaseView, IAdminView
     {
 
         public event EventHandler RedirectToCrearEditarHabitacion;
@@ -50,16 +51,8 @@ namespace Presentation.Views
             dataGridViewUsuarios.CurrentCellDirtyStateChanged += DataGridViewUsuarios_CurrentCellDirtyStateChanged;
             tcAdmin.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
-            this.FormClosing += AdminView_FormClosing;
         }
 
-        private void AdminView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
-        }
 
         private void DataGridViewUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {

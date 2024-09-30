@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Views
 {
-    public partial class DetallesReservaView : MaterialForm, IDetallesReservaView
+    public partial class DetallesReservaView : BaseView, IDetallesReservaView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
@@ -44,17 +44,8 @@ namespace PresentationLayer.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
-
-            this.FormClosing += DetallesReservaView_FormClosing;
         }
 
-        private void DetallesReservaView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
-        }
 
         private void AssociateAndRaiseViewEvents()
         {

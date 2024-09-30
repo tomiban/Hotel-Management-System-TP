@@ -3,12 +3,13 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
 using System;
 using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class CrearEditarHabitacionView : MaterialForm, ICrearEditarHabitacionView
+    public partial class CrearEditarHabitacionView : BaseView, ICrearEditarHabitacionView
     {
         public CrearEditarHabitacionView()
         {
@@ -24,15 +25,6 @@ namespace Presentation.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AssociateAndRaiseViewEvents();
-            FormClosing += CrearEditarHabitacionView_FormClosing;
-        }
-
-        private void CrearEditarHabitacionView_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
         }
 
         private void AssociateAndRaiseViewEvents()

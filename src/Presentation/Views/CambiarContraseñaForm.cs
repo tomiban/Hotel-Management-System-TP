@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PresentationLayer.Views
 {
-    public partial class CambiarContraseñaForm : MaterialForm
+    public partial class CambiarContraseñaForm : BaseView
     {
         public string ContraseñaActual => txtContraseñaActual.Text;
         public string NuevaContraseña => txtNuevaContraseña.Text;

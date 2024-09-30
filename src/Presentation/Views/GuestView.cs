@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class GuestView : MaterialForm, IGuestView
+    public partial class GuestView : BaseView, IGuestView
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer HabitacionCardContainer;
@@ -44,7 +44,7 @@ namespace Presentation.Views
        
             tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
-            this.FormClosing += GuestView_FormClosing;
+  
         }
 
         private void TabControl_SelectedIndexChanged(object? sender, EventArgs e)
@@ -55,13 +55,6 @@ namespace Presentation.Views
             }
         }
 
-        private void GuestView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
-        }
 
         private void AttachAndRaiseViewEvents()
         {

@@ -2,10 +2,11 @@
 using MaterialSkin;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
 
 namespace Presentation.Views
 {
-    public partial class LoginView : MaterialForm, ILoginView
+    public partial class LoginView : BaseView, ILoginView
     {
         public LoginView()
         {
@@ -20,16 +21,10 @@ namespace Presentation.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
-            FormClosing += LoginView_FormClosing;
+
         }
 
-        private void LoginView_FormClosing(object? sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
-            }
-        }
+
 
         public event EventHandler LoginEvent;
         public event EventHandler RedirectToRegister;
