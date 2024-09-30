@@ -30,6 +30,7 @@ namespace Presentation.Presenters
             _view.RedirectToCrearEditarHabitacion += OnRedirectToCrearEditarHabitacion;
             _view.EliminarHabitacion += OnEliminarHabitacion;
             _view.EditarHabitacion += OnEditHabitacion;
+            _view.OnLogoutTabSelected += HandleLogoutTabSelected;
             _habitacionServices = habitacionServices;
             _reservaService = reservaService;
             _usuarioService = usuarioService;
@@ -39,6 +40,11 @@ namespace Presentation.Presenters
             CargarReservas();
             CargarUsuarios();
             CargarDatosDashboard();
+        }
+
+        private void HandleLogoutTabSelected(object? sender, EventArgs e)
+        {
+            _view.ShowDialogLogout();
         }
 
         public void CargarListaHabitaciones(List<Habitacion> habitaciones)

@@ -24,6 +24,7 @@ namespace PresentationLayer.Views
 
         event EventHandler<int> ReservaSeleccionada;
         event EventHandler OnModificarReserva;  // Evento para el botón Modificar Reserva
+        event EventHandler OnLogoutTabSelected;
 
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
 
@@ -34,6 +35,7 @@ namespace PresentationLayer.Views
         void SetModificarReservaButtonState(bool enabled);
         void ShowMessage(string title, string message);
         void MostrarMensaje(string mensaje);
+        void ShowDialogLogout();
 
         void ShowView();
         void CloseView();

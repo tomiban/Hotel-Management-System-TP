@@ -43,11 +43,26 @@ namespace Presentation.Views
             AttachAndRaiseViewEvents();
             MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
        
-            tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;  
+            tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
-
+            this.FormClosing += GuestView_FormClosing;
         }
 
+        private void TabControl_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (tcCliente.SelectedTab == tpLogout)
+            {
+                EventHelper.RaiseEvent(this, OnLogoutTabSelected, EventArgs.Empty);
+            }
+        }
+
+        private void GuestView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
+        }
 
         private void AttachAndRaiseViewEvents()
         {
@@ -92,7 +107,7 @@ namespace Presentation.Views
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
         public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
         public event EventHandler OnModificarReserva;
-
+        public event EventHandler OnLogoutTabSelected;
         public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
         {
             foreach (var item in habitaciones)
@@ -194,26 +209,24 @@ namespace Presentation.Views
         {
             btnModificarReserva.Enabled = enabled;  // Habilitar o deshabilitar el botón
         }
-        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        public void ShowDialogLogout()
         {
-            // Verificamos si la pestaña seleccionada es "tpLogout"
-            if (tcCliente.SelectedTab == tpLogout)
+            // Mostrar el diálogo de confirmación
+            var dialog = new MaterialDialog(this, "Confirmar Salida",
+                "¿Está seguro que desea salir de la aplicación?", "Salir", true, "Cancelar", true);
+
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            var result = dialog.ShowDialog(this);
+
+            if (result == DialogResult.OK)
             {
-                var dialog = new MaterialDialog(this, "Confirmar Salida",
-                    "¿Está seguro que desea salir de la aplicación?", "Salir", true, "Cancelar", true);
-
-                dialog.StartPosition = FormStartPosition.CenterParent;
-
-                var result = dialog.ShowDialog(this);
-
-                if (result == DialogResult.OK)
-                {
-                    Application.Exit();
-                }
-                else
-                {
-                    tcCliente.SelectedIndex = 0;
-                }
+                Application.Exit();
+            }
+            else
+            {
+                tcCliente.SelectedIndex = 0; // Redirigir a la primera pestaña si elige cancelar
             }
         }
     }

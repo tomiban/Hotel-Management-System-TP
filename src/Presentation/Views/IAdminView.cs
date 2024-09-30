@@ -13,7 +13,7 @@ namespace Presentation.Views
         void ActualizarListaHabitaciones(List<Habitacion> items);
         void CargarListaReservasActivas(List<Reserva> reservas);
         void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual);
-
+        void ShowDialogLogout();
         int ObtenerNroHabitacionSeleccionado();
 
 
@@ -23,6 +23,7 @@ namespace Presentation.Views
         event EventHandler SearchHabitacion;
         event EventHandler SearchUsuario;
         event EventHandler EditarHabitacion;
+        event EventHandler OnLogoutTabSelected;
         event Action<int> EliminarUsuario;
         event EventHandler ActualizarRol;
         Role GetSelectedUserRole();
@@ -31,7 +32,7 @@ namespace Presentation.Views
         void ShowMessage(string message, string tittle);
         void SetEliminarHabitacionButtonState(bool enabled);
         void SetEditarHabitacionButtonState(bool enabled);
-
+       
         void ShowView();
         void CloseView();
         void HideView();
