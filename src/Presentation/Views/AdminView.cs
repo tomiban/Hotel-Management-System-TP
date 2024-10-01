@@ -11,7 +11,7 @@ using System.Net.Sockets;
 
 namespace Presentation.Views
 {
-    public partial class AdminView : BaseView, IAdminView
+    public partial class AdminView : MaterialForm, IAdminView
     {
 
         public event EventHandler RedirectToCrearEditarHabitacion;

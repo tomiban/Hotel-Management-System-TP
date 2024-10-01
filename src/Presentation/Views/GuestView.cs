@@ -17,7 +17,7 @@ namespace Presentation.Views
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
         HabitacionCardContainer HabitacionCardContainer;
 
-        public DateTime ReservaFechaDesde => dtpFechaDesde.Value;
+        public DateTime ReservaFechaDesde => dtpFechaHasta.Value;
         public DateTime ReservaFechaHasta => dtpFechaHasta.Value;
 
         public HabitacionCardContainer habitacionCardContainer { get => HabitacionCardContainer; }
@@ -36,15 +36,17 @@ namespace Presentation.Views
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
             HabitacionCardContainer = new HabitacionCardContainer();
-            panel2.Controls.Add(HabitacionCardContainer);
-            dtpFechaDesde.Value = DateTime.Today;
+            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Controls.Add(HabitacionCardContainer);
+            dtpFechaHasta.Value = DateTime.Today;
             dtpFechaHasta.Value = DateTime.Today.AddDays(7);
             AttachAndRaiseViewEvents();
             MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
        
             tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
-  
+            CargarTipoHabitaciones();
+
         }
 
         private void TabControl_SelectedIndexChanged(object? sender, EventArgs e)
@@ -58,54 +60,75 @@ namespace Presentation.Views
 
         private void AttachAndRaiseViewEvents()
         {
-            cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) => EventHelper.RaiseEvent(this, OnFiltrarCategoria, EventArgs.Empty);
+            cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) =>
+           { 
+                var categoriaSeleccionada = ObtenerCategoriaSeleccionada();
+                var filtroArgs = new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value, categoriaSeleccionada);
+                EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, filtroArgs);
+            };
+
+            btnBuscarHabitaciones.Click += (s, e) =>
+            {
+                if (ValidarFechas())
+                {
+                    var categoriaSeleccionada = ObtenerCategoriaSeleccionada();
+                    EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas,
+                        new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value, categoriaSeleccionada));
+                }
+            };
+
             btnModificarReserva.Click += (s, e) => EventHelper.RaiseEvent(this, OnModificarReserva, EventArgs.Empty);
-            // Usamos el MouseClick para detectar la selección
+            
             listReservas.MouseClick += (s, e) =>
             {
                 var reservaId = (int)listReservas.SelectedItems[0].Tag;
                 EventHelper.RaiseEvent(this, ReservaSeleccionada, reservaId);
             };
-
-
-            btnBuscarHabitaciones.Click += (s, e) =>
-            {
-
-                if (dtpFechaDesde.Value == null || dtpFechaHasta.Value == null)
-                {
-                    MessageBox.Show("Por favor, ingrese una fecha de inicio y una fecha de fin.");
-                    return;
-                }
-                if (dtpFechaHasta.Value < dtpFechaDesde.Value)
-                {
-                    MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.");
-                    return;
-                }
-                if (DateTime.Today > dtpFechaDesde.Value)
-                {
-                    MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.");
-                    return;
-                }
-
-                EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value));
-            };
-
-
         }
 
+        // Obtener la categoría seleccionada
+        public string ObtenerCategoriaSeleccionada()
+        {
+            return cmbFiltroHabitaciones.SelectedItem?.ToString() ?? "Todas las habitaciones";
+        }
 
-        public event EventHandler OnFiltrarCategoria;
+        // Validar fechas ingresadas
+        private bool ValidarFechas()
+        {
+            if (dtpFechaDesde.Value == null || dtpFechaHasta.Value == null)
+            {
+                MessageBox.Show("Por favor, ingrese una fecha de inicio y una fecha de fin.");
+                return false;
+            }
+            if (dtpFechaHasta.Value < dtpFechaDesde.Value)
+            {
+                MessageBox.Show("La fecha de inicio no puede ser posterior a la fecha de fin.");
+                return false;
+            }
+            if (DateTime.Today > dtpFechaDesde.Value)
+            {
+                MessageBox.Show("La fecha de inicio no puede ser anterior a la fecha actual.");
+                return false;
+            }
+            return true;
+        }
+
         public event EventHandler<int> ReservaSeleccionada; // Cambiar a EventHandler<int> para pasar el ID de la reserva
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
         public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
         public event EventHandler OnModificarReserva;
         public event EventHandler OnLogoutTabSelected;
-        public void CargarTipoHabitaciones(List<Habitacion> habitaciones)
+        
+        public void CargarTipoHabitaciones()
         {
-            foreach (var item in habitaciones)
+            cmbFiltroHabitaciones.Items.Clear();
+            cmbFiltroHabitaciones.Items.Add("Todas las habitaciones");
+            TipoHabitacion[] tipoHabitaciones = (TipoHabitacion[])Enum.GetValues(typeof(TipoHabitacion));
+            foreach (var tipo in tipoHabitaciones)
             {
-                cmbFiltroHabitaciones.Items.Add(item);
+                cmbFiltroHabitaciones.Items.Add(tipo.ToString());
             }
+            cmbFiltroHabitaciones.SelectedIndex = 0;
         }
 
         public void CargarDatosUsuario(Usuario usuario)
@@ -137,7 +160,7 @@ namespace Presentation.Views
                         EventHelper.RaiseEvent(this, OnRealizarReserva, e);
                     };
 
-                    habitacionCardContainer.Add(card); // Añadir las tarjetas de las habitaciones
+                    habitacionCardContainer.Add(card); 
                 }
 
             }
@@ -198,8 +221,6 @@ namespace Presentation.Views
 
         }
 
-        // Implementación del método para mostrar el mensaje inicial
-        // Método único para mostrar diferentes mensajes
         public void MostrarMensaje(string mensaje)
         {
             habitacionCardContainer.Clear();  // Limpiar cualquier contenido previo

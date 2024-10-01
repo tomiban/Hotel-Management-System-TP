@@ -35,14 +35,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
-            panel2 = new Panel();
-            panel1 = new Panel();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            panelContenedor = new Panel();
+            tableLayoutPanel = new TableLayoutPanel();
             btnBuscarHabitaciones = new MaterialSkin.Controls.MaterialButton();
+            panel3 = new Panel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             dtpFechaHasta = new DateTimePicker();
+            panel4 = new Panel();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             dtpFechaDesde = new DateTimePicker();
-            lblHabitaciones = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             cmbFiltroHabitaciones = new MaterialSkin.Controls.MaterialComboBox();
             tpReservas = new TabPage();
             btnModificarReserva = new MaterialSkin.Controls.MaterialButton();
@@ -69,7 +71,10 @@
             colorDialog1 = new ColorDialog();
             tcCliente.SuspendLayout();
             tpHabitaciones.SuspendLayout();
-            panel1.SuspendLayout();
+            panelContenedor.SuspendLayout();
+            tableLayoutPanel.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
             tpReservas.SuspendLayout();
             tpCuenta.SuspendLayout();
             materialCard6.SuspendLayout();
@@ -94,8 +99,7 @@
             // 
             // tpHabitaciones
             // 
-            tpHabitaciones.Controls.Add(panel2);
-            tpHabitaciones.Controls.Add(panel1);
+            tpHabitaciones.Controls.Add(panelContenedor);
             tpHabitaciones.ImageKey = "apartment.png";
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
@@ -105,105 +109,145 @@
             tpHabitaciones.Text = "Habitaciones";
             tpHabitaciones.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // panelContenedor
             // 
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 149);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1014, 526);
-            panel2.TabIndex = 14;
+            panelContenedor.Controls.Add(tableLayoutPanel);
+            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Location = new Point(3, 3);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(1014, 672);
+            panelContenedor.TabIndex = 14;
             // 
-            // panel1
+            // tableLayoutPanel
             // 
-            panel1.Controls.Add(materialLabel2);
-            panel1.Controls.Add(materialLabel1);
-            panel1.Controls.Add(btnBuscarHabitaciones);
-            panel1.Controls.Add(dtpFechaHasta);
-            panel1.Controls.Add(dtpFechaDesde);
-            panel1.Controls.Add(lblHabitaciones);
-            panel1.Controls.Add(cmbFiltroHabitaciones);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1014, 146);
-            panel1.TabIndex = 13;
-            // 
-            // materialLabel2
-            // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(350, 101);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(47, 19);
-            materialLabel2.TabIndex = 16;
-            materialLabel2.Text = "Hasta:";
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(57, 101);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(49, 19);
-            materialLabel1.TabIndex = 15;
-            materialLabel1.Text = "Desde:";
+            tableLayoutPanel.ColumnCount = 5;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15.2F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 84.8F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 344F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 237F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 26F));
+            tableLayoutPanel.Controls.Add(btnBuscarHabitaciones, 3, 1);
+            tableLayoutPanel.Controls.Add(panel3, 2, 1);
+            tableLayoutPanel.Controls.Add(panel4, 1, 1);
+            tableLayoutPanel.Controls.Add(materialLabel5, 1, 0);
+            tableLayoutPanel.Controls.Add(cmbFiltroHabitaciones, 3, 0);
+            tableLayoutPanel.Dock = DockStyle.Top;
+            tableLayoutPanel.Location = new Point(0, 0);
+            tableLayoutPanel.Name = "tableLayoutPanel";
+            tableLayoutPanel.RowCount = 2;
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 64.44444F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 35.5555573F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel.Size = new Size(1014, 135);
+            tableLayoutPanel.TabIndex = 32;
             // 
             // btnBuscarHabitaciones
             // 
+            btnBuscarHabitaciones.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             btnBuscarHabitaciones.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnBuscarHabitaciones.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnBuscarHabitaciones.Depth = 0;
             btnBuscarHabitaciones.HighEmphasis = true;
             btnBuscarHabitaciones.Icon = null;
-            btnBuscarHabitaciones.Location = new Point(625, 94);
+            btnBuscarHabitaciones.Location = new Point(776, 93);
             btnBuscarHabitaciones.Margin = new Padding(4, 6, 4, 6);
             btnBuscarHabitaciones.MaximumSize = new Size(0, 30);
             btnBuscarHabitaciones.MouseState = MaterialSkin.MouseState.HOVER;
             btnBuscarHabitaciones.Name = "btnBuscarHabitaciones";
             btnBuscarHabitaciones.NoAccentTextColor = Color.Empty;
-            btnBuscarHabitaciones.Size = new Size(79, 30);
-            btnBuscarHabitaciones.TabIndex = 14;
-            btnBuscarHabitaciones.Text = "FILTRAR";
+            btnBuscarHabitaciones.Size = new Size(185, 30);
+            btnBuscarHabitaciones.TabIndex = 21;
+            btnBuscarHabitaciones.Text = "BUSCAR HABITACIONES";
             btnBuscarHabitaciones.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnBuscarHabitaciones.UseAccentColor = false;
             btnBuscarHabitaciones.UseVisualStyleBackColor = true;
             // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.None;
+            panel3.Controls.Add(materialLabel3);
+            panel3.Controls.Add(dtpFechaHasta);
+            panel3.Location = new Point(420, 90);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(315, 42);
+            panel3.TabIndex = 24;
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(3, 9);
+            materialLabel3.Margin = new Padding(3);
+            materialLabel3.MinimumSize = new Size(0, 23);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(121, 23);
+            materialLabel3.TabIndex = 23;
+            materialLabel3.Text = "Fecha de Egreso:";
+            // 
             // dtpFechaHasta
             // 
+            dtpFechaHasta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dtpFechaHasta.Format = DateTimePickerFormat.Short;
-            dtpFechaHasta.Location = new Point(403, 97);
+            dtpFechaHasta.Location = new Point(130, 10);
             dtpFechaHasta.Name = "dtpFechaHasta";
-            dtpFechaHasta.Size = new Size(200, 23);
-            dtpFechaHasta.TabIndex = 13;
+            dtpFechaHasta.Size = new Size(174, 23);
+            dtpFechaHasta.TabIndex = 20;
+            // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.Left;
+            panel4.Controls.Add(materialLabel4);
+            panel4.Controls.Add(dtpFechaDesde);
+            panel4.Location = new Point(64, 90);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(329, 42);
+            panel4.TabIndex = 27;
+            // 
+            // materialLabel4
+            // 
+            materialLabel4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel4.Location = new Point(3, 8);
+            materialLabel4.MinimumSize = new Size(0, 23);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(125, 23);
+            materialLabel4.TabIndex = 26;
+            materialLabel4.Text = "Fecha de Ingreso:";
+            materialLabel4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // dtpFechaDesde
             // 
+            dtpFechaDesde.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dtpFechaDesde.Format = DateTimePickerFormat.Short;
-            dtpFechaDesde.Location = new Point(112, 97);
+            dtpFechaDesde.Location = new Point(134, 8);
             dtpFechaDesde.Name = "dtpFechaDesde";
-            dtpFechaDesde.Size = new Size(200, 23);
-            dtpFechaDesde.TabIndex = 12;
+            dtpFechaDesde.Size = new Size(173, 23);
+            dtpFechaDesde.TabIndex = 19;
             // 
-            // lblHabitaciones
+            // materialLabel5
             // 
-            lblHabitaciones.AutoSize = true;
-            lblHabitaciones.Depth = 0;
-            lblHabitaciones.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblHabitaciones.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            lblHabitaciones.Location = new Point(57, 25);
-            lblHabitaciones.MouseState = MaterialSkin.MouseState.HOVER;
-            lblHabitaciones.Name = "lblHabitaciones";
-            lblHabitaciones.Size = new Size(201, 41);
-            lblHabitaciones.TabIndex = 11;
-            lblHabitaciones.Text = "Habitaciones";
-            lblHabitaciones.UseAccent = true;
+            materialLabel5.Anchor = AnchorStyles.Left;
+            materialLabel5.AutoSize = true;
+            materialLabel5.Depth = 0;
+            materialLabel5.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            materialLabel5.Location = new Point(64, 23);
+            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel5.Name = "materialLabel5";
+            materialLabel5.Size = new Size(201, 41);
+            materialLabel5.TabIndex = 28;
+            materialLabel5.Text = "Habitaciones";
+            materialLabel5.UseAccent = true;
             // 
             // cmbFiltroHabitaciones
             // 
+            cmbFiltroHabitaciones.Anchor = AnchorStyles.None;
             cmbFiltroHabitaciones.AutoCompleteCustomSource.AddRange(new string[] { "Busqueda" });
             cmbFiltroHabitaciones.AutoResize = false;
             cmbFiltroHabitaciones.BackColor = Color.FromArgb(255, 255, 255);
@@ -221,13 +265,13 @@
             cmbFiltroHabitaciones.IntegralHeight = false;
             cmbFiltroHabitaciones.ItemHeight = 43;
             cmbFiltroHabitaciones.Items.AddRange(new object[] { "Filtrar por categoría", "Economica", "Estándard", "Presidencial" });
-            cmbFiltroHabitaciones.Location = new Point(738, 80);
+            cmbFiltroHabitaciones.Location = new Point(763, 19);
             cmbFiltroHabitaciones.MaxDropDownItems = 4;
             cmbFiltroHabitaciones.MouseState = MaterialSkin.MouseState.OUT;
             cmbFiltroHabitaciones.Name = "cmbFiltroHabitaciones";
-            cmbFiltroHabitaciones.Size = new Size(242, 49);
+            cmbFiltroHabitaciones.Size = new Size(210, 49);
             cmbFiltroHabitaciones.StartIndex = 0;
-            cmbFiltroHabitaciones.TabIndex = 10;
+            cmbFiltroHabitaciones.TabIndex = 17;
             // 
             // tpReservas
             // 
@@ -567,8 +611,13 @@
             Text = "El Molino Hotel";
             tcCliente.ResumeLayout(false);
             tpHabitaciones.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panelContenedor.ResumeLayout(false);
+            tableLayoutPanel.ResumeLayout(false);
+            tableLayoutPanel.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             tpReservas.ResumeLayout(false);
             tpReservas.PerformLayout();
             tpCuenta.ResumeLayout(false);
@@ -587,8 +636,6 @@
         private TabPage tpLogout;
         private TabPage tpHabitaciones;
         private MaterialSkin.Controls.MaterialMaskedTextBox materialMaskedTextBox1;
-        private MaterialSkin.Controls.MaterialComboBox cmbFiltroHabitaciones;
-        private MaterialSkin.Controls.MaterialLabel lblHabitaciones;
         private MaterialSkin.Controls.MaterialListView listReservas;
         private MaterialSkin.Controls.MaterialLabel lblReservas;
         private LinkLabel linkCambiarContraseña;
@@ -605,15 +652,19 @@
         private MaterialSkin.Controls.MaterialTextBox txtTelefono;
         private MaterialSkin.Controls.MaterialTextBox txtApellido;
         private MaterialSkin.Controls.MaterialTextBox txtNombre;
-        private Panel panel1;
         private ImageList imageList1;
-        private MaterialSkin.Controls.MaterialButton btnBuscarHabitaciones;
-        private DateTimePicker dtpFechaHasta;
-        private DateTimePicker dtpFechaDesde;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private Panel panel2;
+        private Panel panelContenedor;
         private MaterialSkin.Controls.MaterialButton btnModificarReserva;
         private ColorDialog colorDialog1;
+        private TableLayoutPanel tableLayoutPanel;
+        private Panel panel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private DateTimePicker dtpFechaHasta;
+        private Panel panel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private DateTimePicker dtpFechaDesde;
+        private MaterialSkin.Controls.MaterialButton btnBuscarHabitaciones;
+        private MaterialSkin.Controls.MaterialComboBox cmbFiltroHabitaciones;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
     }
 }

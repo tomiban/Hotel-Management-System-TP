@@ -19,8 +19,7 @@ namespace PresentationLayer.Views
         public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
 
 
-        // Evento que se dispara cuando se selecciona una categoría del filtro
-        event EventHandler OnFiltrarCategoria;
+   
 
         event EventHandler<int> ReservaSeleccionada;
         event EventHandler OnModificarReserva;  // Evento para el botón Modificar Reserva
@@ -28,9 +27,8 @@ namespace PresentationLayer.Views
 
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
 
-        // Método para cargar las habitaciones (esto es opcional, pero útil)
+        string ObtenerCategoriaSeleccionada();
         void CargarHabitacionCards(List<HabitacionCard> habitacionCards);
-
         void CargarReservas(List<Reserva> reservas);
         void SetModificarReservaButtonState(bool enabled);
         void ShowMessage(string title, string message);

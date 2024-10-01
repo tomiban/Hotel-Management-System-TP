@@ -65,10 +65,24 @@ namespace PresentationLayer.Presenters
 
         private void HandleFiltrarHabitacionesRangoFechas(object? sender, FiltroFechaEventArgs e)
         {
+
             try
             {
+                // Obtener las habitaciones filtradas por fechas
                 var habitacionesDisponibles = _habitacionServices.FiltrarHabitacionesDisponibles(e.FechaDesde, e.FechaHasta);
+
+                // Si la categoría no es "Todas las habitaciones", filtrar por tipo de habitación
+                if (e.CategoriaSeleccionada != "Todas las habitaciones")
+                {
+                    habitacionesDisponibles = habitacionesDisponibles
+                        .Where(h => h.TipoHabitacion.ToString() == e.CategoriaSeleccionada)
+                        .ToList();
+                }
+
+                // Crear tarjetas de habitaciones
                 var habitacionCards = habitacionesDisponibles.Select(h => new HabitacionCard(h)).ToList();
+
+                // Cargar las tarjetas filtradas en la vista
                 _view.CargarHabitacionCards(habitacionCards);
             }
             catch (Exception ex)

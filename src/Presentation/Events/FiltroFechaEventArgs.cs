@@ -10,11 +10,14 @@ namespace PresentationLayer.Events
     {
         public DateTime FechaDesde { get; }
         public DateTime FechaHasta { get; }
+        public string CategoriaSeleccionada { get; }
 
-        public FiltroFechaEventArgs(DateTime fechaDesde, DateTime fechaHasta)
+        public FiltroFechaEventArgs(DateTime fechaDesde, DateTime fechaHasta, string categoriaSeleccionada)
         {
             FechaDesde = fechaDesde;
             FechaHasta = fechaHasta;
+            CategoriaSeleccionada = categoriaSeleccionada;
         }
     }
+
 }

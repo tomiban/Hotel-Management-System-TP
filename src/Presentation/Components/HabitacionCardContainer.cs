@@ -15,7 +15,7 @@ namespace PresentationLayer.Components
             this.AutoScroll = true;  // Para mostrar el scroll automáticamente si hay muchas tarjetas
             this.WrapContents = true;  // Las tarjetas se acomodarán automáticamente
             this.FlowDirection = FlowDirection.LeftToRight;
-            this.Padding = new Padding(40, 0, 0, 0);
+            this.Padding = new Padding(150, 250, 0, 0);
 
             // Inicializamos el Label para mostrar mensajes
             lblMensaje = new MaterialLabel
@@ -26,7 +26,6 @@ namespace PresentationLayer.Components
                 TextAlign = ContentAlignment.MiddleCenter,
                 Visible = false,  // Oculto por defecto
                 Dock = DockStyle.Fill,
-                Margin = new Padding(220, 150, 0, 0),
                 FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
             };
 

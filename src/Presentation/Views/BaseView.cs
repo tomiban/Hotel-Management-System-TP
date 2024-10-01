@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Views
 {
-    public abstract class BaseView: MaterialForm
+    public partial class BaseView: MaterialForm
     {
         public BaseView()
         {
 
             this.FormClosing += GuestView_FormClosing;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         // Evento que se ejecutará cuando se intente cerrar el formulario
