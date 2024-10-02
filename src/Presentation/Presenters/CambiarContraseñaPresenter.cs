@@ -23,17 +23,20 @@ namespace PresentationLayer.Presenters
 
             // Suscribirse al evento de cambio de contraseña
             _view.OnCambiarContraseña += HandleCambiarContraseña;
-        }
-
-        public void HideView()
-        {
-            throw new NotImplementedException();
+            _view.OnCancelarCambioContraseña += HandleCancelarCambioContraseña;
         }
 
         public void ShowView()
         {
             _view.ShowView();
         }
+
+
+        private void HandleCancelarCambioContraseña(object? sender, EventArgs e)
+        {
+            _navigationService.GoBack();
+        }
+        
 
         private void HandleCambiarContraseña(object? sender, EventArgs e)
         {
@@ -49,6 +52,12 @@ namespace PresentationLayer.Presenters
             // Cambiar la contraseña por la nueva
             _authService.ChangePassword(usuario, _view.NuevaContraseña);
             _view.ShowMessage("La contraseña se ha cambiado con éxito.");
+            _navigationService.GoBack();
+        }
+
+        public void HideView()
+        {
+            _view.HideView();
         }
     }
 }

@@ -33,7 +33,7 @@
             lblContraseñaActual = new MaterialSkin.Controls.MaterialLabel();
             lblNuevaContraseña = new MaterialSkin.Controls.MaterialLabel();
             btnCambiarContraseña = new MaterialSkin.Controls.MaterialButton();
-            btnCancelar = new MaterialSkin.Controls.MaterialButton();
+            btnCancelarCambioContraseña= new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // txtContraseñaActual
@@ -117,29 +117,29 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnCancelar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnCancelar.Depth = 0;
-            btnCancelar.HighEmphasis = true;
-            btnCancelar.Icon = null;
-            btnCancelar.Location = new Point(110, 380);
-            btnCancelar.Margin = new Padding(4, 6, 4, 6);
-            btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.NoAccentTextColor = Color.Empty;
-            btnCancelar.Size = new Size(96, 36);
-            btnCancelar.TabIndex = 16;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnCancelar.UseAccentColor = false;
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelarCambioContraseña.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancelarCambioContraseña.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCancelarCambioContraseña.Depth = 0;
+            btnCancelarCambioContraseña.HighEmphasis = true;
+            btnCancelarCambioContraseña.Icon = null;
+            btnCancelarCambioContraseña.Location = new Point(110, 380);
+            btnCancelarCambioContraseña.Margin = new Padding(4, 6, 4, 6);
+            btnCancelarCambioContraseña.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCancelarCambioContraseña.Name = "btnCancelar";
+            btnCancelarCambioContraseña.NoAccentTextColor = Color.Empty;
+            btnCancelarCambioContraseña.Size = new Size(96, 36);
+            btnCancelarCambioContraseña.TabIndex = 16;
+            btnCancelarCambioContraseña.Text = "Cancelar";
+            btnCancelarCambioContraseña.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCancelarCambioContraseña.UseAccentColor = false;
+            btnCancelarCambioContraseña.UseVisualStyleBackColor = true;
             // 
             // CambiarContraseñaView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(315, 450);
-            Controls.Add(btnCancelar);
+            Controls.Add(btnCancelarCambioContraseña);
             Controls.Add(btnCambiarContraseña);
             Controls.Add(lblNuevaContraseña);
             Controls.Add(lblContraseñaActual);
@@ -158,6 +158,6 @@
         private MaterialSkin.Controls.MaterialLabel lblContraseñaActual;
         private MaterialSkin.Controls.MaterialLabel lblNuevaContraseña;
         private MaterialSkin.Controls.MaterialButton btnCambiarContraseña;
-        private MaterialSkin.Controls.MaterialButton btnCancelar;
+        private MaterialSkin.Controls.MaterialButton btnCancelarCambioContraseña;
     }
 }

@@ -20,6 +20,7 @@ namespace PresentationLayer.Views
         public string ContraseñaActual => txtContraseñaActual.Text;
         public string NuevaContraseña => txtNuevaContraseña.Text;
         public event EventHandler OnCambiarContraseña;
+        public event EventHandler OnCancelarCambioContraseña;
 
         public void ShowMessage(string message)
         {
@@ -47,12 +48,20 @@ namespace PresentationLayer.Views
             {
                 EventHelper.RaiseEvent(this, OnCambiarContraseña, EventArgs.Empty);
             };
+            btnCancelarCambioContraseña.Click += (s, e) =>
+            {
+                EventHelper.RaiseEvent(this, OnCancelarCambioContraseña, EventArgs.Empty);
+            };
         }
-  
+
         public void ShowView()
         {
             this.Show();
         }
 
+        public void HideView()
+        {
+           this.Hide();
+        }
     }
 }

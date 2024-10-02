@@ -86,6 +86,8 @@ namespace Presentation.Views
             };
 
             linkCambiarContraseña.Click += (s, e) => EventHelper.RaiseEvent(this, OnRedirectToCambiarContraseña, EventArgs.Empty);
+
+            
         }
 
         // Obtener la categoría seleccionada
