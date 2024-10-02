@@ -23,6 +23,10 @@ namespace Infraestructure.DataAccess.Repositories
         {
             try
             {
+                if (_usuarios.Count == 0)
+                {
+                    usuario.Role = Role.Admin;
+                }
                 _usuarios.Add(usuario);
                 _persistenceService.Save(FILE_PATH, _usuarios);
             }

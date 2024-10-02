@@ -17,7 +17,7 @@ namespace PresentationLayer.Presenters
         private readonly IAuthService _authService;
         private readonly IHabitacionServices _habitacionServices;
         private readonly INavigationService _navigationService;
-        private Reserva _reservaSeleccionada;  //
+        private Reserva _reservaSeleccionada;
 
         public GuestPresenter(IGuestView view, IHabitacionServices habitacionServices, IReservaService reservaService, IAuthService authService, INavigationService navigationService)
         {
@@ -27,6 +27,15 @@ namespace PresentationLayer.Presenters
             _habitacionServices = habitacionServices;
             _navigationService = navigationService;
 
+            // Suscripción a eventos de la vista
+            SubscribeToViewEvents();
+
+            // Carga inicial de datos
+            CargarDatosIniciales();
+        }
+
+        private void SubscribeToViewEvents()
+        {
             _view.OnFiltrarHabitacionesRangoFechas += HandleFiltrarHabitacionesRangoFechas;
             _view.OnRealizarReserva += HandleRealizarReserva;
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
@@ -37,23 +46,28 @@ namespace PresentationLayer.Presenters
             CargarReservas();
         }
 
-        private void HandleLogoutTabSelected(object? sender, EventArgs e)
+        private void CargarDatosIniciales()
         {
-            _view.ShowDialogLogout();
+            try
+            {
+                CargarDatosUsuario();
+                CargarReservas();
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error", $"Error al cargar los datos iniciales: {ex.Message}");
+            }
         }
 
         private void CargarDatosUsuario()
         {
-            try
+            var usuarioAutenticado = _authService.GetCurrentUser();
+            if (usuarioAutenticado != null)
             {
-                var usuarioAutenticado = _authService.GetCurrentUser();
                 _view.CargarDatosUsuario(usuarioAutenticado);
             }
-            catch (Exception ex)
-            {
-                _view.ShowMessage("Error", $"No se pudo cargar los datos del usuario: {ex.Message}");
-            }
         }
+
         public void ShowView()
         {
             _view.ShowView();
@@ -64,79 +78,84 @@ namespace PresentationLayer.Presenters
             _view.HideView();
         }
 
+        // Manejo de Logout
+        private void HandleLogoutTabSelected(object? sender, EventArgs e)
+        {
+            _view.ShowDialogLogout();
+        }
+
         private void HandleFiltrarHabitacionesRangoFechas(object? sender, FiltroFechaEventArgs e)
         {
-
             try
             {
-                // Obtener las habitaciones filtradas por fechas
-                var habitacionesDisponibles = _habitacionServices.FiltrarHabitacionesDisponibles(e.FechaDesde, e.FechaHasta);
-
-                // Si la categoría no es "Todas las habitaciones", filtrar por tipo de habitación
-                if (e.CategoriaSeleccionada != "Todas las habitaciones")
-                {
-                    habitacionesDisponibles = habitacionesDisponibles
-                        .Where(h => h.TipoHabitacion.ToString() == e.CategoriaSeleccionada)
-                        .ToList();
-                }
-
-                // Crear tarjetas de habitaciones
-                var habitacionCards = habitacionesDisponibles.Select(h => new HabitacionCard(h)).ToList();
-
-                // Cargar las tarjetas filtradas en la vista
-                _view.CargarHabitacionCards(habitacionCards);
+                CargarHabitaciones(e.FechaDesde, e.FechaHasta, e.CategoriaSeleccionada);
             }
             catch (Exception ex)
             {
                 _view.ShowMessage("Error", $"Ocurrió un error al filtrar las habitaciones: {ex.Message}");
             }
         }
-        // Método que maneja la selección de una reserva
+
+        // Método centralizado para cargar habitaciones
+        public void CargarHabitaciones(DateTime? fechaDesde = null, DateTime? fechaHasta = null, string categoriaSeleccionada = "Todas las habitaciones")
+        {
+            fechaDesde = _view.ReservaFechaDesde;
+            fechaHasta = _view.ReservaFechaHasta;
+
+            var habitacionesDisponibles = _habitacionServices.FiltrarHabitacionesDisponibles(fechaDesde.Value, fechaHasta.Value);
+
+            // Filtrar por categoría si es necesario
+            if (!string.IsNullOrEmpty(categoriaSeleccionada) && categoriaSeleccionada != "Todas las habitaciones")
+            {
+                habitacionesDisponibles = habitacionesDisponibles
+                    .Where(h => h.TipoHabitacion.ToString() == categoriaSeleccionada)
+                    .ToList();
+            }
+
+            // Crear tarjetas de habitaciones
+            var habitacionCards = habitacionesDisponibles.Select(h => new HabitacionCard(h)).ToList();
+
+            // Cargar las tarjetas filtradas en la vista
+            _view.CargarHabitacionCards(habitacionCards);
+        }
+
+        // Maneja la selección de una reserva
         private void HandleReservaSeleccionada(object? sender, int reservaId)
         {
             try
             {
-                var reserva = _reservaService.GetById(reservaId);
+                _reservaSeleccionada = _reservaService.GetById(reservaId);
 
-                if (reserva != null)
+                if (_reservaSeleccionada != null)
                 {
-                    _reservaSeleccionada = reserva;  // Almacenar la reserva seleccionada
-
-                    // Habilitar/deshabilitar el botón según el estado de la reserva
-                    if (reserva.Estado == EstadoReserva.Activa)
-                    {
-                        _view.SetModificarReservaButtonState(true);  // Habilitar el botón
-                    }
-                    else
-                    {
-                        _view.SetModificarReservaButtonState(false);  // Deshabilitar el botón
-                    }
+                    _view.SetModificarReservaButtonState(_reservaSeleccionada.Estado == EstadoReserva.Activa);
                 }
                 else
                 {
-                    _view.ShowMessage("No se encontró la reserva seleccionada.", "Error");
+                    _view.ShowMessage("Error", "No se encontró la reserva seleccionada.");
                 }
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Ocurrió un error al intentar cargar los detalles de la reserva: {ex.Message}", "Error");
+                _view.ShowMessage("Error", $"Ocurrió un error al cargar los detalles de la reserva: {ex.Message}");
             }
         }
 
-        // Método que maneja el clic en el botón "Modificar Reserva"
+        // Maneja el clic en "Modificar Reserva"
         private void HandleModificarReserva(object? sender, EventArgs e)
         {
-            if (_reservaSeleccionada != null && _reservaSeleccionada.Estado == EstadoReserva.Activa)
+            if (_reservaSeleccionada?.Estado == EstadoReserva.Activa)
             {
                 _view.HideView();
-                _navigationService.NavigateTo<IDetallesReservaPresenter, Reserva>(_reservaSeleccionada);  // Navegar a la vista de detalles
+                _navigationService.NavigateTo<IDetallesReservaPresenter, Reserva>(_reservaSeleccionada);
             }
             else
             {
-                _view.ShowMessage("La reserva seleccionada no se puede modificar.", "Error");
+                _view.ShowMessage("Error", "La reserva seleccionada no se puede modificar.");
             }
         }
 
+        // Maneja la creación de una nueva reserva
         private void HandleRealizarReserva(object? sender, HabitacionEventArgs e)
         {
             try
@@ -144,7 +163,7 @@ namespace PresentationLayer.Presenters
                 var usuarioAutenticado = _authService.GetCurrentUser();
                 if (usuarioAutenticado == null)
                 {
-                    _view.ShowMessage("Debe iniciar sesión antes de realizar una reserva.", "Error");
+                    _view.ShowMessage("Error", "Debe iniciar sesión antes de realizar una reserva.");
                     return;
                 }
 
@@ -160,18 +179,20 @@ namespace PresentationLayer.Presenters
                 };
 
                 _reservaService.AgregarReserva(reserva);
-                _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
+                _view.ShowMessage("Éxito", "Reserva registrada correctamente.");
 
+         
                 CargarReservas();
-                _habitacionServices.FiltrarHabitacionesDisponibles(_view.ReservaFechaDesde, _view.ReservaFechaHasta);
+                CargarHabitaciones();
+
             }
             catch (ValidationException ex)
             {
-                _view.ShowMessage($"{ex.Message}", "Error de validación");
+                _view.ShowMessage("Error de validación", ex.Message);
             }
             catch (Exception ex)
             {
-                _view.ShowMessage(ex.Message, "Error");
+                _view.ShowMessage("Error", $"Ocurrió un error al realizar la reserva: {ex.Message}");
             }
         }
 
@@ -185,6 +206,5 @@ namespace PresentationLayer.Presenters
             var reservasUsuario = _reservaService.GetAllReservasUser(usuarioAutenticado.Id);
             _view.CargarReservas(reservasUsuario);
         }
-
     }
 }

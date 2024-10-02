@@ -14,10 +14,10 @@ namespace Presentation.Views
 {
     public partial class GuestView : BaseView, IGuestView
     {
-        readonly MaterialSkin.MaterialSkinManager materialSkinManager;
+
         HabitacionCardContainer HabitacionCardContainer;
 
-        public DateTime ReservaFechaDesde => dtpFechaHasta.Value;
+        public DateTime ReservaFechaDesde => dtpFechaDesde.Value;
         public DateTime ReservaFechaHasta => dtpFechaHasta.Value;
 
         public HabitacionCardContainer habitacionCardContainer { get => HabitacionCardContainer; }
@@ -25,24 +25,15 @@ namespace Presentation.Views
         {
             InitializeComponent();
 
-            var ColorScheme = new ColorScheme(
-                Primary.DeepPurple600,
-                Primary.DeepPurple700,
-                Primary.Cyan300,
-                Accent.Cyan700,
-                TextShade.WHITE
-            );
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
 
             HabitacionCardContainer = new HabitacionCardContainer();
-            panelContenedor.Dock = DockStyle.Fill;
+
             panelContenedor.Controls.Add(HabitacionCardContainer);
             dtpFechaHasta.Value = DateTime.Today;
             dtpFechaHasta.Value = DateTime.Today.AddDays(7);
             AttachAndRaiseViewEvents();
             MostrarMensaje("Debe aplicar un filtro para ver las habitaciones disponibles...");
-       
+
             tcCliente.SelectedIndexChanged += TabControl_SelectedIndexChanged;
 
             CargarTipoHabitaciones();
@@ -61,11 +52,11 @@ namespace Presentation.Views
         private void AttachAndRaiseViewEvents()
         {
             cmbFiltroHabitaciones.SelectedIndexChanged += (s, e) =>
-           { 
-                var categoriaSeleccionada = ObtenerCategoriaSeleccionada();
-                var filtroArgs = new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value, categoriaSeleccionada);
-                EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, filtroArgs);
-            };
+           {
+               var categoriaSeleccionada = ObtenerCategoriaSeleccionada();
+               var filtroArgs = new FiltroFechaEventArgs(dtpFechaDesde.Value, dtpFechaHasta.Value, categoriaSeleccionada);
+               EventHelper.RaiseEvent(this, OnFiltrarHabitacionesRangoFechas, filtroArgs);
+           };
 
             btnBuscarHabitaciones.Click += (s, e) =>
             {
@@ -78,7 +69,7 @@ namespace Presentation.Views
             };
 
             btnModificarReserva.Click += (s, e) => EventHelper.RaiseEvent(this, OnModificarReserva, EventArgs.Empty);
-            
+
             listReservas.MouseClick += (s, e) =>
             {
                 var reservaId = (int)listReservas.SelectedItems[0].Tag;
@@ -165,7 +156,7 @@ namespace Presentation.Views
                         EventHelper.RaiseEvent(this, OnRealizarReserva, e);
                     };
 
-                    habitacionCardContainer.Add(card); 
+                    habitacionCardContainer.Add(card);
                 }
 
             }
@@ -256,5 +247,7 @@ namespace Presentation.Views
                 tcCliente.SelectedIndex = 0; // Redirigir a la primera pestaña si elige cancelar
             }
         }
+
+     
     }
 }
