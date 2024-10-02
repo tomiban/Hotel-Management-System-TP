@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem10 = new ListViewItem("");
-            ListViewItem listViewItem11 = new ListViewItem("");
-            ListViewItem listViewItem12 = new ListViewItem("");
+            ListViewItem listViewItem1 = new ListViewItem("");
+            ListViewItem listViewItem2 = new ListViewItem("");
+            ListViewItem listViewItem3 = new ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
@@ -346,7 +346,7 @@
             listReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem10, listViewItem11, listViewItem12 });
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
             listReservas.Location = new Point(56, 123);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);

@@ -61,7 +61,12 @@ namespace PresentationLayer.Views
 
         public void HideView()
         {
-           this.Hide();
+            this.Hide();
+        }
+
+        private void CambiarContraseñaView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
