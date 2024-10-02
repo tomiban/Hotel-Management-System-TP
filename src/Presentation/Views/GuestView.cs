@@ -17,7 +17,7 @@ namespace Presentation.Views
 
         HabitacionCardContainer HabitacionCardContainer;
 
-        public DateTime ReservaFechaDesde => dtpFechaHasta.Value;
+        public DateTime ReservaFechaDesde => dtpFechaDesde.Value;
         public DateTime ReservaFechaHasta => dtpFechaHasta.Value;
 
         public HabitacionCardContainer habitacionCardContainer { get => HabitacionCardContainer; }

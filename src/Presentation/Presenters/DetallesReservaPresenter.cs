@@ -55,8 +55,9 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
     {
         try
         {
-            _navigationService.GetPresenter<IGuestPresenter>().CargarReservas();
-            _navigationService.GoBack();  // Navegar de regreso a la vista del cliente
+            var presenter = _navigationService.GetPresenter<IGuestPresenter>();
+            presenter.CargarReservas();
+            _navigationService.GoBack();
         }
         catch (Exception ex)
         {
@@ -93,7 +94,8 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
             _view.ShowMessage("Reserva cancelada con éxito.", "Éxito");
 
             OnReservaModificada?.Invoke(this, EventArgs.Empty);
-            _navigationService.GoBack();  // Regresar a la vista anterior (Cliente)
+
+            HandleRedirectToClientView(null, null);
         }
         catch (Exception ex)
         {

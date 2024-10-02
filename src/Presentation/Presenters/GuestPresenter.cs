@@ -81,7 +81,6 @@ namespace PresentationLayer.Presenters
             _view.ShowDialogLogout();
         }
 
-        // Maneja el filtrado de habitaciones por rango de fechas y categoría
         private void HandleFiltrarHabitacionesRangoFechas(object? sender, FiltroFechaEventArgs e)
         {
             try
@@ -97,8 +96,8 @@ namespace PresentationLayer.Presenters
         // Método centralizado para cargar habitaciones
         public void CargarHabitaciones(DateTime? fechaDesde = null, DateTime? fechaHasta = null, string categoriaSeleccionada = "Todas las habitaciones")
         {
-            fechaDesde ??= _view.ReservaFechaDesde;
-            fechaHasta ??= _view.ReservaFechaHasta;
+            fechaDesde = _view.ReservaFechaDesde;
+            fechaHasta = _view.ReservaFechaHasta;
 
             var habitacionesDisponibles = _habitacionServices.FiltrarHabitacionesDisponibles(fechaDesde.Value, fechaHasta.Value);
 
@@ -179,7 +178,7 @@ namespace PresentationLayer.Presenters
                 _reservaService.AgregarReserva(reserva);
                 _view.ShowMessage("Éxito", "Reserva registrada correctamente.");
 
-                // Recargar reservas y habitaciones disponibles
+         
                 CargarReservas();
                 CargarHabitaciones();
 
