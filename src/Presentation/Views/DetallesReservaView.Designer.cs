@@ -49,7 +49,7 @@
             // 
             // materialCard1
             // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.BackColor = Color.FromArgb(80, 80, 80);
             materialCard1.Controls.Add(txtTipoHabitacion);
             materialCard1.Controls.Add(btnActualizarReserva);
             materialCard1.Controls.Add(btnCancelarReserva);
@@ -65,7 +65,7 @@
             materialCard1.Controls.Add(txtDiasEstadia);
             materialCard1.Controls.Add(txtNroHabitacionDetalle);
             materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialCard1.Location = new Point(115, 104);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -77,6 +77,7 @@
             // txtTipoHabitacion
             // 
             txtTipoHabitacion.AnimateReadOnly = false;
+            txtTipoHabitacion.BackColor = Color.FromArgb(80, 80, 80);
             txtTipoHabitacion.BackgroundImageLayout = ImageLayout.None;
             txtTipoHabitacion.CharacterCasing = CharacterCasing.Normal;
             txtTipoHabitacion.Depth = 0;
@@ -105,10 +106,11 @@
             // btnActualizarReserva
             // 
             btnActualizarReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnActualizarReserva.BackColor = Color.FromArgb(50, 50, 50);
             btnActualizarReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnActualizarReserva.Depth = 0;
             btnActualizarReserva.FlatStyle = FlatStyle.Flat;
-            btnActualizarReserva.ForeColor = Color.Black;
+            btnActualizarReserva.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnActualizarReserva.HighEmphasis = true;
             btnActualizarReserva.Icon = null;
             btnActualizarReserva.Location = new Point(62, 334);
@@ -122,13 +124,15 @@
             btnActualizarReserva.Text = "Modificar";
             btnActualizarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnActualizarReserva.UseAccentColor = true;
-            btnActualizarReserva.UseVisualStyleBackColor = true;
+            btnActualizarReserva.UseVisualStyleBackColor = false;
             // 
             // btnCancelarReserva
             // 
             btnCancelarReserva.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancelarReserva.BackColor = Color.FromArgb(50, 50, 50);
             btnCancelarReserva.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnCancelarReserva.Depth = 0;
+            btnCancelarReserva.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnCancelarReserva.HighEmphasis = true;
             btnCancelarReserva.Icon = null;
             btnCancelarReserva.Location = new Point(450, 334);
@@ -142,11 +146,14 @@
             btnCancelarReserva.Text = "Cancelar Reserva";
             btnCancelarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnCancelarReserva.UseAccentColor = false;
-            btnCancelarReserva.UseVisualStyleBackColor = true;
+            btnCancelarReserva.UseVisualStyleBackColor = false;
             // 
             // dateTimePickerFin
             // 
+            dateTimePickerFin.BackColor = Color.FromArgb(80, 80, 80);
             dateTimePickerFin.CalendarMonthBackground = SystemColors.WindowFrame;
+            dateTimePickerFin.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dateTimePickerFin.ForeColor = Color.FromArgb(222, 255, 255, 255);
             dateTimePickerFin.Location = new Point(450, 49);
             dateTimePickerFin.MinimumSize = new Size(300, 45);
             dateTimePickerFin.Name = "dateTimePickerFin";
@@ -155,6 +162,9 @@
             // 
             // dateTimePickerInicio
             // 
+            dateTimePickerInicio.BackColor = Color.FromArgb(80, 80, 80);
+            dateTimePickerInicio.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dateTimePickerInicio.ForeColor = Color.FromArgb(222, 255, 255, 255);
             dateTimePickerInicio.Location = new Point(62, 48);
             dateTimePickerInicio.MinimumSize = new Size(0, 45);
             dateTimePickerInicio.Name = "dateTimePickerInicio";
@@ -164,8 +174,10 @@
             // lblPrecioFInal
             // 
             lblPrecioFInal.AutoSize = true;
+            lblPrecioFInal.BackColor = Color.FromArgb(50, 50, 50);
             lblPrecioFInal.Depth = 0;
             lblPrecioFInal.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblPrecioFInal.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblPrecioFInal.Location = new Point(450, 238);
             lblPrecioFInal.MouseState = MaterialSkin.MouseState.HOVER;
             lblPrecioFInal.Name = "lblPrecioFInal";
@@ -176,8 +188,10 @@
             // materialLabel5
             // 
             materialLabel5.AutoSize = true;
+            materialLabel5.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel5.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel5.Location = new Point(450, 123);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
@@ -188,8 +202,10 @@
             // lblDiasEstadia
             // 
             lblDiasEstadia.AutoSize = true;
+            lblDiasEstadia.BackColor = Color.FromArgb(50, 50, 50);
             lblDiasEstadia.Depth = 0;
             lblDiasEstadia.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblDiasEstadia.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblDiasEstadia.Location = new Point(62, 229);
             lblDiasEstadia.MouseState = MaterialSkin.MouseState.HOVER;
             lblDiasEstadia.Name = "lblDiasEstadia";
@@ -200,8 +216,10 @@
             // materialLabel3
             // 
             materialLabel3.AutoSize = true;
+            materialLabel3.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel3.Location = new Point(62, 122);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
@@ -212,8 +230,10 @@
             // lblFechaFin
             // 
             lblFechaFin.AutoSize = true;
+            lblFechaFin.BackColor = Color.FromArgb(50, 50, 50);
             lblFechaFin.Depth = 0;
             lblFechaFin.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblFechaFin.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblFechaFin.Location = new Point(450, 27);
             lblFechaFin.MouseState = MaterialSkin.MouseState.HOVER;
             lblFechaFin.Name = "lblFechaFin";
@@ -225,8 +245,10 @@
             // 
             materialLabel1.AccessibleName = "lblFechaInicio";
             materialLabel1.AutoSize = true;
+            materialLabel1.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel1.Location = new Point(62, 26);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -237,6 +259,7 @@
             // txtPrecioFinal
             // 
             txtPrecioFinal.AnimateReadOnly = false;
+            txtPrecioFinal.BackColor = Color.FromArgb(80, 80, 80);
             txtPrecioFinal.BackgroundImageLayout = ImageLayout.None;
             txtPrecioFinal.CharacterCasing = CharacterCasing.Normal;
             txtPrecioFinal.Depth = 0;
@@ -265,6 +288,7 @@
             // txtDiasEstadia
             // 
             txtDiasEstadia.AnimateReadOnly = false;
+            txtDiasEstadia.BackColor = Color.FromArgb(80, 80, 80);
             txtDiasEstadia.BackgroundImageLayout = ImageLayout.None;
             txtDiasEstadia.CharacterCasing = CharacterCasing.Normal;
             txtDiasEstadia.Depth = 0;
@@ -293,6 +317,7 @@
             // txtNroHabitacionDetalle
             // 
             txtNroHabitacionDetalle.AnimateReadOnly = false;
+            txtNroHabitacionDetalle.BackColor = Color.FromArgb(80, 80, 80);
             txtNroHabitacionDetalle.BackgroundImageLayout = ImageLayout.None;
             txtNroHabitacionDetalle.CharacterCasing = CharacterCasing.Normal;
             txtNroHabitacionDetalle.Depth = 0;
@@ -321,14 +346,14 @@
             // btnRegresarCliente
             // 
             btnRegresarCliente.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnRegresarCliente.BackColor = Color.FromArgb(64, 64, 64);
+            btnRegresarCliente.BackColor = Color.FromArgb(50, 50, 50);
             btnRegresarCliente.Cursor = Cursors.Hand;
             btnRegresarCliente.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnRegresarCliente.Depth = 0;
             btnRegresarCliente.FlatAppearance.BorderColor = Color.Gray;
             btnRegresarCliente.FlatAppearance.MouseDownBackColor = Color.Gray;
             btnRegresarCliente.FlatAppearance.MouseOverBackColor = Color.Gray;
-            btnRegresarCliente.ForeColor = SystemColors.ControlDarkDark;
+            btnRegresarCliente.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnRegresarCliente.HighEmphasis = true;
             btnRegresarCliente.Icon = null;
             btnRegresarCliente.Location = new Point(7, 79);

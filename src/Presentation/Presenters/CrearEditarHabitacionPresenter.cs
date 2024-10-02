@@ -39,7 +39,8 @@ namespace Presentation.Presenters
             try
             {
                 var adminPresenter = _navigationService.GetPresenter<IAdminPresenter>();
-                adminPresenter.CargarHabitaciones();  // Actualizar la lista de habitaciones
+                adminPresenter.CargarHabitaciones(); 
+                adminPresenter.CargarDatosDashboard();
                 _navigationService.GoBack();  // Regresar a la vista de Admin
             }
             catch (Exception ex)

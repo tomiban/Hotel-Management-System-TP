@@ -49,8 +49,10 @@
             // materialLabel1
             // 
             materialLabel1.AutoSize = true;
+            materialLabel1.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel1.Location = new Point(113, 185);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -61,8 +63,10 @@
             // materialLabel3
             // 
             materialLabel3.AutoSize = true;
+            materialLabel3.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel3.Location = new Point(470, 185);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
@@ -73,8 +77,10 @@
             // materialLabel4
             // 
             materialLabel4.AutoSize = true;
+            materialLabel4.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel4.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel4.Location = new Point(113, 304);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
@@ -85,6 +91,7 @@
             // txtNroHabitacion
             // 
             txtNroHabitacion.AnimateReadOnly = false;
+            txtNroHabitacion.BackColor = Color.FromArgb(50, 50, 50);
             txtNroHabitacion.BackgroundImageLayout = ImageLayout.None;
             txtNroHabitacion.CharacterCasing = CharacterCasing.Normal;
             txtNroHabitacion.Depth = 0;
@@ -113,14 +120,14 @@
             // cmbTipoHabitacion
             // 
             cmbTipoHabitacion.AutoResize = false;
-            cmbTipoHabitacion.BackColor = Color.FromArgb(255, 255, 255);
+            cmbTipoHabitacion.BackColor = Color.FromArgb(50, 50, 50);
             cmbTipoHabitacion.Depth = 0;
             cmbTipoHabitacion.DrawMode = DrawMode.OwnerDrawVariable;
             cmbTipoHabitacion.DropDownHeight = 174;
             cmbTipoHabitacion.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoHabitacion.DropDownWidth = 121;
             cmbTipoHabitacion.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            cmbTipoHabitacion.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbTipoHabitacion.ForeColor = Color.FromArgb(222, 255, 255, 255);
             cmbTipoHabitacion.FormattingEnabled = true;
             cmbTipoHabitacion.IntegralHeight = false;
             cmbTipoHabitacion.ItemHeight = 43;
@@ -135,9 +142,11 @@
             // materialLabel2
             // 
             materialLabel2.AutoSize = true;
+            materialLabel2.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            materialLabel2.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel2.Location = new Point(298, 100);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
@@ -148,8 +157,10 @@
             // switchDisponibilidad
             // 
             switchDisponibilidad.AutoSize = true;
+            switchDisponibilidad.BackColor = Color.FromArgb(50, 50, 50);
             switchDisponibilidad.Cursor = Cursors.Hand;
             switchDisponibilidad.Depth = 0;
+            switchDisponibilidad.ForeColor = Color.FromArgb(222, 255, 255, 255);
             switchDisponibilidad.Location = new Point(731, 132);
             switchDisponibilidad.Margin = new Padding(0);
             switchDisponibilidad.MouseLocation = new Point(-1, -1);
@@ -159,11 +170,12 @@
             switchDisponibilidad.Size = new Size(118, 37);
             switchDisponibilidad.TabIndex = 10;
             switchDisponibilidad.Text = "Habilitar";
-            switchDisponibilidad.UseVisualStyleBackColor = true;
+            switchDisponibilidad.UseVisualStyleBackColor = false;
             // 
             // txtPrecioHabitacion
             // 
             txtPrecioHabitacion.AnimateReadOnly = false;
+            txtPrecioHabitacion.BackColor = Color.FromArgb(50, 50, 50);
             txtPrecioHabitacion.BackgroundImageLayout = ImageLayout.None;
             txtPrecioHabitacion.CharacterCasing = CharacterCasing.Normal;
             txtPrecioHabitacion.Depth = 0;
@@ -192,14 +204,14 @@
             // btnRegresarAdmin
             // 
             btnRegresarAdmin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnRegresarAdmin.BackColor = Color.FromArgb(64, 64, 64);
+            btnRegresarAdmin.BackColor = Color.FromArgb(50, 50, 50);
             btnRegresarAdmin.Cursor = Cursors.Hand;
             btnRegresarAdmin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnRegresarAdmin.Depth = 0;
             btnRegresarAdmin.FlatAppearance.BorderColor = Color.Gray;
             btnRegresarAdmin.FlatAppearance.MouseDownBackColor = Color.Gray;
             btnRegresarAdmin.FlatAppearance.MouseOverBackColor = Color.Gray;
-            btnRegresarAdmin.ForeColor = SystemColors.ControlDarkDark;
+            btnRegresarAdmin.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnRegresarAdmin.HighEmphasis = true;
             btnRegresarAdmin.Icon = null;
             btnRegresarAdmin.Location = new Point(19, 87);
@@ -216,7 +228,10 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(50, 50, 50);
             panel1.Controls.Add(btnGuardarHab);
+            panel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            panel1.ForeColor = Color.FromArgb(222, 255, 255, 255);
             panel1.Location = new Point(320, 589);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 43);
@@ -225,10 +240,12 @@
             // btnGuardarHab
             // 
             btnGuardarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnGuardarHab.BackColor = Color.FromArgb(50, 50, 50);
             btnGuardarHab.Cursor = Cursors.Hand;
             btnGuardarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnGuardarHab.Depth = 0;
             btnGuardarHab.Dock = DockStyle.Fill;
+            btnGuardarHab.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnGuardarHab.HighEmphasis = true;
             btnGuardarHab.Icon = null;
             btnGuardarHab.Location = new Point(0, 0);
@@ -242,11 +259,12 @@
             btnGuardarHab.Text = "Guardar";
             btnGuardarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnGuardarHab.UseAccentColor = false;
-            btnGuardarHab.UseVisualStyleBackColor = true;
+            btnGuardarHab.UseVisualStyleBackColor = false;
             // 
             // txtCantidadPersonas
             // 
             txtCantidadPersonas.AnimateReadOnly = false;
+            txtCantidadPersonas.BackColor = Color.FromArgb(50, 50, 50);
             txtCantidadPersonas.BackgroundImageLayout = ImageLayout.None;
             txtCantidadPersonas.CharacterCasing = CharacterCasing.Normal;
             txtCantidadPersonas.Depth = 0;
@@ -275,8 +293,10 @@
             // materialLabel5
             // 
             materialLabel5.AutoSize = true;
+            materialLabel5.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel5.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel5.Location = new Point(470, 304);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
@@ -287,6 +307,7 @@
             // txtDescripcion
             // 
             txtDescripcion.AnimateReadOnly = false;
+            txtDescripcion.BackColor = Color.FromArgb(50, 50, 50);
             txtDescripcion.BackgroundImageLayout = ImageLayout.None;
             txtDescripcion.CharacterCasing = CharacterCasing.Normal;
             txtDescripcion.Depth = 0;
@@ -311,8 +332,10 @@
             // lblDescribpcion
             // 
             lblDescribpcion.AutoSize = true;
+            lblDescribpcion.BackColor = Color.FromArgb(50, 50, 50);
             lblDescribpcion.Depth = 0;
             lblDescribpcion.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblDescribpcion.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblDescribpcion.Location = new Point(113, 421);
             lblDescribpcion.MouseState = MaterialSkin.MouseState.HOVER;
             lblDescribpcion.Name = "lblDescribpcion";

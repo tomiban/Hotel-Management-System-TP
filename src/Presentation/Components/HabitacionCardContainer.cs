@@ -11,13 +11,14 @@ namespace PresentationLayer.Components
 
         public HabitacionCardContainer()
         {
-            this.Dock = DockStyle.Fill;
-            this.AutoScroll = true;  // Para mostrar el scroll automáticamente si hay muchas tarjetas
-            this.WrapContents = true;  // Las tarjetas se acomodarán automáticamente
-            this.FlowDirection = FlowDirection.LeftToRight;
-            this.Padding = new Padding(150, 250, 0, 0);
+            // Habilitar scroll automático
+            this.AutoScroll = true;  // Mostrar barra de desplazamiento automáticamente si es necesario
+            this.WrapContents = true; // Configurar para que el contenido no se ajuste automáticamente
+            this.FlowDirection = FlowDirection.LeftToRight; // Cambiar la dirección si prefieres de arriba a abajo
 
-            // Inicializamos el Label para mostrar mensajes
+            // Ajustes visuales
+            this.Dock = DockStyle.Fill; // Asegura que ocupe todo el espacio disponible
+           this.Padding = new Padding(30, 0, 0, 10); // Espacio de relleno
             lblMensaje = new MaterialLabel
             {
                 Font = new Font("Roboto", 12, FontStyle.Italic),
@@ -25,7 +26,7 @@ namespace PresentationLayer.Components
                 AutoSize = true,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Visible = false,  // Oculto por defecto
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.None,
                 FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
             };
 
@@ -37,6 +38,9 @@ namespace PresentationLayer.Components
         {
             lblMensaje.Text = mensaje;
             lblMensaje.Visible = true;
+
+            // Centrar el mensaje
+            lblMensaje.Location = new Point((this.Width - lblMensaje.Width) / 2, (this.Height - lblMensaje.Height) / 2);
         }
 
         // Método para ocultar el mensaje
@@ -49,8 +53,6 @@ namespace PresentationLayer.Components
         public new void Clear()
         {
             base.Controls.Clear();  // Limpiar las tarjetas
-
-            // Mostrar el label por defecto
             this.Controls.Add(lblMensaje); // Reagregar el label después de limpiar
         }
 

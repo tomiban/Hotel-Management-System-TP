@@ -12,18 +12,9 @@ namespace Presentation.Views
         {
             InitializeComponent();
 
-            var ColorScheme = new ColorScheme(
-                Primary.DeepPurple600,
-                Primary.DeepPurple700,
-                Primary.Cyan700,
-                Accent.Cyan700,
-                TextShade.WHITE);
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
 
         }
-
 
 
         public event EventHandler LoginEvent;

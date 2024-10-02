@@ -11,7 +11,7 @@ using System.Net.Sockets;
 
 namespace Presentation.Views
 {
-    public partial class AdminView : MaterialForm, IAdminView
+    public partial class AdminView : BaseView, IAdminView
     {
 
         public event EventHandler RedirectToCrearEditarHabitacion;
@@ -32,16 +32,6 @@ namespace Presentation.Views
             btnBorrarHab.Enabled = false;
             btnEditarHab.Enabled = false;
 
-
-            var colorScheme = new ColorScheme(
-            Primary.DeepPurple600,
-            Primary.DeepPurple700,
-            Primary.Cyan700,
-            Accent.Cyan700,
-            TextShade.WHITE
-        );
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AttachAndRaiseViewEvents();
             AttachDeleteEvents();
