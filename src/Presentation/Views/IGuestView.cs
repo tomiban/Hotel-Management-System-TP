@@ -24,6 +24,7 @@ namespace PresentationLayer.Views
         event EventHandler<int> ReservaSeleccionada;
         event EventHandler OnModificarReserva;  // Evento para el botón Modificar Reserva
         event EventHandler OnLogoutTabSelected;
+        event EventHandler OnRedirectToCambiarContraseña;
 
         public event EventHandler<FiltroFechaEventArgs> OnFiltrarHabitacionesRangoFechas;
 

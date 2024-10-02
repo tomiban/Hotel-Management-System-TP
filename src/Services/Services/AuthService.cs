@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using BCrypt.Net;
+using InfraestructureLayer.Helpers;
 
 namespace ApplicationLayer.Services
 {
@@ -14,6 +15,7 @@ namespace ApplicationLayer.Services
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IModelDataAnnotationCheck _modelDataAnnotationCheck;
         private Usuario _currentUser;
+        
 
         public AuthService(IUsuarioRepository usuarioRepository, IModelDataAnnotationCheck modelDataAnnotationCheck)
         {
@@ -66,6 +68,18 @@ namespace ApplicationLayer.Services
                 throw new InvalidOperationException("No hay ningún usuario autenticado.");
             }
             return _currentUser;
+        }
+
+        public bool VerifyPassword(Usuario usuario, string contraseña)
+        {
+            // Verificar si la contraseña ingresada coincide con la contraseña almacenada (hash)
+            return usuario.Contraseña == contraseña;
+        }
+
+        public void ChangePassword(Usuario usuario, string nuevaContraseña)
+        {
+            usuario.Contraseña = nuevaContraseña;
+            _usuarioRepository.Update(usuario);  // Guardar el cambio en la base de datos
         }
     }
 }

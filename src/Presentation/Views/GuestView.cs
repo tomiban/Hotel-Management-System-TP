@@ -75,6 +75,10 @@ namespace Presentation.Views
                 var reservaId = (int)listReservas.SelectedItems[0].Tag;
                 EventHelper.RaiseEvent(this, ReservaSeleccionada, reservaId);
             };
+
+            linkCambiarContraseña.Click += (s, e) => EventHelper.RaiseEvent(this, OnRedirectToCambiarContraseña, EventArgs.Empty);
+
+            
         }
 
         // Obtener la categoría seleccionada
@@ -109,6 +113,7 @@ namespace Presentation.Views
         public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
         public event EventHandler OnModificarReserva;
         public event EventHandler OnLogoutTabSelected;
+        public event EventHandler OnRedirectToCambiarContraseña;
 
         public void CargarTipoHabitaciones()
         {

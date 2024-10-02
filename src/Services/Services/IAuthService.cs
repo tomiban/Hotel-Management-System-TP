@@ -10,6 +10,8 @@ namespace ApplicationLayer.Services
         void Register(Usuario usuario);
         void CheckUsername(string username);
         Usuario GetCurrentUser();
+        bool VerifyPassword(Usuario usuario, string contraseña);
+        void ChangePassword(Usuario usuario, string nuevaContraseña);
         ICollection<ValidationResult> ValidateModel(IUsuario usuario);
     }
 }

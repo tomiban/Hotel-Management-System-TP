@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer.Views
 {
-    partial class CambiarContraseñaForm
+    partial class CambiarContraseñaView
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@
             lblContraseñaActual = new MaterialSkin.Controls.MaterialLabel();
             lblNuevaContraseña = new MaterialSkin.Controls.MaterialLabel();
             btnCambiarContraseña = new MaterialSkin.Controls.MaterialButton();
-            btnCancelar = new MaterialSkin.Controls.MaterialButton();
+            btnCancelarCambioContraseña = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // txtContraseñaActual
@@ -43,14 +43,14 @@
             txtContraseñaActual.Depth = 0;
             txtContraseñaActual.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtContraseñaActual.LeadingIcon = null;
-            txtContraseñaActual.Location = new Point(56, 124);
+            txtContraseñaActual.Location = new Point(164, 139);
             txtContraseñaActual.MaxLength = 50;
             txtContraseñaActual.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseñaActual.Multiline = false;
             txtContraseñaActual.Name = "txtContraseñaActual";
-            txtContraseñaActual.ReadOnly = true;
+            txtContraseñaActual.Password = true;
             txtContraseñaActual.ScrollBars = RichTextBoxScrollBars.None;
-            txtContraseñaActual.Size = new Size(208, 50);
+            txtContraseñaActual.Size = new Size(303, 50);
             txtContraseñaActual.TabIndex = 11;
             txtContraseñaActual.Text = "";
             txtContraseñaActual.TrailingIcon = null;
@@ -62,13 +62,13 @@
             txtNuevaContraseña.Depth = 0;
             txtNuevaContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNuevaContraseña.LeadingIcon = null;
-            txtNuevaContraseña.Location = new Point(56, 241);
+            txtNuevaContraseña.Location = new Point(164, 256);
             txtNuevaContraseña.MaxLength = 50;
             txtNuevaContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtNuevaContraseña.Multiline = false;
             txtNuevaContraseña.Name = "txtNuevaContraseña";
-            txtNuevaContraseña.ReadOnly = true;
-            txtNuevaContraseña.Size = new Size(208, 50);
+            txtNuevaContraseña.Password = true;
+            txtNuevaContraseña.Size = new Size(303, 50);
             txtNuevaContraseña.TabIndex = 12;
             txtNuevaContraseña.Text = "";
             txtNuevaContraseña.TrailingIcon = null;
@@ -78,7 +78,7 @@
             lblContraseñaActual.AutoSize = true;
             lblContraseñaActual.Depth = 0;
             lblContraseñaActual.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblContraseñaActual.Location = new Point(56, 102);
+            lblContraseñaActual.Location = new Point(164, 117);
             lblContraseñaActual.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseñaActual.Name = "lblContraseñaActual";
             lblContraseñaActual.Size = new Size(131, 19);
@@ -90,7 +90,7 @@
             lblNuevaContraseña.AutoSize = true;
             lblNuevaContraseña.Depth = 0;
             lblNuevaContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblNuevaContraseña.Location = new Point(56, 219);
+            lblNuevaContraseña.Location = new Point(164, 234);
             lblNuevaContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblNuevaContraseña.Name = "lblNuevaContraseña";
             lblNuevaContraseña.Size = new Size(131, 19);
@@ -104,7 +104,7 @@
             btnCambiarContraseña.Depth = 0;
             btnCambiarContraseña.HighEmphasis = true;
             btnCambiarContraseña.Icon = null;
-            btnCambiarContraseña.Location = new Point(65, 332);
+            btnCambiarContraseña.Location = new Point(215, 347);
             btnCambiarContraseña.Margin = new Padding(4, 6, 4, 6);
             btnCambiarContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             btnCambiarContraseña.Name = "btnCambiarContraseña";
@@ -116,38 +116,39 @@
             btnCambiarContraseña.UseAccentColor = false;
             btnCambiarContraseña.UseVisualStyleBackColor = true;
             // 
-            // btnCancelar
+            // btnCancelarCambioContraseña
             // 
-            btnCancelar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnCancelar.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnCancelar.Depth = 0;
-            btnCancelar.HighEmphasis = true;
-            btnCancelar.Icon = null;
-            btnCancelar.Location = new Point(110, 380);
-            btnCancelar.Margin = new Padding(4, 6, 4, 6);
-            btnCancelar.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.NoAccentTextColor = Color.Empty;
-            btnCancelar.Size = new Size(96, 36);
-            btnCancelar.TabIndex = 16;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnCancelar.UseAccentColor = false;
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelarCambioContraseña.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancelarCambioContraseña.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCancelarCambioContraseña.Depth = 0;
+            btnCancelarCambioContraseña.HighEmphasis = true;
+            btnCancelarCambioContraseña.Icon = null;
+            btnCancelarCambioContraseña.Location = new Point(260, 395);
+            btnCancelarCambioContraseña.Margin = new Padding(4, 6, 4, 6);
+            btnCancelarCambioContraseña.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCancelarCambioContraseña.Name = "btnCancelarCambioContraseña";
+            btnCancelarCambioContraseña.NoAccentTextColor = Color.Empty;
+            btnCancelarCambioContraseña.Size = new Size(96, 36);
+            btnCancelarCambioContraseña.TabIndex = 16;
+            btnCancelarCambioContraseña.Text = "Cancelar";
+            btnCancelarCambioContraseña.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCancelarCambioContraseña.UseAccentColor = false;
+            btnCancelarCambioContraseña.UseVisualStyleBackColor = true;
             // 
-            // CambiarContraseñaForm
+            // CambiarContraseñaView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(315, 450);
-            Controls.Add(btnCancelar);
+            ClientSize = new Size(628, 450);
+            Controls.Add(btnCancelarCambioContraseña);
             Controls.Add(btnCambiarContraseña);
             Controls.Add(lblNuevaContraseña);
             Controls.Add(lblContraseñaActual);
             Controls.Add(txtNuevaContraseña);
             Controls.Add(txtContraseñaActual);
-            Name = "CambiarContraseñaForm";
-            Text = "CambiarContraseñaForm";
+            Name = "CambiarContraseñaView";
+            Text = "Cambiar Contraseña";
+            Load += CambiarContraseñaView_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,6 +160,6 @@
         private MaterialSkin.Controls.MaterialLabel lblContraseñaActual;
         private MaterialSkin.Controls.MaterialLabel lblNuevaContraseña;
         private MaterialSkin.Controls.MaterialButton btnCambiarContraseña;
-        private MaterialSkin.Controls.MaterialButton btnCancelar;
+        private MaterialSkin.Controls.MaterialButton btnCancelarCambioContraseña;
     }
 }

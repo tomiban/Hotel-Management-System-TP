@@ -58,7 +58,11 @@ namespace Presentation
               .RegisterType<ICrearEditarHabitacionPresenter, CrearEditarHabitacionPresenter>(new ContainerControlledLifetimeManager())
 
               .RegisterType<IDetallesReservaView, DetallesReservaView>(new ContainerControlledLifetimeManager())
-              .RegisterType<IDetallesReservaPresenter, DetallesReservaPresenter>(new ContainerControlledLifetimeManager());
+              .RegisterType<IDetallesReservaPresenter, DetallesReservaPresenter>(new ContainerControlledLifetimeManager())
+
+              .RegisterType<ICambiarContraseñaView, CambiarContraseñaView>(new ContainerControlledLifetimeManager())
+              .RegisterType<ICambiarContraseñaPresenter, CambiarContraseñaPresenter>(new ContainerControlledLifetimeManager());
+
 
 
                 // Iniciar el sistema visual de Windows Forms

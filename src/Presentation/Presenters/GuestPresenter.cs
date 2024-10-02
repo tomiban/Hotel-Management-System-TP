@@ -41,6 +41,9 @@ namespace PresentationLayer.Presenters
             _view.ReservaSeleccionada += HandleReservaSeleccionada;
             _view.OnModificarReserva += HandleModificarReserva;
             _view.OnLogoutTabSelected += HandleLogoutTabSelected;
+            _view.OnRedirectToCambiarContraseña += HandleModificarContraseña;
+            CargarDatosUsuario();
+            CargarReservas();
         }
 
         private void CargarDatosIniciales()
@@ -193,6 +196,10 @@ namespace PresentationLayer.Presenters
             }
         }
 
+        private void HandleModificarContraseña(object? sender, EventArgs e)
+        {
+            _navigationService.NavigateTo<ICambiarContraseñaPresenter>();
+        }
         public void CargarReservas()
         {
             var usuarioAutenticado = _authService.GetCurrentUser();
