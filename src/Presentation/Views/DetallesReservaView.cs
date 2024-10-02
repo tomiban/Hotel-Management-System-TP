@@ -12,7 +12,6 @@ namespace PresentationLayer.Views
 {
     public partial class DetallesReservaView : BaseView, IDetallesReservaView
     {
-        readonly MaterialSkin.MaterialSkinManager materialSkinManager;
 
         // Reserva actual
         private Reserva _reservaActual;
@@ -33,16 +32,6 @@ namespace PresentationLayer.Views
         public DetallesReservaView()
         {
             InitializeComponent();
-
-            var ColorScheme = new ColorScheme(
-                Primary.DeepPurple600,
-                Primary.DeepPurple700,
-                Primary.Cyan300,
-                Accent.Cyan700,
-                TextShade.WHITE
-            );
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
         }
 
