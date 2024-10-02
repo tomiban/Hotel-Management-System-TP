@@ -19,4 +19,10 @@
     <Folder Include="Common\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="InfraestructureLayer">
+      <HintPath>..\Infraestructure\bin\Debug\net8.0\InfraestructureLayer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

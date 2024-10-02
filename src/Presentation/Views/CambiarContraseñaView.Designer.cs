@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer.Views
 {
-    partial class CambiarContraseñaForm
+    partial class CambiarContraseñaView
     {
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@
             txtContraseñaActual.MouseState = MaterialSkin.MouseState.OUT;
             txtContraseñaActual.Multiline = false;
             txtContraseñaActual.Name = "txtContraseñaActual";
-            txtContraseñaActual.ReadOnly = true;
+            txtContraseñaActual.Password = true;
             txtContraseñaActual.ScrollBars = RichTextBoxScrollBars.None;
             txtContraseñaActual.Size = new Size(208, 50);
             txtContraseñaActual.TabIndex = 11;
@@ -67,7 +67,6 @@
             txtNuevaContraseña.MouseState = MaterialSkin.MouseState.OUT;
             txtNuevaContraseña.Multiline = false;
             txtNuevaContraseña.Name = "txtNuevaContraseña";
-            txtNuevaContraseña.ReadOnly = true;
             txtNuevaContraseña.Size = new Size(208, 50);
             txtNuevaContraseña.TabIndex = 12;
             txtNuevaContraseña.Text = "";
@@ -135,7 +134,7 @@
             btnCancelar.UseAccentColor = false;
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // CambiarContraseñaForm
+            // CambiarContraseñaView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -146,7 +145,7 @@
             Controls.Add(lblContraseñaActual);
             Controls.Add(txtNuevaContraseña);
             Controls.Add(txtContraseñaActual);
-            Name = "CambiarContraseñaForm";
+            Name = "CambiarContraseñaView";
             Text = "CambiarContraseñaForm";
             ResumeLayout(false);
             PerformLayout();

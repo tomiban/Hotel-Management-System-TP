@@ -1,4 +1,6 @@
-﻿using MaterialSkin.Controls;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using PresentationLayer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,15 @@ namespace PresentationLayer.Views
         public BaseView()
         {
 
+            var ColorScheme = new ColorScheme(
+                Primary.DeepPurple600,
+                Primary.DeepPurple700,
+                Primary.Cyan300,
+                Accent.Cyan700,
+                TextShade.WHITE
+            );
+
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             this.FormClosing += GuestView_FormClosing;
             this.WindowState = FormWindowState.Maximized;
         }
