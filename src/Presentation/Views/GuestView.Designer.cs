@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem1 = new ListViewItem("");
-            ListViewItem listViewItem2 = new ListViewItem("");
-            ListViewItem listViewItem3 = new ListViewItem("");
+            ListViewItem listViewItem13 = new ListViewItem("");
+            ListViewItem listViewItem14 = new ListViewItem("");
+            ListViewItem listViewItem15 = new ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
@@ -64,7 +64,6 @@
             lblTelefono = new MaterialSkin.Controls.MaterialLabel();
             lblNombre = new MaterialSkin.Controls.MaterialLabel();
             lblCuenta = new MaterialSkin.Controls.MaterialLabel();
-            lblRolCuenta = new MaterialSkin.Controls.MaterialLabel();
             tpLogout = new TabPage();
             imageListCliente = new ImageList(components);
             imageList1 = new ImageList(components);
@@ -346,7 +345,7 @@
             listReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem13, listViewItem14, listViewItem15 });
             listReservas.Location = new Point(56, 123);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
@@ -379,7 +378,6 @@
             tpCuenta.BackColor = Color.FromArgb(50, 50, 50);
             tpCuenta.Controls.Add(materialCard6);
             tpCuenta.Controls.Add(lblCuenta);
-            tpCuenta.Controls.Add(lblRolCuenta);
             tpCuenta.ImageKey = "account_circle.png";
             tpCuenta.Location = new Point(4, 39);
             tpCuenta.Name = "tpCuenta";
@@ -404,12 +402,12 @@
             materialCard6.Controls.Add(lblNombre);
             materialCard6.Depth = 0;
             materialCard6.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            materialCard6.Location = new Point(220, 99);
+            materialCard6.Location = new Point(134, 99);
             materialCard6.Margin = new Padding(14);
             materialCard6.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard6.Name = "materialCard6";
             materialCard6.Padding = new Padding(14);
-            materialCard6.Size = new Size(640, 361);
+            materialCard6.Size = new Size(726, 361);
             materialCard6.TabIndex = 9;
             // 
             // txtPassword
@@ -421,7 +419,7 @@
             txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(385, 157);
+            txtPassword.Location = new Point(434, 163);
             txtPassword.MaxLength = 50;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Multiline = false;
@@ -442,7 +440,7 @@
             txtUsername.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtUsername.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtUsername.LeadingIcon = null;
-            txtUsername.Location = new Point(385, 66);
+            txtUsername.Location = new Point(434, 72);
             txtUsername.MaxLength = 50;
             txtUsername.MouseState = MaterialSkin.MouseState.OUT;
             txtUsername.Multiline = false;
@@ -462,7 +460,7 @@
             txtTelefono.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtTelefono.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtTelefono.LeadingIcon = null;
-            txtTelefono.Location = new Point(52, 254);
+            txtTelefono.Location = new Point(101, 260);
             txtTelefono.MaxLength = 50;
             txtTelefono.MouseState = MaterialSkin.MouseState.OUT;
             txtTelefono.Multiline = false;
@@ -482,7 +480,7 @@
             txtApellido.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtApellido.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtApellido.LeadingIcon = null;
-            txtApellido.Location = new Point(52, 157);
+            txtApellido.Location = new Point(101, 163);
             txtApellido.MaxLength = 50;
             txtApellido.MouseState = MaterialSkin.MouseState.OUT;
             txtApellido.Multiline = false;
@@ -502,7 +500,7 @@
             txtNombre.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtNombre.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtNombre.LeadingIcon = null;
-            txtNombre.Location = new Point(52, 66);
+            txtNombre.Location = new Point(101, 72);
             txtNombre.MaxLength = 50;
             txtNombre.MouseState = MaterialSkin.MouseState.OUT;
             txtNombre.Multiline = false;
@@ -520,7 +518,7 @@
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblContraseña.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblContraseña.Location = new Point(385, 139);
+            lblContraseña.Location = new Point(434, 145);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(71, 19);
@@ -534,7 +532,7 @@
             lblUsername.Depth = 0;
             lblUsername.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblUsername.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblUsername.Location = new Point(385, 43);
+            lblUsername.Location = new Point(434, 49);
             lblUsername.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(72, 19);
@@ -547,7 +545,7 @@
             linkCambiarContraseña.BackColor = Color.FromArgb(80, 80, 80);
             linkCambiarContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             linkCambiarContraseña.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            linkCambiarContraseña.Location = new Point(532, 140);
+            linkCambiarContraseña.Location = new Point(581, 146);
             linkCambiarContraseña.Name = "linkCambiarContraseña";
             linkCambiarContraseña.Size = new Size(67, 17);
             linkCambiarContraseña.TabIndex = 7;
@@ -561,7 +559,7 @@
             lblApellido.Depth = 0;
             lblApellido.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblApellido.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblApellido.Location = new Point(53, 136);
+            lblApellido.Location = new Point(102, 142);
             lblApellido.MouseState = MaterialSkin.MouseState.HOVER;
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(58, 19);
@@ -575,7 +573,7 @@
             lblTelefono.Depth = 0;
             lblTelefono.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblTelefono.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblTelefono.Location = new Point(52, 232);
+            lblTelefono.Location = new Point(101, 238);
             lblTelefono.MouseState = MaterialSkin.MouseState.HOVER;
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(64, 19);
@@ -589,7 +587,7 @@
             lblNombre.Depth = 0;
             lblNombre.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblNombre.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblNombre.Location = new Point(52, 44);
+            lblNombre.Location = new Point(101, 50);
             lblNombre.MouseState = MaterialSkin.MouseState.HOVER;
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(57, 19);
@@ -610,21 +608,6 @@
             lblCuenta.Size = new Size(155, 41);
             lblCuenta.TabIndex = 8;
             lblCuenta.Text = "Mi Cuenta";
-            // 
-            // lblRolCuenta
-            // 
-            lblRolCuenta.AutoSize = true;
-            lblRolCuenta.BackColor = Color.FromArgb(50, 50, 50);
-            lblRolCuenta.Depth = 0;
-            lblRolCuenta.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
-            lblRolCuenta.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            lblRolCuenta.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            lblRolCuenta.Location = new Point(503, 56);
-            lblRolCuenta.MouseState = MaterialSkin.MouseState.HOVER;
-            lblRolCuenta.Name = "lblRolCuenta";
-            lblRolCuenta.Size = new Size(76, 29);
-            lblRolCuenta.TabIndex = 6;
-            lblRolCuenta.Text = "Cliente";
             // 
             // tpLogout
             // 
@@ -698,7 +681,6 @@
         private MaterialSkin.Controls.MaterialListView listReservas;
         private MaterialSkin.Controls.MaterialLabel lblReservas;
         private LinkLabel linkCambiarContraseña;
-        private MaterialSkin.Controls.MaterialLabel lblRolCuenta;
         private MaterialSkin.Controls.MaterialLabel lblTelefono;
         private MaterialSkin.Controls.MaterialLabel lblUsername;
         private MaterialSkin.Controls.MaterialLabel lblNombre;
