@@ -107,6 +107,7 @@ namespace Presentation.Views
             tcAdmin.Controls.Add(tpLogout);
             tcAdmin.Depth = 0;
             tcAdmin.Dock = DockStyle.Fill;
+            tcAdmin.ForeColor = Color.FromArgb(222, 255, 255, 255);
             tcAdmin.ImageList = imageListAdmin;
             tcAdmin.ItemSize = new Size(119, 35);
             tcAdmin.Location = new Point(10, 64);
@@ -114,11 +115,12 @@ namespace Presentation.Views
             tcAdmin.Multiline = true;
             tcAdmin.Name = "tcAdmin";
             tcAdmin.SelectedIndex = 0;
-            tcAdmin.Size = new Size(1028, 486);
+            tcAdmin.Size = new Size(1028, 619);
             tcAdmin.TabIndex = 0;
             // 
             // tpDashboard
             // 
+            tpDashboard.BackColor = Color.FromArgb(50, 50, 50);
             tpDashboard.Controls.Add(lblReservas);
             tpDashboard.Controls.Add(cardFactura);
             tpDashboard.Controls.Add(cardUsuarios);
@@ -129,17 +131,18 @@ namespace Presentation.Views
             tpDashboard.Location = new Point(4, 39);
             tpDashboard.Name = "tpDashboard";
             tpDashboard.Padding = new Padding(3);
-            tpDashboard.Size = new Size(1020, 443);
+            tpDashboard.Size = new Size(1020, 576);
             tpDashboard.TabIndex = 0;
             tpDashboard.Text = "Dashboard";
-            tpDashboard.UseVisualStyleBackColor = true;
             // 
             // lblReservas
             // 
             lblReservas.AutoSize = true;
+            lblReservas.BackColor = Color.FromArgb(50, 50, 50);
             lblReservas.Depth = 0;
             lblReservas.Font = new Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblReservas.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            lblReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblReservas.Location = new Point(56, 224);
             lblReservas.MouseState = MaterialSkin.MouseState.HOVER;
             lblReservas.Name = "lblReservas";
@@ -166,10 +169,12 @@ namespace Presentation.Views
             // captionLblFactura
             // 
             captionLblFactura.AutoSize = true;
+            captionLblFactura.BackColor = Color.FromArgb(50, 50, 50);
             captionLblFactura.Depth = 0;
             captionLblFactura.Dock = DockStyle.Bottom;
             captionLblFactura.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             captionLblFactura.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            captionLblFactura.ForeColor = Color.FromArgb(222, 255, 255, 255);
             captionLblFactura.Location = new Point(14, 97);
             captionLblFactura.MouseState = MaterialSkin.MouseState.HOVER;
             captionLblFactura.Name = "captionLblFactura";
@@ -180,9 +185,11 @@ namespace Presentation.Views
             // lblTotalFacturado
             // 
             lblTotalFacturado.AutoSize = true;
+            lblTotalFacturado.BackColor = Color.FromArgb(50, 50, 50);
             lblTotalFacturado.Depth = 0;
             lblTotalFacturado.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTotalFacturado.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblTotalFacturado.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblTotalFacturado.Location = new Point(27, 33);
             lblTotalFacturado.MouseState = MaterialSkin.MouseState.HOVER;
             lblTotalFacturado.Name = "lblTotalFacturado";
@@ -193,10 +200,12 @@ namespace Presentation.Views
             // lblFactura
             // 
             lblFactura.AutoSize = true;
+            lblFactura.BackColor = Color.FromArgb(50, 50, 50);
             lblFactura.Depth = 0;
             lblFactura.Dock = DockStyle.Top;
             lblFactura.Font = new Font("Roboto", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblFactura.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
+            lblFactura.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblFactura.Location = new Point(14, 14);
             lblFactura.MouseState = MaterialSkin.MouseState.HOVER;
             lblFactura.Name = "lblFactura";
@@ -223,6 +232,9 @@ namespace Presentation.Views
             // 
             // imgUsuarios
             // 
+            imgUsuarios.BackColor = Color.FromArgb(80, 80, 80);
+            imgUsuarios.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            imgUsuarios.ForeColor = Color.FromArgb(222, 255, 255, 255);
             imgUsuarios.Image = (Image)resources.GetObject("imgUsuarios.Image");
             imgUsuarios.Location = new Point(142, 14);
             imgUsuarios.Name = "imgUsuarios";
@@ -234,10 +246,12 @@ namespace Presentation.Views
             // captionLblUsuarios
             // 
             captionLblUsuarios.AutoSize = true;
+            captionLblUsuarios.BackColor = Color.FromArgb(50, 50, 50);
             captionLblUsuarios.Depth = 0;
             captionLblUsuarios.Dock = DockStyle.Bottom;
             captionLblUsuarios.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Pixel);
             captionLblUsuarios.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            captionLblUsuarios.ForeColor = Color.FromArgb(222, 255, 255, 255);
             captionLblUsuarios.Location = new Point(14, 97);
             captionLblUsuarios.MouseState = MaterialSkin.MouseState.HOVER;
             captionLblUsuarios.Name = "captionLblUsuarios";
@@ -248,9 +262,11 @@ namespace Presentation.Views
             // lblTotalUsuarios
             // 
             lblTotalUsuarios.AutoSize = true;
+            lblTotalUsuarios.BackColor = Color.FromArgb(50, 50, 50);
             lblTotalUsuarios.Depth = 0;
             lblTotalUsuarios.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTotalUsuarios.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblTotalUsuarios.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblTotalUsuarios.Location = new Point(31, 33);
             lblTotalUsuarios.MouseState = MaterialSkin.MouseState.HOVER;
             lblTotalUsuarios.Name = "lblTotalUsuarios";
@@ -261,10 +277,12 @@ namespace Presentation.Views
             // materialLabel5
             // 
             materialLabel5.AutoSize = true;
+            materialLabel5.BackColor = Color.FromArgb(50, 50, 50);
             materialLabel5.Depth = 0;
             materialLabel5.Dock = DockStyle.Top;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
+            materialLabel5.ForeColor = Color.FromArgb(222, 255, 255, 255);
             materialLabel5.Location = new Point(14, 14);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
@@ -279,6 +297,7 @@ namespace Presentation.Views
             listReservasActivas.BorderStyle = BorderStyle.None;
             listReservasActivas.Columns.AddRange(new ColumnHeader[] { columnId, columnHabitacion, columnCategoria, columnCapacidad, columnCliente, columnCheckin, columnCheckout });
             listReservasActivas.Depth = 0;
+            listReservasActivas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listReservasActivas.FullRowSelect = true;
             listReservasActivas.Location = new Point(56, 266);
             listReservasActivas.MinimumSize = new Size(200, 100);
@@ -347,15 +366,21 @@ namespace Presentation.Views
             // captionLblOcupacion
             // 
             captionLblOcupacion.AutoSize = true;
+            captionLblOcupacion.BackColor = Color.FromArgb(80, 80, 80);
             captionLblOcupacion.Dock = DockStyle.Bottom;
-            captionLblOcupacion.Location = new Point(14, 91);
+            captionLblOcupacion.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            captionLblOcupacion.ForeColor = Color.FromArgb(222, 255, 255, 255);
+            captionLblOcupacion.Location = new Point(14, 89);
             captionLblOcupacion.Name = "captionLblOcupacion";
-            captionLblOcupacion.Size = new Size(90, 15);
+            captionLblOcupacion.Size = new Size(104, 17);
             captionLblOcupacion.TabIndex = 20;
             captionLblOcupacion.Text = "50% Ocupación";
             // 
             // imgReservas
             // 
+            imgReservas.BackColor = Color.FromArgb(80, 80, 80);
+            imgReservas.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            imgReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             imgReservas.Image = (Image)resources.GetObject("imgReservas.Image");
             imgReservas.Location = new Point(148, 17);
             imgReservas.Name = "imgReservas";
@@ -367,9 +392,11 @@ namespace Presentation.Views
             // lblTotalReservas
             // 
             lblTotalReservas.AutoSize = true;
+            lblTotalReservas.BackColor = Color.FromArgb(50, 50, 50);
             lblTotalReservas.Depth = 0;
             lblTotalReservas.Font = new Font("Roboto", 48F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTotalReservas.FontType = MaterialSkin.MaterialSkinManager.fontType.H3;
+            lblTotalReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblTotalReservas.Location = new Point(31, 33);
             lblTotalReservas.MouseState = MaterialSkin.MouseState.HOVER;
             lblTotalReservas.Name = "lblTotalReservas";
@@ -379,8 +406,10 @@ namespace Presentation.Views
             // 
             // progressBarOcupacion
             // 
+            progressBarOcupacion.BackColor = Color.FromArgb(50, 50, 50);
             progressBarOcupacion.Depth = 0;
             progressBarOcupacion.Dock = DockStyle.Bottom;
+            progressBarOcupacion.ForeColor = Color.FromArgb(222, 255, 255, 255);
             progressBarOcupacion.Location = new Point(14, 106);
             progressBarOcupacion.MouseState = MaterialSkin.MouseState.HOVER;
             progressBarOcupacion.Name = "progressBarOcupacion";
@@ -392,10 +421,12 @@ namespace Presentation.Views
             // lblHabitacionesActivas
             // 
             lblHabitacionesActivas.AutoSize = true;
+            lblHabitacionesActivas.BackColor = Color.FromArgb(50, 50, 50);
             lblHabitacionesActivas.Depth = 0;
             lblHabitacionesActivas.Dock = DockStyle.Top;
             lblHabitacionesActivas.Font = new Font("Roboto", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblHabitacionesActivas.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
+            lblHabitacionesActivas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblHabitacionesActivas.Location = new Point(14, 14);
             lblHabitacionesActivas.MouseState = MaterialSkin.MouseState.HOVER;
             lblHabitacionesActivas.Name = "lblHabitacionesActivas";
@@ -406,9 +437,11 @@ namespace Presentation.Views
             // lblDashboard
             // 
             lblDashboard.AutoSize = true;
+            lblDashboard.BackColor = Color.FromArgb(50, 50, 50);
             lblDashboard.Depth = 0;
             lblDashboard.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblDashboard.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblDashboard.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblDashboard.Location = new Point(56, 18);
             lblDashboard.MouseState = MaterialSkin.MouseState.HOVER;
             lblDashboard.Name = "lblDashboard";
@@ -419,6 +452,7 @@ namespace Presentation.Views
             // 
             // tpHabitaciones
             // 
+            tpHabitaciones.BackColor = Color.FromArgb(50, 50, 50);
             tpHabitaciones.Controls.Add(btnEditarHab);
             tpHabitaciones.Controls.Add(btnBorrarHab);
             tpHabitaciones.Controls.Add(btnAgregarHab);
@@ -428,17 +462,18 @@ namespace Presentation.Views
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
             tpHabitaciones.Padding = new Padding(3);
-            tpHabitaciones.Size = new Size(1020, 443);
+            tpHabitaciones.Size = new Size(1020, 576);
             tpHabitaciones.TabIndex = 1;
             tpHabitaciones.Text = "Habitaciones";
-            tpHabitaciones.UseVisualStyleBackColor = true;
             // 
             // btnEditarHab
             // 
             btnEditarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditarHab.BackColor = Color.FromArgb(50, 50, 50);
             btnEditarHab.Cursor = Cursors.Hand;
             btnEditarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnEditarHab.Depth = 0;
+            btnEditarHab.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnEditarHab.HighEmphasis = true;
             btnEditarHab.Icon = null;
             btnEditarHab.Location = new Point(154, 82);
@@ -451,14 +486,16 @@ namespace Presentation.Views
             btnEditarHab.Text = "EDITAR";
             btnEditarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             btnEditarHab.UseAccentColor = true;
-            btnEditarHab.UseVisualStyleBackColor = true;
+            btnEditarHab.UseVisualStyleBackColor = false;
             // 
             // btnBorrarHab
             // 
             btnBorrarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarHab.BackColor = Color.FromArgb(50, 50, 50);
             btnBorrarHab.Cursor = Cursors.Hand;
             btnBorrarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnBorrarHab.Depth = 0;
+            btnBorrarHab.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnBorrarHab.HighEmphasis = true;
             btnBorrarHab.Icon = null;
             btnBorrarHab.Location = new Point(873, 82);
@@ -471,15 +508,16 @@ namespace Presentation.Views
             btnBorrarHab.Text = "Eliminar";
             btnBorrarHab.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             btnBorrarHab.UseAccentColor = false;
-            btnBorrarHab.UseVisualStyleBackColor = true;
+            btnBorrarHab.UseVisualStyleBackColor = false;
             // 
             // btnAgregarHab
             // 
             btnAgregarHab.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnAgregarHab.BackColor = Color.Black;
+            btnAgregarHab.BackColor = Color.FromArgb(50, 50, 50);
             btnAgregarHab.Cursor = Cursors.Hand;
             btnAgregarHab.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnAgregarHab.Depth = 0;
+            btnAgregarHab.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnAgregarHab.HighEmphasis = true;
             btnAgregarHab.Icon = null;
             btnAgregarHab.Location = new Point(56, 82);
@@ -503,6 +541,7 @@ namespace Presentation.Views
             listHabitaciones.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             listHabitaciones.Cursor = Cursors.Hand;
             listHabitaciones.Depth = 0;
+            listHabitaciones.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listHabitaciones.FullRowSelect = true;
             listHabitaciones.Location = new Point(56, 127);
             listHabitaciones.MinimumSize = new Size(200, 100);
@@ -547,9 +586,11 @@ namespace Presentation.Views
             // lblHabitaciones
             // 
             lblHabitaciones.AutoSize = true;
+            lblHabitaciones.BackColor = Color.FromArgb(50, 50, 50);
             lblHabitaciones.Depth = 0;
             lblHabitaciones.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblHabitaciones.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblHabitaciones.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblHabitaciones.Location = new Point(56, 18);
             lblHabitaciones.MouseState = MaterialSkin.MouseState.HOVER;
             lblHabitaciones.Name = "lblHabitaciones";
@@ -560,6 +601,7 @@ namespace Presentation.Views
             // 
             // tpUsuarios
             // 
+            tpUsuarios.BackColor = Color.FromArgb(50, 50, 50);
             tpUsuarios.Controls.Add(panelUsuarios);
             tpUsuarios.Controls.Add(btnActualizarRol);
             tpUsuarios.Controls.Add(btnBorrarUsu);
@@ -568,17 +610,19 @@ namespace Presentation.Views
             tpUsuarios.Location = new Point(4, 39);
             tpUsuarios.Name = "tpUsuarios";
             tpUsuarios.Padding = new Padding(3);
-            tpUsuarios.Size = new Size(1020, 443);
+            tpUsuarios.Size = new Size(1020, 576);
             tpUsuarios.TabIndex = 2;
             tpUsuarios.Text = "Usuarios";
-            tpUsuarios.UseVisualStyleBackColor = true;
             // 
             // panelUsuarios
             // 
+            panelUsuarios.BackColor = Color.FromArgb(50, 50, 50);
             panelUsuarios.Controls.Add(dataGridViewUsuarios);
-            panelUsuarios.Location = new Point(56, 180);
+            panelUsuarios.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            panelUsuarios.ForeColor = Color.FromArgb(222, 255, 255, 255);
+            panelUsuarios.Location = new Point(56, 127);
             panelUsuarios.Name = "panelUsuarios";
-            panelUsuarios.Size = new Size(905, 198);
+            panelUsuarios.Size = new Size(905, 251);
             panelUsuarios.TabIndex = 28;
             // 
             // dataGridViewUsuarios
@@ -596,24 +640,27 @@ namespace Presentation.Views
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(30, 30, 30);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(222, 255, 255, 255);
             dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(51, 153, 255);
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridViewUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewUsuarios.Dock = DockStyle.Fill;
             dataGridViewUsuarios.EnableHeadersVisualStyles = false;
+            dataGridViewUsuarios.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             dataGridViewUsuarios.Location = new Point(0, 0);
             dataGridViewUsuarios.Name = "dataGridViewUsuarios";
-            dataGridViewUsuarios.Size = new Size(905, 198);
+            dataGridViewUsuarios.Size = new Size(905, 251);
             dataGridViewUsuarios.TabIndex = 0;
             // 
             // btnActualizarRol
             // 
             btnActualizarRol.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnActualizarRol.BackColor = Color.FromArgb(50, 50, 50);
             btnActualizarRol.Cursor = Cursors.Hand;
             btnActualizarRol.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnActualizarRol.Depth = 0;
+            btnActualizarRol.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnActualizarRol.HighEmphasis = true;
             btnActualizarRol.Icon = null;
             btnActualizarRol.Location = new Point(56, 82);
@@ -626,14 +673,16 @@ namespace Presentation.Views
             btnActualizarRol.Text = "Actualizar Rol";
             btnActualizarRol.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             btnActualizarRol.UseAccentColor = true;
-            btnActualizarRol.UseVisualStyleBackColor = true;
+            btnActualizarRol.UseVisualStyleBackColor = false;
             // 
             // btnBorrarUsu
             // 
             btnBorrarUsu.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnBorrarUsu.BackColor = Color.FromArgb(50, 50, 50);
             btnBorrarUsu.Cursor = Cursors.Hand;
             btnBorrarUsu.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnBorrarUsu.Depth = 0;
+            btnBorrarUsu.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnBorrarUsu.HighEmphasis = true;
             btnBorrarUsu.Icon = null;
             btnBorrarUsu.Location = new Point(873, 82);
@@ -646,14 +695,16 @@ namespace Presentation.Views
             btnBorrarUsu.Text = "Eliminar";
             btnBorrarUsu.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             btnBorrarUsu.UseAccentColor = false;
-            btnBorrarUsu.UseVisualStyleBackColor = true;
+            btnBorrarUsu.UseVisualStyleBackColor = false;
             // 
             // lblUsuarios
             // 
             lblUsuarios.AutoSize = true;
+            lblUsuarios.BackColor = Color.FromArgb(50, 50, 50);
             lblUsuarios.Depth = 0;
             lblUsuarios.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblUsuarios.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblUsuarios.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblUsuarios.Location = new Point(56, 18);
             lblUsuarios.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuarios.Name = "lblUsuarios";
@@ -664,16 +715,16 @@ namespace Presentation.Views
             // 
             // tpFacturacion
             // 
+            tpFacturacion.BackColor = Color.FromArgb(50, 50, 50);
             tpFacturacion.Controls.Add(listFacturas);
             tpFacturacion.Controls.Add(lblFacturacion);
             tpFacturacion.ImageKey = "facturacion.png";
             tpFacturacion.Location = new Point(4, 39);
             tpFacturacion.Name = "tpFacturacion";
             tpFacturacion.Padding = new Padding(3);
-            tpFacturacion.Size = new Size(1020, 443);
+            tpFacturacion.Size = new Size(1020, 576);
             tpFacturacion.TabIndex = 3;
             tpFacturacion.Text = "Facturación";
-            tpFacturacion.UseVisualStyleBackColor = true;
             // 
             // listFacturas
             // 
@@ -681,6 +732,7 @@ namespace Presentation.Views
             listFacturas.BackColor = Color.FromArgb(255, 255, 255);
             listFacturas.BorderStyle = BorderStyle.None;
             listFacturas.Depth = 0;
+            listFacturas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listFacturas.FullRowSelect = true;
             listFacturas.Location = new Point(56, 74);
             listFacturas.MinimumSize = new Size(200, 100);
@@ -696,9 +748,11 @@ namespace Presentation.Views
             // lblFacturacion
             // 
             lblFacturacion.AutoSize = true;
+            lblFacturacion.BackColor = Color.FromArgb(50, 50, 50);
             lblFacturacion.Depth = 0;
             lblFacturacion.Font = new Font("Roboto", 34F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblFacturacion.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
+            lblFacturacion.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblFacturacion.Location = new Point(56, 18);
             lblFacturacion.MouseState = MaterialSkin.MouseState.HOVER;
             lblFacturacion.Name = "lblFacturacion";
@@ -709,13 +763,13 @@ namespace Presentation.Views
             // 
             // tpLogout
             // 
+            tpLogout.BackColor = Color.FromArgb(50, 50, 50);
             tpLogout.ImageKey = "logout.png";
             tpLogout.Location = new Point(4, 39);
             tpLogout.Name = "tpLogout";
-            tpLogout.Size = new Size(1020, 443);
+            tpLogout.Size = new Size(1020, 576);
             tpLogout.TabIndex = 4;
             tpLogout.Text = "Salir";
-            tpLogout.UseVisualStyleBackColor = true;
             // 
             // imageListAdmin
             // 
@@ -732,18 +786,15 @@ namespace Presentation.Views
             // 
             // imageListDash
             // 
-            //imageListDash.ColorDepth = ColorDepth.Depth32Bit;
-            //imageListDash.ImageStream = (ImageListStreamer)resources.GetObject("imageListDash.ImageStream");
-            //imageListDash.TransparentColor = Color.Transparent;
-            //imageListDash.Images.SetKeyName(0, "door.png");
-            //imageListDash.Images.SetKeyName(1, "group.png");
-            //imageListDash.Images.SetKeyName(2, "money.png");
+            imageListDash.ColorDepth = ColorDepth.Depth32Bit;
+            imageListDash.ImageSize = new Size(16, 16);
+            imageListDash.TransparentColor = Color.Transparent;
             // 
             // AdminView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1048, 553);
+            ClientSize = new Size(1048, 686);
             Controls.Add(tcAdmin);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcAdmin;

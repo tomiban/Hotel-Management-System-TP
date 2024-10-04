@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Presentation.Views
 {
-    public partial class GuestView : BaseView, IGuestView
+    public partial class GuestView : MaterialForm, IGuestView
     {
 
         HabitacionCardContainer HabitacionCardContainer;
@@ -187,13 +187,18 @@ namespace Presentation.Views
             listReservas.Items.Clear();
             listReservas.Columns.Clear();
 
+
+            listReservas.Items.Clear();
+            listReservas.Columns.Clear();
+
             listReservas.Columns.Add("Nro", 100);
-            listReservas.Columns.Add("Habitacion", 100);
-            listReservas.Columns.Add("Categoria", 154);
+            listReservas.Columns.Add("Habitacion", 105);
+            listReservas.Columns.Add("Categoria", 141);
             listReservas.Columns.Add("Check In", 170);
             listReservas.Columns.Add("Check Out", 170);
-            listReservas.Columns.Add("Precio Final", 120);
+            listReservas.Columns.Add("Precio Final", 105);
             listReservas.Columns.Add("Estado", 100);
+
 
             int contador = 1;
 

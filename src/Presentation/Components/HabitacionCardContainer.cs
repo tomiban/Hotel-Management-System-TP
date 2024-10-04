@@ -18,7 +18,7 @@ namespace PresentationLayer.Components
 
             // Ajustes visuales
             this.Dock = DockStyle.Fill; // Asegura que ocupe todo el espacio disponible
-           this.Padding = new Padding(30, 0, 0, 10); // Espacio de relleno
+            this.Padding = new Padding(30, 0, 0, 10); // Espacio de relleno
             lblMensaje = new MaterialLabel
             {
                 Font = new Font("Roboto", 12, FontStyle.Italic),

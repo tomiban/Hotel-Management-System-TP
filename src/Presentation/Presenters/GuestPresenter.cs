@@ -32,6 +32,7 @@ namespace PresentationLayer.Presenters
 
             // Carga inicial de datos
             CargarDatosIniciales();
+            CargarDatosUsuario();
         }
 
         private void SubscribeToViewEvents()
@@ -42,8 +43,6 @@ namespace PresentationLayer.Presenters
             _view.OnModificarReserva += HandleModificarReserva;
             _view.OnLogoutTabSelected += HandleLogoutTabSelected;
             _view.OnRedirectToCambiarContraseña += HandleModificarContraseña;
-            CargarDatosUsuario();
-            CargarReservas();
         }
 
         private void CargarDatosIniciales()

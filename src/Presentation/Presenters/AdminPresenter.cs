@@ -209,11 +209,13 @@ namespace Presentation.Presenters
             // Obtener la ocupación (habitaciones ocupadas / total habitaciones)
             double porcentajeOcupacion = totalHabitaciones > 0 ? (double)totalReservasCurso / totalHabitaciones * 100 : 0;
 
+  
+
             int totalUsuariosRecientes = _usuarios.Count(u => u.FechaRegistro >= DateTime.Today.AddDays(-7));
 
             decimal totalFacturado = _reservas.Sum(r => r.MontoTotal);
 
-            _view.ActualizarDashboard(totalReservasCurso, porcentajeOcupacion, totalUsuarios, totalUsuariosRecientes, totalFacturado);
+            _view.ActualizarDashboard(totalReservasCurso, porcentajeOcupacion, totalHabitaciones, totalUsuarios, totalUsuariosRecientes, totalFacturado);
 
         }
         public void CargarListaUsuarios(List<Usuario> usuarios)

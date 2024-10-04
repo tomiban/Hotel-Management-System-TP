@@ -11,7 +11,7 @@ using System.Net.Sockets;
 
 namespace Presentation.Views
 {
-    public partial class AdminView : BaseView, IAdminView
+    public partial class AdminView : MaterialForm, IAdminView
     {
 
         public event EventHandler RedirectToCrearEditarHabitacion;
@@ -32,6 +32,16 @@ namespace Presentation.Views
             btnBorrarHab.Enabled = false;
             btnEditarHab.Enabled = false;
 
+
+            var colorScheme = new ColorScheme(
+            Primary.DeepPurple600,
+            Primary.DeepPurple700,
+            Primary.Cyan700,
+            Accent.Cyan700,
+            TextShade.WHITE
+        );
+
+            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
 
             AttachAndRaiseViewEvents();
             AttachDeleteEvents();
@@ -146,6 +156,8 @@ namespace Presentation.Views
             // Limpiar las columnas y filas actuales del DataGridView
             dataGridViewUsuarios.Columns.Clear();
             dataGridViewUsuarios.Rows.Clear();
+            dataGridViewUsuarios.Dock = DockStyle.Fill;
+            dataGridViewUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Configurar las columnas del DataGridView
             dataGridViewUsuarios.Columns.Add("ID", "ID");
@@ -226,11 +238,11 @@ namespace Presentation.Views
                 listHabitaciones.Items.Add(listItem);
             }
         }
-        public void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual)
+        public void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalHabitaciones, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual)
         {
             // Actualizar el texto y la barra de progreso para "Reservas"
             lblTotalReservas.Text = reservasActivas.ToString();
-            captionLblOcupacion.Text = $"{porcentajeOcupacion}% Ocupación";
+            captionLblOcupacion.Text = $"{double.Round(porcentajeOcupacion)}% Ocupación";
             progressBarOcupacion.Value = (int)porcentajeOcupacion;
 
             // Actualizar los valores para "Usuarios Totales"
@@ -248,9 +260,9 @@ namespace Presentation.Views
 
             // Definir columnas de la lista
             listReservasActivas.Columns.Add("Número de Habitación", 200, HorizontalAlignment.Left);
-            listReservasActivas.Columns.Add("Nombre de Usuario", 155, HorizontalAlignment.Left);
-            listReservasActivas.Columns.Add("Fecha de Inicio", 200, HorizontalAlignment.Left);
-            listReservasActivas.Columns.Add("Fecha de Fin", 200, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Nombre de Usuario", 201, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Fecha de Inicio", 230, HorizontalAlignment.Left);
+            listReservasActivas.Columns.Add("Fecha de Fin", 230, HorizontalAlignment.Left);
 
 
             // Cargar las reservas activas en el ListView

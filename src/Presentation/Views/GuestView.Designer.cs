@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem13 = new ListViewItem("");
-            ListViewItem listViewItem14 = new ListViewItem("");
-            ListViewItem listViewItem15 = new ListViewItem("");
+            ListViewItem listViewItem1 = new ListViewItem("");
+            ListViewItem listViewItem2 = new ListViewItem("");
+            ListViewItem listViewItem3 = new ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestView));
             tcCliente = new MaterialSkin.Controls.MaterialTabControl();
             tpHabitaciones = new TabPage();
@@ -93,7 +93,7 @@
             tcCliente.Multiline = true;
             tcCliente.Name = "tcCliente";
             tcCliente.SelectedIndex = 0;
-            tcCliente.Size = new Size(1028, 526);
+            tcCliente.Size = new Size(1028, 653);
             tcCliente.TabIndex = 0;
             // 
             // tpHabitaciones
@@ -105,7 +105,7 @@
             tpHabitaciones.Location = new Point(4, 39);
             tpHabitaciones.Name = "tpHabitaciones";
             tpHabitaciones.Padding = new Padding(3);
-            tpHabitaciones.Size = new Size(1020, 483);
+            tpHabitaciones.Size = new Size(1020, 610);
             tpHabitaciones.TabIndex = 5;
             tpHabitaciones.Text = "Habitaciones";
             // 
@@ -280,11 +280,11 @@
             cmbFiltroHabitaciones.IntegralHeight = false;
             cmbFiltroHabitaciones.ItemHeight = 43;
             cmbFiltroHabitaciones.Items.AddRange(new object[] { "Filtrar por categoría", "Economica", "Estándard", "Presidencial" });
-            cmbFiltroHabitaciones.Location = new Point(868, 19);
+            cmbFiltroHabitaciones.Location = new Point(753, 19);
             cmbFiltroHabitaciones.MaxDropDownItems = 4;
             cmbFiltroHabitaciones.MouseState = MaterialSkin.MouseState.OUT;
             cmbFiltroHabitaciones.Name = "cmbFiltroHabitaciones";
-            cmbFiltroHabitaciones.Size = new Size(1, 49);
+            cmbFiltroHabitaciones.Size = new Size(231, 49);
             cmbFiltroHabitaciones.StartIndex = 0;
             cmbFiltroHabitaciones.TabIndex = 17;
             // 
@@ -294,9 +294,9 @@
             panelContenedor.Dock = DockStyle.Bottom;
             panelContenedor.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             panelContenedor.ForeColor = Color.FromArgb(222, 255, 255, 255);
-            panelContenedor.Location = new Point(3, 141);
+            panelContenedor.Location = new Point(3, 133);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1014, 339);
+            panelContenedor.Size = new Size(1014, 474);
             panelContenedor.TabIndex = 14;
             // 
             // tpReservas
@@ -308,7 +308,7 @@
             tpReservas.ImageKey = "book.png";
             tpReservas.Location = new Point(4, 39);
             tpReservas.Name = "tpReservas";
-            tpReservas.Size = new Size(1020, 483);
+            tpReservas.Size = new Size(1020, 610);
             tpReservas.TabIndex = 3;
             tpReservas.Text = "Reservas";
             // 
@@ -335,24 +335,23 @@
             // 
             // listReservas
             // 
-            listReservas.Alignment = ListViewAlignment.SnapToGrid;
             listReservas.Anchor = AnchorStyles.None;
             listReservas.AutoSizeTable = false;
-            listReservas.BackColor = Color.FromArgb(80, 80, 80);
+            listReservas.BackColor = Color.FromArgb(255, 255, 255);
             listReservas.BorderStyle = BorderStyle.None;
             listReservas.Depth = 0;
             listReservas.Font = new Font("Garamond", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listReservas.ForeColor = Color.FromArgb(222, 255, 255, 255);
             listReservas.FullRowSelect = true;
             listReservas.HoverSelection = true;
-            listReservas.Items.AddRange(new ListViewItem[] { listViewItem13, listViewItem14, listViewItem15 });
-            listReservas.Location = new Point(56, 123);
+            listReservas.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            listReservas.Location = new Point(75, 130);
             listReservas.MinimumSize = new Size(200, 100);
             listReservas.MouseLocation = new Point(-1, -1);
             listReservas.MouseState = MaterialSkin.MouseState.OUT;
             listReservas.Name = "listReservas";
             listReservas.OwnerDraw = true;
-            listReservas.Size = new Size(913, 386);
+            listReservas.Size = new Size(891, 436);
             listReservas.TabIndex = 1;
             listReservas.TileSize = new Size(3, 3);
             listReservas.UseCompatibleStateImageBehavior = false;
@@ -382,13 +381,13 @@
             tpCuenta.Location = new Point(4, 39);
             tpCuenta.Name = "tpCuenta";
             tpCuenta.Padding = new Padding(3);
-            tpCuenta.Size = new Size(1020, 483);
+            tpCuenta.Size = new Size(1020, 610);
             tpCuenta.TabIndex = 1;
             tpCuenta.Text = "Mi Cuenta";
             // 
             // materialCard6
             // 
-            materialCard6.BackColor = Color.FromArgb(80, 80, 80);
+            materialCard6.BackColor = Color.FromArgb(255, 255, 255);
             materialCard6.Controls.Add(txtPassword);
             materialCard6.Controls.Add(txtUsername);
             materialCard6.Controls.Add(txtTelefono);
@@ -401,7 +400,7 @@
             materialCard6.Controls.Add(lblTelefono);
             materialCard6.Controls.Add(lblNombre);
             materialCard6.Depth = 0;
-            materialCard6.ForeColor = Color.FromArgb(222, 255, 255, 255);
+            materialCard6.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard6.Location = new Point(134, 99);
             materialCard6.Margin = new Padding(14);
             materialCard6.MouseState = MaterialSkin.MouseState.HOVER;
@@ -615,7 +614,7 @@
             tpLogout.ImageKey = "logout.png";
             tpLogout.Location = new Point(4, 39);
             tpLogout.Name = "tpLogout";
-            tpLogout.Size = new Size(1020, 483);
+            tpLogout.Size = new Size(1020, 610);
             tpLogout.TabIndex = 4;
             tpLogout.Text = "Salir";
             // 
@@ -645,7 +644,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1048, 593);
+            ClientSize = new Size(1048, 720);
             Controls.Add(tcCliente);
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = tcCliente;

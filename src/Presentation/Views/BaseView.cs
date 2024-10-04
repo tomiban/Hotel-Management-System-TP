@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Views
 {
-    public partial class BaseView: MaterialForm
+    public partial class BaseView : MaterialForm
     {
         readonly MaterialSkin.MaterialSkinManager materialSkinManager;
-       
+
         public BaseView()
         {
             var ColorScheme = new ColorScheme(
@@ -25,7 +25,7 @@ namespace PresentationLayer.Views
 
             SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             this.FormClosing += GuestView_FormClosing;
-           
+
         }
 
         // Evento que se ejecutará cuando se intente cerrar el formulario
@@ -37,6 +37,11 @@ namespace PresentationLayer.Views
                 // Terminar completamente la aplicación
                 Application.Exit();
             }
+        }
+
+        private void InitializeComponent()
+        {
+
         }
     }
 }

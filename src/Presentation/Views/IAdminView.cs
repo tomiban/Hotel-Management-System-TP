@@ -12,7 +12,7 @@ namespace Presentation.Views
         void ActualizarListaUsuarios(List<Usuario> items);
         void ActualizarListaHabitaciones(List<Habitacion> items);
         void CargarListaReservasActivas(List<Reserva> reservas);
-        void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual);
+        void ActualizarDashboard(int reservasActivas, double porcentajeOcupacion, int totalHabitaciones, int totalUsuarios, int nuevosUsuarios, decimal facturacionAnual);
         void ShowDialogLogout();
         int ObtenerNroHabitacionSeleccionado();
 
