@@ -3,10 +3,11 @@ using MaterialSkin;
 using Presentation.Views;
 using Domain.Entities;
 using PresentationLayer.Helpers;
+using PresentationLayer.Views;
 
 namespace Presentation.Views
 {
-    public partial class RegisterView : MaterialForm, IRegisterView
+    public partial class RegisterView : BaseView, IRegisterView
     {
 
         public event EventHandler RegisterEvent;
@@ -30,22 +31,9 @@ namespace Presentation.Views
         {
             InitializeComponent();
 
-            var colorScheme = new ColorScheme(
-             Primary.DeepPurple600,   // Deep Purple más oscuro para un mejor contraste
-             Primary.DeepPurple700,   // Deep Purple oscuro para el contraste principal
-             Primary.Cyan700,   // Deep Purple base para fondos principales
-             Accent.Cyan700,         // Acento verde 400 para destacar
-             TextShade.WHITE          // Color de texto blanco para el contraste
-            );
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, colorScheme);
-
             AssocciateAndRaiseViewEvents();
             
-            // Inicializar el botón como deshabilitado
             btnRegistrarse.Enabled = false;
-
-            // Asociar los eventos TextChanged a los campos de texto
             txtNombre.TextChanged += ValidateFields;
             txtApellido.TextChanged += ValidateFields;
             txtEdad.TextChanged += ValidateFields;

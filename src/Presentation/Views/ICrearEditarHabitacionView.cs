@@ -13,15 +13,17 @@ namespace Presentation.Views
 
         void ShowMessage(string title, string message);
         void SetEditMode(Habitacion habitacion);
+        void SetAddMode();
 
         void SetTitle(string title);        
         void SetButtonText(string text);
 
 
+
         event EventHandler SaveEvent;
         event EventHandler NavigateToAdminView;
 
-        void LimpiarCampos();
+        //void LimpiarCampos();
         void CloseView();
         void HideView();
         void ShowView();

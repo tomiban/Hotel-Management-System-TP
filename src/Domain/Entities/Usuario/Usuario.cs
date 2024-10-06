@@ -40,10 +40,12 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El rol es requerido.")]
         [EnumDataType(typeof(Role), ErrorMessage = "El rol seleccionado no es válido.")]
         public Role Role { get; set; }
+        public DateTime? FechaRegistro { get; set ; }
 
         public Usuario()
         {
             Id = ++_contadorId;
+            FechaRegistro = DateTime.Now;
         }
     }
 
