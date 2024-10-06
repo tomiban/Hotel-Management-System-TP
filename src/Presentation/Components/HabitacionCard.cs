@@ -125,7 +125,7 @@ namespace PresentationLayer.Components
                 ForeColor = Color.Black,
                 Location = new Point(15, 150),
                 TextAlign = ContentAlignment.TopLeft,
-                AutoSize = false,
+                AutoSize = true,
                 Width = 230,
                 MaximumSize = new Size(230, 0), // Permite que el texto se ajuste verticalmente
                 Padding = new Padding(5, 0, 5, 0),
