@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
 using MaterialSkin.Controls;
+using PresentationLayer.Events;
+using PresentationLayer.Utils;
 using System;
 using System.Drawing;
 using System.IO;
@@ -21,7 +23,8 @@ namespace PresentationLayer.Components
         public DateTimePicker FechaHastaPicker { get; set; }
         public int HabitacionId { get; set; }
 
-        public event EventHandler OnReservarButtonClicked;
+        public event EventHandler<HabitacionEventArgs> OnRealizarReserva;
+
 
 
         Dictionary<TipoHabitacion, Color> tipoHabitacionColors = new Dictionary<TipoHabitacion, Color>
@@ -53,13 +56,8 @@ namespace PresentationLayer.Components
             }
 
             // Definir propiedades de la tarjeta
-            this.Size = new Size(260, 350);
+            this.Size = new Size(260, 330);
             this.BackColor = Color.FromArgb(55, 71, 79);
-            this.Padding = new Padding(30, 10, 30, 10);
-            this.Margin = new Padding(10);
-            this.Depth = 4;
-
-
 
             // Etiqueta de número de habitación
             NroHabitacionLabel = new Label
@@ -122,31 +120,16 @@ namespace PresentationLayer.Components
             // Campo de texto para la descripción de la habitación
             DescripcionTextBox = new MaterialLabel
             {
-                Text = habitacion.Descripcion, // Hardcodeada por ahora
+                Text = habitacion.Descripcion,
                 Font = new Font("Roboto", 10, FontStyle.Regular),
                 ForeColor = Color.Black,
                 Location = new Point(15, 150),
                 TextAlign = ContentAlignment.TopLeft,
+                AutoSize = false,
                 Width = 230,
-                Height = 90,
+                MaximumSize = new Size(230, 0), // Permite que el texto se ajuste verticalmente
                 Padding = new Padding(5, 0, 5, 0),
                 FontType = MaterialSkin.MaterialSkinManager.fontType.Caption
-            };
-
-            // DateTimePicker para la fecha de inicio de la reserva
-            FechaDesdePicker = new DateTimePicker
-            {
-                Format = DateTimePickerFormat.Short,
-                Location = new Point(15, 240),
-                Size = new Size(110, 30)
-            };
-
-            // DateTimePicker para la fecha de fin de la reserva
-            FechaHastaPicker = new DateTimePicker
-            {
-                Format = DateTimePickerFormat.Short,
-                Location = new Point(135, 240),
-                Size = new Size(110, 30)
             };
 
             // Botón de reserva
@@ -163,9 +146,21 @@ namespace PresentationLayer.Components
                 ForeColor = Color.White,
                 AutoSize = false
             };
+            // Ajustar la posición del botón de reservar
+            ReservarButton.Location = new Point((this.Width - ReservarButton.Width) / 2, 260); // Mover hacia arriba
 
-            // Enlazar el click del botón al evento público
-            ReservarButton.Click += (sender, e) => OnReservarButtonClicked?.Invoke(this, e);
+            // Enlazar el click del botón al evento público OnRealizarReserva
+            ReservarButton.Click += (sender, e) =>
+            {
+                if (habitacion.Disponible)
+                {
+                    EventHelper.RaiseEvent(this, OnRealizarReserva, new HabitacionEventArgs(habitacion));
+                }
+                else
+                {
+                    MessageBox.Show("Habitación no disponible.");
+                }
+            };
 
             // Añadir Tooltip para el botón de reserva
             var toolTip = new ToolTip();

@@ -2,25 +2,20 @@
 using MaterialSkin;
 using PresentationLayer.Helpers;
 using PresentationLayer.Utils;
+using PresentationLayer.Views;
 
 namespace Presentation.Views
 {
-    public partial class LoginView : MaterialForm, ILoginView
+    public partial class LoginView : BaseView, ILoginView
     {
         public LoginView()
         {
             InitializeComponent();
 
-            var ColorScheme = new ColorScheme(
-                Primary.DeepPurple600,
-                Primary.DeepPurple700,
-                Primary.Cyan700,
-                Accent.Cyan700,
-                TextShade.WHITE);
-
-            SkinHelper.ApplyTheme(this, MaterialSkinManager.Themes.DARK, ColorScheme);
             AssociateAndRaiseViewEvents();
+
         }
+
 
         public event EventHandler LoginEvent;
         public event EventHandler RedirectToRegister;

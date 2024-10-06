@@ -1,4 +1,6 @@
-﻿using Presentation.Views;
+﻿using Domain.Entities;
+using Presentation.Views;
+using PresentationLayer.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,16 @@ using System.Threading.Tasks;
 
 namespace Presentation.Presenters
 {
-    public interface IAdminPresenter
+    public interface IAdminPresenter: IPresenter
     {
-        IAdminView GetAdminView();
+     
         void CargarHabitaciones();
+        void CargarReservas();
         void CargarUsuarios();
-        //EventHandler OnAñadirHab();
+        void CargarListaReservasActivas(List<Reserva> reservas);
+        void CargarListaHabitaciones(List<Habitacion> habitaciones);
+        void CargarListaUsuarios(List<Usuario> usuarios);
+        void CargarDatosDashboard();
+  
     }
 }

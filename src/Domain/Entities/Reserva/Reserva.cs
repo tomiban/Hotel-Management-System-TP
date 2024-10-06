@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Domain.Interfaces;
 using MemoryPack;
 
@@ -22,26 +21,55 @@ namespace Domain.Entities
         [Required(ErrorMessage = "El ID de la habitación es requerido.")]
         public int NroHabitacion { get; set; }
 
-        [Required(ErrorMessage = "El ID del usuario es requerido.")]
-        public int IdUsuario { get; set; }
+        public TipoHabitacion TipoHabitacion { get; set; }
+
+        public int UserId { get; set; }
+
         public string Username { get; set; }
-        public Habitacion Habitacion { get; set; }
+
+        public decimal PrecioPorNoche { get; set; }
+
+        public int DiasDeEstadia => FechaInicio > FechaFin ? throw new Exception("La fecha de inicio no puede ser posterior a la fecha de fin.") : (int)(FechaFin - FechaInicio).TotalDays;
+
+        public Decimal MontoTotal => DiasDeEstadia * PrecioPorNoche;
+
+        public EstadoReserva Estado { get; set; }
+
+
+        // Método para verificar si la reserva ha expirado
+        public void VerificarExpiracion()
+        {
+            if (FechaFin < DateTime.Now && Estado == EstadoReserva.Activa)
+            {
+                Estado = EstadoReserva.Expirada;  // Si la fecha de fin ha pasado, marcar como expirada
+            }
+        }
+
+        // Método para cancelar una reserva solo si está activa
+        public void Cancelar()
+        {
+            if (Estado == EstadoReserva.Activa)
+            {
+                Estado = EstadoReserva.Cancelada;
+            }
+            else
+            {
+                throw new InvalidOperationException("Solo se pueden cancelar reservas activas.");
+            }
+        }
+
 
         public Reserva()
         {
-            Id = ++_contadorId;
+            Id = ++_contadorId; // Incrementar el contador de ID de manera estática
+            Estado = EstadoReserva.Activa;
         }
 
-        public int DiasDeEstadia
+        public enum EstadoReserva
         {
-            get
-            {
-                if (FechaFin < FechaInicio)
-                {
-                    throw new InvalidOperationException("La fecha de fin no puede ser anterior a la fecha de inicio.");
-                }
-                return (FechaFin - FechaInicio).Days;
-            }
+            Activa = 1,
+            Cancelada = 2,
+            Expirada = 3  // Añadido nuevo estado Expirada
         }
     }
 }

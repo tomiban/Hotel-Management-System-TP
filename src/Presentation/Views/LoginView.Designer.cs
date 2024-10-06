@@ -39,9 +39,11 @@
             // txtUsuario
             // 
             txtUsuario.AnimateReadOnly = false;
+            txtUsuario.BackColor = Color.FromArgb(50, 50, 50);
             txtUsuario.BorderStyle = BorderStyle.None;
             txtUsuario.Depth = 0;
             txtUsuario.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtUsuario.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtUsuario.LeadingIcon = null;
             txtUsuario.Location = new Point(162, 142);
             txtUsuario.MaxLength = 32;
@@ -56,9 +58,11 @@
             // txtContraseña
             // 
             txtContraseña.AnimateReadOnly = false;
+            txtContraseña.BackColor = Color.FromArgb(50, 50, 50);
             txtContraseña.BorderStyle = BorderStyle.None;
             txtContraseña.Depth = 0;
             txtContraseña.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtContraseña.ForeColor = Color.FromArgb(222, 255, 255, 255);
             txtContraseña.LeadingIcon = null;
             txtContraseña.Location = new Point(162, 239);
             txtContraseña.MaxLength = 16;
@@ -74,9 +78,11 @@
             // btnLogin
             // 
             btnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogin.BackColor = Color.FromArgb(50, 50, 50);
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnLogin.Depth = 0;
+            btnLogin.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
             btnLogin.Location = new Point(224, 323);
@@ -89,13 +95,15 @@
             btnLogin.Text = "Iniciar sesión";
             btnLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnLogin.UseAccentColor = false;
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
+            lblUsuario.BackColor = Color.FromArgb(50, 50, 50);
             lblUsuario.Depth = 0;
             lblUsuario.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblUsuario.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblUsuario.Location = new Point(162, 120);
             lblUsuario.MouseState = MaterialSkin.MouseState.HOVER;
             lblUsuario.Name = "lblUsuario";
@@ -106,8 +114,10 @@
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
+            lblContraseña.BackColor = Color.FromArgb(50, 50, 50);
             lblContraseña.Depth = 0;
             lblContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            lblContraseña.ForeColor = Color.FromArgb(222, 255, 255, 255);
             lblContraseña.Location = new Point(162, 217);
             lblContraseña.MouseState = MaterialSkin.MouseState.HOVER;
             lblContraseña.Name = "lblContraseña";
@@ -118,9 +128,11 @@
             // btnNoTengoCuenta
             // 
             btnNoTengoCuenta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnNoTengoCuenta.BackColor = Color.FromArgb(50, 50, 50);
             btnNoTengoCuenta.Cursor = Cursors.Hand;
             btnNoTengoCuenta.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnNoTengoCuenta.Depth = 0;
+            btnNoTengoCuenta.ForeColor = Color.FromArgb(222, 255, 255, 255);
             btnNoTengoCuenta.HighEmphasis = true;
             btnNoTengoCuenta.Icon = null;
             btnNoTengoCuenta.Location = new Point(195, 371);
@@ -133,13 +145,13 @@
             btnNoTengoCuenta.Text = "No estoy registrado";
             btnNoTengoCuenta.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             btnNoTengoCuenta.UseAccentColor = false;
-            btnNoTengoCuenta.UseVisualStyleBackColor = true;
+            btnNoTengoCuenta.UseVisualStyleBackColor = false;
             // 
             // LoginView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
+            BackColor = Color.FromArgb(50, 50, 50);
             ClientSize = new Size(600, 444);
             Controls.Add(btnNoTengoCuenta);
             Controls.Add(lblContraseña);
