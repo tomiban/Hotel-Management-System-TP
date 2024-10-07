@@ -16,7 +16,7 @@ namespace PresentationLayer.Views
         event EventHandler OnCancelarCambioContraseña;
 
         // Método para mostrar mensajes en la vista (éxito/error)
-        void ShowMessage(string message);
+        void ShowMessage(string message, string title);
         void ShowView();
         void HideView();
     }

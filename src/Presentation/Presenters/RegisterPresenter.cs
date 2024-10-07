@@ -77,11 +77,11 @@ namespace Presentation.Presenters
             }
             catch (ValidationException ex)
             {
-                _view.ShowMessage($"{ex.Message}", "Error de validación");
+                _view.ShowMessage($"Error de validación: {ex.Message}", "Error");
             }
             catch (UnauthorizedAccessException ex)
             {
-                _view.ShowMessage($"Error de autenticación: {ex.Message}", "Error de autenticación");
+                _view.ShowMessage($"Error de autenticación: {ex.Message}", "Error");
             }
             catch (IOException ex)
             {

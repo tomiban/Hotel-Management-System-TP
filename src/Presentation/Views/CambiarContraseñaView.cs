@@ -22,9 +22,9 @@ namespace PresentationLayer.Views
         public event EventHandler OnCambiarContraseña;
         public event EventHandler OnCancelarCambioContraseña;
 
-        public void ShowMessage(string message)
+        public void ShowMessage(string message, string title)
         {
-            MaterialMessageBox.Show(message);
+            MaterialMessageBox.Show(message, title);
         }
 
         public CambiarContraseñaView()
@@ -62,11 +62,6 @@ namespace PresentationLayer.Views
         public void HideView()
         {
             this.Hide();
-        }
-
-        private void CambiarContraseñaView_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -107,7 +107,7 @@ namespace Presentation.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error al actualizar el rol: {ex.Message}", "Error");
+                _view.ShowMessage($"Error al actualizar el rol {ex.Message}", "Error");
             }
         }
 
@@ -136,7 +136,7 @@ namespace Presentation.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage($"Error: {ex.Message}", "No se pudo eliminar la habitación");
+                _view.ShowMessage($"No se pudo eliminar la habitación: {ex.Message}", "Error");
             }
         }
 
@@ -226,7 +226,7 @@ namespace Presentation.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error al cargar los usuarios.", $"Error: {ex.Message}");
+                _view.ShowMessage($"Error al cargar los usuarios {ex.Message}", $"Error");
             }
         }
     }
