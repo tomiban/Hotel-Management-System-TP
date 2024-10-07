@@ -26,10 +26,10 @@
         "id": 3,
         "nombre": "Tomás",
         "apellido": "Banchio",
-        "edad": 29,
+        "edad": 26,
         "telefono": "777888999",
-        "username": "tomasb29",
-        "contraseña": "t0mas_secure",
+        "username": "tomiban",
+        "contraseña": "rocco20",
         "role": "Cliente",
         "fecha_registro": "2024-10-07T12:00:00"
       },
