@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>icono.ico</ApplicationIcon>
+    <AssemblyName>El Molino Hotel</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,6 +52,7 @@
     <Content Include="Assets\bed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="icono.ico" />
   </ItemGroup>
 
   <ItemGroup>

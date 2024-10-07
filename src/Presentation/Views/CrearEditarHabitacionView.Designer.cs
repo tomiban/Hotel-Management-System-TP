@@ -363,7 +363,7 @@
             Controls.Add(materialLabel3);
             Controls.Add(materialLabel1);
             Name = "CrearEditarHabitacionView";
-            Text = "CrearEditarHabitacion";
+            Text = "El Molino Hotel";
             Load += CrearEditarHabitacionView_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
