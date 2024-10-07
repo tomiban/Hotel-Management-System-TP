@@ -29,7 +29,7 @@ namespace Domain.Entities
 
         public decimal PrecioPorNoche { get; set; }
 
-        public int DiasDeEstadia => FechaInicio > FechaFin ? throw new Exception("La fecha de inicio no puede ser posterior a la fecha de fin.") : (int)(FechaFin - FechaInicio).TotalDays;
+        public int DiasDeEstadia => FechaInicio > FechaFin ? throw new Exception("La fecha de inicio no puede ser posterior a la fecha de fin.") : (int)(FechaFin - FechaInicio).TotalDays + 1;
 
         public Decimal MontoTotal => DiasDeEstadia * PrecioPorNoche;
 

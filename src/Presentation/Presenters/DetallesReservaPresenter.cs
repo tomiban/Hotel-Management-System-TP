@@ -3,6 +3,7 @@ using Domain.Entities;
 using PresentationLayer.Presenters;
 using PresentationLayer.Utils;
 using PresentationLayer.Views;
+using System.ComponentModel.DataAnnotations;
 
 public class DetallesReservaPresenter : IDetallesReservaPresenter
 {
@@ -40,6 +41,7 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
     {
         try
         {
+            ValidarFechas();
             _reservaActual.FechaInicio = _view.FechaInicio;
             _reservaActual.FechaFin = _view.FechaFin;
             decimal nuevoPrecio = _reservaService.RecalcularDiasYPrecio(_reservaActual);
@@ -75,6 +77,8 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
     {
         try
         {
+            ValidarFechas();
+        
             _reservaService.ActualizarReserva(_reservaActual);
             _view.ShowMessage("Reserva actualizada con éxito.", "Éxito");
 
@@ -103,4 +107,16 @@ public class DetallesReservaPresenter : IDetallesReservaPresenter
         }
     }
 
+    private void ValidarFechas()
+    {
+        if (_view.FechaInicio < DateTime.Today)
+        {
+            throw new ValidationException("La fecha de inicio no puede ser anterior a la fecha de hoy.");
+        }
+
+        if (_view.FechaInicio > _view.FechaFin)
+        {
+           throw new ValidationException("La fecha de inicio no puede ser posterior a la fecha de fin.");
+        }
+    }
 }

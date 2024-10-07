@@ -191,12 +191,12 @@ namespace Presentation.Views
             listReservas.Items.Clear();
             listReservas.Columns.Clear();
 
-            listReservas.Columns.Add("Nro", 100);
-            listReservas.Columns.Add("Habitacion", 105);
+            listReservas.Columns.Add("Nro", 90);
+            listReservas.Columns.Add("Habitacion", 110);
             listReservas.Columns.Add("Categoria", 141);
             listReservas.Columns.Add("Check In", 170);
             listReservas.Columns.Add("Check Out", 170);
-            listReservas.Columns.Add("Precio Final", 105);
+            listReservas.Columns.Add("Precio Final", 110);
             listReservas.Columns.Add("Estado", 100);
 
 
@@ -210,7 +210,7 @@ namespace Presentation.Views
                 listItem.SubItems.Add(reserva.TipoHabitacion.ToString());
                 listItem.SubItems.Add(reserva.FechaInicio.ToShortDateString());
                 listItem.SubItems.Add(reserva.FechaFin.ToShortDateString());
-                listItem.SubItems.Add($"{reserva.MontoTotal:C} ARS");
+                listItem.SubItems.Add($"{reserva.MontoTotal:C}");
                 listItem.SubItems.Add(reserva.Estado.ToString());
 
                 // Guardar el ID de la reserva en el Tag del ListViewItem

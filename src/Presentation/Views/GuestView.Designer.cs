@@ -326,9 +326,9 @@
             btnModificarReserva.MouseState = MaterialSkin.MouseState.HOVER;
             btnModificarReserva.Name = "btnModificarReserva";
             btnModificarReserva.NoAccentTextColor = Color.Empty;
-            btnModificarReserva.Size = new Size(166, 36);
+            btnModificarReserva.Size = new Size(122, 36);
             btnModificarReserva.TabIndex = 2;
-            btnModificarReserva.Text = "MODIFICAR RESERVA";
+            btnModificarReserva.Text = "VER DETALLES";
             btnModificarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnModificarReserva.UseAccentColor = false;
             btnModificarReserva.UseVisualStyleBackColor = false;

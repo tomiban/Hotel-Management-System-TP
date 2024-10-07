@@ -18,7 +18,7 @@ namespace Presentation.Views
         void SetTitle(string title);        
         void SetButtonText(string text);
 
-
+        void LimpiarCampos();
 
         event EventHandler SaveEvent;
         event EventHandler NavigateToAdminView;

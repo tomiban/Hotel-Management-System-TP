@@ -44,17 +44,17 @@ namespace Presentation.Presenters
                 switch (usuario.Role)
                 {
                     case Role.Admin:
-                        _navigationService.NavigateTo<IAdminPresenter>();  // Navegar a Admin
+                        _navigationService.NavigateTo<IAdminPresenter>();  
                         break;
                     case Role.Cliente:
-                        _navigationService.NavigateTo<IGuestPresenter>();  // Navegar a Cliente
+                        _navigationService.NavigateTo<IGuestPresenter>();  
                         break;
                     default:
                         _view.ShowMessage("Rol inválido", "Error");
-                        return;  // Terminar el flujo si el rol es inválido
+                        return;  
                 }
 
-                _view.HideView();  // Ocultar la vista de login solo si la navegación es exitosa
+                _view.HideView();  
             }
             catch (ValidationException ex)
             {

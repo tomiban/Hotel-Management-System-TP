@@ -75,11 +75,11 @@ namespace ApplicationLayer.Services
         public decimal RecalcularDiasYPrecio(Reserva reserva)
         {
             
-            int diasDeEstadia = (reserva.FechaFin.Date - reserva.FechaInicio.Date).Days;
+            var diasDeEstadia = (reserva.FechaFin.Date - reserva.FechaInicio.Date).TotalDays;
             if (diasDeEstadia <= 0)
                 throw new ArgumentException("La fecha de fin debe ser posterior a la fecha de inicio.");
 
-            decimal precioTotal = diasDeEstadia * reserva.PrecioPorNoche;
+            decimal precioTotal = (int)diasDeEstadia * reserva.PrecioPorNoche;
             return precioTotal;
         }
 

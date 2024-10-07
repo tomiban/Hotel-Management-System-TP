@@ -121,7 +121,7 @@
             btnActualizarReserva.NoAccentTextColor = Color.Empty;
             btnActualizarReserva.Size = new Size(301, 48);
             btnActualizarReserva.TabIndex = 62;
-            btnActualizarReserva.Text = "Modificar";
+            btnActualizarReserva.Text = "Modificar reserva";
             btnActualizarReserva.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnActualizarReserva.UseAccentColor = true;
             btnActualizarReserva.UseVisualStyleBackColor = false;

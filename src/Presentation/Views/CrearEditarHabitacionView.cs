@@ -51,6 +51,15 @@ namespace Presentation.Views
             txtCantidadPersonas.Text = string.Empty;
         }
 
+        public void LimpiarCampos()
+        {
+            this.txtNroHabitacion.Text = "";
+            this.txtCantidadPersonas.Text = "";
+            this.txtDescripcion.Text = "";
+            this.txtPrecioHabitacion.Text = "";
+            cmbTipoHabitacion.SelectedIndex = -1;
+        }
+
 
         public int NroHabitacion => Convert.ToInt32(txtNroHabitacion.Text);
         public TipoHabitacion TipoHabitacion => (TipoHabitacion)cmbTipoHabitacion.SelectedItem;
@@ -81,6 +90,8 @@ namespace Presentation.Views
         {
             MaterialMessageBox.Show(this, title, message);
         }
+
+
 
         public void SetTitle(string title)
         {

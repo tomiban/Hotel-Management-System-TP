@@ -43,14 +43,6 @@ namespace PresentationLayer.Views
             // Botón de actualización de reserva
             btnActualizarReserva.Click += (s, e) =>
             {
-                // Validar que la fecha de inicio no sea posterior a la fecha de fin
-                if (FechaInicio > FechaFin)
-                {
-                    this.ShowMessage("La fecha de inicio no puede ser posterior a la fecha de fin.", "Error");
-                    return;
-                }
-
-                // Lanzar el evento de actualización de reserva
                 EventHelper.RaiseEvent(this, OnActualizarReserva, EventArgs.Empty);
             };
 
@@ -64,6 +56,8 @@ namespace PresentationLayer.Views
             dateTimePickerInicio.ValueChanged += (s, e) => OnFechaCambiadaHandler();
             dateTimePickerFin.ValueChanged += (s, e) => OnFechaCambiadaHandler();
         }
+
+      
 
         // Este método ahora maneja ambos DateTimePickers
         private void OnFechaCambiadaHandler()
@@ -99,7 +93,7 @@ namespace PresentationLayer.Views
         public void MostrarPrecioActualizado(decimal nuevoPrecio)
         {
             txtPrecioFinal.Text = $"{nuevoPrecio:C}";  // Actualizar el precio total
-            txtDiasEstadia.Text = $"{(FechaFin.Date - FechaInicio.Date).Days}";  // Calcular los días de estadía
+            txtDiasEstadia.Text = $"{(FechaFin.Date - FechaInicio.Date).TotalDays}";  // Calcular los días de estadía
         }
 
         // Métodos para manejar la vista
@@ -115,7 +109,7 @@ namespace PresentationLayer.Views
 
         public void ShowMessage(string message, string title)
         {
-            MaterialMessageBox.Show(this, title, message);  // Mostrar un mensaje
+            MaterialMessageBox.Show(this, message, title);  // Mostrar un mensaje
         }
 
         public void HideView()

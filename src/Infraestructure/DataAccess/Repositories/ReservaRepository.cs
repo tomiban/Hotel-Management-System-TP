@@ -108,12 +108,10 @@ namespace Infraestructure.DataAccess.Repositories
                 var reservaExistente = _reservas.FirstOrDefault(r => r.Id == entity.Id);
                 if (reservaExistente != null)
                 {
+                    // Actualizar las propiedades base
                     reservaExistente.FechaInicio = entity.FechaInicio;
                     reservaExistente.FechaFin = entity.FechaFin;
-                    reservaExistente.NroHabitacion = entity.NroHabitacion;
-                    reservaExistente.Username = entity.Username;
-                    reservaExistente.Estado = entity.Estado;  // Actualizar el estado de la reserva
-
+          
                     _persistenceService.Save(FILE_PATH, _reservas);
                 }
                 else

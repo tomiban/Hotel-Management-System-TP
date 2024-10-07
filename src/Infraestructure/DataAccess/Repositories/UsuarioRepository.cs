@@ -16,7 +16,7 @@ namespace Infraestructure.DataAccess.Repositories
         {
             FILE_PATH = FileHelper.GetFilePath(FILE_NAME);
             _persistenceService = persistenceService;
-            _usuarios = GetAll(); // Cargar usuarios al iniciar el repositorio
+            _usuarios = GetAll(); 
         }
 
         public void Add(Usuario usuario)
@@ -75,7 +75,6 @@ namespace Infraestructure.DataAccess.Repositories
                     throw new KeyNotFoundException($"Usuario con ID {usuario.Id} no encontrado.");
                 }
 
-                // Actualizar las propiedades del usuario existente
                 existingUser.Nombre = usuario.Nombre;
                 existingUser.Apellido = usuario.Apellido;
                 existingUser.Username = usuario.Username;
