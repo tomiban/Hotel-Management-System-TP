@@ -117,7 +117,6 @@ namespace PresentationLayer.Components
                 BackColor = Color.Transparent
             };
 
-            // Campo de texto para la descripción de la habitación
             DescripcionTextBox = new MaterialLabel
             {
                 Text = habitacion.Descripcion,
@@ -125,12 +124,14 @@ namespace PresentationLayer.Components
                 ForeColor = Color.Black,
                 Location = new Point(15, 150),
                 TextAlign = ContentAlignment.TopLeft,
-                AutoSize = true,
                 Width = 230,
-                MaximumSize = new Size(230, 0), // Permite que el texto se ajuste verticalmente
+                MaximumSize = new Size(230, 0), // Limitar ancho pero permitir ajuste vertical.
+                AutoSize = false, // Desactiva AutoSize.
+                Height = 100, // Establece una altura adecuada o ajustable.
                 Padding = new Padding(5, 0, 5, 0),
-                FontType = MaterialSkin.MaterialSkinManager.fontType.Caption
+                FontType = MaterialSkin.MaterialSkinManager.fontType.Caption,
             };
+
 
             // Botón de reserva
             ReservarButton = new MaterialButton

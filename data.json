@@ -1,0 +1,91 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Administrador",
+        "apellido": "Sistema",
+        "edad": 35,
+        "telefono": "111222333",
+        "username": "admin",
+        "contraseña": "admin1234",
+        "role": "Admin",
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 2,
+        "nombre": "Tiziano",
+        "apellido": "Méndez",
+        "edad": 27,
+        "telefono": "444555666",
+        "username": "tizianom27",
+        "contraseña": "tizian0_pass",
+        "role": "Cliente",
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 3,
+        "nombre": "Tomás",
+        "apellido": "Banchio",
+        "edad": 26,
+        "telefono": "777888999",
+        "username": "tomiban",
+        "contraseña": "rocco20",
+        "role": "Cliente",
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 4,
+        "nombre": "Mariana",
+        "apellido": "Ríos",
+        "edad": 32,
+        "telefono": "123456789",
+        "username": "marianar32",
+        "contraseña": "mariana_pass",
+        "role": "Cliente",
+        "fecha_registro": "2024-10-07T12:00:00"
+      }
+    ],
+    "habitaciones": [
+      {
+        "id": 1,
+        "nro_habitacion": 101,
+        "tipo_habitacion": "Económica",
+        "disponible": true,
+        "descripcion": "Habitación con cama matrimonial, baño privado, Wi-Fi y aire acondicionado. Ideal para parejas que buscan una opción accesible sin sacrificar confort.",
+        "precio_por_noche": 50.0,
+        "capacidad": 2,
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 2,
+        "nro_habitacion": 202,
+        "tipo_habitacion": "Estándar",
+        "disponible": true,
+        "descripcion": "Habitación con tres camas individuales, TV, minibar y área de descanso. Ideal para familias o grupos que buscan una opción cómoda y funcional.",
+        "precio_por_noche": 80.0,
+        "capacidad": 3,
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 3,
+        "nro_habitacion": 303,
+        "tipo_habitacion": "Premium",
+        "disponible": false,
+        "descripcion": "Habitación con balcón privado, minibar, área de trabajo, cama king size y baño con ducha de efecto lluvia. Una opción ideal para quienes buscan lujo y confort.",
+        "precio_por_noche": 150.0,
+        "capacidad": 4,
+        "fecha_registro": "2024-10-07T12:00:00"
+      },
+      {
+        "id": 4,
+        "nro_habitacion": 404,
+        "tipo_habitacion": "Lujo",
+        "disponible": true,
+        "descripcion": "Habitación con jacuzzi, minibar completo y vista panorámica al mar. Ofrece una experiencia única de lujo con servicio personalizado de mayordomo.",
+        "precio_por_noche": 300.0,
+        "capacidad": 2,
+        "fecha_registro": "2024-10-07T12:00:00"
+      }
+    ]
+  }
+  
