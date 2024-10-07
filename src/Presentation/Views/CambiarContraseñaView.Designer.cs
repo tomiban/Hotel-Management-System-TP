@@ -148,7 +148,6 @@
             Controls.Add(txtContraseñaActual);
             Name = "CambiarContraseñaView";
             Text = "Cambiar Contraseña";
-            Load += CambiarContraseñaView_Load;
             ResumeLayout(false);
             PerformLayout();
         }

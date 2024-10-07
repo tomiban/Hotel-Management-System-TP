@@ -28,7 +28,7 @@ namespace Domain.Entities
         [Range(0, double.MaxValue, ErrorMessage = "El precio por noche debe ser positivo.")]
         public decimal PrecioPorNoche { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "La cantidad de personas debe ser al menos 1.")]
+        [Range(1, 10, ErrorMessage = "La cantidad de personas debe ser al menos 1 y no mayor a 10.")]
         public int Capacidad { get; set; }
 
 

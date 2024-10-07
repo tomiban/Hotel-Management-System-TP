@@ -83,7 +83,7 @@ namespace Presentation.Presenters
                     }
 
                     _habitacionServices.Update(habitacion);
-                    _view.ShowMessage("Habitación actualizada correctamente.", "Información");
+                    _view.ShowMessage("Habitación actualizada correctamente.", "Éxito");
                 }
                 else
                 {
@@ -94,7 +94,7 @@ namespace Presentation.Presenters
                     }
 
                     _habitacionServices.Add(habitacion);
-                    _view.ShowMessage("Habitación creada correctamente.", "Información");
+                    _view.ShowMessage("Habitación creada correctamente.", "Éxito");
                 }
 
                 _isEditMode = false;

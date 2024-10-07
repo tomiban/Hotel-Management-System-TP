@@ -27,7 +27,8 @@ namespace PresentationLayer.Components
                 TextAlign = ContentAlignment.MiddleCenter,
                 Visible = false,  // Oculto por defecto
                 Dock = DockStyle.None,
-                FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1
+                FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1,
+                Margin = new Padding(200, 100, 0, 0)
             };
 
             this.Controls.Add(lblMensaje); // Añadimos el label al contenedor

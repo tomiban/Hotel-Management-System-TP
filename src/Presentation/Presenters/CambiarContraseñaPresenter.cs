@@ -1,8 +1,10 @@
 ﻿using ApplicationLayer.Services;
+using Domain.Entities;
 using PresentationLayer.Utils;
 using PresentationLayer.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,23 +38,32 @@ namespace PresentationLayer.Presenters
         {
             _navigationService.GoBack();
         }
-        
+
 
         private void HandleCambiarContraseña(object? sender, EventArgs e)
         {
-            var usuario = _authService.GetCurrentUser();
-
-            // Verificar la contraseña actual
-            if (!_authService.VerifyPassword(usuario, _view.ContraseñaActual))
+            try
             {
-                _view.ShowMessage("La contraseña actual es incorrecta.");
-                return;
-            }
+                var usuario = _authService.GetCurrentUser();
 
-            // Cambiar la contraseña por la nueva
-            _authService.ChangePassword(usuario, _view.NuevaContraseña);
-            _view.ShowMessage("La contraseña se ha cambiado con éxito.");
-            _navigationService.GoBack();
+                if (!_authService.VerifyPassword(usuario, _view.ContraseñaActual))
+                {
+                    throw new ValidationException("La contraseña actual es incorrecta.");
+                }
+
+                if(_view.NuevaContraseña.Length < 8)
+                {
+                    throw new ValidationException("La contraseña debe tener al menos 8 caracteres.");
+                }
+               
+                _authService.ChangePassword(usuario, _view.NuevaContraseña);
+                _view.ShowMessage("La contraseña se ha cambiado con éxito.", "Éxito");
+                _navigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                _view.ShowMessage("Error al cambiar la contraseña: " + ex.Message, "Error");
+            }
         }
 
         public void HideView()

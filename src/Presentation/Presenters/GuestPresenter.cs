@@ -54,7 +54,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"Error al cargar los datos iniciales: {ex.Message}");
+                _view.ShowMessage( $"Error al cargar los datos iniciales: {ex.Message}", "Error");
             }
         }
 
@@ -91,7 +91,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"Ocurrió un error al filtrar las habitaciones: {ex.Message}");
+                _view.ShowMessage($"Ocurrió un error al filtrar las habitaciones: {ex.Message}", "Error");
             }
         }
 
@@ -131,12 +131,12 @@ namespace PresentationLayer.Presenters
                 }
                 else
                 {
-                    _view.ShowMessage("Error", "No se encontró la reserva seleccionada.");
+                    _view.ShowMessage("No se encontró la reserva seleccionada.", "Éxito");
                 }
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"Ocurrió un error al cargar los detalles de la reserva: {ex.Message}");
+                _view.ShowMessage($"Ocurrió un error al cargar los detalles de la reserva: {ex.Message}", "Error");
             }
         }
 
@@ -150,7 +150,7 @@ namespace PresentationLayer.Presenters
             }
             else
             {
-                _view.ShowMessage("Error", "La reserva seleccionada no se puede modificar.");
+                _view.ShowMessage("La reserva seleccionada no se puede modificar.", "Error" );
             }
         }
 
@@ -162,7 +162,7 @@ namespace PresentationLayer.Presenters
                 var usuarioAutenticado = _authService.GetCurrentUser();
                 if (usuarioAutenticado == null)
                 {
-                    _view.ShowMessage("Error", "Debe iniciar sesión antes de realizar una reserva.");
+                    _view.ShowMessage("Debe iniciar sesión antes de realizar una reserva.", "Error");
                     return;
                 }
 
@@ -178,7 +178,7 @@ namespace PresentationLayer.Presenters
                 };
 
                 _reservaService.AgregarReserva(reserva);
-                _view.ShowMessage("Éxito", "Reserva registrada correctamente.");
+                _view.ShowMessage("Reserva registrada correctamente.", "Éxito");
 
          
                 CargarReservas();
@@ -191,7 +191,7 @@ namespace PresentationLayer.Presenters
             }
             catch (Exception ex)
             {
-                _view.ShowMessage("Error", $"Ocurrió un error al realizar la reserva: {ex.Message}");
+                _view.ShowMessage($"Ocurrió un error al realizar la reserva: {ex.Message}", "Error");
             }
         }
 
