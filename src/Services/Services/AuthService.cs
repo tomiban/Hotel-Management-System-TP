@@ -1,12 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Validation.ModelDataAnnotationCheck;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using BCrypt.Net;
-using InfraestructureLayer.Helpers;
 
 namespace ApplicationLayer.Services
 {
