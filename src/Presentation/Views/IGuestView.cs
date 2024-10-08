@@ -34,7 +34,8 @@ namespace PresentationLayer.Views
         void SetModificarReservaButtonState(bool enabled);
         void ShowMessage(string title, string message);
         void MostrarMensaje(string mensaje);
-        void ShowDialogLogout();
+        bool ShowDialogLogout();
+        void ReiniciarTabPage();
 
         void CargarDatosUsuario(Usuario usuario);
         void ShowView();

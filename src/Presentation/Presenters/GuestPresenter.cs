@@ -80,7 +80,13 @@ namespace PresentationLayer.Presenters
         // Manejo de Logout
         private void HandleLogoutTabSelected(object? sender, EventArgs e)
         {
-            _view.ShowDialogLogout();
+            var result = _view.ShowDialogLogout();
+            if(result)
+            {
+                _view.ReiniciarTabPage();
+                _navigationService.GoBack();
+            }
+            
         }
 
         private void HandleFiltrarHabitacionesRangoFechas(object? sender, FiltroFechaEventArgs e)

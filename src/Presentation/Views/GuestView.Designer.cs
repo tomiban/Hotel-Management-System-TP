@@ -124,7 +124,7 @@
             tableLayoutPanel.Controls.Add(materialLabel5, 1, 0);
             tableLayoutPanel.Controls.Add(cmbFiltroHabitaciones, 3, 0);
             tableLayoutPanel.Dock = DockStyle.Top;
-            tableLayoutPanel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            tableLayoutPanel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             tableLayoutPanel.ForeColor = Color.FromArgb(222, 255, 255, 255);
             tableLayoutPanel.Location = new Point(3, 3);
             tableLayoutPanel.Margin = new Padding(0);
@@ -165,7 +165,7 @@
             panel3.BackColor = Color.FromArgb(50, 50, 50);
             panel3.Controls.Add(materialLabel3);
             panel3.Controls.Add(dtpFechaHasta);
-            panel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            panel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             panel3.ForeColor = Color.FromArgb(222, 255, 255, 255);
             panel3.Location = new Point(420, 90);
             panel3.Name = "panel3";
@@ -193,12 +193,12 @@
             // 
             dtpFechaHasta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dtpFechaHasta.BackColor = Color.FromArgb(50, 50, 50);
-            dtpFechaHasta.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dtpFechaHasta.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             dtpFechaHasta.ForeColor = Color.FromArgb(222, 255, 255, 255);
             dtpFechaHasta.Format = DateTimePickerFormat.Short;
             dtpFechaHasta.Location = new Point(130, 10);
             dtpFechaHasta.Name = "dtpFechaHasta";
-            dtpFechaHasta.Size = new Size(174, 24);
+            dtpFechaHasta.Size = new Size(174, 23);
             dtpFechaHasta.TabIndex = 20;
             // 
             // panel4
@@ -207,7 +207,7 @@
             panel4.BackColor = Color.FromArgb(50, 50, 50);
             panel4.Controls.Add(materialLabel4);
             panel4.Controls.Add(dtpFechaDesde);
-            panel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            panel4.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             panel4.ForeColor = Color.FromArgb(222, 255, 255, 255);
             panel4.Location = new Point(64, 90);
             panel4.Name = "panel4";
@@ -235,12 +235,12 @@
             // 
             dtpFechaDesde.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dtpFechaDesde.BackColor = Color.FromArgb(50, 50, 50);
-            dtpFechaDesde.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            dtpFechaDesde.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             dtpFechaDesde.ForeColor = Color.FromArgb(222, 255, 255, 255);
             dtpFechaDesde.Format = DateTimePickerFormat.Short;
             dtpFechaDesde.Location = new Point(134, 8);
             dtpFechaDesde.Name = "dtpFechaDesde";
-            dtpFechaDesde.Size = new Size(173, 24);
+            dtpFechaDesde.Size = new Size(173, 23);
             dtpFechaDesde.TabIndex = 19;
             // 
             // materialLabel5
@@ -292,7 +292,7 @@
             // 
             panelContenedor.BackColor = Color.FromArgb(50, 50, 50);
             panelContenedor.Dock = DockStyle.Bottom;
-            panelContenedor.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            panelContenedor.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             panelContenedor.ForeColor = Color.FromArgb(222, 255, 255, 255);
             panelContenedor.Location = new Point(3, 133);
             panelContenedor.Name = "panelContenedor";
@@ -542,11 +542,11 @@
             // 
             linkCambiarContraseña.AutoSize = true;
             linkCambiarContraseña.BackColor = Color.FromArgb(80, 80, 80);
-            linkCambiarContraseña.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            linkCambiarContraseña.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             linkCambiarContraseña.ForeColor = Color.FromArgb(222, 255, 255, 255);
             linkCambiarContraseña.Location = new Point(581, 146);
             linkCambiarContraseña.Name = "linkCambiarContraseña";
-            linkCambiarContraseña.Size = new Size(67, 17);
+            linkCambiarContraseña.Size = new Size(65, 17);
             linkCambiarContraseña.TabIndex = 7;
             linkCambiarContraseña.TabStop = true;
             linkCambiarContraseña.Text = "Modificar";

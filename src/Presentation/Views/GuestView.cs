@@ -222,6 +222,13 @@ namespace Presentation.Views
 
         }
 
+        public void ReiniciarTabPage()
+        {
+            tcCliente.Refresh();
+            tcCliente.SelectedTab = tpHabitaciones;
+ tcCliente.Refresh();
+        }
+
         public void MostrarMensaje(string mensaje)
         {
             habitacionCardContainer.Clear();  // Limpiar cualquier contenido previo
@@ -234,7 +241,7 @@ namespace Presentation.Views
         }
 
 
-        public void ShowDialogLogout()
+        public bool ShowDialogLogout()
         {
             // Mostrar el diálogo de confirmación
             var dialog = new MaterialDialog(this, "Confirmar Salida",
@@ -243,14 +250,9 @@ namespace Presentation.Views
             dialog.StartPosition = FormStartPosition.CenterParent;
             var result = dialog.ShowDialog(this);
 
-            if (result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                tcCliente.SelectedIndex = 0; // Redirigir a la primera pestaña si elige cancelar
-            }
+            return result == DialogResult.OK;
+            
+           
         }
 
      

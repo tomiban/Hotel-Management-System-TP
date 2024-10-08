@@ -88,5 +88,11 @@ namespace Presentation.Views
         {
             this.Show();
         }
+
+        public void LimpiarCampos()
+        {
+            txtUsuario.Text = string.Empty;
+            txtContraseña.Text = string.Empty;
+        }
     }
 }

@@ -8,6 +8,8 @@
         event EventHandler LoginEvent;
         event EventHandler RedirectToRegister;
 
+
+        void LimpiarCampos();
         void CloseView();
         void HideView();
         void ShowView();

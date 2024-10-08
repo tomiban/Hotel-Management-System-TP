@@ -54,7 +54,8 @@ namespace Presentation.Presenters
                         return;  
                 }
 
-                _view.HideView();  
+                _view.HideView();
+                _view.LimpiarCampos();
             }
             catch (ValidationException ex)
             {
